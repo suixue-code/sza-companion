@@ -1,0 +1,201 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import weaponsData from '../data/weapons.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/weapons/', Astro.site).toString();
+const fmt = new Intl.NumberFormat('en-US');
+
+const faq = [
+	{
+		question: 'What is the best weapon upgrade path?',
+		answer: 'Handgun (starter) → shotgun (~150 Credits) → rifle (~750 Credits). Upgrade shotgun before the first elite wave when possible.',
+	},
+	{
+		question: 'What weapons were added in May 2026?',
+		answer: 'World Ender (first mythic F2P), Grenade Launcher, and Tommy Gun shipped in the May 8 Mini Content Update. Flamethrower was buffed.',
+	},
+	{
+		question: 'Do you publish exact weapon damage stats?',
+		answer: 'No. Per-weapon damage, fire rate, and upgrade costs are in-game only unless marked verified. We do not invent numbers.',
+	},
+	{
+		question: 'What are Galactic Crate weapons?',
+		answer: 'Dev previews and third-party guides list Cosmic Pistol, Quasar, Pulsar, Interstellar, and Void Scythe — mostly media_reported, not confirmed in official patch text.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Weapons — Progression & New Guns',
+		description: 'Weapon progression path and May 2026 F2P guns for Survive Zombie Arena with honest data gaps.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Weapons', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Weapons — Handgun to Rifle & May 2026 Guns"
+	description="Survive Zombie Arena weapon guide: handgun → shotgun → rifle progression, World Ender mythic, and galactic previews without invented stats."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Verified path · no invented stats · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Weapons</h1>
+				<p class="geo-snap">
+					In-run weapon upgrades spend Credits earned each wave. This page tracks the verified handgun → shotgun → rifle path plus May 2026 F2P additions — with explicit gaps where stats are in-game only.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Core path</strong>
+				<p>Handgun → shotgun (~150) → rifle (~750). Marksman should rush rifle for Deadeye pierce.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<p class="notice">{weaponsData.honestyNote}</p>
+			<div class="section-title" style="margin-top: 20px;">
+				<h2>Verified in-run progression</h2>
+				<p>Last checked {weaponsData.lastChecked}</p>
+			</div>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Stage</th>
+							<th>Weapon</th>
+							<th>Est. cost</th>
+							<th>Role</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						{weaponsData.progression.map((w) => (
+							<tr>
+								<td>{w.stage}</td>
+								<td><strong>{w.name}</strong></td>
+								<td>{w.estimatedCostCredits === null ? 'Unknown' : w.estimatedCostCredits === 0 ? 'Free' : fmt.format(w.estimatedCostCredits)}</td>
+								<td>{w.description}</td>
+								<td>{w.status}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>May 2026 F2P guns (patch 2026-05-08)</h2>
+			</div>
+			<div class="data-grid">
+				{weaponsData.namedWeapons.filter((w) => w.status === 'live').map((w) => (
+					<article class="data-card">
+						<h3>{w.name}</h3>
+						<p><strong>{w.rarity}</strong> · {w.access} · added {w.addedDate}</p>
+						<p>{w.description}</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>Dev-preview weapons (not live / partial)</h2>
+			<ul class="check-list">
+				{weaponsData.namedWeapons.filter((w) => w.status === 'preview').map((w) => (
+					<li>
+						<strong>{w.name}</strong> — {w.description}
+					</li>
+				))}
+			</ul>
+
+			<h2>Galactic previews</h2>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Weapon</th>
+							<th>Access</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody>
+						{weaponsData.galacticPreviews.map((w) => (
+							<tr>
+								<td><strong>{w.name}</strong></td>
+								<td>{w.access}</td>
+								<td>{w.status}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<h2>Galactic Crates poll (not shipped)</h2>
+			<p>
+				Community poll ({weaponsData.galacticCrates.pollDate}): event currency leads {weaponsData.galacticCrates.pollResult}. {weaponsData.galacticCrates.note}
+			</p>
+
+			<h2>Gun tier framework (media_reported)</h2>
+			<p class="notice">{weaponsData.gunTierFramework.honestyNote}</p>
+			{
+				weaponsData.gunTierFramework.tiers.map((tier) => (
+					<GuideSection heading={tier.tier} level={3}>
+						<ul class="check-list">
+							{tier.weapons.map((w) => (
+								<li>{w}</li>
+							))}
+						</ul>
+						<p>{tier.note}</p>
+					</GuideSection>
+				))
+			}
+
+			<h2>Class × weapon synergy</h2>
+			<ul class="check-list">
+				{weaponsData.gunTierFramework.classSynergy.map((line) => (
+					<li>{line}</li>
+				))}
+			</ul>
+
+			<h2>Data gaps</h2>
+			<ul class="warning-list">
+				<li>No complete in-run weapon name list beyond verified progression.</li>
+				<li>No exact damage, fire rate, magazine size, or slot-4+ costs published.</li>
+				<li>Galactic crate odds and final gun names from May 17 batch undisclosed.</li>
+			</ul>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p>
+				Related: <a href="/guides/best-weapons/">Best weapons guide</a> · <a href="/guides/gumdrop-blaster-guide/">Gumdrop Blaster</a> · <a href="/guides/world-ender-guide/">World Ender</a> · <a href="/events/galactic/">Galactic Event</a> · <a href="/classes/">Classes</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

@@ -1,0 +1,106 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import loadoutsData from '../data/loadouts.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/best-loadouts/', Astro.site).toString();
+const { loadouts, faq } = loadoutsData;
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Best Loadouts',
+		description: 'Solo, team, farm, high-wave, and leaderboard loadout frameworks for Survive Zombie Arena with honest data gaps.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Best Loadouts', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Best Loadouts — Solo, Team & Leaderboard"
+	description="Best Survive Zombie Arena loadouts by playstyle: solo beginner, team support, credit farm, high wave, and leaderboard — frameworks without invented weapon names."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Framework loadouts · {loadoutsData.lastChecked}</p>
+				<h1>Best Loadouts</h1>
+				<p class="geo-snap">
+					Concrete weapon-by-weapon loadouts with exact in-game names are not yet publicly documented. These frameworks use verified class abilities, Credit economy, and team-role guidance from tracked sources.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Quick answer</strong>
+				<p>{loadoutsData.quickAnswer}</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<p class="notice">{loadoutsData.honestyNote}</p>
+
+			{
+				loadouts.map((loadout) => (
+					<GuideSection heading={loadout.name} id={loadout.id}>
+						<p><strong>Class:</strong> {loadout.class}</p>
+						<p><strong>Weapon path:</strong> {loadout.weaponPath}</p>
+						<p><strong>Credit priority:</strong> {loadout.creditPriority}</p>
+						<p class="muted" style="font-size: 0.88rem;">Source: {loadout.source}</p>
+						<ul class="check-list" style="margin-top: 12px;">
+							{loadout.gearPriority.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</GuideSection>
+				))
+			}
+
+			<GuideSection
+				heading="Loadout decisions, ranked"
+				items={loadoutsData.decisions}
+			/>
+
+			<GuideSection
+				heading="Playbook (from tracked sources)"
+				items={loadoutsData.playbook}
+			/>
+
+			<GuideSection
+				heading="Rooftop Map adjustments"
+				body="Live since April 18, 2026 — stairwell chokepoints favor lane-hold loadouts over open-field roaming."
+				items={loadoutsData.rooftopNotes}
+			/>
+
+			<GuideSection
+				heading="Still needs in-game verification"
+				items={loadoutsData.dataGaps}
+			/>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
+			<p>
+				See also: <a href="/maps/">Maps</a> · <a href="/waves/">Wave guide</a> · <a href="/guides/tactician-guide/">Tactician guide</a> · <a href="/guides/necromancer/">Necromancer guide</a> · <a href="/classes/">Classes</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

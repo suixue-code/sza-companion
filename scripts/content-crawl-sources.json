@@ -1,0 +1,131 @@
+{
+	"userAgent": "SZACompanionContentCrawl/1.0 (+https://szacompanion.com; content-audit)",
+	"rateLimitMs": 1200,
+	"sources": {
+		"competitorCom": {
+			"label": "survivezombiearena.com",
+			"baseUrl": "https://survivezombiearena.com",
+			"paths": [
+				"/",
+				"/codes/",
+				"/classes/",
+				"/tier-list/",
+				"/weapons/",
+				"/beginner-guide/",
+				"/best-loadouts/",
+				"/waves/",
+				"/enemies/",
+				"/maps/",
+				"/leaderboard/",
+				"/update-log/",
+				"/discord/"
+			]
+		},
+		"competitorWiki": {
+			"label": "survivezombiearena.wiki",
+			"baseUrl": "https://www.survivezombiearena.wiki",
+			"paths": [
+				"/en/weapons/survive-zombie-arena-gun-tier-list",
+				"/en/waves/survive-zombie-arena-waves",
+				"/en/credits/Survive-Zombie-Arena-afk-farm",
+				"/en/waves/Survive-Zombie-Arena-all-zombies",
+				"/en/guide/Survive-Zombie-Arena-beginner-guide",
+				"/en/credits/Survive-Zombie-Arena-best-afk-method",
+				"/en/classes/Survive-Zombie-Arena-best-class",
+				"/en/weapons/Survive-Zombie-Arena-best-gun",
+				"/en/weapons/Survive-Zombie-Arena-best-weapon",
+				"/en/tiers/Survive-Zombie-Arena-class-ranking",
+				"/en/classes/Survive-Zombie-Arena-classes",
+				"/en/codes/Survive-Zombie-Arena-codes",
+				"/en/credits/Survive-Zombie-Arena-credit-farming",
+				"/en/waves/Survive-Zombie-Arena-enemies",
+				"/en/classes/Survive-Zombie-Arena-engineer-class",
+				"/en/credits/Survive-Zombie-Arena-get-credits-fast",
+				"/en/weapons/Survive-Zombie-Arena-gumdrop-blaster",
+				"/en/waves/Survive-Zombie-Arena-high-wave",
+				"/en/waves/Survive-Zombie-Arena-how-many-waves",
+				"/en/weapons/Survive-Zombie-Arena-how-to-unlock-guns"
+			]
+		},
+		"openSources": {
+			"label": "official-open",
+			"urls": [
+				"https://www.roblox.com/games/114204398207377/Survive-Zombie-Arena",
+				"https://www.roblox.com/communities/561990553/Nectarforge-Studios"
+			]
+		}
+	},
+	"ourRoutes": {
+		"staticPages": [
+			"/",
+			"/codes/",
+			"/classes/",
+			"/tier-list/",
+			"/weapons/",
+			"/beginner-guide/",
+			"/best-loadouts/",
+			"/waves/",
+			"/enemies/",
+			"/maps/",
+			"/leaderboard/",
+			"/updates/",
+			"/discord/",
+			"/tools/credit-planner/",
+			"/tools/loadout-builder/",
+			"/tools/wave-planner/",
+			"/events/galactic/",
+			"/wiki/"
+		],
+		"guideSlugs": [
+			"necromancer",
+			"credits-farm",
+			"waves",
+			"tactician-medic-combo",
+			"best-class-solo",
+			"afk-farm",
+			"best-weapons",
+			"how-to-redeem-codes",
+			"leaderboard",
+			"marksman-guide",
+			"engineer-guide",
+			"void-shards",
+			"galactic-crate",
+			"x2-credits-worth-it",
+			"ninja-worth-it",
+			"bastion-guide",
+			"how-many-waves",
+			"infinite-waves",
+			"redeem-galactic-code",
+			"gamepass",
+			"tactician-guide",
+			"demolitionist-guide",
+			"gumdrop-blaster-guide",
+			"nightmare-mode-guide",
+			"unlock-weapons-guide",
+			"world-ender-guide"
+		]
+	},
+	"keywordToGuideSlug": {
+		"engineer class": "engineer-guide",
+		"marksman class": "marksman-guide",
+		"necromancer": "necromancer",
+		"bastion": "bastion-guide",
+		"ninja": "ninja-worth-it",
+		"afk farm": "afk-farm",
+		"credit farming": "credits-farm",
+		"get credits fast": "credits-farm",
+		"how many waves": "how-many-waves",
+		"infinite waves": "infinite-waves",
+		"high wave": "leaderboard",
+		"redeem codes": "how-to-redeem-codes",
+		"galactic": "galactic-crate",
+		"void shards": "void-shards",
+		"gamepass": "gamepass",
+		"tactician": "tactician-guide",
+		"demolitionist": "demolitionist-guide",
+		"gumdrop blaster": "gumdrop-blaster-guide",
+		"nightmare mode": "nightmare-mode-guide",
+		"how to unlock guns": "unlock-weapons-guide",
+		"world ender": "world-ender-guide"
+	}
+}

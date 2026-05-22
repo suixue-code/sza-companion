@@ -1,0 +1,123 @@
+---
+export interface SourceRef {
+	label: string;
+	url: string;
+}
+
+interface Props {
+	source: string;
+	sourceNote?: string;
+	sourceRefs?: SourceRef[];
+	/** @deprecated legacy string list */
+	sources?: string[];
+	conflictNote?: string;
+	collapsible?: boolean;
+	labels?: {
+		howWeKnow: string;
+		statusBasis: string;
+		conflict: string;
+		legacySources: string;
+		inGame: string;
+		sourcesToggle?: string;
+	};
+}
+
+const {
+	source,
+	sourceNote,
+	sourceRefs = [],
+	sources = [],
+	conflictNote,
+	collapsible = false,
+	labels = {
+		howWeKnow: 'How we know',
+		statusBasis: 'Status basis',
+		conflict: 'Conflict',
+		legacySources: 'Other references',
+		inGame: 'In-game test on this site: no',
+		sourcesToggle: 'Source details',
+	},
+} = Astro.props;
+
+const hasBody = Boolean(sourceNote || source || sourceRefs.length || sources.length || conflictNote);
+const toggleLabel = labels.sourcesToggle ?? 'Source details';
+---
+
+{collapsible && hasBody ? (
+	<details class="code-source-fold">
+		<summary>{toggleLabel}</summary>
+		<div class="code-source-body">
+			{sourceNote && (
+				<p class="code-extra">
+					<em>{labels.howWeKnow}:</em> {sourceNote}
+				</p>
+			)}
+			<p class="code-extra">
+				<em>{labels.statusBasis}:</em> {source}
+			</p>
+			{sourceRefs.length > 0 && (
+				<ul class="code-sources">
+					{sourceRefs.map((ref) => (
+						<li>
+							<a href={ref.url} rel="noopener noreferrer" target="_blank">
+								{ref.label}
+							</a>
+						</li>
+					))}
+				</ul>
+			)}
+			{sources.length > 0 && (
+				<ul class="code-sources">
+					{sources.map((s) => (
+						<li>{s}</li>
+					))}
+				</ul>
+			)}
+			{conflictNote && (
+				<p class="code-extra">
+					<em>{labels.conflict}:</em> {conflictNote}
+				</p>
+			)}
+			<p class="code-extra muted-inline">
+				<em>{labels.inGame}</em>
+			</p>
+		</div>
+	</details>
+) : (
+	<>
+		{sourceNote && (
+			<p class="code-extra">
+				<em>{labels.howWeKnow}:</em> {sourceNote}
+			</p>
+		)}
+		<p class="code-extra">
+			<em>{labels.statusBasis}:</em> {source}
+		</p>
+		{sourceRefs.length > 0 && (
+			<ul class="code-sources">
+				{sourceRefs.map((ref) => (
+					<li>
+						<a href={ref.url} rel="noopener noreferrer" target="_blank">
+							{ref.label}
+						</a>
+					</li>
+				))}
+			</ul>
+		)}
+		{sources.length > 0 && (
+			<ul class="code-sources">
+				{sources.map((s) => (
+					<li>{s}</li>
+				))}
+			</ul>
+		)}
+		{conflictNote && (
+			<p class="code-extra">
+				<em>{labels.conflict}:</em> {conflictNote}
+			</p>
+		)}
+		<p class="code-extra muted-inline">
+			<em>{labels.inGame}</em>
+		</p>
+	</>
+)}

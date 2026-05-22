@@ -1,0 +1,166 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import events from '../../data/events.json';
+import siteMeta from '../../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const galactic = events.find((e) => e.slug === 'galactic')!;
+const pageUrl = new URL('/events/galactic/', Astro.site).toString();
+const endDate = galactic.endDate ?? '2026-06-16';
+
+const faq = [
+	{
+		question: 'When does the Galactic Event end?',
+		answer: `Third-party event guides cite ${endDate}. Confirm in-game before farming deadlines — official #patch-notes had no exact launch/end text as of May 2026 audit.`,
+	},
+	{
+		question: 'What are Void Shards?',
+		answer: 'Reported primary event currency from Galactic Zombies (purple zombies with glowing orbs). Manual pickup; ~50 shards per Galactic Crate per community guides — media_reported, not patch-confirmed.',
+	},
+	{
+		question: 'Does the GALACTIC code work?',
+		answer: 'Disputed. Some media guides list it; official Discord #codes has no post and RoCodes reports 0% success. See codes page.',
+	},
+	{
+		question: 'Are galactic guns pay-to-win?',
+		answer: 'Dev sneak-peek (2026-05-17) confirmed new galactic guns are F2P weapons. Final names, stats, and crate odds undisclosed.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Galactic Event Guide',
+		description: 'Galactic Event previews: Void Shards, Galactic Crates, cosmic weapons, and reported end date for Survive Zombie Arena.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Galactic Event', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Galactic Event — Void Shards & Crates"
+	description="Galactic Event guide for Survive Zombie Arena: Void Shards, Galactic Crates, cosmic weapons, countdown, and honest data gaps."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>{galactic.status.replace(/_/g, ' ')} · checked {galactic.lastChecked}</p>
+				<h1>Galactic Event</h1>
+				<p class="geo-snap">{galactic.description}</p>
+				<p class="lead">Much content is still preview-only in official Discord as of May 2026 — we label media_reported facts explicitly.</p>
+			</div>
+			<aside class="quick-answer accent-panel">
+				<strong>Reported end date</strong>
+				<p id="countdown-label">Calculating…</p>
+				<p class="muted" style="font-size: 0.85rem; margin-top: 8px;">{galactic.endDateNote}</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>Void Shards</h2>
+			<ul class="check-list">
+				<li><strong>Currency:</strong> {galactic.voidShards.name} — {galactic.voidShards.role}</li>
+				<li><strong>Drop source:</strong> {galactic.voidShards.dropSource}</li>
+				<li>
+					<strong>Spawn rate:</strong> {galactic.voidShards.spawnRate.minPercent}–{galactic.voidShards.spawnRate.maxPercent}% reported ({galactic.voidShards.spawnRate.status})
+				</li>
+				<li><strong>Collection:</strong> {galactic.voidShards.collection}</li>
+				<li><strong>Crate cost:</strong> {galactic.voidShards.crateCost} shards ({galactic.voidShards.crateCostNote})</li>
+			</ul>
+
+			<h2>Galactic Crates</h2>
+			<p><strong>Location:</strong> {galactic.galacticCrates.location}</p>
+			<p><strong>Reported weapons:</strong> {galactic.galacticCrates.reportedWeapons.join(', ')} ({galactic.galacticCrates.weaponsStatus})</p>
+			<p>
+				Economy poll ({galactic.galacticCrates.economyPoll.date}): event currency {galactic.galacticCrates.economyPoll.eventCurrencyVotes} vs Credits{' '}
+				{galactic.galacticCrates.economyPoll.creditsVotes} — {galactic.galacticCrates.economyPoll.status}
+			</p>
+
+			<h2>Related code — {galactic.relatedCode.code}</h2>
+			<p>
+				Status: <strong>{galactic.relatedCode.status}</strong>. {galactic.relatedCode.note}{' '}
+				<a href="/codes/#galactic">See codes page</a>.
+			</p>
+
+			<h2>Atlantis Map (preview)</h2>
+			<p>
+				{galactic.atlantisMap.note} Dev preview: {galactic.atlantisMap.devPreviewDate}.
+			</p>
+
+			<h2>Dev previews</h2>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Item</th>
+							<th>Quote</th>
+						</tr>
+					</thead>
+					<tbody>
+						{galactic.devPreviews.map((p) => (
+							<tr>
+								<td>{p.date}</td>
+								<td>{p.item}</td>
+								<td>{p.quote}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<h2>Data gaps</h2>
+			<ul class="warning-list">
+				{galactic.dataGaps.map((gap) => (
+					<li>{gap}</li>
+				))}
+			</ul>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p>
+				Related: <a href="/weapons/">Weapons</a> · <a href="/updates/">Updates</a> · <a href="/codes/">Codes</a>
+			</p>
+		</div>
+	</section>
+
+	<script define:vars={{ endDate }}>
+		const label = document.getElementById('countdown-label');
+		const target = new Date(`${endDate}T23:59:59Z`).getTime();
+
+		function updateCountdown() {
+			if (!label) return;
+			const now = Date.now();
+			const diff = target - now;
+			if (diff <= 0) {
+				label.textContent = 'Reported end date passed — confirm in-game';
+				return;
+			}
+			const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+			const mins = Math.floor((diff / (1000 * 60)) % 60);
+			label.textContent = `${days}d ${hours}h ${mins}m until reported end (${endDate})`;
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 60000);
+	</script>
+</BaseLayout>

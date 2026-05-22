@@ -1,0 +1,59 @@
+{
+	"lastChecked": "2026-05-20",
+	"honestyNote": "Top player names and record wave counts live in-game and on Discord — we do not republish them without permission.",
+	"scoring": [
+		"Score = highest wave reached in a single run (only scoring mechanic per tracked sources).",
+		"Up to 25 players per server — leaderboard pushes are co-op by default.",
+		"Auto Skip compresses run time but skipping into an unstoppable wave ends the run immediately.",
+		"Top player names live in-game and on official Discord — we do not republish without permission."
+	],
+	"teamComp": [
+		{
+			"role": "Necromancer (scaler)",
+			"summary": "Soul Harvest every elite; hold Death Nova for late-wave compressed packs. Only S-tier class — built for the stretch."
+		},
+		{
+			"role": "Tactician (anchor)",
+			"summary": "Steel Barricades + Vanguard Turret + Spike Traps lock chokepoint so Necromancer never gets caught mid-harvest."
+		},
+		{
+			"role": "Marksman (carry)",
+			"summary": "Rifle, Deadeye pierce, Sonar Ping — steady kill-per-wave count keeps Necromancer Credits flowing."
+		},
+		{
+			"role": "Medic (sustain)",
+			"summary": "Heals uptime gaps so carry never backs off. Self-funding via healing Credits (Feb 2026 patch)."
+		}
+	],
+	"pacingSteps": [
+		"Redeem active code (Zombies, 2,500 Credits) before the run.",
+		"Bank Credits in first three waves — no Auto Skip until barricade + turret per active lane.",
+		"Mid waves: Marksman to rifle; Tactician to Steel Barricades.",
+		"Late waves: Necromancer leads — Death Nova on compressed elite packs only, not stragglers.",
+		"Watch Sonar Ping for elite timing; Vanguard Turret aggro-pulls, Marksman finishes."
+	],
+	"dataStatus": [
+		{ "item": "Wave leaderboard exists as headline scoreboard", "status": "verified" },
+		{ "item": "25-player server cap enables full-team pushes", "status": "verified" },
+		{ "item": "Specific top-wave records and player names", "status": "needs_check" },
+		{ "item": "Whether leaderboard resets seasonally or is all-time", "status": "needs_check" }
+	],
+	"faq": [
+		{
+			"question": "Who is at the top of the leaderboard?",
+			"answer": "Top names live in the in-game UI and official Discord. We do not republish player names here. Join Discord for live rankings."
+		},
+		{
+			"question": "What is the highest wave reached?",
+			"answer": "Specific record waves are not externally published — marked needs_check. Check in-game leaderboard or Discord."
+		},
+		{
+			"question": "Is the leaderboard solo or team?",
+			"answer": "Both coexist. 25-player servers enable full-team pushes; Necromancer solo runs are also competitive via Soul Harvest scaling."
+		},
+		{
+			"question": "What is the best class for the Survive Zombie Arena leaderboard?",
+			"answer": "Necromancer is the only S-tier class for leaderboard pushes — soul harvest and Death Nova area damage scale with late-wave zombie counts. Tactician anchor + Marksman carry + Medic sustain is the workhorse team comp."
+		}
+	]
+}

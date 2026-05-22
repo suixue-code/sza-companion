@@ -1,0 +1,69 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import siteMeta from '../data/site-meta.json';
+import { collectionSchema, SITE_NAME } from '@lib/seo';
+
+const hubLinks = [
+	{ label: 'All Guides (26)', href: '/guides/', copy: 'Deep-dive class, weapon, wave, and economy articles.' },
+	{ label: 'Beginner Guide', href: '/beginner-guide/', copy: 'First 5 runs, Credit milestones, Rooftop Map tips.' },
+	{ label: 'Best Loadouts', href: '/best-loadouts/', copy: 'Solo, team, farm, high-wave, and leaderboard frameworks.' },
+	{ label: 'Wave Guide', href: '/waves/', copy: 'Core loop, Auto Skip rules, Nightmare Mode note.' },
+	{ label: 'Enemies', href: '/enemies/', copy: 'Verified facts, VOLATILE preview, class counters.' },
+	{ label: 'Maps', href: '/maps/', copy: 'Rooftop Map tactics, Atlantis preview, FPS poll.' },
+	{ label: 'Leaderboard', href: '/leaderboard/', copy: 'Scoring, team comp, pacing steps.' },
+	{ label: 'All Classes', href: '/classes/', copy: 'Costs, abilities, and unlock advice.' },
+	{ label: 'Weapons', href: '/weapons/', copy: 'Handgun → shotgun → rifle path.' },
+	{ label: 'Tier List', href: '/tier-list/', copy: 'S/A/B/C rankings for Rooftop meta.' },
+	{ label: 'Credit Planner', href: '/tools/credit-planner/', copy: 'Browser-only unlock planning.' },
+	{ label: 'Codes', href: '/codes/', copy: 'Active Zombies code plus disputed GALACTIC.' },
+	{ label: 'Updates', href: '/updates/', copy: 'Patch timeline from Classes Update through Galactic previews.' },
+];
+
+const schema = [
+	collectionSchema(
+		`${SITE_NAME} Wiki Hub`,
+		'A lightweight directory for Survive Zombie Arena guides, maps, waves, and tools.',
+		new URL('/wiki/', Astro.site).toString(),
+	),
+];
+---
+
+<BaseLayout
+	title={`${SITE_NAME} Wiki Hub — Guides & Tools Directory`}
+	description="Survive Zombie Arena wiki hub: codes, classes, loadouts, waves, maps, leaderboard, and Credit Planner with confidence labels."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Directory · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Wiki Hub</h1>
+				<p class="geo-snap">
+					A lightweight directory — not a full wiki database. Every link routes to a page we actually ship with source labels and honest data gaps.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Start here</strong>
+				<p>Codes → beginner guide → Credit Planner → tier list.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<ul class="shortcut-grid">
+				{hubLinks.map((item) => (
+					<li class="shortcut">
+						<a href={item.href}>
+							<strong>{item.label}</strong>
+							<p>{item.copy}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<ToolsGuidesStrip locale="en" />
+</BaseLayout>

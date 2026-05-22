@@ -1,0 +1,58 @@
+[
+	{
+		"slug": "/guides/",
+		"title": "Guides Index",
+		"description": "All deep-dive Survive Zombie Arena guides.",
+		"relatedGuides": ["/beginner-guide/", "/wiki/", "/tier-list/"],
+		"relatedTools": ["/tools/credit-planner/", "/tools/loadout-builder/"]
+	},
+	{
+		"slug": "/beginner-guide/",
+		"title": "Beginner Guide",
+		"description": "First runs, credit milestones, and Rooftop Map basics.",
+		"relatedGuides": ["/guides/", "/guides/marksman-guide/", "/guides/credits-farm/"],
+		"relatedTools": ["/tools/credit-planner/"]
+	},
+	{
+		"slug": "/guides/necromancer/",
+		"title": "Necromancer Guide",
+		"description": "Soul Harvester loop and Death Nova timing.",
+		"relatedGuides": ["/guides/tactician-guide/", "/tier-list/", "/waves/"],
+		"relatedTools": ["/tools/credit-planner/", "/tools/loadout-builder/"]
+	},
+	{
+		"slug": "/guides/marksman-guide/",
+		"title": "Marksman Guide",
+		"description": "Deadeye pierce and first unlock route.",
+		"relatedGuides": ["/guides/credits-farm/", "/beginner-guide/", "/weapons/"],
+		"relatedTools": ["/tools/credit-planner/"]
+	},
+	{
+		"slug": "/guides/tactician-guide/",
+		"title": "Tactician Guide",
+		"description": "Vanguard Turret and barricade anchor play.",
+		"relatedGuides": ["/guides/tactician-medic-combo/", "/maps/", "/best-loadouts/"],
+		"relatedTools": ["/tools/loadout-builder/"]
+	},
+	{
+		"slug": "/guides/credits-farm/",
+		"title": "Credits Farm Guide",
+		"description": "Legal Credits per minute routes.",
+		"relatedGuides": ["/guides/afk-farm/", "/codes/", "/guides/best-weapons/"],
+		"relatedTools": ["/tools/credit-planner/"]
+	},
+	{
+		"slug": "/guides/nightmare-mode-guide/",
+		"title": "Nightmare Mode Guide",
+		"description": "May 2026 gamemode — confirmed, mechanics unverified.",
+		"relatedGuides": ["/waves/", "/updates/", "/guides/how-many-waves/"],
+		"relatedTools": ["/tools/wave-planner/"]
+	},
+	{
+		"slug": "/guides/world-ender-guide/",
+		"title": "World Ender Guide",
+		"description": "First mythic F2P gun from May 2026 patch.",
+		"relatedGuides": ["/weapons/", "/updates/", "/guides/best-weapons/"],
+		"relatedTools": ["/tools/loadout-builder/"]
+	}
+]

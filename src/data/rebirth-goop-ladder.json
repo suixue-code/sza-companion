@@ -1,0 +1,6 @@
+{
+	"goopPerRebirthLevel": [500, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 500000, 1000000],
+	"lastCheckedAt": "2026-05-16",
+	"confidence": "medium",
+	"sourceNote": "Ladder values are commonly repeated across public Slime RNG guides for early Rebirth tiers. Levels beyond this table extrapolate exponentially in the planner until you replace them with verified game data."
+}

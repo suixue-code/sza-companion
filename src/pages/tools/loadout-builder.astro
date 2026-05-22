@@ -1,0 +1,37 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import LoadoutBuilder from '@components/tools/LoadoutBuilder.astro';
+import { breadcrumbSchema, faqSchema, webApplicationSchema } from '@lib/seo';
+
+const faq = [
+	{
+		question: 'What is the best solo loadout in Survive Zombie Arena?',
+		answer: 'Marksman with handgun → shotgun → rifle is the strongest documented solo framework. Necromancer overtakes it for leaderboard pushes once you can afford 250,000 Credits.',
+	},
+	{
+		question: 'What is the best team comp?',
+		answer: 'Tactician (anchor) + Medic (sustain) + Marksman (carry) is the workhorse comp. Add Necromancer or Bastion for high-wave leaderboard runs.',
+	},
+];
+
+const schema = [
+	webApplicationSchema(
+		'Survive Zombie Arena Loadout Builder',
+		'Pick scenario and owned classes for gear tips, team gaps, and shareable loadout text.',
+		new URL('/tools/loadout-builder/', Astro.site).toString(),
+	),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Loadout Builder', url: new URL('/tools/loadout-builder/', Astro.site).toString() },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Loadout Builder"
+	description="Build solo, team, or leaderboard loadouts for Survive Zombie Arena. Role tips, gear priority, and Discord share text."
+	schema={schema}
+>
+	<LoadoutBuilder />
+</BaseLayout>

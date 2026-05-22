@@ -1,0 +1,104 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, SITE_NAME } from '@lib/seo';
+
+const url = new URL('/about/', Astro.site).toString();
+const schema = [
+	articleSchema({
+		title: `About ${SITE_NAME}`,
+		description: `How ${SITE_NAME} sources, labels confidence, and stays clearly unofficial.`,
+		url,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'About', url },
+	]),
+];
+---
+
+<BaseLayout
+	title={`About ${SITE_NAME}`}
+	description={`Unofficial Survive Zombie Arena fan site: how we source codes and guides, label confidence, and stay separate from Roblox and Nectarforge Studios.`}
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Trust · methodology · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>About {SITE_NAME}</h1>
+				<p class="geo-snap">
+					<strong>{SITE_NAME}</strong> ({siteMeta.siteOrigin.replace('https://', '')}) is an unofficial Roblox <em>Survive Zombie Arena</em> companion by {siteMeta.developerName}. We publish codes with status labels, class and wave guides, and browser-only Credit planning — never claiming official access, hidden drop rates, or in-game verification unless stated.
+				</p>
+				<p class="lead">
+					Public game data changes quickly. Every high-traffic page shows when we last reviewed sources and how confident we are in each row.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Short version</strong>
+				<p>Not affiliated with Roblox Corporation or {siteMeta.developerName}. Built for players who want honest labels and links they can check.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>What we are not</h2>
+				<ul class="check-list">
+					<li>Not the official game, studio, or Roblox experience operator.</li>
+					<li>Not a Discord mirror or private leak channel.</li>
+					<li>Not a guarantee that any code, class cost, or calculator output matches your live server.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>How we build pages</h2>
+				<p>
+					Content is assembled from <strong>public web sources</strong> (guides, wikis, Discord audit signals, Roblox API) plus structured notes in our repository. When sources disagree — common for codes — we surface
+					<strong>active</strong>, <strong>expired</strong>, and <strong>unverified</strong> states instead of picking a winner silently.
+				</p>
+				<p>
+					The Credit Planner uses documented planning presets. It helps you think about unlock milestones; it does not read your Roblox account.
+				</p>
+				<p class="muted">{siteMeta.lastPublicReviewNoteEn}</p>
+			</section>
+
+			<section>
+				<h2>Confidence labels</h2>
+				<ul class="check-list">
+					<li><strong>High</strong> — multiple agreeing public sources or stable in-game behavior described consistently.</li>
+					<li><strong>Medium</strong> — one strong source or two sources with minor gaps.</li>
+					<li><strong>Low</strong> — single weak source, extrapolation, or known conflict between trackers.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Official game link</h2>
+				<p>
+					To play or redeem codes in-game, use the Roblox experience page:
+					<a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">{siteMeta.robloxExperienceLabel}</a> (opens in a new tab).
+				</p>
+				<p>
+					Community Discord: <a href={siteMeta.discordInviteUrl} rel="noopener noreferrer" target="_blank">Official Survive Zombie Arena Discord</a>.
+				</p>
+			</section>
+
+			<section>
+				<h2>Updates and corrections</h2>
+				<p>
+					Site-wide public data was last reviewed <strong>{siteMeta.lastPublicReviewDisplay}</strong>. {siteMeta.gameContentVersionLabel}
+				</p>
+				<p>
+					Spotted a wrong code status or broken link? See <a href="/contact/">Contact</a> or read <a href="/privacy/">Privacy</a> for how we handle requests.
+				</p>
+			</section>
+
+			<p>
+				<a class="btn secondary" href="/">Back to home</a>
+				<a class="btn primary" href="/codes/" style="margin-left: 8px;">Check codes</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

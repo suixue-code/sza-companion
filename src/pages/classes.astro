@@ -1,0 +1,210 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import classes from '../data/classes.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/classes/', Astro.site).toString();
+const fmt = new Intl.NumberFormat('en-US');
+
+const quickAnswer = [
+	{ situation: 'Best overall', cls: 'Necromancer', cost: '250k', tier: 'S' },
+	{ situation: 'First unlock solo', cls: 'Marksman', cost: '15k', tier: 'A' },
+	{ situation: 'First unlock co-op', cls: 'Medic', cost: '10k', tier: 'A' },
+	{ situation: 'Squad defense', cls: 'Bastion', cost: '200k', tier: 'A' },
+	{ situation: 'Team anchor', cls: 'Tactician', cost: '75k', tier: 'A' },
+	{ situation: 'Crowd control', cls: 'Demolitionist', cost: '50k', tier: 'B' },
+	{ situation: 'Skip first unlock', cls: 'Ninja', cost: '25k', tier: 'C' },
+];
+
+const faq = [
+	{
+		question: 'What is the cheapest A-tier class?',
+		answer: 'Medic at 10,000 Credits. Best budget co-op unlock; earns Credits from healing per Feb 2026 patch.',
+	},
+	{
+		question: 'What is the best solo class?',
+		answer: 'Marksman (15,000) early; Necromancer (250,000) for late-wave leaderboard pushes once you can manage minion economy.',
+	},
+	{
+		question: 'Should I buy Ninja?',
+		answer: 'Not as a first unlock. C-tier for late waves — Marksman delivers better solo and team value for 10,000 fewer Credits.',
+	},
+	{
+		question: 'When was Necromancer buffed?',
+		answer: 'May 8, 2026 Mini Content Update — higher minion walkspeed and damage (exact values undisclosed). Feb 2026 patch fixed minion kill credit.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Classes — Costs & Abilities',
+		description: 'All 9 Survive Zombie Arena classes with Credit costs, abilities, tier ratings, and unlock advice.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Classes', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Classes — All 9 Kits, Costs & Tiers"
+	description="Complete Survive Zombie Arena class guide: Survivor through Necromancer with Credit costs, abilities, tier ratings, and dev-confirmed patch notes."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>9 classes · dev-confirmed facts · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>All Classes</h1>
+				<p class="geo-snap">
+					Permanent class unlocks cost Credits earned each wave. This page lists every kit with abilities, solo/team tiers, and honest unlock advice — sourced from public guides and Discord patch notes.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>First unlock pick</strong>
+				<p>Medic (10k co-op) or Marksman (15k solo). Save Necromancer (250k) for endgame.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Quick answer</h2>
+				<p>Situation-based picks before reading full breakdowns.</p>
+			</div>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Situation</th>
+							<th>Class</th>
+							<th>Cost</th>
+							<th>Solo tier</th>
+						</tr>
+					</thead>
+					<tbody>
+						{quickAnswer.map((row) => (
+							<tr>
+								<td>{row.situation}</td>
+								<td><strong>{row.cls}</strong></td>
+								<td>{row.cost}</td>
+								<td>{row.tier}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Full class roster</h2>
+			</div>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Class</th>
+							<th>Cost</th>
+							<th>Rarity</th>
+							<th>Solo</th>
+							<th>Team</th>
+							<th>Beginner</th>
+							<th>Role</th>
+						</tr>
+					</thead>
+					<tbody>
+						{classes.map((cls) => (
+							<tr id={cls.id}>
+								<td>
+									<strong><a href={`/classes/${cls.id}/`}>{cls.name}</a></strong>
+									<p class="muted" style="margin: 4px 0 0; font-size: 0.88rem;">{cls.notes}</p>
+								</td>
+								<td>{cls.costCredits === 0 ? 'Free' : fmt.format(cls.costCredits)}</td>
+								<td>{cls.rarity}</td>
+								<td>{cls.tierSolo}</td>
+								<td>{cls.tierTeam}</td>
+								<td>{cls.tierBeginner}</td>
+								<td>{cls.role}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			{
+				classes.map((cls) => (
+					<section id={`detail-${cls.id}`}>
+						<h2>{cls.name}</h2>
+						<p>
+							<strong>Cost:</strong>{' '}
+							{cls.costCredits === 0 ? 'Free (starter)' : `${fmt.format(cls.costCredits)} Credits`} ·{' '}
+							<strong>Solo tier:</strong> {cls.tierSolo} · <strong>Team tier:</strong> {cls.tierTeam}
+						</p>
+						<h3>Abilities</h3>
+						<ul class="check-list">
+							{cls.abilities.map((ab) => (
+								<li>
+									<strong>{ab.name}</strong> — {ab.description}
+								</li>
+							))}
+						</ul>
+						<p><strong>Best for:</strong> {cls.bestFor.join('; ')}</p>
+						<p><strong>Unlock advice:</strong> {cls.unlockAdvice}</p>
+						{cls.synergies.length > 0 && <p><strong>Synergies:</strong> {cls.synergies.join(', ')}</p>}
+					</section>
+				))
+			}
+
+			<section>
+				<h2>Dev-confirmed facts</h2>
+				<ul class="check-list">
+					<li>2026-02-01: Necromancer minion/detonation kills credit the player.</li>
+					<li>2026-02-01: Turrets no longer friendly-fire Necromancer minions.</li>
+					<li>2026-02-01: Medic earns Credits from healing structures and players.</li>
+					<li>2026-05-08: Necromancer buff — higher minion speed and damage (values undisclosed).</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Credit investment ladder</h2>
+				<ul class="check-list">
+					<li>Free–15k: Survivor, Medic, Marksman</li>
+					<li>20k–25k: Engineer, Ninja</li>
+					<li>50k–75k: Demolitionist, Tactician</li>
+					<li>200k–250k: Bastion, Necromancer</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p>
+				See also: <a href="/guides/">All guides</a> · <a href="/tier-list/">Tier list</a> · <a href="/tools/credit-planner/">Credit Planner</a> · <a href="/beginner-guide/">Beginner guide</a>
+			</p>
+		</div>
+	</section>
+	<ToolsGuidesStrip />
+</BaseLayout>

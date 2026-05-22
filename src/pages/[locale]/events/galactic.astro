@@ -1,0 +1,215 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import events from '../../../data/events.json';
+import siteMeta from '../../../data/site-meta.json';
+import { localizedStaticPaths, resolveLocalizedParam } from '@i18n/localized/static-paths';
+import { localePath, lastReviewedDisplay } from '@i18n/localized/paths';
+import { getGalacticCopy } from '@i18n/localized/galactic';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+export function getStaticPaths() {
+	return localizedStaticPaths();
+}
+
+const locale = resolveLocalizedParam(Astro.params.locale);
+if (!locale) return Astro.redirect('/');
+
+const galactic = events.find((e) => e.slug === 'galactic')!;
+const galacticCopy = getGalacticCopy(locale);
+const reviewed = lastReviewedDisplay(locale, siteMeta);
+const pageUrl = new URL(localePath(locale, '/events/galactic/'), Astro.site).toString();
+const homeUrl = new URL(localePath(locale, '/'), Astro.site).toString();
+const codesGalacticUrl = `${localePath(locale, '/codes/')}#galactic`;
+const endDate = galactic.endDate ?? '2026-06-16';
+
+const breadcrumbHome =
+	locale === 'es' ? 'Inicio' : locale === 'pt-br' ? 'Início' : '首页';
+
+const tableHeaders =
+	locale === 'es'
+		? ['Fecha', 'Elemento', 'Cita']
+		: locale === 'pt-br'
+			? ['Data', 'Item', 'Citação']
+			: ['日期', '项目', '引用'];
+
+const schema = [
+	articleSchema({
+		title: galacticCopy.title,
+		description: galacticCopy.description,
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(galacticCopy.faq),
+	breadcrumbSchema([
+		{ name: breadcrumbHome, url: homeUrl },
+		{ name: galacticCopy.h1, url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout title={galacticCopy.title} description={galacticCopy.description} locale={locale} schema={schema}>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow">
+					<span class="pulse"></span>
+					{galacticCopy.eyebrow} {reviewed}
+				</p>
+				<h1>{galacticCopy.h1}</h1>
+				<p class="geo-snap">{galactic.description}</p>
+				<p class="lead">{galacticCopy.lead}</p>
+			</div>
+			<aside class="quick-answer accent-panel">
+				<strong>{galacticCopy.endDateLabel}</strong>
+				<p id="countdown-label">
+					{locale === 'zh-cn' ? '计算中…' : locale === 'pt-br' ? 'Calculando…' : 'Calculando…'}
+				</p>
+				<p class="muted" style="margin-top: 8px; font-size: 0.85rem;">{galactic.endDateNote}</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>{galacticCopy.voidShardsTitle}</h2>
+			<ul class="check-list">
+				<li>
+					<strong>{locale === 'zh-cn' ? '货币：' : locale === 'pt-br' ? 'Moeda:' : 'Moneda:'}</strong>{' '}
+					{galactic.voidShards.name} — {galactic.voidShards.role}
+				</li>
+				<li>
+					<strong>{locale === 'zh-cn' ? '掉落来源：' : locale === 'pt-br' ? 'Fonte:' : 'Fuente:'}</strong>{' '}
+					{galactic.voidShards.dropSource}
+				</li>
+				<li>
+					<strong>{locale === 'zh-cn' ? '刷新率：' : locale === 'pt-br' ? 'Taxa de spawn:' : 'Tasa de aparición:'}</strong>{' '}
+					{galactic.voidShards.spawnRate.minPercent}–{galactic.voidShards.spawnRate.maxPercent}% ({galactic.voidShards.spawnRate.status})
+				</li>
+				<li>
+					<strong>{locale === 'zh-cn' ? '拾取：' : locale === 'pt-br' ? 'Coleta:' : 'Recogida:'}</strong>{' '}
+					{galactic.voidShards.collection}
+				</li>
+				<li>
+					<strong>{locale === 'zh-cn' ? '宝箱花费：' : locale === 'pt-br' ? 'Custo da caixa:' : 'Coste de caja:'}</strong>{' '}
+					{galactic.voidShards.crateCost} shards ({galactic.voidShards.crateCostNote})
+				</li>
+			</ul>
+
+			<h2>{galacticCopy.cratesTitle}</h2>
+			<p>
+				<strong>{locale === 'zh-cn' ? '位置：' : locale === 'pt-br' ? 'Local:' : 'Ubicación:'}</strong>{' '}
+				{galactic.galacticCrates.location}
+			</p>
+			<p>
+				<strong>{locale === 'zh-cn' ? '据报武器：' : locale === 'pt-br' ? 'Armas reportadas:' : 'Armas reportadas:'}</strong>{' '}
+				{galactic.galacticCrates.reportedWeapons.join(', ')} ({galactic.galacticCrates.weaponsStatus})
+			</p>
+			<p>
+				{locale === 'zh-cn' ? '经济投票' : locale === 'pt-br' ? 'Enquete econômica' : 'Encuesta económica'} (
+				{galactic.galacticCrates.economyPoll.date}):{' '}
+				{locale === 'zh-cn' ? '活动货币' : locale === 'pt-br' ? 'moeda do evento' : 'moneda del evento'}{' '}
+				{galactic.galacticCrates.economyPoll.eventCurrencyVotes} vs{' '}
+				{locale === 'zh-cn' ? '信用点' : locale === 'pt-br' ? 'Créditos' : 'Créditos'}{' '}
+				{galactic.galacticCrates.economyPoll.creditsVotes} — {galactic.galacticCrates.economyPoll.status}
+			</p>
+
+			<h2>
+				{galacticCopy.relatedCodeTitle} — {galactic.relatedCode.code}
+			</h2>
+			<p>
+				{locale === 'zh-cn' ? '状态：' : locale === 'pt-br' ? 'Status:' : 'Estado:'}{' '}
+				<strong>{galactic.relatedCode.status}</strong>. {galactic.relatedCode.note}{' '}
+				<a href={codesGalacticUrl}>
+					{locale === 'zh-cn' ? '见兑换码页' : locale === 'pt-br' ? 'Ver página de códigos' : 'Ver página de códigos'}
+				</a>
+				.
+			</p>
+
+			<h2>{galacticCopy.atlantisTitle}</h2>
+			<p>
+				{galactic.atlantisMap.note}{' '}
+				{locale === 'zh-cn' ? '开发预览：' : locale === 'pt-br' ? 'Prévia dev:' : 'Vista previa dev:'}{' '}
+				{galactic.atlantisMap.devPreviewDate}.
+			</p>
+
+			<h2>{galacticCopy.devPreviewsTitle}</h2>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							{tableHeaders.map((header) => <th>{header}</th>)}
+						</tr>
+					</thead>
+					<tbody>
+						{
+							galactic.devPreviews.map((p) => (
+								<tr>
+									<td>{p.date}</td>
+									<td>{p.item}</td>
+									<td>{p.quote}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
+			</div>
+
+			<h2>{galacticCopy.dataGapsTitle}</h2>
+			<ul class="warning-list">
+				{galactic.dataGaps.map((gap) => <li>{gap}</li>)}
+			</ul>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{
+						galacticCopy.faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<p>
+				{locale === 'zh-cn' ? '相关：' : locale === 'pt-br' ? 'Relacionado: ' : 'Relacionado: '}
+				{
+					galacticCopy.relatedLinks.map((link, index) => (
+						<>
+							{index > 0 && ' · '}
+							<a href={link.href === '/codes/' ? codesGalacticUrl : link.href}>{link.label}</a>
+						</>
+					))
+				}
+			</p>
+		</div>
+	</section>
+
+	<script define:vars={{ endDate, countdownPassed: galacticCopy.countdownPassed, countdownTemplate: galacticCopy.countdownTemplate }}>
+		const label = document.getElementById('countdown-label');
+		const target = new Date(`${endDate}T23:59:59Z`).getTime();
+
+		function updateCountdown() {
+			if (!label) return;
+			const now = Date.now();
+			const diff = target - now;
+			if (diff <= 0) {
+				label.textContent = countdownPassed;
+				return;
+			}
+			const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+			const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+			const mins = Math.floor((diff / (1000 * 60)) % 60);
+			label.textContent = countdownTemplate
+				.replace('{days}', String(days))
+				.replace('{hours}', String(hours))
+				.replace('{mins}', String(mins))
+				.replace('{date}', endDate);
+		}
+
+		updateCountdown();
+		setInterval(updateCountdown, 60000);
+	</script>
+</BaseLayout>

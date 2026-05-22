@@ -1,0 +1,121 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import wavesData from '../data/waves.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/waves/', Astro.site).toString();
+const { faq } = wavesData;
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Wave Guide',
+		description: 'Early, mid, and late wave strategy, Auto Skip rules, Credit spending phases, and Nightmare Mode notes.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Wave Guide', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Wave Guide — Early, Mid & Late Strategy"
+	description="Survive Zombie Arena wave guide: core loop, Credit spending phases, Auto Skip rules, class progression timing, and Nightmare Mode status."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Wave economy · reviewed {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Wave Guide</h1>
+				<p class="geo-snap">
+					Every <strong>Survive Zombie Arena</strong> run lives or dies on wave economy — how you bank Credits, spend between waves, and vote Auto Skip. This guide covers verified loop mechanics without inventing per-wave spawn tables.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Spend order</strong>
+				<p>Shotgun first → Medic/Marksman unlock → Health upgrade → bank Tactician/Necromancer.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<GuideSection heading="Core loop" items={wavesData.coreLoop} />
+
+			<GuideSection
+				heading={wavesData.earlyPhase.title}
+				body={`${wavesData.earlyPhase.body} Source: ${wavesData.earlyPhase.source} · ${wavesData.earlyPhase.status}.`}
+			/>
+
+			<GuideSection
+				heading={wavesData.midLatePhase.title}
+				body={`${wavesData.midLatePhase.body} Source: ${wavesData.midLatePhase.source}.`}
+			/>
+
+			<GuideSection
+				heading="Team role split"
+				table={{
+					headers: ['Role', 'Class', 'Job'],
+					rows: wavesData.teamRoles.map((r) => [r.role, r.class, r.job]),
+				}}
+			/>
+
+			{
+				wavesData.creditPhases.map((phase) => (
+					<GuideSection heading={`Credit spending — ${phase.phase}`} id={phase.phase.replace(/\s+/g, '-').toLowerCase()}>
+						<h3>{phase.heading}</h3>
+						<ul class="check-list">
+							{phase.items.map((item) => (
+								<li>{item}</li>
+							))}
+						</ul>
+					</GuideSection>
+				))
+			}
+
+			<GuideSection
+				heading="Auto Skip — vote yes"
+				body="Server-wide vote ends buy phase early. Only vote yes when the team is structurally ready."
+				items={wavesData.autoSkipYes}
+			/>
+
+			<GuideSection heading="Auto Skip — vote no (hold)" items={wavesData.autoSkipNo} />
+
+			<GuideSection
+				heading="Nightmare Mode"
+				body={`${wavesData.nightmareMode.confirmed} ${wavesData.nightmareMode.unverified} Status: ${wavesData.nightmareMode.status}.`}
+			/>
+
+			{
+				wavesData.classProgression.map((stage) => (
+					<GuideSection heading={stage.stage} items={stage.items} level={3} />
+				))
+			}
+
+			<GuideSection heading="Data gaps" items={wavesData.dataGaps} />
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
+			<p>
+				See also: <a href="/guides/waves/">Wave guide (deep)</a> · <a href="/guides/nightmare-mode-guide/">Nightmare Mode</a> · <a href="/enemies/">Enemies</a> · <a href="/best-loadouts/">Best loadouts</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

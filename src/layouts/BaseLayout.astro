@@ -1,0 +1,50 @@
+---
+import type { LocaleCode } from '@i18n/config';
+import { getHtmlLang, resolveLocale } from '@i18n/config';
+import { navLinks } from '@i18n/ui';
+import { isActivePath } from '@i18n/utils';
+import BaseHead from '@components/BaseHead.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import { siteGraphSchema } from '@lib/seo';
+import siteMeta from '../data/site-meta.json';
+
+interface Props {
+	title: string;
+	description: string;
+	locale?: LocaleCode;
+	image?: string;
+	schema?: unknown[];
+	noindex?: boolean;
+}
+
+const { title, description, locale: localeProp = 'en', image, schema = [], noindex = false } = Astro.props;
+const locale = resolveLocale(localeProp);
+const currentPath = Astro.url.pathname;
+const mobileDockLinks = navLinks[locale].slice(0, 3);
+const headSchema = noindex ? schema : [...siteGraphSchema(), ...schema];
+---
+
+<!doctype html>
+<html lang={getHtmlLang(locale)}>
+	<head>
+		<BaseHead title={title} description={description} locale={locale} image={image} schema={headSchema} noindex={noindex} />
+	</head>
+	<body>
+		<Header locale={locale} />
+		<main>
+			<slot />
+		</main>
+		<nav class="mobile-dock" aria-label="Mobile quick links">
+			{mobileDockLinks.map((link) => (
+				<a class:list={['dock-link', { active: isActivePath(currentPath, link.href) }]} href={link.href}>
+					<span class="dock-link-text">{link.text}</span>
+				</a>
+			))}
+		</nav>
+		<Footer locale={locale} />
+		<script define:vars={{ analyticsEnabled: siteMeta.analyticsEnabled }}>
+			window.szaAnalytics = { enabled: analyticsEnabled, provider: 'plausible' };
+		</script>
+	</body>
+</html>

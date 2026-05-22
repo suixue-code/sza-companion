@@ -1,0 +1,121 @@
+{
+	"lastChecked": "2026-05-20",
+	"honestyNote": "We do not invent enemy names, HP totals, or behaviors. Only tracked-source facts appear below.",
+	"verifiedFacts": [
+		{
+			"fact": "500+ enemies spawn across a single arena session.",
+			"source": "Public script guides",
+			"status": "verified"
+		},
+		{
+			"fact": "Elite-tier zombies exist; Tactician Vanguard Turret targets elites specifically.",
+			"source": "Public tier lists",
+			"status": "verified"
+		},
+		{
+			"fact": "Necromancer kit uses fallen zombie corpses as an in-game resource.",
+			"source": "Public tier lists",
+			"status": "verified"
+		},
+		{
+			"fact": "April 18, 2026 shipped a new zombie movement system with the Rooftop Map update.",
+			"source": "Official Discord #announcements",
+			"status": "verified"
+		}
+	],
+	"volatile": {
+		"name": "VOLATILE",
+		"previewDate": "2026-02-07",
+		"status": "dev_preview_not_live",
+		"quote": "VOLATILE - one of the new zombie types thats coming soon. — Santito (Nectarforge dev)",
+		"confirmed": ["Name and visually distinct movement in dev preview clip", "Not live as of May 2026 public review"],
+		"unconfirmed": ["HP, damage, special ability mechanics"],
+		"counterAdvice": "Treat as elite-tier on first contact. Use Marksman Deadeye pierce and Tactician Vanguard Turret until patch notes confirm behavior."
+	},
+	"targetingPriority": [
+		"Elites first — punch through barricades faster; Vanguard Turret auto-focuses them.",
+		"Group clears second — Demolitionist Shockwave/Molotov and Necromancer Death Nova want tight packs.",
+		"Single-target stragglers last — Marksman Deadeye pierce between waves.",
+		"VOLATILE (when live) — elite-tier until mechanics confirmed; avoid close AoE until behavior is known."
+	],
+	"classCounters": [
+		{
+			"class": "Tactician",
+			"role": "Elite-priority auto-targeting",
+			"summary": "Vanguard Turret auto-targets elites. Steel Barricades funnel packs into kill zones. Turrets ignore Necromancer minions (patched Feb 2026)."
+		},
+		{
+			"class": "Necromancer",
+			"role": "Fallen zombie resource loop",
+			"summary": "Soul Harvest banks fuel from kills; Raise Undead converts corpses; Death Nova detonates minion stack. Minion kills credit player (patched Feb 2026). Buffed May 8, 2026."
+		},
+		{
+			"class": "Demolitionist",
+			"role": "Pack disruption",
+			"summary": "Shockwave Bomb stuns grouped charges before barricade contact. Molotov for area denial. Not ideal for fast single-target elites."
+		},
+		{
+			"class": "Marksman",
+			"role": "Line clears and elite detection",
+			"summary": "Deadeye pierce through corridor lines. Sonar Ping pre-marks elites. Recommended first serious unlock for DPS."
+		},
+		{
+			"class": "Bastion",
+			"role": "Squad survival through heavy waves",
+			"summary": "Bunker gives squad invincibility + regen + damage boost. Laser Turret and Drones add range and damage sponge layers."
+		},
+		{
+			"class": "Medic",
+			"role": "Attrition sustain",
+			"summary": "Stim Shot, Mending Tower, Healing Station maintain HP between waves. Earns Credits from healing players and structures (Feb 2026 patch)."
+		}
+	],
+	"waveDensity": [
+		{
+			"phase": "Early waves",
+			"summary": "Sparse standard spawns. Bank Credits; place chokepoint before Auto Skip. AoE abilities overkill here."
+		},
+		{
+			"phase": "Mid waves",
+			"summary": "Packs form; elites mix in. Ensure Vanguard Turret or Sonar Ping active. New movement uses stairwell ramps on Rooftop Map."
+		},
+		{
+			"phase": "Late waves",
+			"summary": "Most of 500+ total count. Elites + packs at high density. Necromancer Death Nova and Bastion Bunker peak here."
+		}
+	],
+	"dataGaps": [
+		"Live zombie type names, HP, damage, and movement speeds are in-game only.",
+		"Named boss encounters not documented in tracked third-party sources.",
+		"VOLATILE exact mechanics undisclosed by developer.",
+		"Full enemy bestiary with per-type stats — competitor pages describe 500+ spawns but names/HP are in-game only."
+	],
+	"spawnModel": [
+		"Public guides describe 500+ enemies per session with density rising through mid and late waves.",
+		"Standard zombies form packs; elites mix in from mid waves and punch barricades faster.",
+		"April 2026 movement update routes elites through Rooftop stairwell ramps — favors Tactician chokes.",
+		"Trash kills feed Necromancer Soul Harvest; elites delete structure if not prioritized."
+	],
+	"faq": [
+		{
+			"question": "How many zombies per run?",
+			"answer": "Public guides describe 500+ enemies per session. Density increases with wave counter — concentrated in mid and late phases."
+		},
+		{
+			"question": "Are there bosses?",
+			"answer": "Boss-tier encounters not documented in tracked third-party sources. Check official Discord for announcements."
+		},
+		{
+			"question": "What are elite zombies?",
+			"answer": "Hardier spawns that punch through barricades faster. Tactician Vanguard Turret auto-prioritizes them. More frequent from mid waves onward."
+		},
+		{
+			"question": "Best class against packs?",
+			"answer": "Demolitionist for mid-wave packs (Shockwave + Molotov). Necromancer Death Nova outscales in late-wave maximum density."
+		},
+		{
+			"question": "What is VOLATILE?",
+			"answer": "Upcoming named zombie previewed by Santito in Discord #sneak-peeks (Feb 2026). Not live as of May 2026. Only name and distinct movement confirmed."
+		}
+	]
+}

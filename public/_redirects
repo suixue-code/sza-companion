@@ -1,0 +1,5 @@
+https://www.szacompanion.com/* https://szacompanion.com/:splat 301
+/update-log/ /updates/ 301
+/update-log /updates/ 301
+/guides/beginner/ /beginner-guide/ 301
+/guides/tier-list/ /tier-list/ 301

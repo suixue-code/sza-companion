@@ -1,0 +1,216 @@
+---
+import type { ToolLinkShareLabels } from '@lib/tool-share-labels';
+
+interface Props {
+	idPrefix: string;
+	labels: ToolLinkShareLabels;
+	showCopyLink?: boolean;
+	showDiscord?: boolean;
+	pngCopyId?: string;
+	pngDownloadId?: string;
+}
+
+const { idPrefix, labels, showCopyLink = true, showDiscord = true, pngCopyId, pngDownloadId } = Astro.props;
+---
+
+<section class="tool-link-share" aria-labelledby={`${idPrefix}-share-heading`}>
+	<div class="tool-link-share__head">
+		<h3 id={`${idPrefix}-share-heading`}>{labels.heading}</h3>
+		<p class="tool-link-share__lead">{labels.lead}</p>
+	</div>
+
+	<div class="share-preview">
+		<span class="share-preview__label">{labels.previewLabel}</span>
+		<p id={`${idPrefix}-share-text`} class="share-preview__text"></p>
+	</div>
+
+	<div class="share-tier">
+		<span class="share-tier__label">{labels.quickActionsLabel}</span>
+		<div class="share-primary">
+			<button type="button" class="btn secondary" id={`${idPrefix}-copy-text`}>{labels.copyText}</button>
+			{showCopyLink && <button type="button" class="btn secondary" id={`${idPrefix}-copy-link`}>{labels.copyLink}</button>}
+			{pngCopyId && <button type="button" class="btn secondary" id={pngCopyId}>{labels.copyPng}</button>}
+			{pngDownloadId && <button type="button" class="btn secondary" id={pngDownloadId}>{labels.downloadPng}</button>}
+			<button type="button" class="btn secondary" id={`${idPrefix}-share-native`}>{labels.moreApps}</button>
+		</div>
+	</div>
+
+	{
+		showDiscord && (
+			<div class="share-tier share-tier--discord">
+				<span class="share-tier__label">{labels.discordTierLabel}</span>
+				<button type="button" class="share-discord-btn" id={`${idPrefix}-share-discord`}>
+					<svg class="share-discord-btn__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+						<path
+							fill="currentColor"
+							d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C1.566 7.98 1.045 11.52 1.262 15.032a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.332-4.127-1.003-7.676-3.3-10.635a.061.061 0 0 0-.031-.03zM8.02 13.865c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.956 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z"
+						></path>
+					</svg>
+					{labels.discordButton}
+				</button>
+				<p class="share-discord-hint" set:html={labels.discordHint} />
+			</div>
+		)
+	}
+
+	<div class="share-tier">
+		<span class="share-tier__label">{labels.socialTierLabel}</span>
+		<div class="shareon shareon--sza" id={`${idPrefix}-shareon`}>
+			<a class="reddit" data-share-network="reddit" aria-label={labels.redditLabel}></a>
+			<a class="twitter" data-share-network="twitter" aria-label={labels.twitterLabel}></a>
+			<a class="telegram" data-share-network="telegram" aria-label={labels.telegramLabel}></a>
+			<a class="whatsapp" data-share-network="whatsapp" aria-label={labels.whatsappLabel}></a>
+			<a class="copy-url" data-share-network="copy-url" aria-label={labels.copyUrlLabel}></a>
+		</div>
+	</div>
+
+	<p id={`${idPrefix}-share-status`} class="share-status" aria-live="polite" hidden></p>
+	{labels.hint && <p class="notice tool-link-share__hint">{labels.hint}</p>}
+</section>
+
+<style>
+	.tool-link-share {
+		margin-top: 1.75rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.tool-link-share__head h3 {
+		margin: 0 0 0.35rem;
+		font-size: 1.05rem;
+	}
+
+	.tool-link-share__lead {
+		margin: 0 0 1rem;
+		font-size: 0.9rem;
+		color: var(--muted);
+	}
+
+	.share-preview {
+		background: var(--field);
+		border: 1px solid var(--line);
+		border-radius: var(--radius);
+		padding: 0.85rem 1rem;
+		margin-bottom: 1rem;
+	}
+
+	.share-preview__label {
+		display: block;
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--muted);
+		margin-bottom: 0.45rem;
+	}
+
+	.share-preview__text {
+		margin: 0;
+		font-size: 0.92rem;
+		line-height: 1.45;
+		color: var(--ink-2);
+		word-break: break-word;
+	}
+
+	.share-tier {
+		margin-bottom: 1rem;
+	}
+
+	.share-tier__label {
+		display: block;
+		font-size: 0.78rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.05em;
+		color: var(--muted);
+		margin-bottom: 0.55rem;
+	}
+
+	.share-primary {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+	}
+
+	.share-tier--discord {
+		padding: 0.85rem 1rem;
+		border-radius: var(--radius);
+		background: linear-gradient(135deg, rgba(88, 101, 242, 0.08), rgba(196, 77, 255, 0.06));
+		border: 1px solid rgba(88, 101, 242, 0.22);
+	}
+
+	.share-discord-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		padding: 0.55rem 0.95rem;
+		border: 0;
+		border-radius: var(--radius);
+		background: #5865f2;
+		color: #fff;
+		font: inherit;
+		font-weight: 700;
+		cursor: pointer;
+		transition: transform 0.15s ease, box-shadow 0.15s ease;
+		box-shadow: 0 8px 20px rgba(88, 101, 242, 0.25);
+	}
+
+	.share-discord-btn:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 10px 24px rgba(88, 101, 242, 0.32);
+	}
+
+	.share-discord-btn:disabled {
+		opacity: 0.7;
+		cursor: wait;
+		transform: none;
+	}
+
+	.share-discord-btn__icon {
+		width: 1.15rem;
+		height: 1.15rem;
+	}
+
+	.share-discord-hint {
+		margin: 0.65rem 0 0;
+		font-size: 0.85rem;
+		color: var(--muted);
+		line-height: 1.4;
+	}
+
+	.shareon--sza {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.45rem;
+	}
+
+	.shareon--sza :global(a) {
+		border-radius: var(--radius) !important;
+		box-shadow: 0 4px 14px rgba(20, 16, 24, 0.12);
+		transition: transform 0.15s ease;
+	}
+
+	.shareon--sza :global(a:hover) {
+		transform: translateY(-1px);
+	}
+
+	.share-status {
+		margin: 0.5rem 0 0;
+		padding: 0.65rem 0.85rem;
+		border-radius: var(--radius);
+		background: rgba(78, 205, 196, 0.12);
+		border: 1px solid rgba(78, 205, 196, 0.35);
+		color: var(--ink-2);
+		font-size: 0.88rem;
+		line-height: 1.4;
+	}
+
+	.share-status[hidden] {
+		display: none;
+	}
+
+	.tool-link-share__hint {
+		margin-top: 0.75rem;
+		font-size: 0.85rem;
+	}
+</style>

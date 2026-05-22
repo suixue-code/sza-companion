@@ -1,0 +1,211 @@
+{
+	"lastChecked": "2026-05-20",
+	"honestyNote": "Exact per-weapon damage, fire rate, magazine size, and Credit upgrade costs are in-game only unless marked verified below. We do not invent stats.",
+	"progression": [
+		{
+			"id": "handgun",
+			"stage": 1,
+			"name": "Handgun",
+			"role": "Starter",
+			"estimatedCostCredits": 0,
+			"status": "verified",
+			"description": "Default starter weapon. Bank Credits through early waves — do not over-invest before shotgun.",
+			"source": "Deltia's Gaming beginner guide + survivezombiearena.com/weapons progression path",
+			"pairWithClasses": ["survivor", "medic", "marksman"]
+		},
+		{
+			"id": "shotgun",
+			"stage": 2,
+			"name": "Shotgun",
+			"role": "Mid-wave spread",
+			"estimatedCostCredits": 150,
+			"status": "verified",
+			"description": "Wider spread handles mid-wave zombie packs. Upgrade before the first elite wave when possible.",
+			"source": "Public beginner guides (~150 Credits commonly cited)",
+			"pairWithClasses": ["medic", "demolitionist", "tactician"]
+		},
+		{
+			"id": "rifle",
+			"stage": 3,
+			"name": "Rifle",
+			"role": "Late-wave sustained DPS",
+			"estimatedCostCredits": 750,
+			"status": "verified",
+			"description": "Range and sustained damage; pairs with Marksman Deadeye pierce and Sonar Ping.",
+			"source": "Public beginner guides (~750 Credits commonly cited)",
+			"pairWithClasses": ["marksman", "tactician", "necromancer"]
+		},
+		{
+			"id": "slot-4-tier",
+			"stage": 4,
+			"name": "High-tier shop weapons (in-run)",
+			"role": "Slot 4+ upgrades",
+			"estimatedCostCredits": null,
+			"status": "needs_check",
+			"description": "Third-party wikis reference additional ranged tiers (e.g. AK-style, minigun-class weapons) without published names or costs.",
+			"reportedNames": ["Minigun", "Arctic Striker"],
+			"source": "Rorowiki category notes — names not independently verified",
+			"pairWithClasses": ["marksman", "necromancer"]
+		}
+	],
+	"namedWeapons": [
+		{
+			"id": "world-ender",
+			"name": "World Ender",
+			"rarity": "Mythic",
+			"access": "F2P",
+			"status": "live",
+			"addedDate": "2026-05-08",
+			"description": "First mythic-rarity F2P gun in Survive Zombie Arena. Confirmed in official #patch-notes Mini Content Update.",
+			"devPreviewDate": "2026-05-06",
+			"source": "Official Discord #patch-notes 2026-05-08; dev sneak-peek 2026-05-06–07"
+		},
+		{
+			"id": "grenade-launcher",
+			"name": "Grenade Launcher",
+			"rarity": "Unknown",
+			"access": "F2P",
+			"status": "live",
+			"addedDate": "2026-05-08",
+			"description": "New F2P gun shipped in May 8, 2026 Mini Content Update. No prior public sneak peek.",
+			"source": "Official Discord #patch-notes 2026-05-08"
+		},
+		{
+			"id": "tommy-gun",
+			"name": "Tommy Gun",
+			"rarity": "Unknown",
+			"access": "F2P",
+			"status": "live",
+			"addedDate": "2026-05-08",
+			"description": "New F2P gun shipped in May 8, 2026 Mini Content Update.",
+			"source": "Official Discord #patch-notes 2026-05-08"
+		},
+		{
+			"id": "flamethrower",
+			"name": "Flamethrower",
+			"rarity": "Unknown",
+			"access": "F2P",
+			"status": "live",
+			"addedDate": "2026-05-08",
+			"description": "Buffed in May 8, 2026 patch — exact stat changes not disclosed.",
+			"source": "Official Discord #patch-notes 2026-05-08"
+		},
+		{
+			"id": "gumdrop-blaster",
+			"name": "Gumdrop Blaster",
+			"rarity": "Unknown",
+			"access": "F2P",
+			"status": "community_reported",
+			"description": "High-burst explosive weapon line with large splash. Community wiki and high-wave samples — in-run cost and stats need in-game verification.",
+			"source": "survivezombiearena.wiki crawl 2026-05-21; community high-wave samples"
+		},
+		{
+			"id": "goo-splasher",
+			"name": "Goo Splasher",
+			"rarity": "Unknown",
+			"access": "F2P",
+			"status": "preview",
+			"devPreviewDate": "2026-02-14",
+			"description": "Splash damage on impact; splash goo slows zombies caught in the AoE.",
+			"source": "Official Discord #sneak-peeks — Santito dev quote"
+		}
+	],
+	"galacticPreviews": [
+		{
+			"id": "cosmic-pistol",
+			"name": "Cosmic Pistol",
+			"aliases": ["Galactic Pistol"],
+			"rarity": "Galactic",
+			"access": "F2P (event)",
+			"status": "preview",
+			"devPreviewDate": "2026-05-05",
+			"description": "Dev-named 'Cosmic Pistol' — obtainable in a future galactic event. Community poll favored right-side design variant.",
+			"source": "Official Discord #sneak-peeks + #polls"
+		},
+		{
+			"id": "galactic-guns-batch",
+			"name": "New galactic guns (unnamed batch)",
+			"rarity": "Galactic",
+			"access": "F2P",
+			"status": "preview",
+			"devPreviewDate": "2026-05-17",
+			"description": "Santito previewed 'some of the new galactic guns' and confirmed they are F2P weapons. Final names, stats, crate odds, and costs not disclosed.",
+			"source": "Official Discord #sneak-peeks 2026-05-17"
+		},
+		{
+			"id": "quasar",
+			"name": "Quasar",
+			"rarity": "Galactic",
+			"access": "Galactic Crate",
+			"status": "media_reported",
+			"description": "Listed among five Galactic Crate exclusives on third-party event guides — not confirmed in official Discord patch text.",
+			"source": "IGN wiki / community event guides (needs in-game verification)"
+		},
+		{
+			"id": "pulsar",
+			"name": "Pulsar",
+			"rarity": "Galactic",
+			"access": "Galactic Crate",
+			"status": "media_reported",
+			"description": "Reported Galactic Crate exclusive.",
+			"source": "Third-party event guides (needs in-game verification)"
+		},
+		{
+			"id": "interstellar",
+			"name": "Interstellar",
+			"rarity": "Galactic",
+			"access": "Galactic Crate",
+			"status": "media_reported",
+			"description": "Reported Galactic Crate exclusive.",
+			"source": "Third-party event guides (needs in-game verification)"
+		},
+		{
+			"id": "void-scythe",
+			"name": "Void Scythe",
+			"rarity": "Galactic",
+			"access": "Galactic Crate",
+			"status": "media_reported",
+			"description": "Reported Galactic Crate exclusive.",
+			"source": "Third-party event guides (needs in-game verification)"
+		}
+	],
+	"galacticCrates": {
+		"status": "poll_only",
+		"pollDate": "2026-05-16",
+		"pollResult": "Community favors new event currency over default Credits (4,411 vs 1,177 votes as of 2026-05-18 audit)",
+		"note": "Poll signals developer intent — not a shipped economy rule yet."
+	},
+	"gunTierFramework": {
+		"status": "media_reported",
+		"source": "Public tier-list articles + competitor crawl (May 2026); DPS numbers not verified in official patch notes.",
+		"honestyNote": "We do not publish unverified DPS stats. Use verified handgun → shotgun → rifle path first; treat named shop weapons as needs_check until in-game receipts.",
+		"tiers": [
+			{
+				"tier": "Verified core (always first)",
+				"weapons": ["Handgun (free)", "Shotgun (~150 Credits)", "Rifle (~750 Credits)"],
+				"note": "Confirmed across beginner guides and our weapons progression — farm backbone."
+			},
+			{
+				"tier": "Live named F2P (May 2026 patch)",
+				"weapons": ["World Ender (mythic)", "Grenade Launcher", "Tommy Gun", "Flamethrower (buffed)"],
+				"note": "Confirmed in official Discord #patch-notes — costs and stats need in-game verification."
+			},
+			{
+				"tier": "Community-reported shop tier",
+				"weapons": ["Gumdrop Blaster", "Minigun-class heavies", "Heavy Rifle slot"],
+				"note": "Third-party tier lists cite these for mid-to-late waves — treat as experimental until you verify costs in-run."
+			},
+			{
+				"tier": "Event / Galactic",
+				"weapons": ["Cosmic Pistol preview", "Galactic crate batch", "Quasar/Pulsar/Interstellar (media_reported)"],
+				"note": "Separate Void Shard economy — see /events/galactic/ and /guides/galactic-crate/."
+			}
+		],
+		"classSynergy": [
+			"Marksman + rifle: verified pierce farm and line clears on Rooftop stairwells.",
+			"Tactician + splash weapons (Gumdrop): barricade creates density for AoE — see /guides/gumdrop-blaster-guide/.",
+			"Demolitionist + Flamethrower: overlapping AoE roles — stagger cooldowns, not both on single elites.",
+			"Necromancer: rifle until minion DPS overtakes gun DPS late."
+		]
+	}
+}

@@ -1,0 +1,34 @@
+{
+	"sources": [
+		{
+			"id": "slimerng-org",
+			"url": "https://slimerng.org/codes/",
+			"label": "slimerng.org — Slime RNG codes",
+			"extract": "code-tags-only"
+		},
+		{
+			"id": "slimerngguide-com",
+			"url": "https://slimerngguide.com/codes/",
+			"label": "slimerngguide.com — Slime RNG codes",
+			"extract": "code-tags-only"
+		},
+		{
+			"id": "dexerto-en",
+			"url": "https://www.dexerto.com/roblox/slime-rng-codes-3359029/",
+			"label": "Dexerto (EN) Slime RNG codes",
+			"extract": "code-tags-only"
+		},
+		{
+			"id": "game8",
+			"url": "https://game8.co/games/Slime-RNG-Roblox/archives/598569",
+			"label": "Game8 Slime RNG codes",
+			"extract": "code-tags-only"
+		},
+		{
+			"id": "progameguides-en",
+			"url": "https://progameguides.com/roblox/slime-rng-codes/",
+			"label": "Pro Game Guides (EN) Slime RNG codes",
+			"extract": "code-tags-only"
+		}
+	]
+}

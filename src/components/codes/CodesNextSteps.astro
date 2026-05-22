@@ -1,0 +1,21 @@
+---
+import type { LocaleCode } from '@i18n/config';
+import { getCodesNextStepsCopy } from '@i18n/codes-next-steps';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const { locale = 'en' } = Astro.props;
+const c = getCodesNextStepsCopy(locale);
+---
+
+<section class="next-steps">
+	<h2>{c.heading}</h2>
+	<ul class="check-list">
+		<li><a href="/beginner-guide/">{c.beginner}</a></li>
+		<li><a href="/best-loadouts/">{c.loadouts}</a></li>
+		<li><a href="/tools/credit-planner/">{c.creditPlanner}</a></li>
+		<li><a href="/waves/">{c.waves}</a></li>
+	</ul>
+</section>

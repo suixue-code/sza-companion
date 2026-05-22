@@ -1,0 +1,102 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, SITE_NAME } from '@lib/seo';
+
+const url = new URL('/privacy/', Astro.site).toString();
+const schema = [
+	articleSchema({
+		title: `Privacy Policy — ${SITE_NAME}`,
+		description: `How ${SITE_NAME} handles visitor information, analytics, and third-party services.`,
+		url,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Privacy', url },
+	]),
+];
+---
+
+<BaseLayout
+	title={`Privacy Policy — ${SITE_NAME}`}
+	description={`Privacy practices for ${SITE_NAME}, an unofficial Survive Zombie Arena fan site.`}
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Legal · unofficial fan site</p>
+				<h1>Privacy Policy</h1>
+				<p class="lead">
+					This site is a static, unofficial fan project. It does not run Survive Zombie Arena or Roblox inside the page. The sections below describe what happens when you browse normally.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Short version</strong>
+				<p>We do not sell personal data. If we add privacy-friendly analytics or ads later, this page will list them and we will only enable vendors we can describe honestly.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>Who operates this site</h2>
+				<p>
+					<strong>{SITE_NAME}</strong> is an independent site about the Roblox experience <em>Survive Zombie Arena</em> by {siteMeta.developerName}. It is not affiliated with Roblox Corporation or the game's developers.
+				</p>
+			</section>
+
+			<section>
+				<h2>Information this static site collects</h2>
+				<p>
+					The pages you open are mostly pre-built HTML, CSS, and JavaScript served from our host (for example Cloudflare). Your browser may send standard technical data to that host — such as IP address, user agent, and requested URL — as part of normal web delivery. We do not operate a login system or user accounts on this site.
+				</p>
+			</section>
+
+			<section>
+				<h2>Cookies and local storage</h2>
+				<p>
+					Interactive tools (for example the Credit Planner) may read or write values in <strong>your browser's local storage</strong> so settings and shareable links work. That data stays on your device unless you copy a link and send it to someone else.
+				</p>
+			</section>
+
+			<section>
+				<h2>Third-party content</h2>
+				<p>
+					Some pages link to Roblox experience pages, Discord, and public guide URLs. Loading external content follows those providers' terms and your browser's normal requests to their infrastructure.
+				</p>
+			</section>
+
+			<section>
+				<h2>Analytics and advertising (future)</h2>
+				<p>
+					If we add analytics (for example Cloudflare Web Analytics) or display advertising, we will update this policy to name the provider, what categories of data they process, and how to opt out where applicable. Until such a section appears here with a live integration, we are not intentionally running those scripts on this domain.
+				</p>
+			</section>
+
+			<section>
+				<h2>Children</h2>
+				<p>
+					Survive Zombie Arena is played by many ages. This site does not knowingly collect personal information from children. If you believe we should remove something specific, use the <a href="/contact/">Contact</a> page.
+				</p>
+			</section>
+
+			<section>
+				<h2>Related policies</h2>
+				<p>
+					<a href="/terms/">Terms of Use</a> · <a href="/about/">About</a> · <a href="/contact/">Contact</a>
+				</p>
+			</section>
+
+			<section>
+				<h2>Changes</h2>
+				<p>We may revise this policy when the site's features change. The top of this page will always describe the current practices we intend to follow.</p>
+				<p class="muted">{siteMeta.gameContentVersionLabel}</p>
+			</section>
+
+			<p><a class="btn secondary" href="/">Back to home</a></p>
+		</div>
+	</section>
+</BaseLayout>

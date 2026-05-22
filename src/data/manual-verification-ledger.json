@@ -1,0 +1,52 @@
+[
+  {
+    "id": "verify-codes-20260510",
+    "area": "codes",
+    "status": "optional-high-confidence-upgrade",
+    "tester": "TBD",
+    "gameVersionOrUpdate": "TBD",
+    "itemsToCheck": ["sliming", "goingBananas", "gullible", "test", "AATOMORROW", "BONUSbonusBONUS", "giveMeLuckNOW", "2muchluck", "craftAway", "time2Grind", "stonks"],
+    "evidenceNeeded": "Optional screenshot or short video of the redeem result for each code.",
+    "result": "Published from public-source cross-checking; direct game test would upgrade confidence."
+  },
+  {
+    "id": "verify-goop-20260510",
+    "area": "goop",
+    "status": "optional-high-confidence-upgrade",
+    "tester": "TBD",
+    "gameVersionOrUpdate": "TBD",
+    "itemsToCheck": ["Goop unlock cost", "Goop drop source", "Goop upgrade effects"],
+    "evidenceNeeded": "Optional upgrade tree screenshot and a short note on enemy drop behavior.",
+    "result": "Published from public-source cross-checking at medium confidence."
+  },
+  {
+    "id": "verify-rebirth-20260510",
+    "area": "rebirth",
+    "status": "optional-high-confidence-upgrade",
+    "tester": "TBD",
+    "gameVersionOrUpdate": "TBD",
+    "itemsToCheck": ["Next Rebirth Goop cost", "Reset behavior", "Retained slimes", "Retained upgrades"],
+    "evidenceNeeded": "Optional before/after screenshots around Rebirth confirmation.",
+    "result": "Published from public-source cross-checking at medium confidence."
+  },
+  {
+    "id": "verify-recipes-20260510",
+    "area": "recipes",
+    "status": "optional-high-confidence-upgrade",
+    "tester": "TBD",
+    "gameVersionOrUpdate": "TBD",
+    "itemsToCheck": ["Crafty", "Thorn", "Geode", "SlimeSlimeSlime", "Puffy", "Astro", "Sunny", "Graveyard TBA recipe"],
+    "evidenceNeeded": "Optional recipe scroll screenshots plus crafting UI if unlocked.",
+    "result": "Published from public-source cross-checking at medium/low confidence."
+  },
+  {
+    "id": "verify-odds-20260510",
+    "area": "calculator",
+    "status": "optional-high-confidence-upgrade",
+    "tester": "TBD",
+    "gameVersionOrUpdate": "TBD",
+    "itemsToCheck": ["Base odds", "Luck multiplier stacking", "Roll speed behavior", "Probability cap if any"],
+    "evidenceNeeded": "Official game UI values, developer notes, public data tables, or repeatable game testing notes.",
+    "result": "Calculator remains estimate-only until a stronger public or direct source is available."
+  }
+]

@@ -1,0 +1,150 @@
+---
+import siteMeta from '../../data/site-meta.json';
+import type { SiteLocale } from '@i18n/config';
+
+interface Props {
+	locale?: SiteLocale;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const alert = siteMeta.codeAlert ?? { enabled: false, provider: 'buttondown', buttondownUsername: '', tag: 'sza-codes' };
+const privacyUrl = locale === 'en' ? '/privacy/' : `/${locale}/privacy/`;
+
+const copy = {
+	en: {
+		title: 'Code alerts',
+		lead: 'Get an email when we verify a new Survive Zombie Arena code — usually a few times per month, not daily spam.',
+		emailLabel: 'Email',
+		emailPlaceholder: 'you@example.com',
+		submit: 'Subscribe',
+		success: 'Check your inbox to confirm the subscription.',
+		configNote: 'Subscription form activates once Buttondown username is set in site config.',
+		privacy: 'Privacy policy',
+		frequency: 'Manual sends only when codes change. Unsubscribe anytime from the email footer.',
+	},
+	es: {
+		title: 'Alertas de códigos',
+		lead: 'Recibe un email cuando verifiquemos un código nuevo — pocas veces al mes, sin spam diario.',
+		emailLabel: 'Email',
+		emailPlaceholder: 'tu@ejemplo.com',
+		submit: 'Suscribirse',
+		success: 'Revisa tu bandeja para confirmar la suscripción.',
+		configNote: 'El formulario se activa al configurar Buttondown en el sitio.',
+		privacy: 'Política de privacidad',
+		frequency: 'Solo envíos manuales cuando cambian los códigos. Cancela cuando quieras.',
+	},
+	'pt-br': {
+		title: 'Alertas de códigos',
+		lead: 'Receba email quando verificarmos um código novo — poucas vezes por mês, sem spam.',
+		emailLabel: 'Email',
+		emailPlaceholder: 'voce@exemplo.com',
+		submit: 'Inscrever-se',
+		success: 'Confira sua caixa de entrada para confirmar.',
+		configNote: 'O formulário ativa após configurar Buttondown no site.',
+		privacy: 'Política de privacidade',
+		frequency: 'Envios manuais só quando códigos mudam. Cancele quando quiser.',
+	},
+	'zh-cn': {
+		title: '兑换码提醒',
+		lead: '有新码经我们核实后发邮件通知——通常每月几次，不会天天发。',
+		emailLabel: '邮箱',
+		emailPlaceholder: 'you@example.com',
+		submit: '订阅',
+		success: '请查收邮件并确认订阅。',
+		configNote: '在站点配置中填入 Buttondown 用户名后表单即可生效。',
+		privacy: '隐私政策',
+		frequency: '仅在兑换码变更时手动发送。可随时在邮件底部退订。',
+	},
+}[locale];
+
+const buttondownUsername = alert.buttondownUsername?.trim() ?? '';
+const formReady = alert.enabled && alert.provider === 'buttondown' && buttondownUsername.length > 0;
+const formAction = formReady
+	? `https://buttondown.com/api/emails/embed-subscribe/${encodeURIComponent(buttondownUsername)}`
+	: undefined;
+---
+
+<aside class="code-alert-panel rail-panel accent-panel" data-code-alert>
+	<strong>{copy.title}</strong>
+	<p>{copy.lead}</p>
+	{
+		formReady ? (
+			<form class="code-alert-form" action={formAction} method="post" target="_blank" rel="noopener noreferrer">
+				<label class="field code-alert-field">
+					<span class="code-alert-label">{copy.emailLabel}</span>
+					<input class="input" type="email" name="email" required autocomplete="email" placeholder={copy.emailPlaceholder} />
+				</label>
+				{alert.tag ? <input type="hidden" name="tag" value={alert.tag} /> : null}
+				<button class="btn primary" type="submit">{copy.submit}</button>
+				<p class="code-alert-success" hidden data-alert-success>
+					{copy.success}
+				</p>
+			</form>
+		) : (
+			<form class="code-alert-form" data-alert-stub>
+				<label class="field code-alert-field">
+					<span class="code-alert-label">{copy.emailLabel}</span>
+					<input class="input" type="email" name="email" required autocomplete="email" placeholder={copy.emailPlaceholder} disabled />
+				</label>
+				<button class="btn primary" type="submit" disabled>
+					{copy.submit}
+				</button>
+				<p class="notice code-alert-config">{copy.configNote}</p>
+			</form>
+		)
+	}
+	<p class="notice code-alert-frequency">{copy.frequency}</p>
+	<a href={privacyUrl}>{copy.privacy}</a>
+</aside>
+
+<script>
+	document.querySelectorAll('[data-code-alert] form:not([data-alert-stub])').forEach((form) => {
+		form.addEventListener('submit', () => {
+			const success = form.querySelector('[data-alert-success]') as HTMLElement | null;
+			if (success) {
+				window.setTimeout(() => {
+					success.hidden = false;
+				}, 400);
+			}
+			import('../../lib/analytics.ts').then(({ trackEvent }) => {
+				trackEvent('code_alert_subscribe', { provider: 'buttondown' });
+			});
+		});
+	});
+</script>
+
+<style>
+	.code-alert-form {
+		display: grid;
+		gap: 0.75rem;
+		margin-top: 0.75rem;
+	}
+
+	.code-alert-field {
+		margin: 0;
+	}
+
+	.code-alert-label {
+		display: block;
+		font-size: 0.85rem;
+		margin-bottom: 0.35rem;
+		color: var(--muted);
+	}
+
+	.code-alert-frequency {
+		margin: 0.75rem 0 0.5rem;
+		font-size: 0.85rem;
+	}
+
+	.code-alert-config {
+		margin: 0;
+		font-size: 0.85rem;
+	}
+
+	.code-alert-success {
+		margin: 0;
+		font-size: 0.9rem;
+		color: var(--slime-2);
+	}
+</style>

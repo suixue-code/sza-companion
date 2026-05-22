@@ -1,0 +1,118 @@
+{
+	"lastChecked": "2026-05-20",
+	"coreLoop": [
+		"Spawn into the arena (up to 25 players per server).",
+		"Survive the current zombie wave — kills and survival earn Credits.",
+		"Use the buy phase between waves to upgrade weapon / health / place gear (turrets, barricades).",
+		"Push the wave counter higher for increased Credit payout — leaderboard ranks max wave reached.",
+		"Auto Skip: server-wide vote to end buy phase early and start the next wave faster."
+	],
+	"earlyPhase": {
+		"title": "Early waves — bank Credits",
+		"body": "Kill efficiently with the starter handgun. Do not panic-spend on class swaps mid-run. Upgrade to shotgun before first elite-style spawns.",
+		"source": "Public beginner guides",
+		"status": "verified"
+	},
+	"midLatePhase": {
+		"title": "Mid → late waves — class tools take over",
+		"body": "When pack sizes spike, lean on Tactician Spike Traps and Steel Barricades, Demolitionist Shockwave Bomb, and Necromancer Death Nova. Auto Skip becomes correct once your loadout outscales current payout.",
+		"source": "Public tier lists",
+		"status": "verified"
+	},
+	"teamRoles": [
+		{ "role": "Anchor", "class": "Tactician", "job": "Vanguard Turret + Steel Barricades lock a chokepoint" },
+		{ "role": "Carry", "class": "Marksman", "job": "Rifle DPS with Deadeye pierce and Sonar Ping" },
+		{ "role": "Sustain", "class": "Medic", "job": "Healing tower + stim keep carry uptime high" },
+		{ "role": "Scaler", "class": "Necromancer", "job": "Late-wave Death Nova on compressed packs" }
+	],
+	"creditPhases": [
+		{
+			"phase": "Early waves",
+			"heading": "Weapon first, always",
+			"items": [
+				"Handgun → shotgun as soon as Credits allow.",
+				"Redeem Zombies code (2,500 Credits) before the run.",
+				"One barricade at main stairwell + one turret before any Auto Skip vote.",
+				"Do not unlock a class before first weapon upgrade."
+			]
+		},
+		{
+			"phase": "Mid waves",
+			"heading": "First class unlock and gear",
+			"items": [
+				"Marksman (15k) for solo DPS or Medic (10k) for co-op support.",
+				"Add one Health upgrade — late-wave chip damage starts earlier than expected.",
+				"Skip Ninja (25k) as a first unlock."
+			]
+		},
+		{
+			"phase": "Late waves",
+			"heading": "Scale toward Legendary",
+			"items": [
+				"Bank toward Tactician (75k), Bastion (200k), or Necromancer (250k).",
+				"Late waves pay more Credits per kill than early waves.",
+				"Hardcore Mode nerfed 10 → 7.5 Credits/zombie (May 8, 2026 patch)."
+			]
+		}
+	],
+	"autoSkipYes": [
+		"At least one barricade placed at main stairwell entry.",
+		"At least one turret behind barricade and operational.",
+		"Everyone has shotgun upgrade minimum.",
+		"Current wave ended with time to spare; no one mid-spend.",
+		"Mid/late waves where loadout outscales current payout."
+	],
+	"autoSkipNo": [
+		"Any teammate still placing barricades or turrets.",
+		"Someone mid-upgrade without confirming spend.",
+		"Team still on starter handgun.",
+		"After a position wipe — need full buy phase to re-anchor.",
+		"Early waves before kit is solid."
+	],
+	"nightmareMode": {
+		"confirmed": "Nightmare Mode added May 8, 2026 Mini Content Update (official Discord #patch-notes).",
+		"unverified": "Wave scaling, enemy HP/damage differences, win conditions, and reward payouts vs Normal Mode are not published externally.",
+		"status": "confirmed_exists_mechanics_unverified"
+	},
+	"classProgression": [
+		{
+			"stage": "Stage 1 — First unlock (0–15k)",
+			"items": ["Medic (10k) for co-op or Marksman (15k) for solo", "Both A-tier — massive jump from Survivor", "Skip Ninja as first unlock"]
+		},
+		{
+			"stage": "Stage 2 — Mid-tier (15k–75k)",
+			"items": ["Engineer (20k) stepping stone only", "Demolitionist (50k) for crowd control", "Tactician (75k) highest-impact mid-tier anchor on Rooftop Map"]
+		},
+		{
+			"stage": "Stage 3 — Legendary (200k+)",
+			"items": ["Bastion (200k) co-op Legendary — Bunker squad survival", "Necromancer (250k) solo/leaderboard — Death Nova ceiling", "May 8, 2026 Necromancer buff: higher minion speed + damage"]
+		}
+	],
+	"dataGaps": [
+		"Per-wave enemy counts and HP scaling are in-game only.",
+		"Boss-wave intervals and mechanics not documented in tracked sources.",
+		"Nightmare Mode mechanics unverified externally."
+	],
+	"faq": [
+		{
+			"question": "How many waves are there?",
+			"answer": "Public guides describe 500+ enemies per run with endless scaling — no fixed wave cap. Leaderboard ranks max wave reached, not a finish line."
+		},
+		{
+			"question": "What is Auto Skip?",
+			"answer": "Server-wide vote to end buy phase early. Use once barricade + turret are placed and everyone has at least shotgun. Rushing skip before gear placement is a top beginner mistake."
+		},
+		{
+			"question": "When should I swap classes?",
+			"answer": "Class unlocks are permanent and chosen in lobby before each run — not mid-run. Swap when your current class is no longer the limiting factor in wave count."
+		},
+		{
+			"question": "What is Nightmare Mode?",
+			"answer": "Added May 8, 2026 per official Discord patch notes. External wave scaling and reward details are not published yet — treat as confirmed to exist, mechanics unverified."
+		},
+		{
+			"question": "Best class for late waves?",
+			"answer": "Necromancer (S-tier, 250k) for solo leaderboard — Death Nova scales with density. Bastion (200k) for co-op squad survival via Bunker invincibility."
+		}
+	]
+}

@@ -1,0 +1,84 @@
+---
+import CodeSourceBlock, { type SourceRef } from './CodeSourceBlock.astro';
+import CodeFeedback from './CodeFeedback.astro';
+
+export interface CodeRow {
+	code: string;
+	reward: string;
+	status: string;
+	notes?: string;
+	source: string;
+	sourceNote?: string;
+	sourceRefs?: SourceRef[];
+	sources?: string[];
+	conflictNote?: string;
+}
+
+interface SourceLabels {
+	howWeKnow: string;
+	statusBasis: string;
+	conflict: string;
+	legacySources: string;
+	inGame: string;
+	sourcesToggle?: string;
+}
+
+interface Props {
+	codes: CodeRow[];
+	labels: {
+		code: string;
+		reward: string;
+		status: string;
+		source: string;
+		action: string;
+		copy: string;
+		sourceLabels?: SourceLabels;
+	};
+	statusLabel?: Record<string, string>;
+}
+
+const { codes, labels, statusLabel = {} } = Astro.props;
+---
+
+<div class="table-wrap is-stacked">
+	<table class="stacked-table">
+		<thead>
+			<tr>
+				<th>{labels.code}</th>
+				<th>{labels.reward}</th>
+				<th>{labels.status}</th>
+				<th>{labels.source}</th>
+				<th>{labels.action}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{codes.map((code) => (
+				<tr class="stacked-row">
+					<td data-label={labels.code} class="cell-code">
+						<strong class="code-token">{code.code}</strong>
+						{code.notes && <p class="code-row-note">{code.notes}</p>}
+					</td>
+					<td data-label={labels.reward} class="cell-reward">{code.reward}</td>
+					<td data-label={labels.status} class="cell-status">
+						<span class={`status-badge status-${code.status}`}>{statusLabel[code.status] ?? code.status}</span>
+					</td>
+					<td data-label={labels.source} class="cell-source">
+						<CodeSourceBlock
+							source={code.source}
+							sourceNote={code.sourceNote}
+							sourceRefs={code.sourceRefs}
+							sources={code.sources}
+							conflictNote={code.conflictNote}
+							labels={labels.sourceLabels}
+							collapsible
+						/>
+						<CodeFeedback code={code.code} />
+					</td>
+					<td data-label={labels.action} class="cell-action">
+						<button type="button" class="copy-btn copy-btn-block" data-copy={code.code}>{labels.copy}</button>
+					</td>
+				</tr>
+			))}
+		</tbody>
+	</table>
+</div>

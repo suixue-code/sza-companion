@@ -1,0 +1,112 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { searchIndex } from '@lib/search-index';
+import siteMeta from '../data/site-meta.json';
+import { breadcrumbSchema } from '@lib/seo';
+
+const pageUrl = new URL('/search/', Astro.site).toString();
+const schema = [
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Search', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Search SZA Companion"
+	description="Search codes, guides, tools, and class pages on SZA Companion for Survive Zombie Arena."
+	schema={schema}
+>
+	<section class="hero-section">
+		<div class="shell">
+			<h1>Search</h1>
+			<p class="lede">Find codes, guides, tools, and reference pages.</p>
+			<label class="search-field">
+				<span class="sr-only">Search</span>
+				<input type="search" id="siteSearch" placeholder="Try necromancer, codes, farm…" autocomplete="off" />
+			</label>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<ul class="search-results" id="searchResults"></ul>
+			<p class="notice" id="searchEmpty" hidden>No matches — browse the <a href="/wiki/">wiki hub</a> or <a href="/codes/">codes page</a>.</p>
+		</div>
+	</section>
+</BaseLayout>
+
+<script>
+	import { searchPages } from '../lib/search-index.ts';
+
+	const input = document.getElementById('siteSearch');
+	const results = document.getElementById('searchResults');
+	const empty = document.getElementById('searchEmpty');
+
+	function render(query) {
+		if (!results || !empty || !input) return;
+		const hits = searchPages(query);
+		if (!query.trim()) {
+			results.innerHTML = '';
+			empty.hidden = true;
+			return;
+		}
+		if (!hits.length) {
+			results.innerHTML = '';
+			empty.hidden = false;
+			return;
+		}
+		empty.hidden = true;
+		results.innerHTML = hits
+			.map(
+				(entry) =>
+					`<li><a href="${entry.href}"><strong>${entry.title}</strong><span>${entry.category}</span></a></li>`,
+			)
+			.join('');
+		import('../lib/analytics.ts').then(({ trackEvent }) => {
+			trackEvent('search_query', { q: query.slice(0, 80) });
+		});
+	}
+
+	input?.addEventListener('input', () => render((input as HTMLInputElement).value));
+	const params = new URLSearchParams(window.location.search);
+	const q = params.get('q');
+	if (q && input) {
+		(input as HTMLInputElement).value = q;
+		render(q);
+	}
+</script>
+
+<style>
+	.search-field input {
+		width: 100%;
+		max-width: 32rem;
+		padding: 0.75rem 1rem;
+		font-size: 1rem;
+		border-radius: 0.5rem;
+		border: 1px solid var(--theme-border-subtle, rgba(255, 255, 255, 0.12));
+		background: var(--theme-surface, #1a1228);
+		color: inherit;
+	}
+	.search-results {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 0.5rem;
+	}
+	.search-results a {
+		display: flex;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.75rem 1rem;
+		border-radius: 0.5rem;
+		background: var(--theme-surface, rgba(255, 255, 255, 0.04));
+		text-decoration: none;
+	}
+	.search-results span {
+		opacity: 0.7;
+		font-size: 0.85rem;
+	}
+</style>

@@ -1,0 +1,83 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import { CONTACT_EMAIL } from '../data/site-contact';
+import { articleSchema, breadcrumbSchema, SITE_NAME } from '@lib/seo';
+
+const url = new URL('/contact/', Astro.site).toString();
+const mailto = CONTACT_EMAIL ? `mailto:${CONTACT_EMAIL}` : null;
+const schema = [
+	articleSchema({
+		title: `Contact — ${SITE_NAME}`,
+		description: `How to reach ${SITE_NAME} for corrections, privacy requests, and general feedback.`,
+		url,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Contact', url },
+	]),
+];
+---
+
+<BaseLayout
+	title={`Contact — ${SITE_NAME}`}
+	description={`Contact ${SITE_NAME} for code corrections, broken links, privacy questions, and feedback about this unofficial Survive Zombie Arena site.`}
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Corrections · privacy · feedback</p>
+				<h1>Contact</h1>
+				<p class="lead">
+					We read messages about wrong code labels, outdated class costs, broken links, privacy questions, and copyright concerns related to this unofficial {SITE_NAME} site.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Email</strong>
+				{mailto ? (
+					<p><a href={mailto}>{CONTACT_EMAIL}</a></p>
+				) : (
+					<p class="muted">Public email is not configured yet. Use the reporting checklist below; we will add a mailbox when it is ready.</p>
+				)}
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>What to include</h2>
+				<ul class="check-list">
+					<li>The page URL (for example <code>/codes/</code> or <code>/classes/</code>).</li>
+					<li>What you expected vs what you see in-game, if relevant.</li>
+					<li>A link to a public source if you are reporting a code status or patch-note change.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Response time</h2>
+				<p>This is a small static site without 24/7 support. We aim to review good-faith reports when maintaining the site, but cannot promise immediate replies.</p>
+			</section>
+
+			<section>
+				<h2>Official channels</h2>
+				<p>
+					For in-game bugs or official announcements, use the{' '}
+					<a href={siteMeta.discordInviteUrl} rel="noopener noreferrer" target="_blank">official Discord</a> or the{' '}
+					<a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">Roblox experience page</a>.
+				</p>
+			</section>
+
+			<section>
+				<h2>Related pages</h2>
+				<p>
+					<a href="/about/">About</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a>
+				</p>
+			</section>
+
+			<p><a class="btn secondary" href="/">Back to home</a></p>
+		</div>
+	</section>
+</BaseLayout>

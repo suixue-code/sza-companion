@@ -1,0 +1,352 @@
+---
+import type { LocaleCode } from '@i18n/config';
+import { getCreditPlannerUiCopy, type CreditPlannerUiCopy } from '@i18n/localized/credit-planner';
+import { lastReviewedDisplay } from '@i18n/localized/paths';
+import ToolLinkShare from './ToolLinkShare.astro';
+import { getPlannerSharePreset, getToolShareCopy } from '@i18n/tool-share';
+import { mergeToolShareLabels } from '@lib/tool-share-labels';
+import classes from '../../data/classes.json';
+import siteMeta from '../../data/site-meta.json';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const enUi: CreditPlannerUiCopy = {
+	eyebrow: `Browser-only · no Roblox login · last reviewed ${siteMeta.lastPublicReviewDisplay}`,
+	h1: 'Credit Planner',
+	geoSnap:
+		'Plan your next unlock from your current Credits, goal, and owned classes. Runs in your browser only — we never log into Roblox.',
+	lead: 'Enter your balance, pick a goal, tick classes you own, and get a short checklist before you spend in the shop.',
+	quickRuleTitle: 'Quick rule',
+	quickRuleBody:
+		'Redeem Zombies (2,500 Credits) first. Most players should unlock Medic (10k co-op) or Marksman (15k solo) before Ninja, Demolitionist, or Legendary picks.',
+	sessionTitle: 'Your session',
+	currentCredits: 'Current Credits',
+	sessionsPerDay: 'Sessions per day',
+	goal: 'Goal',
+	goalOptions: [
+		{ value: 'balanced_progression', label: 'Balanced progression' },
+		{ value: 'unlock_first_class', label: 'First class unlock' },
+		{ value: 'farm_credits', label: 'Credit farming' },
+		{ value: 'solo_high_wave', label: 'Solo high wave' },
+		{ value: 'team_support', label: 'Team support' },
+		{ value: 'push_necromancer', label: 'Save for Necromancer' },
+	],
+	ownedClassesTitle: 'Owned classes',
+	ownedClassesHint: 'Survivor is free for everyone — tick anything you have already unlocked.',
+	recommendationTitle: 'Recommendation',
+	nextAction: 'Next action',
+	targetUnlock: 'Target unlock',
+	creditsGap: 'Credits gap',
+	estimatedDays: 'Est. days (sessions/day)',
+	disclaimer:
+		'Estimate only. Session math assumes ~8,000 Credits per run from public guides. Always confirm costs in the lobby shop before spending.',
+	checklistTitle: 'Checklist',
+	warningsTitle: 'Warnings',
+	readyLabel: 'Ready',
+	noneTargetLabel: 'None — focus on in-run upgrades',
+	howWeEstimateTitle: 'How we estimate',
+	howWeEstimateBody:
+		'The planner reads class costs from our public data file and applies goal-specific rules from community progression guides (Medic/Marksman first unlock, Necromancer endgame save, weapon path handgun → shotgun → rifle).',
+	howWeEstimateItems: [
+		'Does not connect to Roblox or read your account.',
+		'Hardcore mode pays 7.5 Credits/zombie after the May 8, 2026 patch — farm routes may differ.',
+		'See the classes page and tier list for full unlock advice.',
+	],
+	classesPageLink: '/classes/',
+	tierListLink: '/tier-list/',
+};
+
+const ui = locale === 'en' ? enUi : getCreditPlannerUiCopy(locale);
+const shareLabels = mergeToolShareLabels(getToolShareCopy(locale), getPlannerSharePreset(locale));
+const reviewed =
+	locale === 'en' ? siteMeta.lastPublicReviewDisplay : lastReviewedDisplay(locale, siteMeta);
+const purchasableClasses = classes.filter((c) => c.costCredits > 0);
+const creditsLabel = locale === 'en' ? 'Credits' : locale === 'zh-cn' ? 'Credits' : locale === 'es' ? 'créditos' : 'créditos';
+---
+
+<section class="page-hero compact">
+	<div class="shell two-col mobile-hero-stack">
+		<div>
+			<p class="eyebrow"><span class="pulse"></span>{ui.eyebrow} {reviewed}</p>
+			<h1>{ui.h1}</h1>
+			<p class="geo-snap">{ui.geoSnap}</p>
+			<p class="lead">{ui.lead}</p>
+		</div>
+		<aside class="quick-answer">
+			<strong>{ui.quickRuleTitle}</strong>
+			<p set:html={ui.quickRuleBody.replace('Zombies', '<strong>Zombies</strong>').replace('Medic', '<strong>Medic</strong>').replace('Marksman', '<strong>Marksman</strong>')} />
+		</aside>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="shell tool-grid">
+		<form class="tool-panel" id="credit-planner-form">
+			<h2>{ui.sessionTitle}</h2>
+			<div class="form-grid">
+				<label class="field">
+					{ui.currentCredits}
+					<input class="input" id="credits" type="number" min="0" step="100" value="2500" />
+				</label>
+				<label class="field">
+					{ui.sessionsPerDay}
+					<input class="input" id="sessionsPerDay" type="number" min="1" max="12" step="1" value="3" />
+				</label>
+				<label class="field" style="grid-column: 1 / -1;">
+					{ui.goal}
+					<select class="select" id="goal">
+						{ui.goalOptions.map((opt) => (
+							<option value={opt.value}>{opt.label}</option>
+						))}
+					</select>
+				</label>
+			</div>
+			<h3 style="margin-top: 18px;">{ui.ownedClassesTitle}</h3>
+			<p class="muted" style="font-size: 0.9rem; margin-bottom: 10px;">{ui.ownedClassesHint}</p>
+			<div class="form-grid" id="owned-classes">
+				{
+					purchasableClasses.map((cls) => (
+						<label class="field" style="display: flex; align-items: center; gap: 8px;">
+							<input type="checkbox" name="owned" value={cls.id} />
+							<span>
+								{cls.name} ({cls.costCredits.toLocaleString()} {creditsLabel})
+							</span>
+						</label>
+					))
+				}
+			</div>
+		</form>
+
+		<section class="tool-panel">
+			<h2>{ui.recommendationTitle}</h2>
+			{locale !== 'en' && (
+				<p class="notice" style="margin-bottom: 12px;">
+					{locale === 'zh-cn'
+						? '下方建议与清单目前为英文（与游戏内名称一致）。'
+						: locale === 'es'
+							? 'Las recomendaciones siguientes están en inglés (nombres del juego).'
+							: 'As recomendações abaixo estão em inglês (nomes do jogo).'}
+				</p>
+			)}
+			<div class="result-grid">
+				<div class="metric">
+					<span>{ui.nextAction}</span>
+					<strong id="recommendedAction" style="font-size: 1rem; line-height: 1.35;">—</strong>
+				</div>
+				<div class="metric">
+					<span>{ui.targetUnlock}</span>
+					<strong id="targetUnlock" style="font-size: 1rem;">—</strong>
+				</div>
+				<div class="metric">
+					<span>{ui.creditsGap}</span>
+					<strong id="creditsGap">—</strong>
+				</div>
+				<div class="metric">
+					<span>{ui.estimatedDays}</span>
+					<strong id="estimatedSessions">—</strong>
+				</div>
+			</div>
+			<p class="notice" id="plannerDisclaimer">{ui.disclaimer}</p>
+			<h3>{ui.checklistTitle}</h3>
+			<ul class="check-list" id="checklist"></ul>
+			<h3 id="warningsHeading" style="display: none;">{ui.warningsTitle}</h3>
+			<ul class="warning-list" id="warnings" style="display: none;"></ul>
+
+			<ToolLinkShare idPrefix="planner" labels={shareLabels} />
+		</section>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="shell article-flow">
+		<h2>{ui.howWeEstimateTitle}</h2>
+		<p>{ui.howWeEstimateBody}</p>
+		<ul class="check-list">
+			{ui.howWeEstimateItems.map((item, i) => (
+				<li>
+					{i === 2 ? (
+						<>
+							{locale === 'zh-cn' ? '完整解锁建议见' : locale === 'es' ? 'Consejos completos en' : locale === 'pt-br' ? 'Veja' : 'See the'}{' '}
+							<a href={ui.classesPageLink}>{locale === 'zh-cn' ? '职业页' : locale === 'pt-br' ? 'página de classes' : 'classes page'}</a>
+							{' '}{locale === 'en' ? 'and' : locale === 'zh-cn' ? '与' : locale === 'es' ? 'y' : 'e'}{' '}
+							<a href={ui.tierListLink}>{locale === 'zh-cn' ? '强度榜' : 'tier list'}</a>.
+						</>
+					) : (
+						item
+					)}
+				</li>
+			))}
+		</ul>
+	</div>
+</section>
+
+<script define:vars={{ readyLabel: ui.readyLabel, noneTargetLabel: ui.noneTargetLabel, shareMessagesJson: JSON.stringify(shareLabels) }}>
+	import { planCredits, type PlannerGoal, type PlannerInput, type PlannerResult } from '../../lib/credit-planner.ts';
+	import { buildPlannerSocialMeta, formatPlannerShareText } from '../../lib/credit-planner-share.ts';
+	import { hasPlannerUrlState, parsePlannerUrlState, syncPlannerUrlState } from '../../lib/credit-planner-url-state.ts';
+	import { mountToolLinkShare } from '../../lib/tool-link-share-ui.ts';
+	import { messagesFromToolShareCopy } from '../../lib/tool-share-labels.ts';
+
+	const shareMessages = messagesFromToolShareCopy(shareMessagesJson);
+
+	const fmt = new Intl.NumberFormat('en-US');
+	let latestInput: PlannerInput | null = null;
+	let latestResult: PlannerResult | null = null;
+	let latestShareUrl = '';
+
+	const linkShare = mountToolLinkShare({
+		ids: {
+			previewText: 'planner-share-text',
+			copyText: 'planner-copy-text',
+			copyLink: 'planner-copy-link',
+			discord: 'planner-share-discord',
+			native: 'planner-share-native',
+			status: 'planner-share-status',
+			shareon: 'planner-shareon',
+		},
+		trackEventName: 'planner_share',
+		messages: shareMessages,
+		getShareText: () =>
+			latestInput && latestResult && latestShareUrl
+				? formatPlannerShareText(latestInput, latestResult, latestShareUrl)
+				: '',
+		getShareUrl: () => latestShareUrl,
+		getSocialMeta: () =>
+			latestInput && latestResult
+				? buildPlannerSocialMeta(latestInput, latestResult, latestShareUrl)
+				: { url: latestShareUrl, title: 'SZA Companion · Credit Planner', text: '', hashtags: 'SurviveZombieArena,Roblox' },
+	});
+
+	function getCredits() {
+		const value = Number((document.getElementById('credits') as HTMLInputElement).value);
+		return Number.isFinite(value) && value >= 0 ? value : 0;
+	}
+
+	function getSessionsPerDay() {
+		const value = Number((document.getElementById('sessionsPerDay') as HTMLInputElement).value);
+		return Number.isFinite(value) && value >= 1 ? value : 3;
+	}
+
+	function getGoal(): PlannerGoal {
+		return (document.getElementById('goal') as HTMLSelectElement).value as PlannerGoal;
+	}
+
+	function getOwnedClassIds(): string[] {
+		const owned = ['survivor'];
+		document.querySelectorAll<HTMLInputElement>('input[name="owned"]:checked').forEach((input) => {
+			if (input.value) owned.push(input.value);
+		});
+		return owned;
+	}
+
+	function renderPlanner() {
+		const input: PlannerInput = {
+			credits: getCredits(),
+			goal: getGoal(),
+			ownedClassIds: getOwnedClassIds(),
+			sessionsPerDay: getSessionsPerDay(),
+		};
+		latestShareUrl = syncPlannerUrlState(input);
+		const result = planCredits(input);
+		latestInput = input;
+		latestResult = result;
+
+		const actionEl = document.getElementById('recommendedAction');
+		const targetEl = document.getElementById('targetUnlock');
+		const gapEl = document.getElementById('creditsGap');
+		const sessionsEl = document.getElementById('estimatedSessions');
+		const checklistEl = document.getElementById('checklist');
+		const warningsEl = document.getElementById('warnings');
+		const warningsHeading = document.getElementById('warningsHeading');
+
+		if (!actionEl || !targetEl || !gapEl || !sessionsEl || !checklistEl || !warningsEl || !warningsHeading) return;
+
+		actionEl.textContent = result.recommendedAction;
+		targetEl.textContent = result.targetUnlock ?? noneTargetLabel;
+		gapEl.textContent = result.creditsGap > 0 ? fmt.format(result.creditsGap) : readyLabel;
+		sessionsEl.textContent =
+			result.estimatedSessions === null ? '—' : result.estimatedSessions === 0 ? '0' : `~${result.estimatedSessions}`;
+
+		checklistEl.innerHTML = result.checklist.map((item) => `<li>${item}</li>`).join('');
+
+		if (result.warnings.length > 0) {
+			warningsHeading.style.display = '';
+			warningsEl.style.display = '';
+			warningsEl.innerHTML = result.warnings.map((item) => `<li>${item}</li>`).join('');
+		} else {
+			warningsHeading.style.display = 'none';
+			warningsEl.style.display = 'none';
+			warningsEl.innerHTML = '';
+		}
+
+		linkShare.refresh();
+	}
+
+	const form = document.getElementById('credit-planner-form');
+	const STORAGE_KEY = 'sza-credit-planner';
+
+	function saveState() {
+		const state = {
+			credits: (document.getElementById('credits') as HTMLInputElement)?.value,
+			sessionsPerDay: (document.getElementById('sessionsPerDay') as HTMLInputElement)?.value,
+			goal: (document.getElementById('goal') as HTMLSelectElement)?.value,
+			owned: Array.from(document.querySelectorAll<HTMLInputElement>('input[name="owned"]:checked')).map((el) => el.value),
+		};
+		localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+	}
+
+	function applyPlannerState(state: Partial<PlannerInput>) {
+		if (state.credits != null) (document.getElementById('credits') as HTMLInputElement).value = String(state.credits);
+		if (state.sessionsPerDay != null) {
+			(document.getElementById('sessionsPerDay') as HTMLInputElement).value = String(state.sessionsPerDay);
+		}
+		if (state.goal) (document.getElementById('goal') as HTMLSelectElement).value = state.goal;
+		if (state.ownedClassIds) {
+			const owned = new Set(state.ownedClassIds);
+			document.querySelectorAll<HTMLInputElement>('input[name="owned"]').forEach((input) => {
+				input.checked = owned.has(input.value);
+			});
+		}
+	}
+
+	function loadState() {
+		const raw = localStorage.getItem(STORAGE_KEY);
+		if (!raw) return;
+		try {
+			const state = JSON.parse(raw) as { credits?: string; sessionsPerDay?: string; goal?: string; owned?: string[] };
+			if (state.credits != null) (document.getElementById('credits') as HTMLInputElement).value = state.credits;
+			if (state.sessionsPerDay != null) (document.getElementById('sessionsPerDay') as HTMLInputElement).value = state.sessionsPerDay;
+			if (state.goal) (document.getElementById('goal') as HTMLSelectElement).value = state.goal;
+			document.querySelectorAll<HTMLInputElement>('input[name="owned"]').forEach((input) => {
+				input.checked = state.owned?.includes(input.value) ?? false;
+			});
+		} catch {
+			/* ignore */
+		}
+	}
+
+	const urlParams = new URLSearchParams(location.search);
+	if (hasPlannerUrlState(urlParams)) {
+		applyPlannerState(parsePlannerUrlState(urlParams));
+	} else {
+		loadState();
+	}
+
+	form?.querySelectorAll('input, select').forEach((el) => {
+		el.addEventListener('input', () => {
+			saveState();
+			renderPlanner();
+		});
+		el.addEventListener('change', () => {
+			saveState();
+			renderPlanner();
+		});
+	});
+
+	renderPlanner();
+	import('../../lib/analytics.ts').then(({ trackEvent }) => trackEvent('planner_run', { tool: 'credit' }));
+</script>

@@ -1,0 +1,162 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import classes from '../data/classes.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/tier-list/', Astro.site).toString();
+const fmt = new Intl.NumberFormat('en-US');
+
+const tiers = [
+	{ label: 'S', title: 'S tier', note: 'Late-wave scaler — requires active kit management and 250k Credits.' },
+	{ label: 'A', title: 'A tier', note: 'Core picks for solo, team, or squad defense at multiple price points.' },
+	{ label: 'B', title: 'B tier', note: 'Situational — strong in niche roles but outclassed for first unlock.' },
+	{ label: 'C', title: 'C tier', note: 'Starter or novelty — replace quickly on Rooftop Map meta.' },
+];
+
+const playstyleTable = [
+	['First unlock budget', 'Medic', '10k cheapest A-tier co-op entry'],
+	['First unlock solo DPS', 'Marksman', '15k best solo value with Deadeye + Sonar'],
+	['Solo run', 'Marksman or Necromancer', 'Marksman early; Necro endgame funnel meta'],
+	['Team anchor', 'Tactician', 'Barricades + Vanguard Turret elite targeting'],
+	['Squad survival', 'Bastion', 'Bunker invincibility for full lobby'],
+	['Co-op support', 'Medic', 'Healing credits + sustain'],
+	['Leaderboard', 'Necromancer', 'Death Nova on compressed packs'],
+	['Rooftop chokepoint', 'Tactician', 'Steel Barricades at stairwells'],
+];
+
+const faq = [
+	{
+		question: 'What is S tier in Survive Zombie Arena?',
+		answer: 'Necromancer only — S-tier solo, team, and farm context per public tier consensus. Costs 250,000 Credits.',
+	},
+	{
+		question: 'Is Bastion S tier?',
+		answer: 'Tier is contested (PGG S-tier vs Destructoid A-tier). We list Bastion as A-tier solo, A-tier team — media_reported status.',
+	},
+	{
+		question: 'Did Rooftop Map change the tier list?',
+		answer: 'Yes. Tactician and Necromancer funnel plays rank higher; Ninja stealth falls off on stairwell density.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Tier List (May 2026)',
+		description: 'S/A/B/C class tier list for Survive Zombie Arena with costs, weaknesses, and playstyle picks.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Tier List', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Tier List (May 2026) — S/A/B/C Classes"
+	description="Survive Zombie Arena tier list: Necromancer S-tier, Medic/Marksman/Tactician/Bastion A-tier, and playstyle picks for Rooftop Map meta."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Solo tier baseline · Rooftop Map · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Tier List</h1>
+				<p class="geo-snap">
+					Class rankings for <strong>Survive Zombie Arena</strong>, based on public guides and recent patches. Solo tier is shown below — team tier can differ (Medic is stronger in co-op).
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Snapshot</strong>
+				<p>S: Necromancer · A: Medic, Marksman, Tactician, Bastion · B: Engineer, Demolitionist · C: Survivor, Ninja</p>
+			</aside>
+		</div>
+	</section>
+
+	{
+		tiers.map((tier) => {
+			const tierClasses = classes.filter((c) => c.tierSolo === tier.label);
+			return (
+				<section class="content-section">
+					<div class="shell">
+						<div class="section-title">
+							<h2>{tier.title}</h2>
+							<p>{tier.note}</p>
+						</div>
+						<div class="data-grid">
+							{tierClasses.map((cls) => (
+								<article class="data-card" id={cls.id}>
+									<h3>{cls.name}</h3>
+									<p>
+										<strong>{cls.costCredits === 0 ? 'Free' : `${fmt.format(cls.costCredits)} Credits`}</strong> · {cls.rarity}
+									</p>
+									<p><strong>Best for:</strong> {cls.bestFor[0]}</p>
+									<p><strong>Weakness:</strong> {cls.counters[0] ?? cls.notes}</p>
+									<p style="margin-top: 8px;">{cls.unlockAdvice}</p>
+									<a href={`/classes/${cls.id}/`}>Full class guide →</a>
+								</article>
+							))}
+						</div>
+					</div>
+				</section>
+			);
+		})
+	}
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>Best class per playstyle</h2>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Playstyle</th>
+							<th>Best</th>
+							<th>Why</th>
+						</tr>
+					</thead>
+					<tbody>
+						{playstyleTable.map((row) => (
+							<tr>
+								<td>{row[0]}</td>
+								<td><strong>{row[1]}</strong></td>
+								<td>{row[2]}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<section style="margin-top: 30px;">
+				<h2>Rooftop Map meta shift</h2>
+				<ul class="check-list">
+					<li>Tactician barricade holds rank higher on stairwell chokepoints.</li>
+					<li>Necromancer Death Nova in funnels scales with pack density.</li>
+					<li>Ninja close-range stealth falls off mid-to-late waves.</li>
+					<li>Pre-April Square Arena guides that assume open rotation are partially outdated.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p>
+				Plan unlocks: <a href="/tools/credit-planner/">Credit Planner</a> · <a href="/classes/">All classes</a> · <a href="/beginner-guide/">Beginner guide</a>
+			</p>
+		</div>
+	</section>
+	<ToolsGuidesStrip />
+</BaseLayout>

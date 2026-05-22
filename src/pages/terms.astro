@@ -1,0 +1,93 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, SITE_NAME } from '@lib/seo';
+
+const url = new URL('/terms/', Astro.site).toString();
+const schema = [
+	articleSchema({
+		title: `Terms of Use — ${SITE_NAME}`,
+		description: `Terms for using ${SITE_NAME}: unofficial fan content, no warranties, and user responsibility.`,
+		url,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Terms', url },
+	]),
+];
+---
+
+<BaseLayout
+	title={`Terms of Use — ${SITE_NAME}`}
+	description={`Terms for browsing and using ${SITE_NAME}, an unofficial Survive Zombie Arena companion.`}
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Legal · unofficial fan site</p>
+				<h1>Terms of Use</h1>
+				<p class="lead">By using this website you agree to the rules below. If you do not agree, please stop using the site.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Short version</strong>
+				<p>Information is provided as-is from public sources. You are responsible for in-game decisions. We are not Roblox or {siteMeta.developerName}.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>Unofficial status</h2>
+				<p>
+					<strong>{SITE_NAME}</strong> is a fan-made reference site. It is not operated by Roblox Corporation, {siteMeta.developerName}, or the creators of <em>Survive Zombie Arena</em>. Trademarks belong to their respective owners.
+				</p>
+			</section>
+
+			<section>
+				<h2>No professional or in-game advice</h2>
+				<p>
+					Codes, guides, class costs, and calculator outputs are planning aids based on public material. They may be outdated or wrong for your account. We do not guarantee rewards, drop rates, leaderboard outcomes, or account results.
+				</p>
+			</section>
+
+			<section>
+				<h2>Acceptable use</h2>
+				<ul class="check-list">
+					<li>Do not scrape or overload the site in ways that harm hosting or other visitors.</li>
+					<li>Do not misrepresent this site as official or affiliated with Roblox or {siteMeta.developerName}.</li>
+					<li>Do not submit malware, spam, or unlawful content through any contact channel we provide.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Links to third parties</h2>
+				<p>
+					We link to external sites (for example the <a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">Roblox experience page</a>, Discord, and public guide URLs on codes pages). We are not responsible for their content or policies.
+				</p>
+			</section>
+
+			<section>
+				<h2>Limitation of liability</h2>
+				<p>
+					To the fullest extent permitted by law, the site is provided "as is" without warranties. We are not liable for indirect or consequential damages arising from use of the site or reliance on its content.
+				</p>
+			</section>
+
+			<section>
+				<h2>Privacy</h2>
+				<p>See our <a href="/privacy/">Privacy Policy</a> for how technical data, local storage, and future analytics may be handled.</p>
+			</section>
+
+			<section>
+				<h2>Changes</h2>
+				<p>We may update these terms when site features change. Continued use after updates means you accept the revised terms.</p>
+				<p class="muted">{siteMeta.gameContentVersionLabel}</p>
+			</section>
+
+			<p><a class="btn secondary" href="/">Back to home</a> <a class="btn primary" href="/contact/" style="margin-left: 8px;">Contact</a></p>
+		</div>
+	</section>
+</BaseLayout>

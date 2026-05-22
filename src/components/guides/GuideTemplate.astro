@@ -1,0 +1,126 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import type { LocaleCode } from '@i18n/config';
+import { guideTemplateUi } from '@i18n/guide-template-ui';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import type { GuidePageData } from '../../types';
+
+interface Props {
+	guide: GuidePageData;
+	locale?: LocaleCode;
+}
+
+const { guide, locale = 'en' } = Astro.props;
+const ui = guideTemplateUi[locale];
+const pageUrl = new URL(guide.path, Astro.site).toString();
+const schema = [
+	articleSchema({
+		title: guide.title,
+		description: guide.description,
+		url: pageUrl,
+		dateModified: guide.lastUpdated,
+	}),
+	faqSchema(guide.faq),
+	breadcrumbSchema([
+		{ name: ui.breadcrumbHome, url: new URL(ui.homeHref, Astro.site).toString() },
+		{ name: ui.breadcrumbGuides, url: new URL(ui.guidesHubHref, Astro.site).toString() },
+		{ name: guide.title, url: pageUrl },
+	]),
+];
+const confidenceLabel =
+	locale === 'zh-cn'
+		? guide.confidence === 'high'
+			? '高'
+			: guide.confidence === 'low'
+				? '低'
+				: '中'
+		: locale === 'es'
+			? guide.confidence === 'high'
+				? 'alta'
+				: guide.confidence === 'low'
+					? 'baja'
+					: 'media'
+			: guide.confidence;
+
+const guideEyebrow =
+	locale === 'zh-cn'
+		? `${guide.priority} 攻略 · 更新 ${guide.lastUpdated} · 置信度：${confidenceLabel}`
+		: locale === 'es'
+			? `${guide.priority} guía · Actualizado ${guide.lastUpdated} · Confianza: ${confidenceLabel}`
+			: `${guide.priority} guide · Updated ${guide.lastUpdated} · ${confidenceLabel} confidence`;
+---
+
+<BaseLayout title={guide.title} description={guide.description} locale={locale} schema={schema}>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow">
+					<span class="pulse"></span>
+					{guideEyebrow}
+				</p>
+				<h1>{guide.title}</h1>
+				<p class="geo-snap">{guide.quickAnswer}</p>
+				<p class="lead">{guide.description}</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>{ui.shortsHook}</strong>
+				<p>{guide.shortsHook}</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-grid">
+			<article class="article-flow">
+				{guide.sections.map((section) => (
+					<section>
+						<h2>{section.heading}</h2>
+						<p>{section.body}</p>
+						{section.items && (
+							<ul class="check-list">
+								{section.items.map((item) => <li>{item}</li>)}
+							</ul>
+						)}
+					</section>
+				))}
+
+				<section>
+					<h2>{ui.commonMistakes}</h2>
+					<ul class="warning-list">
+						{guide.commonMistakes.map((item) => <li>{item}</li>)}
+					</ul>
+				</section>
+
+				<section>
+					<h2>{ui.faq}</h2>
+					<div class="faq-list">
+						{guide.faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</section>
+			</article>
+
+			<aside class="side-rail">
+				<div class="rail-panel">
+					<h2>{ui.related}</h2>
+					{guide.related.map((item) => <a href={item.href}>{item.label}</a>)}
+				</div>
+				<div class="rail-panel accent-panel">
+					<h2>{ui.shortsHook}</h2>
+					<p>{guide.shortsHook}</p>
+				</div>
+				<div class="rail-panel">
+					<h2>{locale === 'zh-cn' ? '来源说明' : locale === 'es' ? 'Nota sobre fuentes' : 'Source note'}</h2>
+					<p>{ui.sourceNote}</p>
+				</div>
+			</aside>
+		</div>
+	</section>
+
+	<ToolsGuidesStrip locale={locale} />
+</BaseLayout>

@@ -1,0 +1,92 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import leaderboardData from '../data/leaderboard.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/leaderboard/', Astro.site).toString();
+const { faq } = leaderboardData;
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Leaderboard Guide',
+		description: 'How wave leaderboard scoring works, best team comp, and pacing steps for high-wave Survive Zombie Arena runs.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Leaderboard', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Leaderboard — How to Climb High Waves"
+	description="Survive Zombie Arena leaderboard guide: wave scoring rules, Tactician + Necromancer team comp, pacing steps, and data we do not invent."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>High-wave strategy · {leaderboardData.lastChecked}</p>
+				<h1>Leaderboard</h1>
+				<p class="geo-snap">
+					The wave leaderboard ranks players and squads by the <strong>highest wave reached in a single run</strong> — not total runs queued. This guide covers verified scoring rules and the composition that stretches one run furthest.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Core comp</strong>
+				<p>Tactician anchor + Marksman carry + Medic sustain + Necromancer scaler.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<p class="notice">{leaderboardData.honestyNote}</p>
+
+			<GuideSection heading="How scoring works" items={leaderboardData.scoring} />
+
+			<GuideSection
+				heading="Best leaderboard team comp"
+				table={{
+					headers: ['Role', 'Summary'],
+					rows: leaderboardData.teamComp.map((m) => [m.role, m.summary]),
+				}}
+			/>
+
+			<GuideSection
+				heading="Pacing a leaderboard run"
+				items={leaderboardData.pacingSteps}
+			/>
+
+			<GuideSection
+				heading="Data status"
+				table={{
+					headers: ['Item', 'Status'],
+					rows: leaderboardData.dataStatus.map((d) => [d.item, d.status]),
+				}}
+			/>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
+			<p>
+				See also: <a href="/guides/leaderboard/">Leaderboard tips</a> · <a href="/guides/necromancer/">Necromancer guide</a> · <a href="/best-loadouts/">Best loadouts</a> · <a href="/tier-list/">Tier list</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

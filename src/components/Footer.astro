@@ -1,0 +1,29 @@
+---
+import type { LocaleCode } from '@i18n/config';
+import siteMeta from '../data/site-meta.json';
+import { footerFineprint, footerIntro, footerNav } from '@i18n/footer';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const { locale = 'en' } = Astro.props;
+const year = new Date().getFullYear();
+const intro = footerIntro[locale];
+const links = footerNav[locale];
+---
+
+<footer class="site-footer">
+	<div class="shell footer-grid">
+		<div>
+			<strong>{intro.title}</strong>
+			<p>{intro.subtitle}</p>
+		</div>
+		<nav aria-label="Footer navigation">
+			{links.map((item) => (
+				<a href={item.href}>{item.text}</a>
+			))}
+		</nav>
+		<p class="fineprint">{footerFineprint(locale, year, siteMeta)}</p>
+	</div>
+</footer>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import enemiesData from '../data/enemies.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/enemies/', Astro.site).toString();
+const { verifiedFacts, volatile, faq } = enemiesData;
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Enemies — Types & Class Counters',
+		description: 'Verified enemy facts, VOLATILE dev preview, targeting priority, and class counter guide for Survive Zombie Arena.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Enemies', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Enemies — Elites, VOLATILE & Counters"
+	description="Survive Zombie Arena enemy guide: verified facts only, VOLATILE dev preview, targeting priority, and how each class counters pack vs elite threats."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>No invented stats · {enemiesData.lastChecked}</p>
+				<h1>Enemies</h1>
+				<p class="geo-snap">
+					Public guides describe 500+ zombies per run plus elite spawns. A full bestiary with names and HP is in-game only — this page lists everything tracked sources confirm, plus explicit gaps.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Targeting</strong>
+				<p>Elites first → pack AoE second → stragglers last. VOLATILE treats as elite until patch notes confirm.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<p class="notice">{enemiesData.honestyNote}</p>
+
+			<GuideSection
+				heading="Verified enemy facts"
+				table={{
+					headers: ['Fact', 'Source', 'Status'],
+					rows: verifiedFacts.map((f) => [f.fact, f.source, f.status]),
+				}}
+			/>
+
+			<GuideSection heading={`${volatile.name} — dev preview (not live)`} id="volatile">
+				<p><strong>Preview date:</strong> {volatile.previewDate} · <strong>Status:</strong> {volatile.status}</p>
+				<p><em>{volatile.quote}</em></p>
+				<p><strong>Confirmed:</strong> {volatile.confirmed.join('; ')}.</p>
+				<p><strong>Not disclosed:</strong> {volatile.unconfirmed.join('; ')}.</p>
+				<p><strong>Counter advice at launch:</strong> {volatile.counterAdvice}</p>
+			</GuideSection>
+
+			<GuideSection heading="Spawn model (tracked sources)" items={enemiesData.spawnModel} />
+
+			<GuideSection heading="Targeting priority" items={enemiesData.targetingPriority} />
+
+			{
+				enemiesData.classCounters.map((entry) => (
+					<GuideSection heading={`${entry.class} — ${entry.role}`} level={3}>
+						<p>{entry.summary}</p>
+					</GuideSection>
+				))
+			}
+
+			<GuideSection
+				heading="Enemy density by wave phase"
+				table={{
+					headers: ['Phase', 'Summary'],
+					rows: enemiesData.waveDensity.map((w) => [w.phase, w.summary]),
+				}}
+			/>
+
+			<GuideSection heading="Data gaps" items={enemiesData.dataGaps} />
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
+			<p>
+				See also: <a href="/guides/demolitionist-guide/">Demolitionist guide</a> · <a href="/maps/">Maps</a> · <a href="/waves/">Wave guide</a> · <a href="/classes/">Classes</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

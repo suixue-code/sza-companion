@@ -1,0 +1,78 @@
+---
+interface Props {
+	code: string;
+}
+
+const { code } = Astro.props;
+const subject = encodeURIComponent(`Code feedback: ${code}`);
+const mailto = `/contact/?subject=${subject}`;
+---
+
+<div class="code-feedback" data-code={code}>
+	<span class="code-feedback-label">Did this code work for you?</span>
+	<div class="code-feedback-actions">
+		<button type="button" class="btn-ghost code-feedback-btn" data-vote="up" aria-label={`${code} worked`}>
+			👍 Works
+		</button>
+		<button type="button" class="btn-ghost code-feedback-btn" data-vote="down" aria-label={`${code} failed`}>
+			👎 Failed
+		</button>
+		<a class="code-feedback-report" href={mailto}>Report issue</a>
+	</div>
+	<p class="code-feedback-thanks" hidden>Thanks — we use community reports alongside Discord #codes to update status labels.</p>
+</div>
+
+<style>
+	.code-feedback {
+		margin-top: 0.75rem;
+		padding-top: 0.75rem;
+		border-top: 1px solid var(--theme-border-subtle, rgba(255, 255, 255, 0.08));
+		font-size: 0.9rem;
+	}
+	.code-feedback-actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		align-items: center;
+		margin-top: 0.35rem;
+	}
+	.code-feedback-btn.active {
+		outline: 2px solid var(--accent, #a855f7);
+	}
+	.code-feedback-report {
+		font-size: 0.85rem;
+		opacity: 0.85;
+	}
+	.code-feedback-thanks {
+		margin-top: 0.5rem;
+		font-size: 0.85rem;
+		opacity: 0.9;
+	}
+</style>
+
+<script>
+	document.querySelectorAll<HTMLElement>('.code-feedback').forEach((block) => {
+		const code = block.dataset.code;
+		if (!code) return;
+		const key = `sza-code-vote:${code}`;
+		const thanks = block.querySelector<HTMLElement>('.code-feedback-thanks');
+		const saved = localStorage.getItem(key);
+		if (saved) {
+			block.querySelector<HTMLButtonElement>(`[data-vote="${saved}"]`)?.classList.add('active');
+			if (thanks) thanks.hidden = false;
+		}
+		block.querySelectorAll<HTMLButtonElement>('.code-feedback-btn').forEach((btn) => {
+			btn.addEventListener('click', () => {
+				const vote = btn.dataset.vote;
+				if (!vote) return;
+				localStorage.setItem(key, vote);
+				block.querySelectorAll('.code-feedback-btn').forEach((b) => b.classList.remove('active'));
+				btn.classList.add('active');
+				if (thanks) thanks.hidden = false;
+				import('../../lib/analytics.ts').then(({ trackEvent }) => {
+					trackEvent('code_feedback', { code, vote });
+				});
+			});
+		});
+	});
+</script>

@@ -1,0 +1,189 @@
+[
+	{
+		"id": "survivor",
+		"name": "Survivor",
+		"rarity": "Default",
+		"costCredits": 0,
+		"role": "starter",
+		"tierSolo": "C",
+		"tierTeam": "C",
+		"tierFarm": "C",
+		"tierBeginner": "B",
+		"abilities": [
+			{ "name": "Default kit", "description": "No deployable gear; vanilla baseline with no damage or survivability bonuses." }
+		],
+		"bestFor": ["Brand-new players with zero Credits", "First run before any unlock"],
+		"synergies": ["medic", "marksman"],
+		"counters": [],
+		"unlockAdvice": "Free starter — replace as soon as you can afford Medic (10,000) or Marksman (15,000).",
+		"notes": "Lowest damage and survivability; outgrown quickly on the Rooftop Map."
+	},
+	{
+		"id": "medic",
+		"name": "Medic",
+		"rarity": "Uncommon",
+		"costCredits": 10000,
+		"role": "support",
+		"tierSolo": "B",
+		"tierTeam": "A",
+		"tierFarm": "B",
+		"tierBeginner": "A",
+		"abilities": [
+			{ "name": "Stim Shot", "description": "Heal burst for teammates or self." },
+			{ "name": "Mending Tower", "description": "Area heal over time." },
+			{ "name": "Healing Station", "description": "Sustain platform for squad uptime." }
+		],
+		"bestFor": ["First serious co-op unlock", "Team sustain on public lobbies", "Players who want cheapest A-tier entry"],
+		"synergies": ["tactician", "marksman", "bastion"],
+		"counters": ["attrition-heavy late waves when solo"],
+		"unlockAdvice": "Best budget first unlock for co-op (10,000 Credits). Dev-confirmed: Medic earns Credits from healing structures and players (2026-02-01 patch).",
+		"notes": "Underwhelming solo — most value comes from keeping teammates alive."
+	},
+	{
+		"id": "marksman",
+		"name": "Marksman",
+		"rarity": "Uncommon",
+		"costCredits": 15000,
+		"role": "dps",
+		"tierSolo": "A",
+		"tierTeam": "A",
+		"tierFarm": "A",
+		"tierBeginner": "A",
+		"abilities": [
+			{ "name": "Frag Grenade", "description": "Burst damage for packs or elites." },
+			{ "name": "Deadeye", "description": "Bullet pierce — scales with rifle kill volume." },
+			{ "name": "Sonar Ping", "description": "Zombie detection — marks threats before they reach you." }
+		],
+		"bestFor": ["Best first unlock for solo DPS", "Credit farming with rifle + pierce", "Carry role in mixed public teams"],
+		"synergies": ["medic", "tactician"],
+		"counters": ["melee-range elites if caught without barricades"],
+		"unlockAdvice": "Recommended first paid unlock for most players (15,000). Pair with handgun → shotgun → rifle weapon path.",
+		"notes": "Limited defensive tools — positioning matters on Rooftop stairwells."
+	},
+	{
+		"id": "engineer",
+		"name": "Engineer",
+		"rarity": "Rare",
+		"costCredits": 20000,
+		"role": "defense",
+		"tierSolo": "B",
+		"tierTeam": "B",
+		"tierFarm": "B",
+		"tierBeginner": "B",
+		"abilities": [
+			{ "name": "Flame Turret", "description": "Automated lane damage." },
+			{ "name": "Auto Turret", "description": "Consistent DPS from a fixed position." },
+			{ "name": "Steel Barricade", "description": "Blocks chokepoints — strong on Rooftop stairs." }
+		],
+		"bestFor": ["Holding a chokepoint in team play", "Stepping stone before Tactician"],
+		"synergies": ["tactician", "demolitionist", "medic"],
+		"counters": ["mobile fights when the team must rotate often"],
+		"unlockAdvice": "Buy only if you enjoy turret play; otherwise save for Tactician (75,000) as the structural-defense upgrade.",
+		"notes": "Poor adaptability when repositioning — Tactician is the direct upgrade path."
+	},
+	{
+		"id": "ninja",
+		"name": "Ninja",
+		"rarity": "Rare",
+		"costCredits": 25000,
+		"role": "control",
+		"tierSolo": "C",
+		"tierTeam": "C",
+		"tierFarm": "C",
+		"tierBeginner": "D",
+		"abilities": [
+			{ "name": "Cloak", "description": "Short invisibility window — zombies ignore you." },
+			{ "name": "Blade Fury", "description": "Melee burst for clutch moments." },
+			{ "name": "Shuriken", "description": "Ranged secondary for picks." }
+		],
+		"bestFor": ["Early-wave stealth and clutch revives", "Fun novelty runs"],
+		"synergies": ["medic"],
+		"counters": ["late-wave elite stacks and open-field density on Rooftop"],
+		"unlockAdvice": "Skip as a first unlock — Marksman delivers better solo and team value for 10,000 fewer Credits.",
+		"notes": "Pro Game Guides rates Ninja D-tier; close-range kit falls off mid-to-late waves."
+	},
+	{
+		"id": "demolitionist",
+		"name": "Demolitionist",
+		"rarity": "Epic",
+		"costCredits": 50000,
+		"role": "control",
+		"tierSolo": "B",
+		"tierTeam": "B",
+		"tierFarm": "B",
+		"tierBeginner": "C",
+		"abilities": [
+			{ "name": "Stim Shot", "description": "Self sustain between bomb cycles." },
+			{ "name": "Shockwave Bomb", "description": "Knockback + stun for packed zombies." },
+			{ "name": "Molotov", "description": "Persistent fire patch — area DOT." }
+		],
+		"bestFor": ["Crowd control on stairwell charges", "Stalling waves while teammates reposition"],
+		"synergies": ["tactician", "necromancer", "marksman"],
+		"counters": ["scattered single-target elites", "fast elites between bomb cooldowns"],
+		"unlockAdvice": "Mid-progression pick for teams that need pack disruption; not required before Tactician unless you love AoE kits.",
+		"notes": "Damage profile leans on gear more than raw weapon DPS — shotgun stays viable late."
+	},
+	{
+		"id": "tactician",
+		"name": "Tactician",
+		"rarity": "Epic",
+		"costCredits": 75000,
+		"role": "defense",
+		"tierSolo": "A",
+		"tierTeam": "A",
+		"tierFarm": "B",
+		"tierBeginner": "B",
+		"abilities": [
+			{ "name": "Vanguard Turret", "description": "Auto-targets elite zombies." },
+			{ "name": "Spikes", "description": "Passive chip damage on chokepoints." },
+			{ "name": "Steel Barricade", "description": "Extended fortification durability." }
+		],
+		"bestFor": ["Team anchor on Rooftop chokepoints", "Structural defense leaderboards", "Engineer upgrade path"],
+		"synergies": ["medic", "marksman", "necromancer", "bastion"],
+		"counters": ["frequent full-team repositioning without setup time"],
+		"unlockAdvice": "Top A-tier structural pick — aim for this after Marksman if your squad holds lanes. Strong on Rooftop Map since 2026-04-18.",
+		"notes": "Setup-heavy; weaker when the lobby keeps rotating across the arena."
+	},
+	{
+		"id": "bastion",
+		"name": "Bastion",
+		"rarity": "Legendary",
+		"costCredits": 200000,
+		"role": "defense",
+		"tierSolo": "B",
+		"tierTeam": "A",
+		"tierFarm": "C",
+		"tierBeginner": "D",
+		"abilities": [
+			{ "name": "Bunker", "description": "Squad-wide invincibility bubble + HP regen + damage boost — whole team benefits." },
+			{ "name": "Laser Turret", "description": "Auto-tracks and fires red lasers at range." },
+			{ "name": "Drone", "description": "Auto-shoots and soaks damage; stackable drone swarm." }
+		],
+		"bestFor": ["Squad-wide defensive holds", "Keeping full 25-player lobbies alive in clutch waves"],
+		"synergies": ["medic", "tactician", "marksman"],
+		"counters": ["solo farming efficiency vs Marksman/Necromancer"],
+		"unlockAdvice": "Unlock if your team prioritizes squad survival over solo scaling; save Necromancer grind unless leaderboard-focused.",
+		"notes": "media_reported — tier contested (PGG S-tier vs Destructoid A-tier). Likely added ~May 2026; dev-previewed drone gear 2026-05-03."
+	},
+	{
+		"id": "necromancer",
+		"name": "Necromancer",
+		"rarity": "Legendary",
+		"costCredits": 250000,
+		"role": "dps",
+		"tierSolo": "S",
+		"tierTeam": "S",
+		"tierFarm": "A",
+		"tierBeginner": "D",
+		"abilities": [
+			{ "name": "Soul Harvester", "description": "Consume defeated zombies for resources." },
+			{ "name": "Raise Undead", "description": "Zombie minions fight for you — kills credit the player (patched 2026-02-01)." },
+			{ "name": "Death Nova", "description": "Detonate minions for massive area damage in funnels." }
+		],
+		"bestFor": ["Late-wave leaderboard pushes", "Rooftop stairwell funnel meta", "Timing-based resource scaling"],
+		"synergies": ["tactician", "medic", "demolitionist"],
+		"counters": ["early waves before minion economy online", "friendly-fire bugs with turrets (patched 2026-02-01)"],
+		"unlockAdvice": "Endgame unlock — farm after Marksman → Tactician fundamentals. May 8, 2026 buff: higher minion walkspeed and damage (exact values undisclosed).",
+		"notes": "Only S-tier class; cost updated to 250,000 in May 2026 sources (older guides cite 200,000). Requires active kit management."
+	}
+]

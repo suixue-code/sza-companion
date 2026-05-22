@@ -1,0 +1,94 @@
+{
+	"lastChecked": "2026-05-20",
+	"honestyNote": "Concrete weapon-by-weapon loadouts with exact in-game names are not yet publicly documented. Frameworks below use verified class abilities, Credit economy, and team-role guidance from tracked sources.",
+	"quickAnswer": "Marksman + rifle path for solo DPS, Tactician + Medic for team stability, Marksman for credit farming, Tactician + Necromancer for high-wave pushes, Necromancer for leaderboard attempts.",
+	"loadouts": [
+		{
+			"id": "solo-beginner",
+			"name": "Solo Beginner",
+			"class": "Medic",
+			"weaponPath": "Handgun → shotgun upgrade as soon as Credits allow",
+			"gearPriority": ["1× barricade at closest spawn lane", "1× basic turret behind barricade once Credits permit"],
+			"creditPriority": "Weapon upgrades > Health upgrade > Gear > save for first class unlock",
+			"source": "Public beginner guides + Credit economy notes (framework)"
+		},
+		{
+			"id": "team-support",
+			"name": "Team Support",
+			"class": "Medic + Tactician",
+			"weaponPath": "Tactician keeps shotgun for chokepoint defense; Medic stays on handgun longer to fund healing utilities",
+			"gearPriority": ["Tactician: Steel Barricades + Spike Traps on the lane", "Medic: healing tower at the back of the chokepoint"],
+			"creditPriority": "Tactician fortifications first, Medic sustain second, weapon upgrades third",
+			"source": "Public tier lists (framework)"
+		},
+		{
+			"id": "credit-farm",
+			"name": "Credit Farm",
+			"class": "Marksman",
+			"weaponPath": "Rush rifle upgrade for Deadeye pierce — maximize kill credit per bullet",
+			"gearPriority": ["1× turret on the lane your team is not anchoring", "Sonar Ping for elite tagging"],
+			"creditPriority": "Weapon upgrade > Sonar uptime > minimal gear > stockpile for next class unlock",
+			"source": "Public tier lists — Marksman Deadeye + Sonar Ping (framework)"
+		},
+		{
+			"id": "high-wave",
+			"name": "High Wave Push",
+			"class": "Tactician (anchor) + Necromancer (scaler) + Marksman (carry) + Medic (sustain)",
+			"weaponPath": "All four roles transition to rifles by mid-run; swap Demolitionist in if elite density spikes",
+			"gearPriority": ["Tactician Vanguard Turret on elite spawn", "Steel Barricades doubled at chokepoint", "Spike Traps in retreat lanes"],
+			"creditPriority": "Necromancer fuel → Tactician fortifications → weapon upgrades → Medic sustain",
+			"source": "Public tier lists + class costs (framework)"
+		},
+		{
+			"id": "leaderboard",
+			"name": "Leaderboard Attempt",
+			"class": "Necromancer",
+			"weaponPath": "Rifle once Credits stabilize — Death Nova handles compressed packs; rifle covers between",
+			"gearPriority": ["Soul Harvest aggressively every wave clear", "Hold Death Nova for compressed elite packs only"],
+			"creditPriority": "250,000 Credit Necromancer unlock first, then minimal weapon spend, then Health upgrades",
+			"source": "Public tier lists — Necromancer S-tier; 250k cost reconciled May 2026 (framework)"
+		}
+	],
+	"decisions": [
+		"Pick role first, weapon second — class abilities outweigh raw weapon DPS for most of the run.",
+		"Anchor before you scale — Tactician lets Marksman or Necromancer farm safely.",
+		"Save aggressively for class unlocks — Demolitionist 50k, Tactician 75k, Bastion 200k, Necromancer 250k.",
+		"Auto Skip only after the team is ahead — skipping into an unstoppable wave is the most common loadout failure."
+	],
+	"dataGaps": [
+		"Exact weapon names and best-in-slot picks per loadout.",
+		"Per-wave Credit thresholds for each class swap.",
+		"Optimal gear placement per named arena map (pending map documentation)."
+	],
+	"rooftopNotes": [
+		"Stairwell chokepoints favor anchor builds over open-field roaming (Rooftop Map live since 2026-04-18).",
+		"Solo beginner: Tactician barricades can be safer than Medic healing on Rooftop — one stairwell anchor beats open-field sustain.",
+		"Team support: assign one player per stairwell entry before mid-wave Credit spend.",
+		"Leaderboard meta: Necromancer Death Nova in Tactician funnels — requires 250k Necromancer unlock first.",
+		"Tactician + Necromancer is the highest-ceiling loadout for high-wave pushes on the current map per tracked sources."
+	],
+	"playbook": [
+		"Pick role first, weapon second — class abilities outweigh raw weapon DPS for most of the run.",
+		"Anchor before you scale — Tactician lets Marksman or Necromancer farm safely.",
+		"Save aggressively for class unlocks: Demolitionist 50k, Tactician 75k, Bastion 200k, Necromancer 250k.",
+		"Auto Skip only after the team is ahead — skipping into an unstoppable wave is the most common loadout failure."
+	],
+	"faq": [
+		{
+			"question": "What is the best loadout for solo play?",
+			"answer": "Marksman with the rifle path — Deadeye pierce and Sonar Ping carry kill rate without a team anchor. Necromancer overtakes once you afford 250,000 Credits."
+		},
+		{
+			"question": "What is the best team comp?",
+			"answer": "Tactician (anchor) + Marksman (carry) + Medic (sustain) is the workhorse comp. Add Necromancer for leaderboard runs."
+		},
+		{
+			"question": "How long to unlock Necromancer?",
+			"answer": "250,000 Credits permanent unlock. Average session ~13 minutes per Roblox API — expect several strong runs plus the Zombies code (2,500 Credits)."
+		},
+		{
+			"question": "Did Rooftop Map change loadouts?",
+			"answer": "Yes. Lane-hold loadouts with Tactician barricades and Necromancer funnel plays rank higher than open-field Medic or Ninja stealth routes."
+		}
+	]
+}

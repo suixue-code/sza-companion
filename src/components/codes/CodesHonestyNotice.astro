@@ -1,0 +1,53 @@
+---
+import siteMeta from '../../data/site-meta.json';
+import type { LocaleCode } from '@i18n/config';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const { locale = 'en' } = Astro.props;
+
+const copyByLocale: Record<
+	LocaleCode,
+	{ title: string; body: string; ledger: string; discord: string }
+> = {
+	en: {
+		title: 'Sources & freshness',
+		body: siteMeta.lastPublicReviewNoteEn,
+		ledger: `Last source-ledger capture: ${siteMeta.lastSourceLedgerCapture}.`,
+		discord:
+			'We do not read the official Discord automatically. If a guide and your in-game redeem disagree, trust the game. Open the official Discord yourself to double-check codes.',
+	},
+	es: {
+		title: 'Fuentes y actualización',
+		body: siteMeta.lastPublicReviewNoteEs,
+		ledger: `Última captura en source-ledger: ${siteMeta.lastSourceLedgerCapture}.`,
+		discord:
+			'No leemos el Discord oficial automáticamente. Si una guía y el canje in-game no coinciden, confía en el juego. Abre el Discord oficial para confirmar códigos.',
+	},
+	'pt-br': {
+		title: 'Fontes e atualização',
+		body: siteMeta.lastPublicReviewNotePtBr ?? siteMeta.lastPublicReviewNoteEn,
+		ledger: `Última captura no source-ledger: ${siteMeta.lastSourceLedgerCapture}.`,
+		discord:
+			'Não lemos o Discord oficial automaticamente. Se um guia e o resgate in-game divergirem, confie no jogo. Abra o Discord oficial para confirmar códigos.',
+	},
+	'zh-cn': {
+		title: '来源与更新说明',
+		body: siteMeta.lastPublicReviewNoteZhCn,
+		ledger: `source-ledger 最近登记：${siteMeta.lastSourceLedgerCapture}。`,
+		discord:
+			'本站不会自动读取官方 Discord。若攻略与游戏内兑换结果不一致，以游戏内为准；请自行打开官方 Discord 核对兑换码。',
+	},
+};
+
+const copy = copyByLocale[locale];
+---
+
+<div class="quick-answer honesty-notice">
+	<strong>{copy.title}</strong>
+	<p>{copy.body}</p>
+	<p class="muted" style="margin: 8px 0 0; font-size: 13px;">{copy.ledger}</p>
+	<p class="muted" style="margin: 8px 0 0; font-size: 13px;">{copy.discord}</p>
+</div>

@@ -1,0 +1,77 @@
+{
+	"lastChecked": "2026-05-20",
+	"activeMap": {
+		"id": "rooftop",
+		"name": "Rooftop Map",
+		"liveSince": "2026-04-18",
+		"replaced": "Square Arena",
+		"description": "Elevated rooftop battlefield with stairwell chokepoints and ramp entries. Replaced the flat Square Arena as part of a major update that also shipped a new zombie movement system.",
+		"devQuote": "I launched the first part of the update with the new map and new zombie movement system. — Santito, 2026-04-18",
+		"communityVote": "215 YES vs 14 NO to replace Square Arena (94% approval)",
+		"status": "verified"
+	},
+	"atlantisPreview": {
+		"name": "Atlantis Map",
+		"previewDate": "2026-05-17",
+		"status": "dev_preview_not_live",
+		"note": "Dev footage posted in Discord #sneak-peeks. No release date, layout, wave pathing, or FPS details confirmed.",
+		"source": "Official Discord #sneak-peeks"
+	},
+	"fpsPoll": {
+		"date": "2026-04-18",
+		"question": "Performance after Rooftop Map update",
+		"lowerFps": 242,
+		"same": 33,
+		"better": 25,
+		"workaround": "Lower Roblox graphics settings until optimization patch",
+		"status": "verified"
+	},
+	"tacticalNotes": [
+		"Stairwell and ramp entries create natural chokepoints for Tactician Steel Barricades and Spike Traps.",
+		"Open rooftop sightlines benefit Marksman Deadeye pierce.",
+		"Necromancer Death Nova peaks when zombies funnel through single entries.",
+		"Medic placement near elevated barriers maximizes coverage without drawing first elite aggro.",
+		"New zombie movement navigates 3D rooftop geometry — pre-April guides assume flat arena pathing."
+	],
+	"classPicks": [
+		{ "class": "Tactician", "tier": "A", "note": "Steel Barricades + Spike Traps lock stairwell chokes — top defensive pick on Rooftop Map." },
+		{ "class": "Necromancer", "tier": "S", "note": "Ramps compress packs for Death Nova — highest ceiling on current map." },
+		{ "class": "Marksman", "tier": "A", "note": "Long sightlines suit Deadeye pierce; Sonar Ping tags elites before barricade contact." },
+		{ "class": "Demolitionist", "tier": "B", "note": "Shockwave Bomb at stairwell openings hits full funnel simultaneously." },
+		{ "class": "Ninja", "tier": "C", "note": "Close-range stealth falls off on stairwell density — underperforms vs Square Arena meta." }
+	],
+	"squareArena": {
+		"name": "Square Arena",
+		"activeUntil": "2026-04-18",
+		"status": "replaced",
+		"note": "Original flat open arena from launch (Dec 2025). Pre-April strategy guides may need re-evaluation."
+	},
+	"dataGaps": [
+		"Formal in-game name for Rooftop Map not published — community uses 'rooftop map'.",
+		"Whether Atlantis is next shipping map or preview-only environment.",
+		"Atlantis layout, entry lanes, wave pathing, release date.",
+		"FPS optimization patch timeline."
+	],
+	"faq": [
+		{
+			"question": "What map is active now?",
+			"answer": "Rooftop Map since April 18, 2026. Replaced Square Arena with stairwell chokepoints and new zombie movement."
+		},
+		{
+			"question": "How many maps exist?",
+			"answer": "One active arena map as of May 2026. Atlantis dev-previewed but not confirmed live."
+		},
+		{
+			"question": "Does Rooftop Map cause lag?",
+			"answer": "Known issue — post-launch poll showed 242/300 players reporting lower FPS. Lower Roblox graphics as workaround."
+		},
+		{
+			"question": "Best class for Rooftop Map?",
+			"answer": "Tactician for structural lane locks; Necromancer for funnel Death Nova. Both outperform Square Arena counterparts."
+		},
+		{
+			"question": "Will there be more maps?",
+			"answer": "Atlantis footage dev-previewed May 2026 with no release date. Treat Rooftop as only confirmed active map until patch notes confirm a swap."
+		}
+	]
+}

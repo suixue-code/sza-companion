@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0f2e"/>
+      <stop offset="100%" style="stop-color:#3b0764"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="280" fill="#e9d5ff" font-family="system-ui,sans-serif" font-size="72" font-weight="700">SZA Companion</text>
+  <text x="80" y="360" fill="#c4b5fd" font-family="system-ui,sans-serif" font-size="36">Survive Zombie Arena · Codes &amp; Tools</text>
+  <circle cx="980" cy="315" r="120" fill="#7c3aed" opacity="0.35"/>
+  <text x="920" y="335" fill="#faf5ff" font-family="system-ui,sans-serif" font-size="96">🧟</text>
+</svg>

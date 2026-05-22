@@ -1,0 +1,132 @@
+[
+	{
+		"id": "2026-05-18-discord-audit",
+		"date": "2026-05-18",
+		"type": "site_audit",
+		"title": "Discord deep-dive — no new code; Atlantis + galactic previews",
+		"summary": "Full channel audit (#patch-notes, #announcements, #codes, #sneak-peeks, #polls). #codes still only Zombies. New publishable facts: Atlantis map footage and F2P galactic gun previews. Galactic Crates poll favors event currency.",
+		"tags": ["codes", "discord", "galactic", "atlantis"],
+		"status": "verified",
+		"source": "survivezombiearena.com update-log site re-check 2026-05-18"
+	},
+	{
+		"id": "2026-05-17-api-hotfix",
+		"date": "2026-05-17",
+		"type": "game_update",
+		"title": "Roblox API update — no matching patch notes",
+		"summary": "Game updated 2026-05-17T12:13:47Z per Roblox public games API. Official Discord #patch-notes and #announcements had no matching text as of 2026-05-18 — treat as API-confirmed hotfix until dev notes appear.",
+		"tags": ["roblox-api", "hotfix"],
+		"status": "verified",
+		"source": "https://games.roblox.com/v1/games?universeIds=9348272796"
+	},
+	{
+		"id": "2026-05-17-sneak-peeks",
+		"date": "2026-05-17",
+		"type": "sneak_peek",
+		"title": "Atlantis map footage + galactic gun batch preview",
+		"summary": "Santito posted Atlantis map dev footage and previewed new galactic guns, confirming they are F2P. No release date, stats, or crate odds published.",
+		"tags": ["atlantis", "galactic", "weapons", "preview"],
+		"status": "verified",
+		"source": "Official Discord #sneak-peeks"
+	},
+	{
+		"id": "2026-05-16-galactic-crates-poll",
+		"date": "2026-05-16",
+		"type": "community_poll",
+		"title": "Galactic Crates economy poll",
+		"summary": "Poll asks whether Galactic Crates should use default Credits or a new event currency. Event currency leads 4,411 vs 1,177 (2026-05-18 check). Poll only — not shipped.",
+		"tags": ["galactic", "economy", "poll"],
+		"status": "verified",
+		"source": "Official Discord #polls"
+	},
+	{
+		"id": "2026-05-11-api-hotfix",
+		"date": "2026-05-11",
+		"type": "game_update",
+		"title": "Fifth Roblox API update — silent hotfix",
+		"summary": "Game updated 2026-05-11T18:17Z per Roblox API. No #patch-notes text — likely server-side or hotfix.",
+		"tags": ["roblox-api", "hotfix"],
+		"status": "verified",
+		"source": "Roblox public games API"
+	},
+	{
+		"id": "2026-05-11-currency-ui-poll",
+		"date": "2026-05-11",
+		"type": "community_poll",
+		"title": "Currency UI redesign poll",
+		"summary": "Dev polled two currency display designs — Image 1 led 3,752 vs 876 votes (2026-05-18 check). Confirms UI rework in design, not live.",
+		"tags": ["ui", "poll"],
+		"status": "verified",
+		"source": "Official Discord #polls"
+	},
+	{
+		"id": "2026-05-08-mini-content-update",
+		"date": "2026-05-08",
+		"type": "major_patch",
+		"title": "Mini Content Update — World Ender, Nightmare Mode, class/gun balance",
+		"summary": "Added World Ender (first mythic F2P), Grenade Launcher, Tommy Gun. Nightmare Mode live. Necromancer buff (minion speed + damage). Flamethrower buff. Hardcore credits per kill 10 → 7.5. Turret visual optimizations, lobby queue UI, Bunker placement fix.",
+		"tags": ["weapons", "nightmare-mode", "necromancer", "balance"],
+		"status": "verified",
+		"source": "Official Discord #patch-notes 2026-05-08 07:10 UTC"
+	},
+	{
+		"id": "2026-05-08-post-patch-polls",
+		"date": "2026-05-08",
+		"type": "community_poll",
+		"title": "Skill Tree vs Artifacts polls",
+		"summary": "Skill Tree preferred over Artifacts (2,261 vs 230). Artifact earn method poll: random zombie drops lead 2,960 vs 354. Community intent only.",
+		"tags": ["skill-tree", "artifacts", "poll"],
+		"status": "verified",
+		"source": "Official Discord #polls"
+	},
+	{
+		"id": "2026-05-06-map-artifacts-polls",
+		"date": "2026-05-06",
+		"type": "community_poll",
+		"title": "Underwater Research Lab map vote + Artifacts approval",
+		"summary": "Map vote: Underwater Research Lab won (~787/1199). Artifacts feature poll: 1,107 YES vs 23 NO. Galactic Pistol design poll: Right variant 1,757 vs 94.",
+		"tags": ["maps", "artifacts", "galactic", "poll"],
+		"status": "verified",
+		"source": "Official Discord #polls"
+	},
+	{
+		"id": "2026-04-18-rooftop-map",
+		"date": "2026-04-18",
+		"type": "major_update",
+		"title": "Rooftop Map replaces Square Arena",
+		"summary": "First part of major update live: Rooftop Map + new zombie movement system. Community pre-vote 215:14 in favor. Post-launch FPS poll: 242 players reported lower FPS.",
+		"tags": ["maps", "rooftop", "movement"],
+		"status": "verified",
+		"source": "Official Discord #announcements"
+	},
+	{
+		"id": "2026-02-01-class-fixes",
+		"date": "2026-02-01",
+		"type": "patch",
+		"title": "Necromancer credit fix + Medic healing credits",
+		"summary": "Necromancer now credits player for minion/detonation kills. Turrets no longer friendly-fire Necromancer minions. Medic earns Credits from healing structures and players.",
+		"tags": ["necromancer", "medic", "classes"],
+		"status": "verified",
+		"source": "Official Discord #announcements"
+	},
+	{
+		"id": "2026-01-31-classes-update",
+		"date": "2026-01-31",
+		"type": "feature_drop",
+		"title": "Classes Update shipped",
+		"summary": "Survive Zombie Arena class system rolled out to all servers — largest single feature drop before Rooftop Map.",
+		"tags": ["classes"],
+		"status": "verified",
+		"source": "Official Discord #updates — Santito 'CLASSES UPDATE IS OUT!!!'"
+	},
+	{
+		"id": "2026-01-14-silent-update",
+		"date": "2026-01-14",
+		"type": "game_update",
+		"title": "Silent game update",
+		"summary": "Game updated with no public patch-note text beyond a 'go check it out!' ping from the developer.",
+		"tags": ["hotfix"],
+		"status": "verified",
+		"source": "Official Discord #updates"
+	}
+]

@@ -1,0 +1,108 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import mapsData from '../data/maps.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/maps/', Astro.site).toString();
+const { activeMap, atlantisPreview, fpsPoll, squareArena, faq } = mapsData;
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Maps — Rooftop Map Guide',
+		description: 'Rooftop Map tactics, Atlantis dev preview, FPS poll results, and class picks per map for Survive Zombie Arena.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Maps', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Maps — Rooftop Map & Atlantis Preview"
+	description="Survive Zombie Arena map guide: Rooftop Map chokepoint tactics, Atlantis dev preview, post-launch FPS poll, and best classes per map."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Rooftop Map live · {mapsData.lastChecked}</p>
+				<h1>Maps</h1>
+				<p class="geo-snap">
+					<strong>Survive Zombie Arena</strong> runs in a single shared arena (up to 25 players). Since April 18, 2026 the active map is the Rooftop Map — map layout shapes class choice and gear placement more than any other factor.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Active map</strong>
+				<p>Rooftop Map since 2026-04-18. Atlantis footage previewed — not confirmed live.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<GuideSection heading={`Current map — ${activeMap.name}`} id="rooftop">
+				<p>
+					<strong>Live since:</strong> {activeMap.liveSince} · <strong>Replaced:</strong> {activeMap.replaced} · <strong>Status:</strong> {activeMap.status}
+				</p>
+				<p>{activeMap.description}</p>
+				<p class="muted" style="font-size: 0.88rem;"><em>{activeMap.devQuote}</em></p>
+				<p>Pre-release community vote: {activeMap.communityVote}.</p>
+			</GuideSection>
+
+			<GuideSection heading={`${atlantisPreview.name} — preview only`} id="atlantis">
+				<p>
+					<strong>Preview date:</strong> {atlantisPreview.previewDate} · <strong>Status:</strong> {atlantisPreview.status}
+				</p>
+				<p>{atlantisPreview.note}</p>
+				<p class="muted" style="font-size: 0.88rem;">Source: {atlantisPreview.source}</p>
+			</GuideSection>
+
+			<GuideSection
+				heading="Rooftop Map FPS poll"
+				body={`Post-launch poll (${fpsPoll.date}): ${fpsPoll.lowerFps} reported lower FPS, ${fpsPoll.same} same, ${fpsPoll.better} better. Workaround: ${fpsPoll.workaround}.`}
+			/>
+
+			<GuideSection heading="Tactical notes — Rooftop Map" items={mapsData.tacticalNotes} />
+
+			<GuideSection
+				heading="Best classes for Rooftop Map"
+				table={{
+					headers: ['Class', 'Tier', 'Why on this map'],
+					rows: mapsData.classPicks.map((p) => [p.class, p.tier, p.note]),
+				}}
+			/>
+
+			<GuideSection heading={`Previous map — ${squareArena.name}`} id="square-arena">
+				<p>
+					<strong>Active until:</strong> {squareArena.activeUntil} · <strong>Status:</strong> {squareArena.status}
+				</p>
+				<p>{squareArena.note}</p>
+			</GuideSection>
+
+			<GuideSection heading="Data gaps" items={mapsData.dataGaps} />
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
+			<p>
+				See also: <a href="/best-loadouts/">Best loadouts</a> · <a href="/waves/">Wave guide</a> · <a href="/updates/">Updates</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

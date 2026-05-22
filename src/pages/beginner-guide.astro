@@ -1,0 +1,165 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/beginner-guide/', Astro.site).toString();
+
+const faq = [
+	{
+		question: 'What should I buy first in Survive Zombie Arena?',
+		answer: 'Redeem Zombies (2,500 Credits), upgrade handgun → shotgun (~150) → rifle (~750), then unlock Medic (10k) or Marksman (15k). Skip Ninja as a first class.',
+	},
+	{
+		question: 'Is Medic or Marksman better for beginners?',
+		answer: 'Medic for co-op public lobbies — cheapest A-tier at 10,000 Credits with healing sustain. Marksman for solo DPS at 15,000 with Deadeye pierce and Sonar Ping.',
+	},
+	{
+		question: 'When should I vote Auto Skip?',
+		answer: 'Only after barricade + turret are placed, shotgun upgrade done, and the team is outscaling the current wave. Skip early banking runs.',
+	},
+	{
+		question: 'Does the Rooftop Map change beginner strategy?',
+		answer: 'Yes. Stairwell chokepoints replace open-field Square Arena. Hold lanes with barricades; pre-April guides that assume open rotation are partially outdated.',
+	},
+	{
+		question: 'How do I plan Credits after the beginner route?',
+		answer: 'Use the Credit Planner to set a goal (farm, first unlock, or Necromancer save) and see estimated sessions to your next milestone.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Beginner Guide',
+		description: 'First 5 runs, credit milestones, weapon path, and common mistakes for new Survive Zombie Arena players.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Beginner Guide', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Beginner Guide — First Runs & Credit Path"
+	description="Beginner guide for Survive Zombie Arena: redeem codes, weapon upgrades, Medic vs Marksman first unlock, credit milestones, and Rooftop Map tips."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Rooftop Map meta · reviewed {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Beginner Guide</h1>
+				<p class="geo-snap">
+					New to <strong>Survive Zombie Arena</strong>? Start with codes, your first weapon upgrades, and either Medic or Marksman as your first paid class — built for the Rooftop Map stairwell meta.
+				</p>
+				<p class="lead">Earn Credits early, buy shotgun before elites show up, and skip expensive classes like Ninja until your basics are set.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Fast route</strong>
+				<p>Zombies code → shotgun upgrade → Medic (10k) or Marksman (15k) → rifle → bank toward Tactician (75k).</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<GuideSection
+				heading="5-step starter route"
+				items={[
+					'Redeem code Zombies for 2,500 Credits (Shop → Redeem Codes).',
+					'Pick Survivor first run; consider Medic as default co-op starter once unlocked.',
+					'Weapon path: handgun → shotgun (~150 Credits) → rifle (~750 Credits).',
+					'Gear priority: steel barricade → turret behind cover → one health upgrade → save for class unlock.',
+					'Avoid spending on Ninja, cosmetic gear, or extra turrets before Marksman/Medic fundamentals.',
+				]}
+			/>
+
+			<GuideSection
+				heading="Credit milestones"
+				body="Permanent class unlocks and known code reward. In-run weapon costs are separate."
+				table={{
+					headers: ['Credits', 'Unlock / action'],
+					rows: [
+						['2,500', 'Zombies code reward'],
+						['5k–8k', 'Shotgun upgrade (in-run)'],
+						['10,000', 'Medic'],
+						['15,000', 'Marksman'],
+						['20,000', 'Engineer'],
+						['25,000', 'Ninja (skip as first unlock)'],
+						['50,000', 'Demolitionist'],
+						['75,000', 'Tactician'],
+						['200,000', 'Bastion'],
+						['250,000', 'Necromancer'],
+					],
+				}}
+			/>
+
+			<GuideSection
+				heading="First 5 runs plan"
+				body="Adjust for public lobby pace — the goal is fundamentals, not leaderboard wave counts."
+				table={{
+					headers: ['Run', 'Class', 'Weapon', 'Credit target', 'Focus'],
+					rows: [
+						['1', 'Survivor', 'Handgun → Shotgun', 'Redeem code', 'Barricade + turret at stairwell'],
+						['2', 'Survivor / Medic', 'Shotgun → Rifle', '10k+', 'Bank for Medic or Marksman'],
+						['3', 'Medic / Marksman', 'Rifle', '15k+', 'Learn kit abilities'],
+						['4–5', 'Marksman', 'Rifle', 'Bank 75k', 'Sonar Ping elites; disciplined Auto Skip'],
+					],
+				}}
+			/>
+
+			<GuideSection
+				heading="Common mistakes"
+				items={[
+					'Buying Ninja or Demolitionist before Marksman/Medic fundamentals.',
+					'Voting Auto Skip before barricade and turret are placed.',
+					'Spending Credits on duplicate turrets instead of shotgun/rifle upgrades.',
+					'Ignoring stairwell chokepoints on Rooftop Map — open-field rotation gets punished.',
+					'Assuming disputed GALACTIC code works without in-game confirmation.',
+				]}
+			/>
+
+			<GuideSection
+				heading="Team roles (public lobbies)"
+				table={{
+					headers: ['Role', 'Class', 'Job'],
+					rows: [
+						['Support', 'Medic', 'Healing tower + stim sustain behind barricade line'],
+						['DPS carry', 'Marksman', 'Rifle + Deadeye pierce, Sonar Ping elites'],
+						['Anchor', 'Engineer → Tactician', 'Barricades and turrets on chokepoints'],
+						['Crowd control', 'Demolitionist', 'Shockwave/Molotov on packed stair charges'],
+					],
+				}}
+			/>
+
+			<GuideSection
+				heading="Rooftop Map notes"
+				body="Live since April 18, 2026 — replaced Square Arena. Elevation and stairwells favor lane holds over constant rotation. Tactician barricades and Necromancer Death Nova in funnels scale better here; Ninja stealth falls off mid-to-late waves."
+			/>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
+			<p>
+				Next: <a href="/guides/">All guides</a> · <a href="/tools/credit-planner/">Credit Planner</a> · <a href="/tier-list/">Tier list</a> · <a href="/weapons/">Weapon progression</a>
+			</p>
+		</div>
+	</section>
+	<ToolsGuidesStrip />
+</BaseLayout>

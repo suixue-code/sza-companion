@@ -1,0 +1,38 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CreditPlanner from '@components/tools/CreditPlanner.astro';
+import { breadcrumbSchema, faqSchema, webApplicationSchema } from '@lib/seo';
+
+const pageUrl = new URL('/tools/credit-planner/', Astro.site).toString();
+const title = 'Survive Zombie Arena Credit Planner';
+const description =
+	'Plan your next class unlock and credit spend in Survive Zombie Arena. Browser-only planner with Medic, Marksman, Tactician, and Necromancer goals.';
+
+const faq = [
+	{
+		question: 'Does the Credit Planner connect to my Roblox account?',
+		answer: 'No. All math runs in your browser. Enter Credits manually and tick classes you already own.',
+	},
+	{
+		question: 'What is the best first class unlock?',
+		answer: 'Medic (10,000 Credits) for co-op support or Marksman (15,000 Credits) for solo DPS. Avoid Ninja as a first unlock.',
+	},
+	{
+		question: 'How many Credits should I save for Necromancer?',
+		answer: '250,000 Credits per May 2026 public sources. The planner tracks your gap and warns against side purchases like Bastion.',
+	},
+];
+
+const schema = [
+	webApplicationSchema(title, description, pageUrl),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Credit Planner', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout title={title} description={description} schema={schema}>
+	<CreditPlanner />
+</BaseLayout>

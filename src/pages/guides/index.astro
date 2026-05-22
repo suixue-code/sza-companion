@@ -1,0 +1,131 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import siteMeta from '../../data/site-meta.json';
+import { guides } from '../../data/guides';
+import { collectionSchema, SITE_NAME } from '@lib/seo';
+
+const pageUrl = new URL('/guides/', Astro.site).toString();
+
+const classGuides = guides.filter((g) => g.eyebrow?.includes('Class guide'));
+const economyGuides = guides.filter((g) => g.eyebrow?.includes('Economy') || g.slug.includes('credit') || g.slug.includes('farm') || g.slug.includes('gamepass') || g.slug.includes('x2'));
+const weaponGuides = guides.filter((g) => g.eyebrow?.includes('Weapon') || g.slug.includes('weapon') || g.slug.includes('gumdrop') || g.slug.includes('world-ender') || g.slug.includes('unlock'));
+const waveGuides = guides.filter((g) => g.eyebrow?.includes('Wave') || g.slug.includes('wave') || g.slug.includes('nightmare') || g.slug.includes('leaderboard'));
+const otherGuides = guides.filter(
+	(g) => !classGuides.includes(g) && !economyGuides.includes(g) && !weaponGuides.includes(g) && !waveGuides.includes(g),
+);
+
+const schema = [
+	collectionSchema(
+		`${SITE_NAME} Guides`,
+		'Deep-dive Survive Zombie Arena guides: classes, credits, weapons, waves, and game modes.',
+		pageUrl,
+	),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Guides — Classes, Credits, Weapons & Waves"
+	description="All SZA Companion guides for Survive Zombie Arena: Necromancer, Marksman, Tactician, credit farming, weapons, Nightmare Mode, and more."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>{guides.length} guides · reviewed {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Guides</h1>
+				<p class="geo-snap">
+					Deep-dive articles beyond our static reference pages. Start with the <a href="/beginner-guide/">beginner guide</a> or <a href="/wiki/">wiki hub</a> if you are new.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Popular picks</strong>
+				<p><a href="/guides/marksman-guide/">Marksman</a> · <a href="/guides/credits-farm/">Credits farm</a> · <a href="/guides/tactician-guide/">Tactician</a> · <a href="/guides/necromancer/">Necromancer</a></p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title"><h2>Class guides</h2></div>
+			<ul class="shortcut-grid">
+				{classGuides.map((g) => (
+					<li class="shortcut">
+						<a href={`/guides/${g.slug}/`}>
+							<strong>{g.title.replace(/ Guide —.*/, '').replace(/ Guide — .*/, '')}</strong>
+							<p>{g.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title"><h2>Credits & economy</h2></div>
+			<ul class="shortcut-grid">
+				{economyGuides.map((g) => (
+					<li class="shortcut">
+						<a href={`/guides/${g.slug}/`}>
+							<strong>{g.title.split(' — ')[0]}</strong>
+							<p>{g.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title"><h2>Weapons & loadouts</h2></div>
+			<ul class="shortcut-grid">
+				{weaponGuides.map((g) => (
+					<li class="shortcut">
+						<a href={`/guides/${g.slug}/`}>
+							<strong>{g.title.split(' — ')[0]}</strong>
+							<p>{g.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title"><h2>Waves & modes</h2></div>
+			<ul class="shortcut-grid">
+				{waveGuides.map((g) => (
+					<li class="shortcut">
+						<a href={`/guides/${g.slug}/`}>
+							<strong>{g.title.split(' — ')[0]}</strong>
+							<p>{g.description}</p>
+						</a>
+					</li>
+				))}
+			</ul>
+		</div>
+	</section>
+
+	{otherGuides.length > 0 && (
+		<section class="content-section">
+			<div class="shell">
+				<div class="section-title"><h2>Codes & events</h2></div>
+				<ul class="shortcut-grid">
+					{otherGuides.map((g) => (
+						<li class="shortcut">
+							<a href={`/guides/${g.slug}/`}>
+								<strong>{g.title.split(' — ')[0]}</strong>
+								<p>{g.description}</p>
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		</section>
+	)}
+
+	<ToolsGuidesStrip />
+</BaseLayout>

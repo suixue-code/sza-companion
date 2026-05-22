@@ -1,0 +1,273 @@
+---
+import classes from '../../data/classes.json';
+import ToolLinkShare from './ToolLinkShare.astro';
+import { getLoadoutSharePreset, getToolShareCopy } from '@i18n/tool-share';
+import { mergeToolShareLabels } from '@lib/tool-share-labels';
+
+const shareLabels = mergeToolShareLabels(getToolShareCopy('en'), getLoadoutSharePreset('en'));
+---
+
+<section class="page-hero compact">
+	<div class="shell two-col mobile-hero-stack">
+		<div>
+			<p class="eyebrow"><span class="pulse"></span>Browser-only · estimate from public class data</p>
+			<h1>Loadout Builder</h1>
+			<p class="lead">Pick your scenario and owned classes — get role tips, gear priority, team gaps, and a shareable link or PNG card.</p>
+		</div>
+		<aside class="quick-answer">
+			<strong>Quick rule</strong>
+			<p>Role first, weapon second. Anchor before you scale. Auto Skip only after barricade + turret.</p>
+		</aside>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="shell tool-grid">
+		<form class="tool-panel" id="loadout-form">
+			<h2>Your setup</h2>
+			<div class="form-grid">
+				<label class="field"
+					>Scenario
+					<select class="select" id="scenario">
+						<option value="solo">Solo</option>
+						<option value="public">Public lobby</option>
+						<option value="duo">Duo</option>
+						<option value="full_team">Full team (4+)</option>
+						<option value="leaderboard">Leaderboard push</option>
+					</select>
+				</label>
+				<label class="field"
+					>Target wave (optional)
+					<input class="input" id="targetWave" type="number" min="1" step="1" placeholder="e.g. 50" />
+				</label>
+			</div>
+			<h3>Owned classes</h3>
+			<div class="checkbox-grid" id="owned-classes">
+				{
+					classes
+						.filter((c) => c.costCredits > 0)
+						.map((c) => (
+							<label class="checkbox-field">
+								<input type="checkbox" name="class" value={c.id} />
+								{c.name} ({c.costCredits.toLocaleString()} Credits)
+							</label>
+						))
+				}
+			</div>
+		</form>
+		<section class="tool-panel">
+			<h2>Recommendation</h2>
+			<div class="result-grid">
+				<div class="metric"><span>Play as</span><strong id="rec-class">—</strong></div>
+				<div class="metric"><span>Weapon path</span><strong id="rec-weapon">—</strong></div>
+			</div>
+			<h3>Gear tips</h3>
+			<ul class="check-list" id="gear-list"></ul>
+			<h3>Team gaps</h3>
+			<ul class="check-list" id="gap-list"></ul>
+
+			<ToolLinkShare
+				idPrefix="loadout"
+				labels={shareLabels}
+				pngCopyId="loadout-copy-png"
+				pngDownloadId="loadout-download-png"
+			/>
+			<p class="notice">Estimate only. Does not read your Roblox account.</p>
+		</section>
+	</div>
+</section>
+
+<div class="share-card-capture" aria-hidden="true">
+	<div class="loadout-share-card" id="loadout-share-card">
+		<div class="loadout-share-card__brand">
+			<span class="loadout-share-card__dot"></span>
+			<span id="share-card-brand">SZA Companion</span>
+		</div>
+		<p class="loadout-share-card__eyebrow">Survive Zombie Arena · Loadout</p>
+		<h2 class="loadout-share-card__title" id="share-card-scenario">Solo Loadout</h2>
+		<div class="loadout-share-card__row">
+			<span>Play as</span>
+			<strong id="share-card-class">—</strong>
+		</div>
+		<div class="loadout-share-card__row">
+			<span>Weapon path</span>
+			<strong id="share-card-weapon">—</strong>
+		</div>
+		<div class="loadout-share-card__row" id="share-card-wave-row" hidden>
+			<span>Target wave</span>
+			<strong id="share-card-wave">—</strong>
+		</div>
+		<p class="loadout-share-card__footer">
+			<span id="share-card-date">Generated May 20, 2026</span>
+			<span>szacompanion.com</span>
+		</p>
+	</div>
+</div>
+
+<script define:vars={{ shareMessagesJson: JSON.stringify(shareLabels) }}>
+	import { buildLoadout, type LoadoutInput } from '../../lib/loadout-builder';
+	import { buildShareCardPayload } from '../../lib/loadout-share-card';
+	import { hasLoadoutUrlState, parseLoadoutUrlState, syncLoadoutUrlState } from '../../lib/loadout-url-state';
+	import { mountLoadoutShare } from '../../lib/loadout-share-ui';
+	import { messagesFromToolShareCopy } from '../../lib/tool-share-labels';
+
+	const share = mountLoadoutShare({ messages: messagesFromToolShareCopy(shareMessagesJson) });
+
+	function getOwned() {
+		return [...document.querySelectorAll('#owned-classes input:checked')].map((el) => (el as HTMLInputElement).value);
+	}
+
+	function readFormInput(): LoadoutInput {
+		const scenario = (document.getElementById('scenario') as HTMLSelectElement).value as LoadoutInput['scenario'];
+		const waveRaw = (document.getElementById('targetWave') as HTMLInputElement).value;
+		return {
+			scenario,
+			ownedClassIds: getOwned(),
+			targetWave: waveRaw ? Number(waveRaw) : undefined,
+		};
+	}
+
+	function applyInput(input: Partial<LoadoutInput>) {
+		if (input.scenario) (document.getElementById('scenario') as HTMLSelectElement).value = input.scenario;
+		if (input.targetWave != null) {
+			(document.getElementById('targetWave') as HTMLInputElement).value = String(input.targetWave);
+		} else if (input.targetWave === undefined && hasLoadoutUrlState(new URLSearchParams(location.search))) {
+			(document.getElementById('targetWave') as HTMLInputElement).value = '';
+		}
+		if (input.ownedClassIds) {
+			const owned = new Set(input.ownedClassIds);
+			document.querySelectorAll('#owned-classes input').forEach((el) => {
+				(el as HTMLInputElement).checked = owned.has((el as HTMLInputElement).value);
+			});
+		}
+	}
+
+	function run() {
+		const input = readFormInput();
+		const shareUrl = syncLoadoutUrlState(input);
+		const result = buildLoadout(input, shareUrl);
+		(document.getElementById('rec-class') as HTMLElement).textContent = result.recommendedClass;
+		(document.getElementById('rec-weapon') as HTMLElement).textContent = result.weaponPath;
+		const gear = document.getElementById('gear-list') as HTMLUListElement;
+		gear.innerHTML = result.gearTips.map((t) => `<li>${t}</li>`).join('');
+		const gaps = document.getElementById('gap-list') as HTMLUListElement;
+		gaps.innerHTML =
+			result.teamGaps.length > 0
+				? result.teamGaps.map((t) => `<li>${t}</li>`).join('')
+				: '<li>No major gaps for this scenario with current picks.</li>';
+
+		const payload = buildShareCardPayload(
+			input.scenario,
+			result.recommendedClass,
+			result.weaponPath,
+			input.targetWave,
+			shareUrl,
+		);
+		share.update(payload, result.shareText, shareUrl);
+	}
+
+	const urlState = parseLoadoutUrlState(new URLSearchParams(location.search));
+	if (hasLoadoutUrlState(new URLSearchParams(location.search))) {
+		applyInput(urlState);
+	}
+
+	document.getElementById('loadout-form')?.addEventListener('change', run);
+	document.getElementById('loadout-form')?.addEventListener('input', run);
+	run();
+</script>
+
+<style>
+	.checkbox-grid {
+		display: grid;
+		gap: 0.5rem;
+	}
+	.checkbox-field {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		font-size: 0.95rem;
+	}
+
+	.share-card-capture {
+		position: fixed;
+		left: 0;
+		top: 0;
+		width: 0;
+		height: 0;
+		overflow: hidden;
+		pointer-events: none;
+	}
+
+	.loadout-share-card {
+		width: 800px;
+		padding: 40px 44px;
+		background: linear-gradient(145deg, #1a1228 0%, #141018 55%, #221533 100%);
+		color: #f8f5fc;
+		font-family: Atkinson, ui-sans-serif, system-ui, sans-serif;
+		border-radius: 16px;
+		border: 1px solid rgba(196, 77, 255, 0.35);
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+	}
+
+	.loadout-share-card__brand {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.95rem;
+		font-weight: 700;
+		color: #c44dff;
+		text-transform: uppercase;
+		letter-spacing: 0.06em;
+	}
+
+	.loadout-share-card__dot {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		background: #4ecdc4;
+		box-shadow: 0 0 12px rgba(78, 205, 196, 0.8);
+	}
+
+	.loadout-share-card__eyebrow {
+		margin: 12px 0 4px;
+		font-size: 0.9rem;
+		color: #9d8fb0;
+	}
+
+	.loadout-share-card__title {
+		margin: 0 0 20px;
+		font-size: 2rem;
+		line-height: 1.15;
+		color: #ffffff;
+	}
+
+	.loadout-share-card__row {
+		display: grid;
+		grid-template-columns: 140px 1fr;
+		gap: 12px;
+		padding: 12px 0;
+		border-top: 1px solid rgba(228, 223, 232, 0.12);
+		font-size: 1rem;
+	}
+
+	.loadout-share-card__row span {
+		color: #9d8fb0;
+	}
+
+	.loadout-share-card__row strong {
+		color: #ffffff;
+		font-weight: 700;
+		line-height: 1.35;
+	}
+
+	.loadout-share-card__footer {
+		display: flex;
+		justify-content: space-between;
+		gap: 12px;
+		margin: 24px 0 0;
+		padding-top: 16px;
+		border-top: 1px solid rgba(196, 77, 255, 0.25);
+		font-size: 0.85rem;
+		color: #6b6478;
+	}
+</style>

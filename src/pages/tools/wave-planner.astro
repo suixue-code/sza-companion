@@ -1,0 +1,31 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import WavePlanner from '@components/tools/WavePlanner.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import siteMeta from '../../data/site-meta.json';
+import { articleSchema, breadcrumbSchema } from '@lib/seo';
+
+const pageUrl = new URL('/tools/wave-planner/', Astro.site).toString();
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Wave Push Planner',
+		description: 'Estimate whether your loadout can push from your current wave to a target wave on the Rooftop Map.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Wave Push Planner', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Wave Push Planner — High-Wave Checklist"
+	description="Simple wave push planner for Survive Zombie Arena: gear checklist, class tier, Auto Skip risk, and estimated buy phases before you commit to a leaderboard run."
+	schema={schema}
+>
+	<WavePlanner />
+	<ToolsGuidesStrip />
+</BaseLayout>

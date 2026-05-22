@@ -1,0 +1,41 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideArticle from '@components/guides/GuideArticle.astro';
+import siteMeta from '../../data/site-meta.json';
+import { guides, getGuideBySlug } from '../../data/guides';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+export function getStaticPaths() {
+	return guides.map((guide) => ({ params: { slug: guide.slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = getGuideBySlug(slug!);
+
+if (!guide) {
+	return Astro.redirect('/404');
+}
+
+const pageUrl = new URL(`/guides/${guide.slug}/`, Astro.site).toString();
+
+const schema = [
+	articleSchema({
+		title: guide.title,
+		description: guide.description,
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(guide.faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Guides', url: new URL('/guides/', Astro.site).toString() },
+		{ name: guide.title, url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout title={guide.title} description={guide.description} schema={schema}>
+	<section class="content-section">
+		<GuideArticle guide={guide} lastReviewed={siteMeta.lastPublicReviewDisplay} />
+	</section>
+</BaseLayout>

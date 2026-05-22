@@ -1,0 +1,241 @@
+---
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import rebirthLadder from '../../data/rebirth-goop-ladder.json';
+import type { LocaleCode } from '@i18n/config';
+import { getRebirthPlannerCopy } from '@i18n/rebirth-planner';
+
+interface Props {
+	locale: LocaleCode;
+}
+
+const { locale } = Astro.props;
+const c = getRebirthPlannerCopy(locale);
+const rebirthGuideHref =
+	locale === 'zh-cn' ? '/zh-cn/guides/goop-rebirth/' : locale === 'es' ? '/es/guides/goop-rebirth/' : '/guides/rebirth/';
+---
+
+<section class="page-hero compact">
+	<div class="shell two-col mobile-hero-stack">
+		<div>
+			<p class="eyebrow"><span class="pulse"></span>{c.eyebrow}</p>
+			<h1>{c.h1}</h1>
+			<p class="geo-snap">{c.snap}</p>
+			<p class="lead">{c.lead}</p>
+		</div>
+		<aside class="quick-answer">
+			<strong>{c.ruleTitle}</strong>
+			<p>{c.ruleBody}</p>
+		</aside>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="shell tool-grid">
+		<form class="tool-panel">
+			<h2>{c.inputs}</h2>
+			<div class="form-grid">
+				<label class="field"
+					>{c.labels.goop}
+					<input class="input" id="goop" type="number" min="0" step="1" value="500" />
+				</label>
+				<label class="field"
+					>{c.labels.coins}
+					<input class="input" id="coins" type="number" min="0" step="1000" value="1000000" />
+				</label>
+				<label class="field"
+					>{c.labels.level}
+					<input class="input" id="level" type="number" min="0" step="1" value="0" />
+				</label>
+				<label class="field"
+					>{c.labels.zone}
+					<input class="input" id="zone" type="number" min="1" step="1" value="6" />
+				</label>
+				<label class="field"
+					>{c.labels.upgrades}
+					<select class="select" id="upgrades">
+						<option value="low">{c.upgradeOptions.low}</option>
+						<option value="medium" selected>{c.upgradeOptions.medium}</option>
+						<option value="high">{c.upgradeOptions.high}</option>
+					</select>
+				</label>
+				<label class="field"
+					>{c.labels.session}
+					<input class="input" id="session" type="number" min="0.25" step="0.25" value="2" />
+				</label>
+			</div>
+		</form>
+
+		<section class="tool-panel">
+			<h2>{c.recommendation}</h2>
+			<div class="result-grid">
+				<div class="metric"><span>{c.readinessScore}</span><strong id="score">-</strong></div>
+				<div class="metric"><span>{c.nextGoop}</span><strong id="targetGoop">-</strong></div>
+				<div class="metric"><span>{c.goopGap}</span><strong id="goopGap">-</strong></div>
+				<div class="metric"><span>{c.action}</span><strong id="action">-</strong></div>
+			</div>
+			<p class="notice" id="plannerNote">{c.estimateOnly}</p>
+			<h3>{c.checklistTitle}</h3>
+			<ul class="check-list" id="checklist"></ul>
+		</section>
+	</div>
+</section>
+
+<section class="content-section" id="goop-ladder-data">
+	<div class="shell article-flow">
+		<h2>{c.ladderTitle}</h2>
+		<p>
+			<strong>{c.ladderLastChecked}</strong>{' '}
+			{rebirthLadder.lastCheckedAt} · <strong>{c.ladderConfidence}</strong>{' '}
+			{rebirthLadder.confidence}
+		</p>
+		<p>{rebirthLadder.sourceNote}</p>
+		<p>
+			<strong>{c.ladderTargets}</strong>{' '}
+			{rebirthLadder.goopPerRebirthLevel
+				.map((n) => n.toLocaleString(locale === 'zh-cn' ? 'zh-CN' : locale === 'es' ? 'es-419' : 'en-US'))
+				.join(' → ')}
+		</p>
+		<p>
+			<a href={rebirthGuideHref}>{c.ladderFoot}</a>
+		</p>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="shell article-flow">
+		<h2>{c.faqHeading}</h2>
+		<div class="faq-list">
+			{c.faq.map((item) => (
+				<details>
+					<summary>{item.question}</summary>
+					<p>{item.answer}</p>
+				</details>
+			))}
+		</div>
+	</div>
+</section>
+
+<ToolsGuidesStrip locale={locale} />
+
+<script define:vars={{ goopTargets: rebirthLadder.goopPerRebirthLevel, localeTag: locale }}>
+	const get = (id) => document.getElementById(id);
+	const fmt = new Intl.NumberFormat(
+		localeTag === 'zh-cn' ? 'zh-CN' : localeTag === 'es' ? 'es-419' : 'en-US',
+	);
+
+	const ACTIONS =
+		localeTag === 'zh-cn'
+			? { farm: '先刷 Goop', rebirth: '可考虑重生', wait: '再准备一下', upgrades: '先补升级' }
+			: localeTag === 'es'
+				? { farm: 'Farmear Goop', rebirth: 'Puedes renacer', wait: 'Espera un poco', upgrades: 'Sube upgrades' }
+				: { farm: 'Farm Goop', rebirth: 'Rebirth now', wait: 'Wait briefly', upgrades: 'Buy upgrades' };
+
+	const NOTES =
+		localeTag === 'zh-cn'
+			? {
+					rebirth:
+						'按保守清单看已较稳妥：重生前再把余钱换成常驻、确认主力史莱姆与可游玩时间，然后在游戏内自行确认。',
+					farm: 'Goop 仍是主要瓶颈：在清怪快的区域刷，并优先点与掉落相关的升级（若树里有）。',
+					wait: '已接近，但重置后可能明显拖慢节奏：建议先把关键常驻升级补齐，或留出更长重建时间。',
+				}
+			: localeTag === 'es'
+				? {
+						rebirth:
+							'Con la lista conservadora pareces listo: gasta monedas sobrantes en persistentes, confirma tus slimes y revisa en el juego antes de pulsar renacer.',
+						farm: 'Goop sigue siendo el cuello de botella: farmea en zonas con kills rápidos y sube mejoras de drop de Goop si existen.',
+						wait: 'Estás cerca, pero el reset puede frenarte: termina upgrades persistentes o consigue más tiempo para recuperar.',
+					}
+				: {
+						rebirth:
+							'You look ready by the conservative checklist. Spend spare coins and confirm your best slimes before clicking Rebirth.',
+						farm: 'Goop is still the main blocker. Farm enemies in a zone where kills are fast and upgrade Goop drops if available.',
+						wait: 'You are close, but the reset may slow you down. Finish persistent upgrades or make more time for recovery.',
+					};
+
+	const CHECK =
+		localeTag === 'zh-cn'
+			? {
+					goopOk: 'Goop 已达下一档目标。',
+					goopNeed: (gap) => `还需约 ${fmt.format(gap)} Goop。`,
+					coinsLow: '余钱不多，重置时浪费相对较少。',
+					coinsHigh: '重生前建议把余钱换成常驻升级。',
+					zoneOk: '区域进度已具备配方 / Goop 相关基础。',
+					zoneLow: '若战斗允许，先把区域再推高，再考虑重生。',
+					upgradesOk: '核心常驻升级整体可用。',
+					upgradesLow: '核心升级仍偏弱，建议先补强。',
+					sessionOk: '单次可游玩时长足够尝试一轮重建。',
+					sessionShort: '可游玩时间偏短：等能连续推进区域时再重置更稳。',
+				}
+			: localeTag === 'es'
+				? {
+						goopOk: 'Goop cumple la meta siguiente.',
+						goopNeed: (gap) => `Faltan ~${fmt.format(gap)} Goop.`,
+						coinsLow: 'Pocas monedas: se pierde menos valor al resetear.',
+						coinsHigh: 'Gasta monedas sobrantes en upgrades persistentes antes de resetear.',
+						zoneOk: 'Zonas suficientes para recetas / progreso de Goop.',
+						zoneLow: 'Si el combate lo permite, sube más zonas antes de renacer.',
+						upgradesOk: 'Los upgrades núcleo persistentes están razonables.',
+						upgradesLow: 'Los upgrades núcleo se ven flojos; mejóralos primero.',
+						sessionOk: 'La sesión es suficiente para intentar reconstruir.',
+						sessionShort: 'Sesión corta: espera a tener tiempo continuo para zonas.',
+					}
+				: {
+						goopOk: 'Goop target met.',
+						goopNeed: (gap) => `Need ${fmt.format(gap)} more Goop.`,
+						coinsLow: 'Coin balance is low enough that less value is wasted.',
+						coinsHigh: 'Spend spare coins on persistent upgrades before resetting.',
+						zoneOk: 'You have reached recipe/Goop-relevant progression.',
+						zoneLow: 'Push zones farther before Rebirth if combat allows.',
+						upgradesOk: 'Core permanent upgrades are in a usable state.',
+						upgradesLow: 'Core upgrades look weak; improve them first.',
+						sessionOk: 'Session length is enough for a rebuild attempt.',
+						sessionShort: 'Short session: consider waiting until you can rebuild zones.',
+					};
+
+	function number(id, fallback) {
+		const value = Number(get(id).value);
+		return Number.isFinite(value) && value >= 0 ? value : fallback;
+	}
+
+	function renderPlanner() {
+		const level = Math.max(0, Math.floor(number('level', 0)));
+		const target = goopTargets[level] || Math.round(goopTargets.at(-1) * Math.pow(2, level - goopTargets.length + 1));
+		const goop = number('goop', 0);
+		const coins = number('coins', 0);
+		const zone = number('zone', 1);
+		const session = number('session', 1);
+		const upgrades = get('upgrades').value;
+		let score = 0;
+		if (goop >= target) score += 35;
+		else score += Math.max(0, Math.round((goop / target) * 30));
+		if (coins < 250000) score += 20;
+		else if (coins < 2000000) score += 12;
+		else score += 4;
+		if (zone >= 6) score += 12;
+		if (zone >= 10) score += 8;
+		if (upgrades === 'medium') score += 15;
+		if (upgrades === 'high') score += 25;
+		if (session >= 2) score += 10;
+		if (session >= 4) score += 5;
+		score = Math.min(score, 100);
+		const gap = Math.max(0, target - goop);
+		const action = goop < target ? ACTIONS.farm : score >= 75 ? ACTIONS.rebirth : score >= 55 ? ACTIONS.wait : ACTIONS.upgrades;
+		get('score').textContent = `${score}/100`;
+		get('targetGoop').textContent = fmt.format(target);
+		get('goopGap').textContent = fmt.format(gap);
+		get('action').textContent = action;
+		get('plannerNote').textContent =
+			action === ACTIONS.rebirth ? NOTES.rebirth : action === ACTIONS.farm ? NOTES.farm : NOTES.wait;
+		const checks = [
+			goop >= target ? CHECK.goopOk : CHECK.goopNeed(gap),
+			coins < 250000 ? CHECK.coinsLow : CHECK.coinsHigh,
+			zone >= 6 ? CHECK.zoneOk : CHECK.zoneLow,
+			upgrades !== 'low' ? CHECK.upgradesOk : CHECK.upgradesLow,
+			session >= 2 ? CHECK.sessionOk : CHECK.sessionShort,
+		];
+		get('checklist').innerHTML = checks.map((item) => `<li>${item}</li>`).join('');
+	}
+
+	['goop', 'coins', 'level', 'zone', 'upgrades', 'session'].forEach((id) => get(id).addEventListener('input', renderPlanner));
+	renderPlanner();
+</script>

@@ -1,0 +1,59 @@
+---
+interface TableData {
+	headers: string[];
+	rows: (string | number)[][];
+	caption?: string;
+}
+
+interface Props {
+	heading: string;
+	body?: string;
+	items?: string[];
+	table?: TableData;
+	id?: string;
+	level?: 2 | 3;
+}
+
+const { heading, body, items, table, id, level = 2 } = Astro.props;
+const HeadingTag = level === 3 ? 'h3' : 'h2';
+---
+
+<section class="guide-section" id={id}>
+	<HeadingTag>{heading}</HeadingTag>
+	{body && <p>{body}</p>}
+	{
+		items && items.length > 0 && (
+			<ul class="check-list">
+				{items.map((item) => (
+					<li>{item}</li>
+				))}
+			</ul>
+		)
+	}
+	{
+		table && (
+			<div class="table-wrap">
+				<table>
+					{table.caption && <caption>{table.caption}</caption>}
+					<thead>
+						<tr>
+							{table.headers.map((header) => (
+								<th>{header}</th>
+							))}
+						</tr>
+					</thead>
+					<tbody>
+						{table.rows.map((row) => (
+							<tr>
+								{row.map((cell) => (
+									<td>{cell}</td>
+								))}
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		)
+	}
+	<slot />
+</section>

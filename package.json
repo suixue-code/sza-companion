@@ -1,0 +1,33 @@
+{
+  "name": "sza-companion",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test": "vitest run",
+    "crawl:codes": "node scripts/crawl-codes.mjs",
+    "crawl:codes:write": "node scripts/crawl-codes.mjs --write",
+    "crawl:content": "node scripts/crawl-competitor-content.mjs",
+    "crawl:content:com": "node scripts/crawl-competitor-content.mjs --only=com",
+    "crawl:content:wiki": "node scripts/crawl-competitor-content.mjs --only=wiki",
+    "crawl:content:report": "node scripts/crawl-competitor-content.mjs --report",
+    "crawl:content:optimize": "node scripts/optimize-crawl-content.mjs",
+    "crawl:guides:draft": "node scripts/apply-crawl-to-guides.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.7.2",
+    "astro": "^6.3.1",
+    "html-to-image": "^1.11.13",
+    "shareon": "^2.8.1",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}

@@ -1,0 +1,11 @@
+snapshot_start,snapshot_end,page_url,clicks,impressions,ctr_pct,top_queries_manual
+2026-05-13,2026-05-16,https://slimerngtools.com/,6,137,4.4,slime rng calculator (fill from GSC)
+2026-05-13,2026-05-16,https://slimerngtools.com/guides/progression/,3,124,2.4,slime rng progression guide
+2026-05-13,2026-05-16,https://slimerngtools.com/guides/rarest-slimes/,1,23,4.3,
+2026-05-13,2026-05-16,http://slimerngtools.com/,1,2,50,should 301 to https after deploy
+2026-05-13,2026-05-16,https://slimerngtools.com/es/,0,21,0,check queries in GSC for this URL
+2026-05-13,2026-05-16,https://slimerngtools.com/zh-cn/codes/,0,8,0,
+2026-05-13,2026-05-16,https://slimerngtools.com/es/wiki/,0,5,0,
+2026-05-13,2026-05-16,https://slimerngtools.com/guides/items/,0,9,0,
+2026-05-13,2026-05-16,https://slimerngtools.com/guides/goop/,0,5,0,
+2026-05-13,2026-05-16,https://slimerngtools.com/codes/,0,4,0,indexed but low impressions pre-refresh

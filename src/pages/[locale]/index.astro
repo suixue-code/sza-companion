@@ -1,0 +1,245 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import codes from '../../data/codes.json';
+import siteMeta from '../../data/site-meta.json';
+import siteStats from '../../data/site-stats.json';
+import classes from '../../data/classes.json';
+import { localizedStaticPaths, resolveLocalizedParam } from '@i18n/localized/static-paths';
+import { localePath, lastReviewedDisplay } from '@i18n/localized/paths';
+import type { LocaleCode } from '@i18n/config';
+import { getHomeCopy } from '@i18n/localized/home';
+import { collectionSchema, faqSchema, SITE_NAME } from '@lib/seo';
+
+export function getStaticPaths() {
+	return localizedStaticPaths();
+}
+
+const locale = resolveLocalizedParam(Astro.params.locale);
+if (!locale) return Astro.redirect('/');
+
+const homeCopy = getHomeCopy(locale);
+const reviewed = lastReviewedDisplay(locale, siteMeta);
+const activeCount = codes.filter((code) => code.status === 'active').length;
+const fmtLocale = locale === 'zh-cn' ? 'zh-CN' : locale === 'pt-br' ? 'pt-BR' : 'es-ES';
+const fmt = new Intl.NumberFormat(fmtLocale);
+
+const tierSummary = {
+	S: classes.filter((c) => c.tierSolo === 'S'),
+	A: classes.filter((c) => c.tierSolo === 'A'),
+	B: classes.filter((c) => c.tierSolo === 'B'),
+	C: classes.filter((c) => c.tierSolo === 'C'),
+};
+
+const tierCardTitle: Record<LocaleCode, Record<string, string>> = {
+	en: { S: 'S tier', A: 'A tier', B: 'B tier', C: 'C tier' },
+	es: { S: 'Tier S', A: 'Tier A', B: 'Tier B', C: 'Tier C' },
+	'pt-br': { S: 'Tier S', A: 'Tier A', B: 'Tier B', C: 'Tier C' },
+	'zh-cn': { S: 'S 级', A: 'A 级', B: 'B 级', C: 'C 级' },
+};
+
+const snapshotCopy: Record<
+	(typeof locale),
+	{ title: string; visits: string; favorites: string; players: string; session: string; checked: string }
+> = {
+	es: {
+		title: 'Resumen en vivo',
+		visits: 'visitas',
+		favorites: 'favoritos',
+		players: 'jugadores/servidor',
+		session: 'min de sesión media',
+		checked: 'API Roblox + auditoría pública · revisado',
+	},
+	'pt-br': {
+		title: 'Resumo ao vivo',
+		visits: 'visitas',
+		favorites: 'favoritos',
+		players: 'jogadores/servidor',
+		session: 'min de sessão média',
+		checked: 'API Roblox + auditoria pública · verificado',
+	},
+	'zh-cn': {
+		title: '实时快照',
+		visits: '访问量',
+		favorites: '收藏',
+		players: '人/服',
+		session: '分钟平均时长',
+		checked: 'Roblox API + 公开审计 · 复核于',
+	},
+};
+
+const trustCopy: Record<(typeof locale), { codes: (n: number) => string; classes: string; tools: string }> = {
+	es: {
+		codes: (n) => `${n} código${n === 1 ? '' : 's'} activo${n === 1 ? '' : 's'}`,
+		classes: `${classes.length} clases rastreadas`,
+		tools: 'Herramientas solo estimación',
+	},
+	'pt-br': {
+		codes: (n) => `${n} código${n === 1 ? '' : 's'} ativo${n === 1 ? '' : 's'}`,
+		classes: `${classes.length} classes rastreadas`,
+		tools: 'Ferramentas só estimativa',
+	},
+	'zh-cn': {
+		codes: (n) => `${n} 个有效兑换码`,
+		classes: `追踪 ${classes.length} 个职业`,
+		tools: '工具仅为估算',
+	},
+};
+
+const reviewNote =
+	locale === 'es'
+		? siteMeta.lastPublicReviewNoteEs
+		: locale === 'pt-br'
+			? siteMeta.lastPublicReviewNotePtBr
+			: siteMeta.lastPublicReviewNoteZhCn;
+
+const pageUrl = new URL(localePath(locale, '/'), Astro.site).toString();
+const snapshot = snapshotCopy[locale];
+const trust = trustCopy[locale];
+
+const schema = [
+	collectionSchema(`${SITE_NAME} — ${homeCopy.title}`, homeCopy.description, pageUrl),
+	faqSchema(homeCopy.faq),
+];
+---
+
+<BaseLayout title={homeCopy.title} description={homeCopy.description} locale={locale} schema={schema}>
+	<section class="page-hero">
+		<div class="shell hero-grid mobile-hero-stack">
+			<div>
+				<p class="eyebrow">
+					<span class="pulse"></span>
+					{homeCopy.eyebrow} {reviewed}
+				</p>
+				<h1>{homeCopy.h1}</h1>
+				<p class="geo-snap">{homeCopy.geoSnap}</p>
+				<p class="lead">{homeCopy.lead}</p>
+				<div class="hero-actions">
+					<a class="btn primary" href={localePath(locale, '/codes/')}>{homeCopy.ctaCodes}</a>
+					<a class="btn secondary" href={localePath(locale, '/tools/credit-planner/')}>{homeCopy.ctaPlanner}</a>
+					<a class="btn dark" href={localePath(locale, '/beginner-guide/')}>{homeCopy.ctaBeginner}</a>
+				</div>
+				<div class="trust-row">
+					<span class="trust">{trust.codes(activeCount)}</span>
+					<span class="trust">{trust.classes}</span>
+					<span class="trust">{trust.tools}</span>
+				</div>
+			</div>
+			<aside class="quick-answer accent-panel">
+				<strong>{snapshot.title}</strong>
+				<p style="margin-top: 8px;">
+					{fmt.format(siteStats.visits)} {snapshot.visits} · {fmt.format(siteStats.favorites)} {snapshot.favorites} ·{' '}
+					{siteStats.maxPlayers} {snapshot.players} · ~{siteStats.avgSessionMinutes} {snapshot.session}
+				</p>
+				<p class="muted" style="margin-top: 8px; font-size: 0.85rem;">
+					{snapshot.checked} {siteStats.lastChecked}
+				</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>{homeCopy.sectionStartTitle}</h2>
+				<p>{homeCopy.sectionStartDesc}</p>
+			</div>
+			<ul class="shortcut-grid">
+				{
+					homeCopy.shortcuts.map((shortcut) => (
+						<li class="shortcut">
+							<a href={localePath(locale, shortcut.href)}>
+								<strong>{shortcut.title}</strong>
+								<p>{shortcut.desc}</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>{homeCopy.codeReportTitle}</h2>
+			</div>
+			<div class="data-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+				<div class="data-card">
+					<h3>{homeCopy.zombiesTitle}</h3>
+					<p>{homeCopy.zombiesDesc}</p>
+					<a class="btn secondary" href={localePath(locale, '/codes/')} style="margin-top: 12px; display: inline-flex;">
+						{homeCopy.ctaCodes}
+					</a>
+				</div>
+				<div class="data-card">
+					<h3>{homeCopy.galacticTitle}</h3>
+					<p>{homeCopy.galacticDesc}</p>
+					<a
+						class="btn secondary"
+						href={`${localePath(locale, '/codes/')}#galactic`}
+						style="margin-top: 12px; display: inline-flex;"
+					>
+						GALACTIC
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>{homeCopy.upgradesTitle}</h2>
+			</div>
+			<ol class="check-list">
+				{homeCopy.upgradesItems.map((item) => <li>{item}</li>)}
+			</ol>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>{homeCopy.tierTitle}</h2>
+				<p>{homeCopy.tierDesc}</p>
+			</div>
+			<div class="data-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+				<div class="data-card">
+					<h3>{tierCardTitle[locale].S}</h3>
+					<p>{tierSummary.S.map((c) => c.name).join(', ') || '—'}</p>
+				</div>
+				<div class="data-card">
+					<h3>{tierCardTitle[locale].A}</h3>
+					<p>{tierSummary.A.map((c) => c.name).join(', ')}</p>
+				</div>
+				<div class="data-card">
+					<h3>{tierCardTitle[locale].B}</h3>
+					<p>{tierSummary.B.map((c) => c.name).join(', ')}</p>
+				</div>
+				<div class="data-card">
+					<h3>{tierCardTitle[locale].C}</h3>
+					<p>{tierSummary.C.map((c) => c.name).join(', ')}</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{
+						homeCopy.faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+			<p class="notice" style="margin-top: 24px;">{reviewNote}</p>
+		</div>
+	</section>
+</BaseLayout>

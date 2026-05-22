@@ -1,0 +1,220 @@
+---
+import ToolLinkShare from './ToolLinkShare.astro';
+import { getLoadoutSharePreset, getToolShareCopy, getWaveSharePreset } from '@i18n/tool-share';
+import { mergeToolShareLabels } from '@lib/tool-share-labels';
+
+const shareLabels = mergeToolShareLabels(getToolShareCopy('en'), getWaveSharePreset('en'));
+---
+
+<section class="page-hero compact">
+	<div class="shell two-col mobile-hero-stack">
+		<div>
+			<p class="eyebrow"><span class="pulse"></span>Browser-only · Rooftop Map estimates</p>
+			<h1>Wave Push Planner</h1>
+			<p class="lead">
+				Check whether your kit can push from wave A → B. Pair with the{' '}
+				<a href="/tools/loadout-builder/">Loadout Builder</a> and{' '}
+				<a href="/guides/waves/">wave guide</a>.
+			</p>
+		</div>
+		<aside class="quick-answer">
+			<strong>Quick rule</strong>
+			<p>Rifle + barricade + turret before voting Auto Skip. Anchor lane before scaling DPS.</p>
+		</aside>
+	</div>
+</section>
+
+<section class="content-section">
+	<div class="shell tool-grid">
+		<form class="tool-panel" id="wave-planner-form">
+			<h2>Your push</h2>
+			<div class="form-grid">
+				<label class="field">
+					Current wave
+					<input class="input" id="currentWave" type="number" min="1" max="999" value="10" />
+				</label>
+				<label class="field">
+					Target wave
+					<input class="input" id="targetWave" type="number" min="1" max="999" value="25" />
+				</label>
+				<label class="field" style="grid-column: 1 / -1;">
+					Class tier
+					<select class="select" id="classTier">
+						<option value="starter">Survivor / early</option>
+						<option value="marksman" selected>Marksman</option>
+						<option value="tactician">Tactician</option>
+						<option value="necromancer">Necromancer</option>
+					</select>
+				</label>
+			</div>
+			<h3>Gear checks</h3>
+			<div class="checkbox-grid">
+				<label class="checkbox-field">
+					<input type="checkbox" id="hasRifle" checked /> Rifle upgrade
+				</label>
+				<label class="checkbox-field">
+					<input type="checkbox" id="hasBarricade" checked /> Barricade placed
+				</label>
+				<label class="checkbox-field">
+					<input type="checkbox" id="hasTurret" checked /> Turret placed
+				</label>
+				<label class="checkbox-field">
+					<input type="checkbox" id="autoSkipVotes" /> Lobby votes Auto Skip often
+				</label>
+			</div>
+		</form>
+
+		<section class="tool-panel" aria-live="polite">
+			<h2>Assessment</h2>
+			<p class="notice" id="waveSummary">Adjust inputs to see your push assessment.</p>
+			<div class="result-grid">
+				<div class="metric">
+					<span>Est. buy phases</span>
+					<strong id="buyPhases">—</strong>
+				</div>
+				<div class="metric">
+					<span>Verdict</span>
+					<strong id="waveVerdict">—</strong>
+				</div>
+			</div>
+			<h3>Checklist</h3>
+			<ul class="check-list" id="waveChecklist"></ul>
+			<h3 id="waveRisksHeading" style="display: none;">Risks</h3>
+			<ul class="warning-list" id="waveRisks" style="display: none;"></ul>
+
+			<ToolLinkShare idPrefix="wave" labels={shareLabels} />
+		</section>
+	</div>
+</section>
+
+<script define:vars={{ shareMessagesJson: JSON.stringify(shareLabels) }}>
+	import { planWavePush, type WavePlannerInput } from '../../lib/wave-planner.ts';
+	import {
+		buildWavePlannerSocialMeta,
+		formatWavePlannerShareText,
+	} from '../../lib/wave-planner-share.ts';
+	import {
+		hasWavePlannerUrlState,
+		parseWavePlannerUrlState,
+		syncWavePlannerUrlState,
+	} from '../../lib/wave-planner-url-state.ts';
+	import { mountToolLinkShare } from '../../lib/tool-link-share-ui.ts';
+	import { messagesFromToolShareCopy } from '../../lib/tool-share-labels.ts';
+
+	const shareMessages = messagesFromToolShareCopy(shareMessagesJson);
+	let latestInput = null;
+	let latestResult = null;
+	let latestShareUrl = '';
+	let trackedRun = false;
+
+	const linkShare = mountToolLinkShare({
+		ids: {
+			previewText: 'wave-share-text',
+			copyText: 'wave-copy-text',
+			copyLink: 'wave-copy-link',
+			discord: 'wave-share-discord',
+			native: 'wave-share-native',
+			status: 'wave-share-status',
+			shareon: 'wave-shareon',
+		},
+		trackEventName: 'wave_share',
+		messages: shareMessages,
+		getShareText: () =>
+			latestInput && latestResult && latestShareUrl
+				? formatWavePlannerShareText(
+						latestInput,
+						latestResult.summary,
+						latestResult.estimatedBuyPhases,
+						latestResult.feasible,
+						latestShareUrl,
+					)
+				: '',
+		getShareUrl: () => latestShareUrl,
+		getSocialMeta: () =>
+			latestInput && latestResult
+				? buildWavePlannerSocialMeta(
+						latestInput,
+						latestResult.summary,
+						latestResult.estimatedBuyPhases,
+						latestResult.feasible,
+						latestShareUrl,
+					)
+				: { url: latestShareUrl, title: 'SZA Companion · Wave Push', text: '', hashtags: 'SurviveZombieArena,Roblox' },
+	});
+
+	function readInput() {
+		return {
+			currentWave: Number((document.getElementById('currentWave')).value) || 1,
+			targetWave: Number((document.getElementById('targetWave')).value) || 1,
+			classTier: (document.getElementById('classTier')).value,
+			hasRifle: (document.getElementById('hasRifle')).checked,
+			hasBarricade: (document.getElementById('hasBarricade')).checked,
+			hasTurret: (document.getElementById('hasTurret')).checked,
+			autoSkipVotes: (document.getElementById('autoSkipVotes')).checked,
+		};
+	}
+
+	function applyInput(state) {
+		if (state.currentWave != null) (document.getElementById('currentWave')).value = String(state.currentWave);
+		if (state.targetWave != null) (document.getElementById('targetWave')).value = String(state.targetWave);
+		if (state.classTier) (document.getElementById('classTier')).value = state.classTier;
+		if (state.hasRifle != null) (document.getElementById('hasRifle')).checked = state.hasRifle;
+		if (state.hasBarricade != null) (document.getElementById('hasBarricade')).checked = state.hasBarricade;
+		if (state.hasTurret != null) (document.getElementById('hasTurret')).checked = state.hasTurret;
+		if (state.autoSkipVotes != null) (document.getElementById('autoSkipVotes')).checked = state.autoSkipVotes;
+	}
+
+	function render() {
+		const input = readInput();
+		latestShareUrl = syncWavePlannerUrlState(input);
+		const result = planWavePush(input);
+		latestInput = input;
+		latestResult = result;
+
+		(document.getElementById('waveSummary')).textContent = result.summary;
+		(document.getElementById('buyPhases')).textContent = String(result.estimatedBuyPhases);
+		(document.getElementById('waveVerdict')).textContent = result.feasible ? 'Feasible' : 'Stretch';
+		(document.getElementById('waveChecklist')).innerHTML = result.checklist.map((item) => `<li>${item}</li>`).join('');
+
+		const risks = document.getElementById('waveRisks');
+		const risksHeading = document.getElementById('waveRisksHeading');
+		if (result.risks.length) {
+			risksHeading.style.display = '';
+			risks.style.display = '';
+			risks.innerHTML = result.risks.map((item) => `<li>${item}</li>`).join('');
+		} else {
+			risksHeading.style.display = 'none';
+			risks.style.display = 'none';
+			risks.innerHTML = '';
+		}
+
+		linkShare.refresh();
+
+		if (!trackedRun) {
+			trackedRun = true;
+			import('../../lib/analytics.ts').then(({ trackEvent }) => trackEvent('planner_run', { tool: 'wave' }));
+		}
+	}
+
+	const urlParams = new URLSearchParams(location.search);
+	if (hasWavePlannerUrlState(urlParams)) {
+		applyInput(parseWavePlannerUrlState(urlParams));
+	}
+
+	document.getElementById('wave-planner-form')?.addEventListener('input', render);
+	document.getElementById('wave-planner-form')?.addEventListener('change', render);
+	render();
+</script>
+
+<style>
+	.checkbox-grid {
+		display: grid;
+		gap: 0.5rem;
+	}
+	.checkbox-field {
+		display: flex;
+		gap: 0.5rem;
+		align-items: center;
+		font-size: 0.95rem;
+	}
+</style>

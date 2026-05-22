@@ -1,0 +1,139 @@
+{
+	"captureDate": "2026-05-20",
+	"capturedAt": "2026-05-20T12:00:00+00:00",
+	"notes": "Structured migration from survivezombiearena.com competitor research (May 2026) plus cross-check signals from Discord audit, Roblox public API, and third-party code/event guides. Not a substitute for in-game verification on szacompanion.com.",
+	"sources": [
+		{
+			"name": "survivezombiearena.com (competitor hub)",
+			"url": "https://survivezombiearena.com/",
+			"type": "wiki",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["Zombies"],
+			"topics": ["homepage", "stats", "classes-summary", "weapons-summary", "discord-audit"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "Primary competitor content structure and Roblox API snapshot (visits, favorites, session length)."
+		},
+		{
+			"name": "survivezombiearena.com/codes",
+			"url": "https://survivezombiearena.com/codes/",
+			"type": "wiki",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["Zombies"],
+			"topics": ["codes", "redeem-steps"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "Active code Zombies 2,500 Credits; redeem path Shop → Redeem Codes."
+		},
+		{
+			"name": "survivezombiearena.com/classes",
+			"url": "https://survivezombiearena.com/classes/",
+			"type": "wiki",
+			"checkedAt": "2026-05-20",
+			"codesReported": [],
+			"topics": ["classes", "tier-list", "credit-costs", "abilities"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "All 9 classes with costs, tiers, abilities, and dev-confirmed patch notes."
+		},
+		{
+			"name": "survivezombiearena.com/weapons",
+			"url": "https://survivezombiearena.com/weapons/",
+			"type": "wiki",
+			"checkedAt": "2026-05-20",
+			"codesReported": [],
+			"topics": ["weapon-progression", "world-ender", "galactic-previews"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "Handgun→shotgun→rifle path; May 8 F2P guns; galactic sneak-peek facts without invented stats."
+		},
+		{
+			"name": "survivezombiearena.com/update-log",
+			"url": "https://survivezombiearena.com/update-log/",
+			"type": "wiki",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["Zombies"],
+			"topics": ["updates", "patches", "polls", "sneak-peeks"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "Chronological dev activity from Jan–May 2026 for updates.json."
+		},
+		{
+			"name": "Official Survive Zombie Arena Discord",
+			"url": "https://discord.com/invite/fPQDZ2Svtv",
+			"type": "official",
+			"checkedAt": "2026-05-18",
+			"codesReported": ["Zombies"],
+			"topics": ["codes", "patch-notes", "sneak-peeks", "polls", "announcements"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "First-party source for Zombies-only #codes channel, May 8 patch, May 17 previews."
+		},
+		{
+			"name": "Roblox public games API",
+			"url": "https://games.roblox.com/v1/games?universeIds=9348272796",
+			"type": "official",
+			"checkedAt": "2026-05-18",
+			"codesReported": [],
+			"topics": ["visits", "favorites", "updated-timestamps"],
+			"confidence": "high",
+			"aiDecision": "use",
+			"reason": "Live stats for site-stats.json; universeId 9348272796."
+		},
+		{
+			"name": "Destructoid (codes)",
+			"url": "https://www.destructoid.com/",
+			"type": "guide",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["Zombies", "GALACTIC"],
+			"topics": ["codes"],
+			"confidence": "low",
+			"aiDecision": "revise",
+			"reason": "Lists GALACTIC active around 2026-05-19 — conflicts with Discord #codes; marked disputed."
+		},
+		{
+			"name": "Pro Game Guides (codes)",
+			"url": "https://progameguides.com/roblox/survive-zombie-arena-codes/",
+			"type": "guide",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["Zombies", "GALACTIC"],
+			"topics": ["codes"],
+			"confidence": "low",
+			"aiDecision": "revise",
+			"reason": "Same GALACTIC conflict as Destructoid; used for disputed ledger only."
+		},
+		{
+			"name": "RoCodes community feedback",
+			"url": "https://rocodes.gg/",
+			"type": "community",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["Zombies", "GALACTIC"],
+			"topics": ["codes", "community-success-rate"],
+			"confidence": "medium",
+			"aiDecision": "use",
+			"reason": "Zombies high success; GALACTIC 0% — supports disputed status."
+		},
+		{
+			"name": "TechWiser / Pro Game Guides / Roonby (classes)",
+			"url": "https://techwiser.com/survive-zombie-arena-classes/",
+			"type": "guide",
+			"checkedAt": "2026-05-14",
+			"codesReported": [],
+			"topics": ["classes", "bastion", "necromancer-cost"],
+			"confidence": "medium",
+			"aiDecision": "use",
+			"reason": "Cross-check for Bastion tools and Necromancer 250k cost; Bastion marked media_reported where not dev-confirmed."
+		},
+		{
+			"name": "Third-party Galactic Event guides (IGN, community wikis)",
+			"url": "https://www.ign.com/wikis/survive-zombie-arena-roblox/",
+			"type": "guide",
+			"checkedAt": "2026-05-20",
+			"codesReported": ["GALACTIC"],
+			"topics": ["galactic-event", "void-shards", "galactic-crate-weapons"],
+			"confidence": "low",
+			"aiDecision": "draft",
+			"reason": "Void Shard drop rates, 50-shard crate gate, and crate weapon names — needs in-game verification; event end 2026-06-16 cited."
+		}
+	]
+}

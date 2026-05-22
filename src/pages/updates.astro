@@ -1,0 +1,120 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import updates from '../data/updates.json';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/updates/', Astro.site).toString();
+
+const typeLabels: Record<string, string> = {
+	site_audit: 'Site audit',
+	game_update: 'Game update',
+	sneak_peek: 'Sneak peek',
+	community_poll: 'Poll',
+	major_patch: 'Major patch',
+	major_update: 'Major update',
+	patch: 'Patch',
+	feature_drop: 'Feature drop',
+};
+
+const faq = [
+	{
+		question: 'What was the latest Survive Zombie Arena patch?',
+		answer: 'Roblox API shows a hotfix on 2026-05-17 with no matching Discord #patch-notes text. Last major documented patch is May 8 Mini Content Update (World Ender, Nightmare Mode, Necromancer buff).',
+	},
+	{
+		question: 'When did Rooftop Map release?',
+		answer: 'April 18, 2026 — replaced Square Arena with stairwell chokepoints and a new zombie movement system.',
+	},
+	{
+		question: 'Are Discord polls official features?',
+		answer: 'No. Polls signal developer intent only — Galactic Crates currency, Skill Tree vs Artifacts, and UI redesign polls are not shipped rules.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Updates & Patch Timeline',
+		description: 'Chronological Survive Zombie Arena updates from Classes Update through Galactic previews and May 2026 patches.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Updates', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Updates — Patch Timeline (2026)"
+	description="Survive Zombie Arena update log: Classes Update, Rooftop Map, May 8 Mini Content Update, Galactic previews, and Discord audit findings."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Discord + Roblox API · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Updates</h1>
+				<p class="geo-snap">
+					Chronological dev activity for <strong>Survive Zombie Arena</strong> — patch notes, sneak-peeks, polls, and API-confirmed hotfixes. Polls are labeled as community intent, not live features.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>May 18 audit</strong>
+				<p>No new code in #codes (Zombies only). Atlantis + galactic gun previews in #sneak-peeks. Galactic Crates poll favors event currency.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			{
+				updates.map((entry) => (
+					<article class="timeline-entry" id={entry.id} style="margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid var(--line);">
+						<p class="muted" style="font-size: 0.88rem; margin-bottom: 6px;">
+							<strong>{entry.date}</strong> · {typeLabels[entry.type] ?? entry.type} · {entry.status}
+						</p>
+						<h2 style="font-size: 1.35rem; margin-bottom: 8px;">{entry.title}</h2>
+						<p>{entry.summary}</p>
+						{entry.tags && entry.tags.length > 0 && (
+							<p class="muted" style="font-size: 0.85rem; margin-top: 8px;">
+								Tags: {entry.tags.join(', ')}
+							</p>
+						)}
+						<p class="muted" style="font-size: 0.85rem; margin-top: 6px;">Source: {entry.source}</p>
+					</article>
+				))
+			}
+
+			<section>
+				<h2>Sneak peeks tracked</h2>
+				<ul class="check-list">
+					<li>VOLATILE zombie (dev preview 2026-02-07, not live)</li>
+					<li>Goo Splasher — splash slow AoE</li>
+					<li>World Ender (preview → shipped May 8)</li>
+					<li>Cosmic / Galactic Pistol</li>
+					<li>Galactic guns batch (2026-05-17, F2P confirmed)</li>
+					<li>Atlantis Map footage (preview only)</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p>
+				Related: <a href="/events/galactic/">Galactic Event</a> · <a href="/weapons/">Weapons</a> · <a href="/discord/">Discord audit</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

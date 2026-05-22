@@ -1,0 +1,46 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ClassDetail from '@components/classes/ClassDetail.astro';
+import classes from '../../data/classes.json';
+import siteMeta from '../../data/site-meta.json';
+import { articleSchema, breadcrumbSchema } from '@lib/seo';
+
+export function getStaticPaths() {
+	return classes.map((cls) => ({ params: { id: cls.id } }));
+}
+
+const { id } = Astro.params;
+const cls = classes.find((c) => c.id === id);
+
+if (!cls) {
+	return Astro.redirect('/404');
+}
+
+const pageUrl = new URL(`/classes/${cls.id}/`, Astro.site).toString();
+const fmt = new Intl.NumberFormat('en-US');
+const costLabel = cls.costCredits === 0 ? 'Free starter' : `${fmt.format(cls.costCredits)} Credits`;
+
+const schema = [
+	articleSchema({
+		title: `${cls.name} Class Guide — Survive Zombie Arena`,
+		description: `${cls.name} (${costLabel}): abilities, tier ratings, synergies, and unlock advice for Survive Zombie Arena.`,
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Classes', url: new URL('/classes/', Astro.site).toString() },
+		{ name: cls.name, url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title={`${cls.name} Class Guide — Abilities, Tier & Unlock Advice`}
+	description={`Full ${cls.name} guide: ${cls.rarity} class at ${costLabel}. Solo ${cls.tierSolo}-tier, team ${cls.tierTeam}-tier. Abilities, synergies, and when to unlock.`}
+	schema={schema}
+>
+	<section class="content-section">
+		<ClassDetail cls={cls} lastReviewed={siteMeta.lastPublicReviewDisplay} />
+	</section>
+</BaseLayout>

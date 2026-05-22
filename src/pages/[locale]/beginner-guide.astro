@@ -1,0 +1,123 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import GuideSection from '@components/content/GuideSection.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import siteMeta from '../../data/site-meta.json';
+import { localizedStaticPaths, resolveLocalizedParam } from '@i18n/localized/static-paths';
+import { localePath, lastReviewedDisplay } from '@i18n/localized/paths';
+import { getBeginnerCopy } from '@i18n/localized/beginner';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+export function getStaticPaths() {
+	return localizedStaticPaths();
+}
+
+const locale = resolveLocalizedParam(Astro.params.locale);
+if (!locale) return Astro.redirect('/');
+
+const copy = getBeginnerCopy(locale);
+const reviewed = lastReviewedDisplay(locale, siteMeta);
+const pageUrl = new URL(localePath(locale, '/beginner-guide/'), Astro.site).toString();
+const homeUrl = new URL(localePath(locale, '/'), Astro.site).toString();
+
+const breadcrumbHome =
+	locale === 'es' ? 'Inicio' : locale === 'pt-br' ? 'Início' : '首页';
+
+const versionNote =
+	locale === 'es'
+		? siteMeta.gameContentVersionLabelEs
+		: locale === 'pt-br'
+			? siteMeta.gameContentVersionLabelPtBr
+			: siteMeta.gameContentVersionLabelZhCn;
+
+const nextLinks =
+	locale === 'es'
+		? {
+				planner: 'Credit Planner',
+				tier: 'Tier list',
+				weapons: 'Armas (EN)',
+			}
+		: locale === 'pt-br'
+			? {
+					planner: 'Credit Planner',
+					tier: 'Tier list',
+					weapons: 'Armas (EN)',
+				}
+			: {
+					planner: '信用点规划器',
+					tier: '梯队榜',
+					weapons: '武器（英文）',
+				};
+
+const schema = [
+	articleSchema({
+		title: copy.title,
+		description: copy.description,
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(copy.faq),
+	breadcrumbSchema([
+		{ name: breadcrumbHome, url: homeUrl },
+		{ name: copy.h1, url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout title={copy.title} description={copy.description} locale={locale} schema={schema}>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow">
+					<span class="pulse"></span>
+					{copy.eyebrow} {reviewed}
+				</p>
+				<h1>{copy.h1}</h1>
+				<p class="geo-snap">{copy.geoSnap}</p>
+				<p class="lead">{copy.lead}</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>{copy.fastRouteTitle}</strong>
+				<p>{copy.fastRouteBody}</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			{
+				copy.sections.map((section) => (
+					<GuideSection
+						heading={section.heading}
+						body={section.body}
+						items={section.items}
+						table={section.table}
+					/>
+				))
+			}
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{
+						copy.faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<p class="notice">{versionNote}</p>
+			<p>
+				{locale === 'zh-cn' ? '下一步：' : locale === 'pt-br' ? 'Próximo: ' : 'Siguiente: '}
+				<a href={localePath(locale, '/tools/credit-planner/')}>{nextLinks.planner}</a> ·{' '}
+				<a href={localePath(locale, '/tier-list/')}>{nextLinks.tier}</a> ·{' '}
+				<a href="/weapons/">{nextLinks.weapons}</a>
+			</p>
+		</div>
+	</section>
+	<ToolsGuidesStrip locale={locale} />
+</BaseLayout>

@@ -1,0 +1,68 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import siteMeta from '../../data/site-meta.json';
+import { localizedStaticPaths, resolveLocalizedParam } from '@i18n/localized/static-paths';
+import { localePath, lastReviewedDisplay } from '@i18n/localized/paths';
+import { getWikiCopy } from '@i18n/localized/wiki';
+import { collectionSchema, SITE_NAME } from '@lib/seo';
+
+export function getStaticPaths() {
+	return localizedStaticPaths();
+}
+
+const locale = resolveLocalizedParam(Astro.params.locale);
+if (!locale) return Astro.redirect('/');
+
+const copy = getWikiCopy(locale);
+const reviewed = lastReviewedDisplay(locale, siteMeta);
+const pageUrl = new URL(localePath(locale, '/wiki/'), Astro.site).toString();
+
+const schema = [
+	collectionSchema(`${SITE_NAME} Wiki Hub`, copy.description, pageUrl),
+];
+---
+
+<BaseLayout title={copy.title} description={copy.description} locale={locale} schema={schema}>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow">
+					<span class="pulse"></span>
+					{copy.eyebrow} {reviewed}
+				</p>
+				<h1>{copy.h1}</h1>
+				<p class="geo-snap">{copy.geoSnap}</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>{copy.startTitle}</strong>
+				<p>{copy.startBody}</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<ul class="shortcut-grid">
+				{
+					copy.localizedLinks.map((item) => (
+						<li class="shortcut">
+							<a href={localePath(locale, item.href)}>
+								<strong>{item.label}</strong>
+								<p>{item.copy}</p>
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<p class="notice">{copy.englishOnlyNote}</p>
+		</div>
+	</section>
+
+	<ToolsGuidesStrip locale={locale} />
+</BaseLayout>

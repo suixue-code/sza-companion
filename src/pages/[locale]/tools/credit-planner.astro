@@ -1,0 +1,55 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import CreditPlanner from '@components/tools/CreditPlanner.astro';
+import { localizedStaticPaths, resolveLocalizedParam } from '@i18n/localized/static-paths';
+import { localePath } from '@i18n/localized/paths';
+import { getCreditPlannerPageCopy } from '@i18n/localized/credit-planner';
+import { breadcrumbSchema, faqSchema, webApplicationSchema } from '@lib/seo';
+
+export function getStaticPaths() {
+	return localizedStaticPaths();
+}
+
+const locale = resolveLocalizedParam(Astro.params.locale);
+if (!locale) return Astro.redirect('/');
+
+const pageCopy = getCreditPlannerPageCopy(locale);
+const pageUrl = new URL(localePath(locale, '/tools/credit-planner/'), Astro.site).toString();
+const homeUrl = new URL(localePath(locale, '/'), Astro.site).toString();
+
+const breadcrumbHome =
+	locale === 'es' ? 'Inicio' : locale === 'pt-br' ? 'Início' : '首页';
+const breadcrumbLabel =
+	locale === 'zh-cn' ? '信用点规划器' : 'Credit Planner';
+
+const schema = [
+	webApplicationSchema(pageCopy.title, pageCopy.description, pageUrl),
+	faqSchema(pageCopy.faq),
+	breadcrumbSchema([
+		{ name: breadcrumbHome, url: homeUrl },
+		{ name: breadcrumbLabel, url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout title={pageCopy.title} description={pageCopy.description} locale={locale} schema={schema}>
+	<CreditPlanner locale={locale} />
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{
+						pageCopy.faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+		</div>
+	</section>
+</BaseLayout>

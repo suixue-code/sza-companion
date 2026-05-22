@@ -1,0 +1,145 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import siteStats from '../data/site-stats.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/discord/', Astro.site).toString();
+const fmt = new Intl.NumberFormat('en-US');
+
+const channelAudit = [
+	{ channel: '#patch-notes', finding: 'May 8 Mini Content Update is latest major patch text (World Ender, Nightmare Mode, balance).' },
+	{ channel: '#announcements', finding: 'Class suggestions drive; Rooftop Map launch announcement (2026-04-18).' },
+	{ channel: '#codes', finding: 'Zombies only — no GALACTIC post as of May 18 audit.' },
+	{ channel: '#sneak-peeks', finding: 'Atlantis map footage + galactic gun batch preview (2026-05-17).' },
+	{ channel: '#polls', finding: 'Galactic Crates currency poll — event currency leads 4,411 vs 1,177.' },
+	{ channel: '#game-night / #giveaways', finding: 'Community events — not republished here in full.' },
+];
+
+const faq = [
+	{
+		question: 'What is the official Survive Zombie Arena Discord?',
+		answer: `discord.com/invite/fPQDZ2Svtv — ~${fmt.format(siteStats.discordMembers)} members per May 2026 public audit. We do not read Discord for you; open it yourself to confirm codes.`,
+	},
+	{
+		question: 'Where is the Roblox game page?',
+		answer: `Place ID ${siteMeta.placeId}: ${siteMeta.robloxExperienceUrl}`,
+	},
+	{
+		question: 'Who develops Survive Zombie Arena?',
+		answer: `${siteMeta.developerName} — Roblox group ${siteMeta.robloxGroupLabel} (${siteMeta.robloxGroupUrl}).`,
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Official Links & Discord Audit',
+		description: 'Official Discord, Roblox experience, and Nectarforge group links plus May 2026 channel audit for Survive Zombie Arena.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Discord & Links', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Discord & Official Links"
+	description="Official Survive Zombie Arena Discord invite, Roblox game link, Nectarforge Studios group, and May 2026 Discord channel audit."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Official links · channel audit · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Official Links</h1>
+				<p class="geo-snap">
+					First-party destinations for <strong>Survive Zombie Arena</strong>. We summarize public Discord audit signals — we do not republish private staff content or full post copies.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Discord</strong>
+				<p>
+					~{fmt.format(siteStats.discordMembers)} members · {fmt.format(siteStats.discordOnlineAtCheck)} online at last check
+				</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="data-grid" style="grid-template-columns: repeat(3, minmax(0, 1fr));">
+				<a class="data-card" href={siteMeta.discordInviteUrl} rel="noopener noreferrer" target="_blank">
+					<h3>Discord server</h3>
+					<p>Official community — #codes, #patch-notes, #sneak-peeks</p>
+				</a>
+				<a class="data-card" href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">
+					<h3>Roblox experience</h3>
+					<p>{siteMeta.robloxExperienceLabel}</p>
+				</a>
+				<a class="data-card" href={siteMeta.robloxGroupUrl} rel="noopener noreferrer" target="_blank">
+					<h3>Roblox group</h3>
+					<p>{siteMeta.robloxGroupLabel} · ~{fmt.format(siteStats.robloxGroupMembers)} members</p>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Discord channel audit (May 18, 2026)</h2>
+				<p>Structured findings from public competitor deep-dive — not a live Discord feed.</p>
+			</div>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							<th>Channel</th>
+							<th>Finding</th>
+						</tr>
+					</thead>
+					<tbody>
+						{channelAudit.map((row) => (
+							<tr>
+								<td><strong>{row.channel}</strong></td>
+								<td>{row.finding}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>What we cannot republish</h2>
+			<ul class="warning-list">
+				<li>Private or staff-only Discord content</li>
+				<li>Full verbatim Discord post copies</li>
+				<li>Leaderboard player names without permission</li>
+			</ul>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+
+			<p class="notice">{siteMeta.lastPublicReviewNoteEn}</p>
+			<p>
+				Related: <a href="/codes/">Codes</a> · <a href="/updates/">Updates</a> · <a href="/events/galactic/">Galactic Event</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

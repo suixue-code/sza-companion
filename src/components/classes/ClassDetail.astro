@@ -1,0 +1,112 @@
+---
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import classes from '../../data/classes.json';
+
+interface ClassEntry {
+	id: string;
+	name: string;
+	rarity: string;
+	costCredits: number;
+	role: string;
+	tierSolo: string;
+	tierTeam: string;
+	tierFarm: string;
+	tierBeginner: string;
+	abilities: { name: string; description: string }[];
+	bestFor: string[];
+	synergies: string[];
+	counters: string[];
+	unlockAdvice: string;
+	notes: string;
+}
+
+interface Props {
+	cls: ClassEntry;
+	lastReviewed: string;
+}
+
+const { cls, lastReviewed } = Astro.props;
+const synergyNames = cls.synergies
+	.map((id) => classes.find((c) => c.id === id)?.name ?? id)
+	.join(', ');
+const fmt = new Intl.NumberFormat('en-US');
+---
+
+<article class="shell article-flow">
+	<p class="eyebrow"><span class="pulse"></span>{cls.rarity} · {cls.role}</p>
+	<h1>{cls.name} — Survive Zombie Arena Class Guide</h1>
+	<p class="meta-line">Last reviewed {lastReviewed}</p>
+
+	<div class="metric-grid">
+		<div class="metric">
+			<span>Cost</span>
+			<strong>{cls.costCredits === 0 ? 'Free (starter)' : `${fmt.format(cls.costCredits)} Credits`}</strong>
+		</div>
+		<div class="metric">
+			<span>Solo tier</span>
+			<strong>{cls.tierSolo}</strong>
+		</div>
+		<div class="metric">
+			<span>Team tier</span>
+			<strong>{cls.tierTeam}</strong>
+		</div>
+		<div class="metric">
+			<span>Farm tier</span>
+			<strong>{cls.tierFarm}</strong>
+		</div>
+		<div class="metric">
+			<span>Beginner tier</span>
+			<strong>{cls.tierBeginner}</strong>
+		</div>
+	</div>
+
+	<section class="guide-section">
+		<h2>Abilities</h2>
+		<ul class="check-list">
+			{cls.abilities.map((ability) => (
+				<li>
+					<strong>{ability.name}</strong> — {ability.description}
+				</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="guide-section">
+		<h2>Best for</h2>
+		<ul class="check-list">
+			{cls.bestFor.map((item) => (
+				<li>{item}</li>
+			))}
+		</ul>
+	</section>
+
+	<section class="guide-section">
+		<h2>Synergies & counters</h2>
+		<p>
+			Pairs well with: {synergyNames || '—'}. See the{' '}
+			<a href="/tools/loadout-builder/">Loadout Builder</a> for team combos.
+		</p>
+		{
+			cls.counters.length > 0 && (
+				<ul class="check-list">
+					{cls.counters.map((item) => (
+						<li>{item}</li>
+					))}
+				</ul>
+			)
+		}
+	</section>
+
+	<section class="guide-section">
+		<h2>Unlock advice</h2>
+		<p>{cls.unlockAdvice}</p>
+		<p>{cls.notes}</p>
+		<p>
+			Plan your Credit path with the{' '}
+			<a href="/tools/credit-planner/">Credit Planner</a> and compare tiers on the{' '}
+			<a href="/tier-list/">tier list</a>.
+		</p>
+	</section>
+</article>
+
+<ToolsGuidesStrip />

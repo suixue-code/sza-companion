@@ -1,0 +1,52 @@
+---
+import type { LocaleCode } from '@i18n/config';
+import { getLocaleDefinition, getHomePath, localeCodes } from '@i18n/config';
+import { navLinks } from '@i18n/ui';
+import { getAlternateHref, isActivePath } from '@i18n/utils';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const { locale = 'en' } = Astro.props;
+const currentPath = Astro.url.pathname;
+const links = navLinks[locale];
+const localeMeta = getLocaleDefinition(locale)!;
+const langFieldLabel = localeMeta.languageFieldLabel;
+---
+
+<header class="topbar">
+	<nav class="nav shell" aria-label="Primary navigation">
+		<a class="brand" href={getHomePath(locale)} aria-label={localeMeta.brandAriaLabel}>
+			<span class="brand-mark" aria-hidden="true"></span>
+			<span>SZA Companion</span>
+		</a>
+		<div class="nav-links">
+			{links.map((link) => (
+				<a class={isActivePath(currentPath, link.href) ? 'active' : ''} href={link.href}>{link.text}</a>
+			))}
+		</div>
+		{
+			localeCodes.length > 1 && (
+				<div class="lang-select-wrap">
+					<select
+						id="site-lang"
+						class="lang-select"
+						name="site-lang"
+						aria-label={langFieldLabel}
+						onchange="if (this.value) location.href = this.value"
+					>
+						{localeCodes.map((code) => {
+							const loc = getLocaleDefinition(code)!;
+							return (
+								<option value={getAlternateHref(currentPath, code)} selected={locale === code}>
+									{loc.label}
+								</option>
+							);
+						})}
+					</select>
+				</div>
+			)
+		}
+	</nav>
+</header>

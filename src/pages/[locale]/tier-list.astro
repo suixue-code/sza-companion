@@ -1,0 +1,213 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
+import classes from '../../data/classes.json';
+import siteMeta from '../../data/site-meta.json';
+import { localizedStaticPaths, resolveLocalizedParam } from '@i18n/localized/static-paths';
+import { localePath, lastReviewedDisplay } from '@i18n/localized/paths';
+import { getTierListCopy } from '@i18n/localized/tier-list';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+export function getStaticPaths() {
+	return localizedStaticPaths();
+}
+
+const locale = resolveLocalizedParam(Astro.params.locale);
+if (!locale) return Astro.redirect('/');
+
+const copy = getTierListCopy(locale);
+const reviewed = lastReviewedDisplay(locale, siteMeta);
+const pageUrl = new URL(localePath(locale, '/tier-list/'), Astro.site).toString();
+const homeUrl = new URL(localePath(locale, '/'), Astro.site).toString();
+const fmtLocale = locale === 'zh-cn' ? 'zh-CN' : locale === 'pt-br' ? 'pt-BR' : 'es-ES';
+const fmt = new Intl.NumberFormat(fmtLocale);
+
+const tiers = [
+	{ label: 'S' as const, title: locale === 'zh-cn' ? 'S 级' : `Tier S`, note: copy.tierNotes.S },
+	{ label: 'A' as const, title: locale === 'zh-cn' ? 'A 级' : `Tier A`, note: copy.tierNotes.A },
+	{ label: 'B' as const, title: locale === 'zh-cn' ? 'B 级' : `Tier B`, note: copy.tierNotes.B },
+	{ label: 'C' as const, title: locale === 'zh-cn' ? 'C 级' : `Tier C`, note: copy.tierNotes.C },
+];
+
+const playstyleHeaders =
+	locale === 'es'
+		? ['Estilo', 'Mejor', 'Por qué']
+		: locale === 'pt-br'
+			? ['Estilo', 'Melhor', 'Por quê']
+			: ['玩法', '推荐', '原因'];
+
+const metaShiftTitle =
+	locale === 'es'
+		? 'Cambio de meta en Rooftop Map'
+		: locale === 'pt-br'
+			? 'Mudança de meta no Rooftop Map'
+			: 'Rooftop Map 环境变化';
+
+const metaShiftItems =
+	locale === 'es'
+		? [
+				'Las barricadas de Tactician suben en escaleras estrechas.',
+				'Death Nova de Necromancer en embudos escala con densidad de packs.',
+				'El sigilo de Ninja cae en oleadas medias-altas.',
+				'Guías pre-abril de Square Arena con rotación abierta quedan parcialmente desactualizadas.',
+			]
+		: locale === 'pt-br'
+			? [
+					'Barricadas de Tactician sobem em escadas estreitas.',
+					'Death Nova de Necromancer em funis escala com densidade de packs.',
+					'Stealth de Ninja cai em waves médias-altas.',
+					'Guias pré-abril do Square Arena com rotação aberta ficam parcialmente desatualizados.',
+				]
+			: [
+					'楼梯卡口上 Tactician 路障排名上升。',
+					'窄道 Necromancer Death Nova 随怪群密度更强。',
+					'Ninja 潜行在中后期波次走弱。',
+					'假设开阔转点的 4 月前 Square Arena 攻略已部分过时。',
+				];
+
+const footerPlanner =
+	locale === 'zh-cn' ? '信用点规划器' : 'Credit Planner';
+const footerClasses =
+	locale === 'es' ? 'Todas las clases (EN)' : locale === 'pt-br' ? 'Todas as classes (EN)' : '全部职业（英文）';
+const footerBeginner =
+	locale === 'es' ? 'Guía principiante' : locale === 'pt-br' ? 'Guia para iniciantes' : '新手指南';
+
+const freeLabel =
+	locale === 'es' ? 'Gratis' : locale === 'pt-br' ? 'Grátis' : '免费';
+const bestForLabel =
+	locale === 'es' ? 'Mejor para:' : locale === 'pt-br' ? 'Melhor para:' : '适合：';
+const weaknessLabel =
+	locale === 'es' ? 'Debilidad:' : locale === 'pt-br' ? 'Fraqueza:' : '弱点：';
+const creditsLabel =
+	locale === 'es' ? 'créditos' : locale === 'pt-br' ? 'créditos' : '信用点';
+
+const breadcrumbHome =
+	locale === 'es' ? 'Inicio' : locale === 'pt-br' ? 'Início' : '首页';
+
+const schema = [
+	articleSchema({
+		title: copy.title,
+		description: copy.description,
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(copy.faq),
+	breadcrumbSchema([
+		{ name: breadcrumbHome, url: homeUrl },
+		{ name: copy.h1, url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout title={copy.title} description={copy.description} locale={locale} schema={schema}>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow">
+					<span class="pulse"></span>
+					{copy.eyebrow} {reviewed}
+				</p>
+				<h1>{copy.h1}</h1>
+				<p class="geo-snap">{copy.geoSnap}</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>{copy.snapshotTitle}</strong>
+				<p>{copy.snapshotBody}</p>
+			</aside>
+		</div>
+	</section>
+
+	{
+		tiers.map((tier) => {
+			const tierClasses = classes.filter((c) => c.tierSolo === tier.label);
+			return (
+				<section class="content-section">
+					<div class="shell">
+						<div class="section-title">
+							<h2>{tier.title}</h2>
+							<p>{tier.note}</p>
+						</div>
+						<div class="data-grid">
+							{tierClasses.map((cls) => (
+								<article class="data-card" id={cls.id}>
+									<h3>{cls.name}</h3>
+									<p>
+										<strong>
+											{cls.costCredits === 0
+												? freeLabel
+												: `${fmt.format(cls.costCredits)} ${creditsLabel}`}
+										</strong>{' '}
+										· {cls.rarity}
+									</p>
+									<p>
+										<strong>{bestForLabel}</strong> {cls.bestFor[0]}
+									</p>
+									<p>
+										<strong>{weaknessLabel}</strong> {cls.counters[0] ?? cls.notes}
+									</p>
+									<p style="margin-top: 8px;">{cls.unlockAdvice}</p>
+									<a href={`/classes/${cls.id}/`}>{copy.fullClassGuideLink}</a>
+								</article>
+							))}
+						</div>
+					</div>
+				</section>
+			);
+		})
+	}
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>{copy.playstyleTitle}</h2>
+			<div class="table-wrap">
+				<table>
+					<thead>
+						<tr>
+							{playstyleHeaders.map((header) => <th>{header}</th>)}
+						</tr>
+					</thead>
+					<tbody>
+						{copy.playstyleRows.map((row) => (
+							<tr>
+								<td>{row.playstyle}</td>
+								<td>
+									<strong>{row.best}</strong>
+								</td>
+								<td>{row.why}</td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
+
+			<section style="margin-top: 30px;">
+				<h2>{metaShiftTitle}</h2>
+				<ul class="check-list">
+					{metaShiftItems.map((item) => <li>{item}</li>)}
+				</ul>
+			</section>
+
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{
+						copy.faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))
+					}
+				</div>
+			</section>
+
+			<p>
+				{locale === 'zh-cn' ? '规划解锁：' : locale === 'pt-br' ? 'Planeje desbloqueios: ' : 'Planifica desbloqueos: '}
+				<a href={localePath(locale, '/tools/credit-planner/')}>{footerPlanner}</a> ·{' '}
+				<a href="/classes/">{footerClasses}</a> ·{' '}
+				<a href={localePath(locale, '/beginner-guide/')}>{footerBeginner}</a>
+			</p>
+		</div>
+	</section>
+	<ToolsGuidesStrip locale={locale} />
+</BaseLayout>

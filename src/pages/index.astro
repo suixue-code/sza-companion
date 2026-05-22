@@ -1,0 +1,198 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import codes from '../data/codes.json';
+import siteMeta from '../data/site-meta.json';
+import siteStats from '../data/site-stats.json';
+import classes from '../data/classes.json';
+import { collectionSchema, faqSchema, SITE_NAME } from '@lib/seo';
+
+const activeCount = codes.filter((code) => code.status === 'active').length;
+const fmt = new Intl.NumberFormat('en-US');
+
+const tierSummary = {
+	S: classes.filter((c) => c.tierSolo === 'S'),
+	A: classes.filter((c) => c.tierSolo === 'A'),
+	B: classes.filter((c) => c.tierSolo === 'B'),
+	C: classes.filter((c) => c.tierSolo === 'C'),
+};
+
+const faq = [
+	{
+		question: 'What is SZA Companion?',
+		answer: `${SITE_NAME} is an unofficial fan site for Roblox Survive Zombie Arena by Nectarforge Studios. We track codes with confidence labels, class costs, weapon progression, and browser-only planning tools—not hidden drop rates or official endorsement.`,
+	},
+	{
+		question: 'Is SZA Companion official?',
+		answer: 'No. We are not affiliated with Roblox Corporation or Nectarforge Studios. Official links live on our Discord page.',
+	},
+	{
+		question: 'What is the best first class unlock?',
+		answer: 'Medic (10,000 Credits) for co-op support or Marksman (15,000 Credits) for solo DPS. See the beginner guide and Credit Planner before buying Ninja or Demolitionist.',
+	},
+	{
+		question: 'How often are codes updated?',
+		answer: `Public sources were last reviewed ${siteMeta.lastPublicReviewDisplay}. Only Zombies is high-confidence active; GALACTIC is disputed. Always confirm in-game before each session.`,
+	},
+	{
+		question: 'Does the Credit Planner read my account?',
+		answer: 'No. Calculators run entirely in your browser. Enter Credits manually and tick owned classes.',
+	},
+	{
+		question: 'Where do I play Survive Zombie Arena?',
+		answer: `Launch the official Roblox experience: ${siteMeta.robloxExperienceLabel} (${siteMeta.robloxExperienceUrl}). Redeem codes via Shop → Redeem Codes.`,
+	},
+];
+
+const schema = [
+	collectionSchema(
+		`${SITE_NAME} — codes, classes & tools`,
+		'Unofficial Survive Zombie Arena hub for codes, class tiers, weapon progression, and credit planning.',
+		new URL('/', Astro.site).toString(),
+	),
+	faqSchema(faq),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Codes, Classes & Tools"
+	description="Unofficial Survive Zombie Arena companion: active codes, class tier list, beginner guide, weapon progression, and Credit Planner. Last reviewed from public sources."
+	schema={schema}
+>
+	<section class="page-hero">
+		<div class="shell hero-grid mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Unofficial guide · updated {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>{SITE_NAME}</h1>
+				<p class="geo-snap">
+					Unofficial help for Roblox <em>Survive Zombie Arena</em>: working codes, class costs, weapon upgrades, and free browser tools. Not affiliated with Roblox or Nectarforge Studios.
+				</p>
+				<p class="lead">Check codes, plan your next class unlock, and read guides tuned for the Rooftop Map.</p>
+				<div class="hero-actions">
+					<a class="btn primary" href="/codes/">Check codes</a>
+					<a class="btn secondary" href="/tools/credit-planner/">Credit Planner</a>
+					<a class="btn dark" href="/beginner-guide/">Beginner guide</a>
+				</div>
+				<div class="trust-row">
+					<span class="trust">{activeCount} active code{activeCount === 1 ? '' : 's'}</span>
+					<span class="trust">{classes.length} classes tracked</span>
+					<span class="trust">Estimate-only tools</span>
+				</div>
+			</div>
+			<aside class="quick-answer accent-panel">
+				<strong>Live snapshot</strong>
+				<p style="margin-top: 8px;">
+					{fmt.format(siteStats.visits)} visits · {fmt.format(siteStats.favorites)} favorites · {siteStats.maxPlayers} players/server · ~
+					{siteStats.avgSessionMinutes} min avg session
+				</p>
+				<p class="muted" style="margin-top: 8px; font-size: 0.85rem;">
+					Roblox API + public audit · checked {siteStats.lastChecked}
+				</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Start here</h2>
+				<p>Pick the page that matches what you need right now.</p>
+			</div>
+			<ul class="shortcut-grid">
+				<li class="shortcut"><a href="/guides/"><strong>All guides</strong><p>26 deep-dive articles: Necromancer, Tactician, credits farm, Nightmare Mode, and more.</p></a></li>
+				<li class="shortcut"><a href="/codes/"><strong>Latest codes</strong><p>Active Zombies code plus GALACTIC listed separately as disputed.</p></a></li>
+				<li class="shortcut"><a href="/tools/credit-planner/"><strong>Credit Planner</strong><p>Plan Medic, Marksman, Tactician, or Necromancer unlocks from your balance.</p></a></li>
+				<li class="shortcut"><a href="/beginner-guide/"><strong>Beginner Guide</strong><p>First 5 runs, credit milestones, and common mistakes on Rooftop Map.</p></a></li>
+				<li class="shortcut"><a href="/tier-list/"><strong>Tier List</strong><p>S/A/B/C class rankings with solo, team, and farm context.</p></a></li>
+				<li class="shortcut"><a href="/classes/"><strong>All Classes</strong><p>Full ability breakdowns, costs, and unlock advice for all 9 kits.</p></a></li>
+				<li class="shortcut"><a href="/weapons/"><strong>Weapons</strong><p>Handgun → shotgun → rifle path plus May 2026 F2P guns.</p></a></li>
+				<li class="shortcut"><a href="/updates/"><strong>Updates</strong><p>Patch timeline from Classes Update through Galactic previews.</p></a></li>
+				<li class="shortcut"><a href="/events/galactic/"><strong>Galactic Event</strong><p>Void Shards, crate previews, and countdown to reported end date.</p></a></li>
+				<li class="shortcut"><a href="/discord/"><strong>Official Links</strong><p>Discord, Roblox experience, and Nectarforge group with channel audit.</p></a></li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Verified code report</h2>
+				<p>High-confidence active code from Discord #codes cross-check (May 2026).</p>
+			</div>
+			<div class="data-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+				<div class="data-card">
+					<h3>Zombies → 2,500 Credits</h3>
+					<p>Only code with official Discord post + multi-source agreement. Re-confirm in-game each session.</p>
+					<a class="btn secondary" href="/codes/" style="margin-top: 12px; display: inline-flex;">Full codes page</a>
+				</div>
+				<div class="data-card">
+					<h3>GALACTIC — disputed</h3>
+					<p>Some media guides list it active; Discord #codes has no post and RoCodes reports 0% success. Not promoted as working.</p>
+					<a class="btn secondary" href="/codes/#galactic" style="margin-top: 12px; display: inline-flex;">See dispute notes</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Best first upgrades</h2>
+				<p>Three steps before chasing Legendary classes.</p>
+			</div>
+			<ol class="check-list">
+				<li>Redeem <strong>Zombies</strong> for 2,500 Credits (Shop → Redeem Codes).</li>
+				<li>Weapon path: handgun → shotgun (~150) → rifle (~750) before big class spends.</li>
+				<li>First class: <strong>Medic</strong> (10k co-op) or <strong>Marksman</strong> (15k solo).</li>
+			</ol>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title">
+				<h2>Classes quick tier read</h2>
+				<p>Solo tier snapshot — see tier list for playstyle breakdowns.</p>
+			</div>
+			<div class="data-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
+				<div class="data-card"><h3>S tier</h3><p>{tierSummary.S.map((c) => c.name).join(', ') || '—'}</p></div>
+				<div class="data-card"><h3>A tier</h3><p>{tierSummary.A.map((c) => c.name).join(', ')}</p></div>
+				<div class="data-card"><h3>B tier</h3><p>{tierSummary.B.map((c) => c.name).join(', ')}</p></div>
+				<div class="data-card"><h3>C tier</h3><p>{tierSummary.C.map((c) => c.name).join(', ')}</p></div>
+			</div>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>What is Survive Zombie Arena?</h2>
+				<p>
+					A 25-player co-op zombie arena on Roblox by {siteMeta.developerName}. Earn Credits each wave to buy in-run weapons and permanent class unlocks. The Rooftop Map (April 2026) replaced Square Arena with stairwell chokepoints that favor Tactician barricades and Necromancer funnel plays.
+				</p>
+				<p>
+					Also available in <a href="/es/">Español</a>, <a href="/pt-br/">Português (BR)</a>, and <a href="/zh-cn/">简体中文</a> (core pages).
+				</p>
+				<p>
+					Play on Roblox: <a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">{siteMeta.robloxExperienceLabel}</a>.
+				</p>
+			</section>
+			<section>
+				<h2>FAQ</h2>
+				<div class="faq-list">
+					{faq.map((item) => (
+						<details>
+							<summary>{item.question}</summary>
+							<p>{item.answer}</p>
+						</details>
+					))}
+				</div>
+			</section>
+			<p class="notice" style="margin-top: 24px;">
+				{siteMeta.lastPublicReviewNoteEn}
+			</p>
+			<p class="muted">
+				<a href="/about/">About this site</a> · <a href="/privacy/">Privacy</a> · <a href="/terms/">Terms</a> · <a href="/discord/">Official links</a>
+			</p>
+		</div>
+	</section>
+</BaseLayout>

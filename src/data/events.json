@@ -1,0 +1,96 @@
+[
+	{
+		"id": "galactic",
+		"name": "Galactic Event",
+		"slug": "galactic",
+		"status": "upcoming_or_partial",
+		"startDate": null,
+		"endDate": "2026-06-16",
+		"endDateNote": "End date cited by third-party event guides and Roblox event listings; confirm in-game before farming deadlines.",
+		"lastChecked": "2026-05-20",
+		"description": "Limited-time galactic-themed event with Void Shards currency, Galactic Zombies, and Galactic Crates. Dev sneak-peeks (2026-05-17) confirmed F2P galactic guns in development; competitor audit notes much content is still preview-only in Discord.",
+		"voidShards": {
+			"name": "Void Shards",
+			"role": "Primary event currency for Galactic Crates",
+			"dropSource": "Galactic Zombies (purple zombies with glowing orbs above their heads)",
+			"spawnRate": {
+				"minPercent": 0.5,
+				"maxPercent": 1.25,
+				"note": "Reported by third-party guides; scales with difficulty and higher waves — not confirmed in official patch notes.",
+				"status": "media_reported"
+			},
+			"collection": "Manual pickup — shards do not auto-collect per community guides.",
+			"crateCost": 50,
+			"crateCostNote": "At least 50 Void Shards required to open one Galactic Crate from the lobby crate station (third-party guides).",
+			"status": "media_reported"
+		},
+		"galacticCrates": {
+			"name": "Galactic Crates",
+			"location": "Lobby Galactic Crate station",
+			"reportedWeapons": [
+				"Cosmic Pistol",
+				"Quasar",
+				"Pulsar",
+				"Interstellar",
+				"Void Scythe"
+			],
+			"weaponsStatus": "media_reported",
+			"economyPoll": {
+				"date": "2026-05-16",
+				"question": "Default Credits vs new event currency for Galactic Crates",
+				"eventCurrencyVotes": 4411,
+				"creditsVotes": 1177,
+				"asOf": "2026-05-18",
+				"status": "poll_only"
+			}
+		},
+		"relatedCode": {
+			"code": "GALACTIC",
+			"status": "disputed",
+			"note": "Some guides claim a GALACTIC code for Credits or boost; Discord #codes has no post; RoCodes 0% success — see codes.json."
+		},
+		"atlantisMap": {
+			"name": "Atlantis Map",
+			"status": "preview",
+			"devPreviewDate": "2026-05-17",
+			"note": "Dev footage posted in #sneak-peeks — not confirmed live; no release date or layout published."
+		},
+		"devPreviews": [
+			{
+				"date": "2026-05-17",
+				"item": "New galactic guns batch",
+				"quote": "some of the new galactic guns / note: these are F2P weapons",
+				"source": "Discord #sneak-peeks"
+			},
+			{
+				"date": "2026-05-05",
+				"item": "Cosmic Pistol",
+				"quote": "obtainable in the future galactic event",
+				"source": "Discord #sneak-peeks"
+			}
+		],
+		"sources": [
+			{
+				"label": "survivezombiearena.com update-log",
+				"url": "https://survivezombiearena.com/update-log/",
+				"checkedAt": "2026-05-20"
+			},
+			{
+				"label": "Roblox Galactic Event listing",
+				"url": "https://www.roblox.com/events/5632460754587353683",
+				"checkedAt": "2026-05-20"
+			},
+			{
+				"label": "Official Discord",
+				"url": "https://discord.com/invite/fPQDZ2Svtv",
+				"checkedAt": "2026-05-18"
+			}
+		],
+		"dataGaps": [
+			"Exact live launch date not in official #patch-notes as of 2026-05-18",
+			"Final galactic gun names and stats from May 17 batch undisclosed",
+			"Crate odds and event-currency rules not shipped — poll only",
+			"Void Shard spawn rates need in-game verification"
+		]
+	}
+]

@@ -1,0 +1,27 @@
+---
+import type { LocaleCode } from '@i18n/config';
+import { getToolsGuidesStripCopy } from '@i18n/tools-guides-strip';
+
+interface Props {
+	locale?: LocaleCode;
+}
+
+const { locale = 'en' } = Astro.props;
+const c = getToolsGuidesStripCopy(locale);
+---
+
+<section class="content-section" style="padding-top: 0;">
+	<div class="shell">
+		<div class="section-title">
+			<h2>{c.heading}</h2>
+		</div>
+		<div class="shortcut-grid">
+			{c.links.map((link) => (
+				<a class="shortcut" href={link.href}>
+					<strong>{link.label}</strong>
+					<p>{link.copy}</p>
+				</a>
+			))}
+		</div>
+	</div>
+</section>
