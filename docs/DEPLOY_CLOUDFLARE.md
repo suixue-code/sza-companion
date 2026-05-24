@@ -26,7 +26,7 @@
 
 | Secret | 值 |
 |--------|-----|
-| `CLOUDFLARE_API_TOKEN` | [API Token](https://dash.cloudflare.com/profile/api-tokens)，模板 **Edit Cloudflare Workers**（含 Pages 部署权限）或自定义：`Account` → Cloudflare Pages → Edit |
+| `CLOUDFLARE_API_TOKEN` | [API Token](https://dash.cloudflare.com/profile/api-tokens)：需同时能 **Pages 部署** + **Zone DNS 编辑**。推荐自定义权限：`Account` → Cloudflare Pages → Edit；`Zone` → `survivezombiearenaguide.com` → DNS → Edit |
 | `CLOUDFLARE_ACCOUNT_ID` | `057efc99ed7cb4797a3f379e13600206` |
 
 ### 2. 推送 `main`
@@ -50,7 +50,25 @@ Actions workflow **Deploy to Cloudflare Pages** 会自动：`npm ci` → `npm ru
 node scripts/finish-dns-and-deploy.mjs --skip-spaceship
 ```
 
-若之前 Worker 绑过同名域名，需先在 **Workers → sza-companion → Domains & Routes** 删除旧 Worker 自定义域，再绑到 Pages。
+旧 **Worker** 自定义域已删除后，只需在 **Pages** 上保留上述两个域名。
+
+### 4. DNS 记录（Pages 显示 Active 前必做）
+
+公网 Zone 里需要两条 **Proxied CNAME**（指向 Pages 子域）：
+
+| 类型 | 名称 | 目标 |
+|------|------|------|
+| CNAME | `@`（apex） | `sza-companion.pages.dev` |
+| CNAME | `www` | `sza-companion.pages.dev` |
+
+有 **Zone DNS Edit** 权限的 API Token 时，可一键写入：
+
+```bash
+export CLOUDFLARE_API_TOKEN=...   # 须含 Zone DNS Edit，不能只用 Wrangler OAuth
+npm run ensure:pages-dns
+```
+
+或在 Dashboard 手动添加后，到 **Custom domains** 等待状态变为 **Active**（通常 1–5 分钟）。
 
 ## 本机手动部署
 
@@ -69,7 +87,13 @@ PUBLIC_SITE_ORIGIN=https://survivezombiearenaguide.com npm run deploy:pages
 | Zone ID | `dbd9b267c309c37ad06687eeee12b88a` |
 | Cloudflare NS | `carlos.ns.cloudflare.com`、`emely.ns.cloudflare.com` |
 
-注册商（Spaceship）Nameserver 需指向上述 NS，Zone 状态为 **Active**。
+### Spaceship 与 Cloudflare 各管什么
+
+昨天在 **Spaceship** 上已完成的是：把 Nameserver 改成 Cloudflare（「使用自定义 DNS 管理」）。这一步**只做一次**。
+
+改完 NS 之后，**解析记录不再在 Spaceship 里生效**。Spaceship 高级 DNS 页会显示「Dns记录 (0)」并提示：要在这里管记录，需把 NS 改回 Spaceship——**不要改回去**。
+
+当前需要在 **Cloudflare → DNS → Records** 添加指向 Pages 的 CNAME（见上文 §4）。注册商侧 NS 保持 Cloudflare 即可，Zone 状态为 **Active**。
 
 ## 验证
 

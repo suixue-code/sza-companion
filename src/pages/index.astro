@@ -1,4 +1,5 @@
 ---
+import SiteImage from '@components/SiteImage.astro';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import codes from '../data/codes.json';
 import siteMeta from '../data/site-meta.json';
@@ -122,6 +123,14 @@ const schema = [
 	description="Unofficial Survive Zombie Arena companion: active codes, class tier list, beginner guide, weapon progression, and Credit Planner. Last reviewed from public sources."
 	schema={schema}
 >
+	<link
+		slot="head"
+		rel="preload"
+		as="image"
+		href="/images/sza-game/roblox-thumbnail-3.webp"
+		type="image/webp"
+		fetchpriority="high"
+	/>
 	<section class="arena-hero">
 		<div class="arena-hero-media" aria-hidden="true"></div>
 		<div class="shell arena-hero-grid">
@@ -207,7 +216,13 @@ const schema = [
 					rel="noopener noreferrer"
 					target="_blank"
 				>
-					<img src="/images/sza-game/roblox-game-icon.png" alt="" width="56" height="56" />
+					<SiteImage
+						base="/images/sza-game/roblox-game-icon-128"
+						width={56}
+						height={56}
+						loading="lazy"
+						decoding="async"
+					/>
 					<span class="play-strip-copy">
 						<span class="play-strip-label">Official Roblox experience</span>
 						<strong>{siteMeta.robloxExperienceLabel}</strong>

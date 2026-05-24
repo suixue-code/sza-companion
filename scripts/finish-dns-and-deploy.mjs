@@ -14,14 +14,13 @@
  *   SPACESHIP_API_KEY=...
  *   SPACESHIP_API_SECRET=...
  *
- * Cloudflare auth: uses wrangler OAuth token from ~/.wrangler/config/default.toml
+ * Cloudflare auth: CLOUDFLARE_API_TOKEN (recommended, needs Zone DNS Edit) or wrangler OAuth
  */
 
 import { execSync } from 'node:child_process';
-import { readFileSync } from 'node:fs';
-import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { ensurePagesDns, resolveCfToken } from './ensure-pages-dns.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -35,13 +34,7 @@ const POLL_MS = 60_000;
 const MAX_POLLS = 120;
 
 const skipSpaceship = process.argv.includes('--skip-spaceship');
-
-function cfToken() {
-  const p = join(homedir(), 'Library/Preferences/.wrangler/config/default.toml');
-  const m = readFileSync(p, 'utf8').match(/^oauth_token = "([^"]+)"/m);
-  if (!m) throw new Error('Wrangler OAuth token not found. Run: npx wrangler login');
-  return m[1];
-}
+const skipDns = process.argv.includes('--skip-dns');
 
 async function cfApi(token, path, options = {}) {
   const res = await fetch(`https://api.cloudflare.com/client/v4${path}`, {
@@ -124,7 +117,7 @@ function sleep(ms) {
 async function main() {
   if (!skipSpaceship) await spaceshipSetNs();
 
-  const token = cfToken();
+  const token = resolveCfToken();
   console.log('[cloudflare] polling zone status…');
   for (let i = 0; i < MAX_POLLS; i++) {
     const status = await cfZoneStatus(token);
@@ -149,12 +142,24 @@ async function main() {
   await ensurePagesDomain(token, DOMAIN);
   await ensurePagesDomain(token, WWW);
 
+  if (!skipDns) {
+    console.log('[dns] ensuring CNAME records for Pages…');
+    try {
+      await ensurePagesDns(token);
+    } catch (err) {
+      console.error('[dns] failed:', err.message || err);
+      console.error(
+        '[dns] Set CLOUDFLARE_API_TOKEN with Zone DNS Edit, or add records in Dashboard:',
+      );
+      console.error(`       CNAME ${DOMAIN} -> sza-companion.pages.dev (proxied)`);
+      console.error(`       CNAME ${WWW} -> sza-companion.pages.dev (proxied)`);
+      process.exit(1);
+    }
+  }
+
   console.log('[done] verify:');
   console.log(`  curl -I https://${DOMAIN}`);
   console.log(`  curl -I https://${WWW}`);
-  console.log('');
-  console.log('[note] If the old Worker still holds custom domains, remove them in');
-  console.log('       Cloudflare Dashboard → Workers → sza-companion → Settings → Domains & Routes');
 }
 
 main().catch((err) => {

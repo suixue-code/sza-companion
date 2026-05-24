@@ -29,6 +29,7 @@ const headSchema = noindex ? schema : [...siteGraphSchema(), ...schema];
 <html lang={getHtmlLang(locale)}>
 	<head>
 		<BaseHead title={title} description={description} locale={locale} image={image} schema={headSchema} noindex={noindex} />
+		<slot name="head" />
 	</head>
 	<body>
 		<Header locale={locale} />

@@ -1,0 +1,48 @@
+---
+interface Props {
+	/** Path without extension, e.g. /images/sza-game/roblox-game-icon-128 */
+	base: string;
+	alt?: string;
+	width: number;
+	height: number;
+	loading?: 'lazy' | 'eager';
+	class?: string;
+	fetchpriority?: 'high' | 'low' | 'auto';
+	decoding?: 'async' | 'sync' | 'auto';
+	/** Fallback extension when WebP is unavailable. Defaults to png. */
+	fallbackExt?: 'png' | 'jpg';
+	/** When true, marks the image decorative for screen readers. */
+	ariaHidden?: boolean;
+}
+
+const {
+	base,
+	alt = '',
+	width,
+	height,
+	loading = 'lazy',
+	class: className,
+	fetchpriority,
+	decoding = 'async',
+	fallbackExt = 'png',
+	ariaHidden = alt === '',
+} = Astro.props;
+
+const webpSrc = `${base}.webp`;
+const fallbackSrc = `${base}.${fallbackExt}`;
+---
+
+<picture>
+	<source srcset={webpSrc} type="image/webp" />
+	<img
+		src={fallbackSrc}
+		alt={alt}
+		width={width}
+		height={height}
+		loading={loading}
+		decoding={decoding}
+		fetchpriority={fetchpriority}
+		class={className}
+		aria-hidden={ariaHidden ? 'true' : undefined}
+	/>
+</picture>

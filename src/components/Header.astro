@@ -1,4 +1,5 @@
 ---
+import SiteImage from '@components/SiteImage.astro';
 import type { LocaleCode } from '@i18n/config';
 import { getLocaleDefinition, getHomePath, localeCodes } from '@i18n/config';
 import { navLinks } from '@i18n/ui';
@@ -18,7 +19,16 @@ const langFieldLabel = localeMeta.languageFieldLabel;
 <header class="topbar">
 	<nav class="nav shell" aria-label="Primary navigation">
 		<a class="brand" href={getHomePath(locale)} aria-label={localeMeta.brandAriaLabel}>
-			<img class="brand-mark" src="/images/sza-game/roblox-game-icon.png" alt="" aria-hidden="true" />
+			<SiteImage
+				base="/images/sza-game/roblox-game-icon-128"
+				class="brand-mark"
+				width={44}
+				height={44}
+				loading="eager"
+				fetchpriority="high"
+				decoding="async"
+				ariaHidden={true}
+			/>
 			<span class="brand-copy">
 				<strong>SZA Companion</strong>
 				<small>Survive Zombie Arena</small>

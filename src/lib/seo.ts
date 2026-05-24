@@ -4,7 +4,7 @@ import siteMeta from '../data/site-meta.json';
 export const SITE_NAME = siteMeta.siteBrandName;
 export const SITE_ORIGIN = siteMeta.siteOrigin;
 
-const siteLogoUrl = `${SITE_ORIGIN}/favicon.svg`;
+const siteLogoUrl = `${SITE_ORIGIN}/icons/icon-512.png`;
 
 /** Sitewide Organization entity (homepage + all pages via BaseLayout). */
 export function organizationSchema() {

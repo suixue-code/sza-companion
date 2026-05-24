@@ -10,6 +10,7 @@
     "preview:pages": "npm run build && wrangler pages dev dist",
     "deploy:pages": "npm run build && wrangler pages deploy dist --project-name=sza-companion --branch=main",
     "finish:dns-and-deploy": "node scripts/finish-dns-and-deploy.mjs",
+    "ensure:pages-dns": "node scripts/ensure-pages-dns.mjs --retry-pages-validation",
     "astro": "astro",
     "test": "vitest run",
     "crawl:codes": "node scripts/crawl-codes.mjs",
@@ -19,7 +20,8 @@
     "crawl:content:wiki": "node scripts/crawl-competitor-content.mjs --only=wiki",
     "crawl:content:report": "node scripts/crawl-competitor-content.mjs --report",
     "crawl:content:optimize": "node scripts/optimize-crawl-content.mjs",
-    "crawl:guides:draft": "node scripts/apply-crawl-to-guides.mjs"
+    "crawl:guides:draft": "node scripts/apply-crawl-to-guides.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^5.0.4",
@@ -31,6 +33,7 @@
     "typescript": "^5.6.2"
   },
   "devDependencies": {
+    "sharp": "^0.34.5",
     "vitest": "^3.2.4",
     "wrangler": "^4.94.0"
   }
