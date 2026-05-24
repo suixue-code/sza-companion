@@ -22,7 +22,7 @@
 
 ### 1. GitHub Secrets（一次性）
 
-仓库 `s-kuswin/sza-companion` → **Settings → Secrets and variables → Actions**：
+仓库 `suixue-code/sza-companion` → **Settings → Secrets and variables → Actions**：
 
 | Secret | 值 |
 |--------|-----|

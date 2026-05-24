@@ -48,6 +48,10 @@ npm run deploy:pages
 
 每种小语种含 **7 个核心页**：首页、codes、新手指南、tier-list、Credit Planner、Galactic 活动、wiki 索引。其余内容暂为英文。
 
+## 仓库
+
+- GitHub：https://github.com/suixue-code/sza-companion
+
 ## 状态（2026-05-23）
 
 - [x] Astro static build + Cloudflare Workers assets config
