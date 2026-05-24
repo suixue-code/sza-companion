@@ -9,11 +9,11 @@ describe('share', () => {
 			'Tactician + Medic',
 			'Handgun → Rifle',
 			50,
-			'https://szacompanion.com/tools/loadout-builder/',
+			'https://survivezombiearenaguide.com/tools/loadout-builder/',
 		);
 		const meta = buildSocialShareMeta(payload);
 		expect(meta.title).toBe('SZA Companion · Team Loadout');
-		expect(meta.url).toBe('https://szacompanion.com/tools/loadout-builder/');
+		expect(meta.url).toBe('https://survivezombiearenaguide.com/tools/loadout-builder/');
 		expect(meta.text).toBe(formatShareText(payload));
 		expect(meta.hashtags).toContain('SurviveZombieArena');
 	});

@@ -18,8 +18,11 @@ const langFieldLabel = localeMeta.languageFieldLabel;
 <header class="topbar">
 	<nav class="nav shell" aria-label="Primary navigation">
 		<a class="brand" href={getHomePath(locale)} aria-label={localeMeta.brandAriaLabel}>
-			<span class="brand-mark" aria-hidden="true"></span>
-			<span>SZA Companion</span>
+			<img class="brand-mark" src="/images/sza-game/roblox-game-icon.png" alt="" aria-hidden="true" />
+			<span class="brand-copy">
+				<strong>SZA Companion</strong>
+				<small>Survive Zombie Arena</small>
+			</span>
 		</a>
 		<div class="nav-links">
 			{links.map((link) => (

@@ -10,7 +10,7 @@ export interface CodeRow {
 	source: string;
 	sourceNote?: string;
 	sourceRefs?: SourceRef[];
-	sources?: string[];
+	sources?: (string | SourceRef)[];
 	conflictNote?: string;
 }
 

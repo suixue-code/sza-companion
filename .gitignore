@@ -31,3 +31,4 @@ pnpm-debug.log*
 
 # local crawl debug dumps (not committed)
 .crawl-cache/
+.gstack/

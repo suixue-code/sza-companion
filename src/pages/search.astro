@@ -24,7 +24,7 @@ const schema = [
 			<p class="lede">Find codes, guides, tools, and reference pages.</p>
 			<label class="search-field">
 				<span class="sr-only">Search</span>
-				<input type="search" id="siteSearch" placeholder="Try necromancer, codes, farm…" autocomplete="off" />
+				<input type="search" class="search-input" id="siteSearch" placeholder="Try necromancer, codes, farm…" autocomplete="off" />
 			</label>
 		</div>
 	</section>
@@ -79,15 +79,14 @@ const schema = [
 </script>
 
 <style>
-	.search-field input {
-		width: 100%;
+	.search-field {
+		display: block;
 		max-width: 32rem;
-		padding: 0.75rem 1rem;
+	}
+
+	.search-field .search-input {
+		width: 100%;
 		font-size: 1rem;
-		border-radius: 0.5rem;
-		border: 1px solid var(--theme-border-subtle, rgba(255, 255, 255, 0.12));
-		background: var(--theme-surface, #1a1228);
-		color: inherit;
 	}
 	.search-results {
 		list-style: none;

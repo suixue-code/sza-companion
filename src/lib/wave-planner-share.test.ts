@@ -43,10 +43,10 @@ describe('wave planner share + url', () => {
 			result.summary,
 			result.estimatedBuyPhases,
 			result.feasible,
-			'https://szacompanion.com/tools/wave-planner/?from=10&to=25',
+			'https://survivezombiearenaguide.com/tools/wave-planner/?from=10&to=25',
 		);
 		expect(text).toContain('Wave Push');
 		expect(text).toContain('10 → 25');
-		expect(text).toContain('https://szacompanion.com/tools/wave-planner/?from=10&to=25');
+		expect(text).toContain('https://survivezombiearenaguide.com/tools/wave-planner/?from=10&to=25');
 	});
 });

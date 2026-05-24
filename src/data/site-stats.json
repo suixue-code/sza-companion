@@ -12,5 +12,5 @@
 	"discordOnlineAtCheck": 6017,
 	"robloxGroupMembers": 93739,
 	"gameLastUpdated": "2026-05-17T12:13:47Z",
-	"notes": "Visits/favorites/CCU from competitor's 2026-05-18 Roblox API pull. maxPlayers is the per-server cap (25), not CCU. Re-fetch API before publishing stat callouts as 'live'."
+	"notes": "Visits/favorites/CCU from public source 2026-05-18 Roblox API pull. maxPlayers is the per-server cap (25), not CCU. Re-fetch API before publishing stat callouts as 'live'."
 }

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Page Not Found" description="The SZA Companion page you requested could not be found." noindex>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>404</p>
+				<h1>Page not found</h1>
+				<p class="geo-snap">That route is not in the briefing room. Start with codes, tools, or the wiki hub.</p>
+				<div class="hero-actions">
+					<a class="btn primary" href="/codes/">Check codes</a>
+					<a class="btn secondary" href="/tools/credit-planner/">Credit Planner</a>
+					<a class="btn dark" href="/wiki/">Wiki hub</a>
+				</div>
+			</div>
+			<aside class="quick-answer">
+				<strong>Useful routes</strong>
+				<p><a href="/classes/">Classes</a> · <a href="/weapons/">Weapons</a> · <a href="/waves/">Waves</a> · <a href="/updates/">Updates</a></p>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>

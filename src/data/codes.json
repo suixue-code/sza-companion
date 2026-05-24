@@ -11,9 +11,9 @@
 		"verificationMethod": "discord",
 		"inGameVerified": true,
 		"inGameVerifiedAt": "2026-05-20",
-		"inGameVerifiedNote": "Possible — widely reported active; official Discord #codes still shows only this code as of competitor audit 2026-05-18. Re-confirm in-game before each session.",
+		"inGameVerifiedNote": "Possible — widely reported active; official Discord #codes still shows only this code as of public source audit 2026-05-18. Re-confirm in-game before each session.",
 		"confidence": "high",
-		"source": "Official Discord #codes (Feb 1 post) + 9 tracked code guides agree as of 2026-05-18 competitor audit.",
+		"source": "Official Discord #codes (Feb 1 post) + 9 tracked code guides agree as of 2026-05-18 public source audit.",
 		"sources": [
 			{
 				"label": "Survive Zombie Arena Discord #codes",
@@ -33,7 +33,7 @@
 		],
 		"sourceRefs": [
 			{ "label": "Discord #codes", "url": "https://discord.com/invite/fPQDZ2Svtv" },
-			{ "label": "Competitor codes page", "url": "https://survivezombiearena.com/codes/" }
+			{ "label": "Independent codes page", "url": "https://survivezombiearena.com/codes/" }
 		],
 		"notes": "Redeem via Shop → scroll to Redeem Codes → paste exactly → Redeem. Codes are case-sensitive on most Roblox titles; try exact casing first."
 	},

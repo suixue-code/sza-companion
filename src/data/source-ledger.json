@@ -1,10 +1,10 @@
 {
 	"captureDate": "2026-05-20",
 	"capturedAt": "2026-05-20T12:00:00+00:00",
-	"notes": "Structured migration from survivezombiearena.com competitor research (May 2026) plus cross-check signals from Discord audit, Roblox public API, and third-party code/event guides. Not a substitute for in-game verification on szacompanion.com.",
+	"notes": "Structured migration from survivezombiearena.com public guide research (May 2026) plus cross-check signals from Discord audit, Roblox public API, and third-party code/event guides. Not a substitute for in-game verification on szacompanion.com.",
 	"sources": [
 		{
-			"name": "survivezombiearena.com (competitor hub)",
+			"name": "survivezombiearena.com (public guide hub)",
 			"url": "https://survivezombiearena.com/",
 			"type": "wiki",
 			"checkedAt": "2026-05-20",
@@ -12,7 +12,7 @@
 			"topics": ["homepage", "stats", "classes-summary", "weapons-summary", "discord-audit"],
 			"confidence": "high",
 			"aiDecision": "use",
-			"reason": "Primary competitor content structure and Roblox API snapshot (visits, favorites, session length)."
+			"reason": "Primary public guide content structure and Roblox API snapshot (visits, favorites, session length)."
 		},
 		{
 			"name": "survivezombiearena.com/codes",

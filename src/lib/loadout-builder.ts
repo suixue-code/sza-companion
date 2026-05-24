@@ -30,7 +30,7 @@ function has(owned: string[], id: string) {
 	return owned.includes(id);
 }
 
-const DEFAULT_SHARE_URL = 'https://szacompanion.com/tools/loadout-builder/';
+const DEFAULT_SHARE_URL = 'https://survivezombiearenaguide.com/tools/loadout-builder/';
 
 export function buildLoadout(input: LoadoutInput, shareUrl = DEFAULT_SHARE_URL): LoadoutResult {
 	const { scenario, ownedClassIds, targetWave } = input;

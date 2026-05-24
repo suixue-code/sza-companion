@@ -29,9 +29,9 @@ describe('credit-planner share url', () => {
 			sessionsPerDay: 3,
 		};
 		const result = planCredits(input);
-		const text = formatPlannerShareText(input, result, 'https://szacompanion.com/tools/credit-planner/?credits=2500');
+		const text = formatPlannerShareText(input, result, 'https://survivezombiearenaguide.com/tools/credit-planner/?credits=2500');
 		expect(text).toContain('[SZA Companion] Credit Planner');
 		expect(text).toContain('2,500 Credits');
-		expect(text).toContain('https://szacompanion.com/tools/credit-planner/?credits=2500');
+		expect(text).toContain('https://survivezombiearenaguide.com/tools/credit-planner/?credits=2500');
 	});
 });

@@ -2,14 +2,17 @@
 export interface SourceRef {
 	label: string;
 	url: string;
+	checkedAt?: string;
 }
+
+type SourceValue = string | SourceRef;
 
 interface Props {
 	source: string;
 	sourceNote?: string;
 	sourceRefs?: SourceRef[];
-	/** @deprecated legacy string list */
-	sources?: string[];
+	/** Extra source labels from legacy data or structured public-source rows. */
+	sources?: SourceValue[];
 	conflictNote?: string;
 	collapsible?: boolean;
 	labels?: {
@@ -41,6 +44,10 @@ const {
 
 const hasBody = Boolean(sourceNote || source || sourceRefs.length || sources.length || conflictNote);
 const toggleLabel = labels.sourcesToggle ?? 'Source details';
+const sourceText = (item: SourceValue) => {
+	if (typeof item === 'string') return item;
+	return item.checkedAt ? `${item.label} (${item.checkedAt})` : item.label;
+};
 ---
 
 {collapsible && hasBody ? (
@@ -69,7 +76,7 @@ const toggleLabel = labels.sourcesToggle ?? 'Source details';
 			{sources.length > 0 && (
 				<ul class="code-sources">
 					{sources.map((s) => (
-						<li>{s}</li>
+						<li>{typeof s === 'string' ? s : <a href={s.url} rel="noopener noreferrer" target="_blank">{sourceText(s)}</a>}</li>
 					))}
 				</ul>
 			)}
@@ -107,7 +114,7 @@ const toggleLabel = labels.sourcesToggle ?? 'Source details';
 		{sources.length > 0 && (
 			<ul class="code-sources">
 				{sources.map((s) => (
-					<li>{s}</li>
+					<li>{typeof s === 'string' ? s : <a href={s.url} rel="noopener noreferrer" target="_blank">{sourceText(s)}</a>}</li>
 				))}
 			</ul>
 		)}

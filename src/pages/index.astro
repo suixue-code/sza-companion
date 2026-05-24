@@ -16,6 +16,70 @@ const tierSummary = {
 	C: classes.filter((c) => c.tierSolo === 'C'),
 };
 
+const playerRoutes = [
+	{
+		href: '/codes/',
+		kicker: 'Redeem',
+		title: 'Codes',
+		desc: 'Working codes, dispute notes, and confidence labels before your next run.',
+		stat: `${activeCount} active now`,
+	},
+	{
+		href: '/weapons/',
+		kicker: 'Loadout',
+		title: 'Best Weapons',
+		desc: 'Walk the best weapon path from handgun to shotgun, rifle, and new F2P guns.',
+		stat: 'Upgrade path',
+	},
+	{
+		href: '/classes/',
+		kicker: 'Build',
+		title: 'Best Classes',
+		desc: 'Compare class costs, roles, and which picks pay off for solo or team play.',
+		stat: `${classes.length} tracked`,
+	},
+	{
+		href: '/tools/credit-planner/',
+		kicker: 'Plan',
+		title: 'Credits',
+		desc: 'Map your next unlock from the Credits you already have.',
+		stat: 'Browser-only',
+	},
+];
+
+const battlefieldLinks = [
+	{
+		href: '/waves/',
+		title: 'Wave Guide',
+		desc: 'Survive Zombie Arena waves: Auto Skip rules, Credit phases, enemy density, and Nightmare status.',
+	},
+	{
+		href: '/enemies/',
+		title: 'Enemies',
+		desc: 'Survive Zombie Arena enemies: elite priority, VOLATILE preview, density phases, and class counters.',
+	},
+	{
+		href: '/maps/',
+		title: 'Rooftop Map',
+		desc: 'Survive Zombie Arena map guide: Rooftop chokepoints, Atlantis preview, FPS notes, and Square Arena context.',
+	},
+	{
+		href: '/updates/',
+		title: 'Updates',
+		desc: 'May 2026 patch trail: World Ender, Nightmare Mode, Necromancer buff, and Galactic previews.',
+	},
+	{
+		href: '/best-loadouts/',
+		title: 'Best Loadouts',
+		desc: 'Best Survive Zombie Arena loadouts for solo, team support, Credits farming, high waves, and leaderboard pushes.',
+	},
+	{
+		href: '/leaderboard/',
+		title: 'Leaderboard',
+		desc: 'High-wave team comp, pacing, Auto Skip risk, and known public data gaps.',
+	},
+];
+
 const faq = [
 	{
 		question: 'What is SZA Companion?',
@@ -58,19 +122,19 @@ const schema = [
 	description="Unofficial Survive Zombie Arena companion: active codes, class tier list, beginner guide, weapon progression, and Credit Planner. Last reviewed from public sources."
 	schema={schema}
 >
-	<section class="page-hero">
-		<div class="shell hero-grid mobile-hero-stack">
-			<div>
+	<section class="arena-hero">
+		<div class="arena-hero-media" aria-hidden="true"></div>
+		<div class="shell arena-hero-grid">
+			<div class="arena-hero-copy">
 				<p class="eyebrow"><span class="pulse"></span>Unofficial guide · updated {siteMeta.lastPublicReviewDisplay}</p>
-				<h1>{SITE_NAME}</h1>
-				<p class="geo-snap">
-					Unofficial help for Roblox <em>Survive Zombie Arena</em>: working codes, class costs, weapon upgrades, and free browser tools. Not affiliated with Roblox or Nectarforge Studios.
+				<h1>Survive Zombie Arena <em>briefing room</em></h1>
+				<p class="arena-lead">
+					Codes, weapon routes, class reads, and Credit planning for Roblox <strong>Survive Zombie Arena</strong>. Prep the Rooftop run before the wave timer catches up.
 				</p>
-				<p class="lead">Check codes, plan your next class unlock, and read guides tuned for the Rooftop Map.</p>
 				<div class="hero-actions">
 					<a class="btn primary" href="/codes/">Check codes</a>
-					<a class="btn secondary" href="/tools/credit-planner/">Credit Planner</a>
-					<a class="btn dark" href="/beginner-guide/">Beginner guide</a>
+					<a class="btn secondary" href="/tools/credit-planner/">Open planner</a>
+					<a class="btn dark" href="/beginner-guide/">First five runs</a>
 				</div>
 				<div class="trust-row">
 					<span class="trust">{activeCount} active code{activeCount === 1 ? '' : 's'}</span>
@@ -78,87 +142,137 @@ const schema = [
 					<span class="trust">Estimate-only tools</span>
 				</div>
 			</div>
-			<aside class="quick-answer accent-panel">
-				<strong>Live snapshot</strong>
-				<p style="margin-top: 8px;">
-					{fmt.format(siteStats.visits)} visits · {fmt.format(siteStats.favorites)} favorites · {siteStats.maxPlayers} players/server · ~
-					{siteStats.avgSessionMinutes} min avg session
-				</p>
-				<p class="muted" style="margin-top: 8px; font-size: 0.85rem;">
-					Roblox API + public audit · checked {siteStats.lastChecked}
-				</p>
+			<aside class="arena-board" aria-label="Survive Zombie Arena live snapshot">
+				<div class="arena-board-head">
+					<p>Live run board</p>
+					<strong>Rooftop prep</strong>
+				</div>
+				<div class="arena-stat-grid">
+					<div><span>Visits</span><strong>{fmt.format(siteStats.visits)}</strong></div>
+					<div><span>Favorites</span><strong>{fmt.format(siteStats.favorites)}</strong></div>
+					<div><span>Server</span><strong>{siteStats.maxPlayers} players</strong></div>
+					<div><span>Session</span><strong>~{siteStats.avgSessionMinutes} min</strong></div>
+				</div>
+				<div class="arena-phase-list">
+					<a href="/codes/"><span>Phase 01</span><strong>Redeem before you queue</strong></a>
+					<a href="/weapons/"><span>Phase 02</span><strong>Choose the weapon spend</strong></a>
+					<a href="/tier-list/"><span>Phase 03</span><strong>Lock the class role</strong></a>
+				</div>
+				<p class="muted">Roblox API + public audit · checked {siteStats.lastChecked}</p>
 			</aside>
 		</div>
 	</section>
 
-	<section class="content-section">
+	<section class="content-section route-section">
 		<div class="shell">
 			<div class="section-title">
-				<h2>Start here</h2>
-				<p>Pick the page that matches what you need right now.</p>
+				<p class="eyebrow">Pick a lane</p>
+				<h2>Start with the move your next run needs.</h2>
 			</div>
-			<ul class="shortcut-grid">
-				<li class="shortcut"><a href="/guides/"><strong>All guides</strong><p>26 deep-dive articles: Necromancer, Tactician, credits farm, Nightmare Mode, and more.</p></a></li>
-				<li class="shortcut"><a href="/codes/"><strong>Latest codes</strong><p>Active Zombies code plus GALACTIC listed separately as disputed.</p></a></li>
-				<li class="shortcut"><a href="/tools/credit-planner/"><strong>Credit Planner</strong><p>Plan Medic, Marksman, Tactician, or Necromancer unlocks from your balance.</p></a></li>
-				<li class="shortcut"><a href="/beginner-guide/"><strong>Beginner Guide</strong><p>First 5 runs, credit milestones, and common mistakes on Rooftop Map.</p></a></li>
-				<li class="shortcut"><a href="/tier-list/"><strong>Tier List</strong><p>S/A/B/C class rankings with solo, team, and farm context.</p></a></li>
-				<li class="shortcut"><a href="/classes/"><strong>All Classes</strong><p>Full ability breakdowns, costs, and unlock advice for all 9 kits.</p></a></li>
-				<li class="shortcut"><a href="/weapons/"><strong>Weapons</strong><p>Handgun → shotgun → rifle path plus May 2026 F2P guns.</p></a></li>
-				<li class="shortcut"><a href="/updates/"><strong>Updates</strong><p>Patch timeline from Classes Update through Galactic previews.</p></a></li>
-				<li class="shortcut"><a href="/events/galactic/"><strong>Galactic Event</strong><p>Void Shards, crate previews, and countdown to reported end date.</p></a></li>
-				<li class="shortcut"><a href="/discord/"><strong>Official Links</strong><p>Discord, Roblox experience, and Nectarforge group with channel audit.</p></a></li>
+			<ul class="route-grid">
+				{playerRoutes.map((route) => (
+					<li class="route-card">
+						<a href={route.href}>
+							<span>{route.kicker}</span>
+							<strong>{route.title}</strong>
+							<p>{route.desc}</p>
+							<em>{route.stat}</em>
+						</a>
+					</li>
+				))}
 			</ul>
 		</div>
 	</section>
 
-	<section class="content-section">
+	<section class="content-section prep-section">
 		<div class="shell">
-			<div class="section-title">
-				<h2>Verified code report</h2>
-				<p>High-confidence active code from Discord #codes cross-check (May 2026).</p>
-			</div>
-			<div class="data-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
-				<div class="data-card">
-					<h3>Zombies → 2,500 Credits</h3>
-					<p>Only code with official Discord post + multi-source agreement. Re-confirm in-game each session.</p>
-					<a class="btn secondary" href="/codes/" style="margin-top: 12px; display: inline-flex;">Full codes page</a>
+			<article class="prep-copy">
+				<p class="eyebrow">Wave prep</p>
+				<h2>Spend before panic spending wins the round.</h2>
+				<p>
+					Plan the first upgrades, check the Rooftop read, then move into deeper guides when a class or event changes your route.
+				</p>
+				<ol class="check-list prep-list">
+					<li>Redeem <strong>Zombies</strong> for 2,500 Credits before the session starts.</li>
+					<li>Weapon path: handgun to shotgun to rifle before giant unlock swings.</li>
+					<li>First class: <strong>Medic</strong> for co-op or <strong>Marksman</strong> for solo pressure.</li>
+				</ol>
+				<div class="hero-actions">
+					<a class="btn primary" href="/tools/credit-planner/">Plan Credits</a>
+					<a class="btn secondary" href="/guides/">Read guides</a>
 				</div>
-				<div class="data-card">
-					<h3>GALACTIC — disputed</h3>
-					<p>Some media guides list it active; Discord #codes has no post and RoCodes reports 0% success. Not promoted as working.</p>
-					<a class="btn secondary" href="/codes/#galactic" style="margin-top: 12px; display: inline-flex;">See dispute notes</a>
+				<a
+					class="play-strip"
+					href={siteMeta.robloxExperienceUrl}
+					rel="noopener noreferrer"
+					target="_blank"
+				>
+					<img src="/images/sza-game/roblox-game-icon.png" alt="" width="56" height="56" />
+					<span class="play-strip-copy">
+						<span class="play-strip-label">Official Roblox experience</span>
+						<strong>{siteMeta.robloxExperienceLabel}</strong>
+					</span>
+					<span class="play-strip-cta" aria-hidden="true">Open in Roblox</span>
+				</a>
+			</article>
+		</div>
+	</section>
+
+	<section class="content-section signal-section">
+		<div class="shell signal-grid">
+			<article class="signal-panel code-signal">
+				<p class="eyebrow">Code confidence</p>
+				<h2>Promote the code you can defend.</h2>
+				<div class="signal-code">
+					<strong>Zombies</strong>
+					<span>2,500 Credits</span>
 				</div>
-			</div>
+				<p>Official Discord post plus public cross-check. Re-confirm in-game each session.</p>
+				<a class="btn secondary" href="/codes/">Open code report</a>
+			</article>
+			<article class="signal-panel dispute-signal">
+				<p class="eyebrow">Dispute log</p>
+				<h2>GALACTIC stays flagged.</h2>
+				<p>Some media pages list it active. Discord #codes does not, and the public success signal is weak.</p>
+				<a class="btn dark" href="/codes/#galactic">See dispute notes</a>
+			</article>
 		</div>
 	</section>
 
 	<section class="content-section">
 		<div class="shell">
 			<div class="section-title">
-				<h2>Best first upgrades</h2>
-				<p>Three steps before chasing Legendary classes.</p>
+				<p class="eyebrow">Class scan</p>
+				<h2>Read the solo tier board at a glance.</h2>
+				<p>Then jump into the full tier list for team roles, farming context, and unlock advice.</p>
 			</div>
-			<ol class="check-list">
-				<li>Redeem <strong>Zombies</strong> for 2,500 Credits (Shop → Redeem Codes).</li>
-				<li>Weapon path: handgun → shotgun (~150) → rifle (~750) before big class spends.</li>
-				<li>First class: <strong>Medic</strong> (10k co-op) or <strong>Marksman</strong> (15k solo).</li>
-			</ol>
+			<div class="tier-board">
+				<div class="data-card tier-card"><h3>S tier</h3><p>{tierSummary.S.map((c) => c.name).join(', ') || '—'}</p></div>
+				<div class="data-card tier-card"><h3>A tier</h3><p>{tierSummary.A.map((c) => c.name).join(', ')}</p></div>
+				<div class="data-card tier-card"><h3>B tier</h3><p>{tierSummary.B.map((c) => c.name).join(', ')}</p></div>
+				<div class="data-card tier-card"><h3>C tier</h3><p>{tierSummary.C.map((c) => c.name).join(', ')}</p></div>
+			</div>
 		</div>
 	</section>
 
-	<section class="content-section">
+
+	<section class="content-section battlefield-section">
 		<div class="shell">
 			<div class="section-title">
-				<h2>Classes quick tier read</h2>
-				<p>Solo tier snapshot — see tier list for playstyle breakdowns.</p>
+				<p class="eyebrow">Battlefield index</p>
+				<h2>Find the deeper topics without digging through long wiki pages.</h2>
+				<p>Each route gives a fast answer first, then the source notes and tactical details players actually need.</p>
 			</div>
-			<div class="data-grid" style="grid-template-columns: repeat(4, minmax(0, 1fr));">
-				<div class="data-card"><h3>S tier</h3><p>{tierSummary.S.map((c) => c.name).join(', ') || '—'}</p></div>
-				<div class="data-card"><h3>A tier</h3><p>{tierSummary.A.map((c) => c.name).join(', ')}</p></div>
-				<div class="data-card"><h3>B tier</h3><p>{tierSummary.B.map((c) => c.name).join(', ')}</p></div>
-				<div class="data-card"><h3>C tier</h3><p>{tierSummary.C.map((c) => c.name).join(', ')}</p></div>
-			</div>
+			<ul class="shortcut-grid">
+				{battlefieldLinks.map((item) => (
+					<li class="shortcut">
+						<a href={item.href}>
+							<strong>{item.title}</strong>
+							<p>{item.desc}</p>
+						</a>
+					</li>
+				))}
+			</ul>
 		</div>
 	</section>
 

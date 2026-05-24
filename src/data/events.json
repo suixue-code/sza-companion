@@ -8,7 +8,7 @@
 		"endDate": "2026-06-16",
 		"endDateNote": "End date cited by third-party event guides and Roblox event listings; confirm in-game before farming deadlines.",
 		"lastChecked": "2026-05-20",
-		"description": "Limited-time galactic-themed event with Void Shards currency, Galactic Zombies, and Galactic Crates. Dev sneak-peeks (2026-05-17) confirmed F2P galactic guns in development; competitor audit notes much content is still preview-only in Discord.",
+		"description": "Limited-time galactic-themed event with Void Shards currency, Galactic Zombies, and Galactic Crates. Dev sneak-peeks (2026-05-17) confirmed F2P galactic guns in development; public source audit notes much content is still preview-only in Discord.",
 		"voidShards": {
 			"name": "Void Shards",
 			"role": "Primary event currency for Galactic Crates",

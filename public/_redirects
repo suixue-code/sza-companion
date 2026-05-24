@@ -1,5 +1,10 @@
-https://www.szacompanion.com/* https://szacompanion.com/:splat 301
+# Apex canonical — www → non-www
+https://www.survivezombiearenaguide.com/* https://survivezombiearenaguide.com/:splat 301
+
+# Legacy paths
 /update-log/ /updates/ 301
 /update-log /updates/ 301
 /guides/beginner/ /beginner-guide/ 301
+/guides/beginner /beginner-guide/ 301
 /guides/tier-list/ /tier-list/ 301
+/guides/tier-list /tier-list/ 301

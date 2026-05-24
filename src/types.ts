@@ -49,38 +49,6 @@ export interface GameCode {
 	expiresAfter?: string;
 }
 
-export interface Recipe {
-	name: string;
-	zone: string;
-	zoneNumber: number;
-	location: string;
-	requiredSlimes: string[];
-	result: string;
-	notes: string;
-	confidence: Confidence;
-	source: string;
-	lastCheckedAt: string;
-}
-
-export interface CalculatorTarget {
-	targetName: string;
-	rarity: string;
-	baseOdds: number;
-	source: string;
-	confidence: Confidence;
-	notes?: string;
-}
-
-export interface SlimeSummary {
-	name: string;
-	rarity: string;
-	role: string;
-	knownOdds?: string;
-	recommendedStage: string;
-	confidence: Confidence;
-	source: string;
-}
-
 export interface FaqItem {
 	question: string;
 	answer: string;

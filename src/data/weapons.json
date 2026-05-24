@@ -97,7 +97,7 @@
 			"access": "F2P",
 			"status": "community_reported",
 			"description": "High-burst explosive weapon line with large splash. Community wiki and high-wave samples — in-run cost and stats need in-game verification.",
-			"source": "survivezombiearena.wiki crawl 2026-05-21; community high-wave samples"
+			"source": "survivezombiearena.wiki source 2026-05-21; community high-wave samples"
 		},
 		{
 			"id": "goo-splasher",
@@ -177,7 +177,7 @@
 	},
 	"gunTierFramework": {
 		"status": "media_reported",
-		"source": "Public tier-list articles + competitor crawl (May 2026); DPS numbers not verified in official patch notes.",
+		"source": "Public tier-list articles + public guide source (May 2026); DPS numbers not verified in official patch notes.",
 		"honestyNote": "We do not publish unverified DPS stats. Use verified handgun → shotgun → rifle path first; treat named shop weapons as needs_check until in-game receipts.",
 		"tiers": [
 			{

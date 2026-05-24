@@ -11,9 +11,11 @@ const en: ToolsGuidesStripCopy = {
 		{ href: '/guides/', label: 'All guides', copy: '26 deep-dive class, weapon, and wave articles.' },
 		{ href: '/beginner-guide/', label: 'Beginner guide', copy: 'First 5 runs and Credit milestones.' },
 		{ href: '/best-loadouts/', label: 'Best loadouts', copy: 'Solo, team, farm, and leaderboard frameworks.' },
-		{ href: '/waves/', label: 'Wave guide', copy: 'Auto Skip rules and Credit spend phases.' },
+		{ href: '/weapons/', label: 'Best weapons', copy: 'Handgun, shotgun, rifle, World Ender, and new guns.' },
+		{ href: '/waves/', label: 'Waves guide', copy: 'Auto Skip rules and Credit spend phases.' },
+		{ href: '/enemies/', label: 'Enemies guide', copy: 'Elite priority, pack control, and counters.' },
+		{ href: '/maps/', label: 'Rooftop map guide', copy: 'Current map routes, hold spots, and Atlantis notes.' },
 		{ href: '/tools/credit-planner/', label: 'Credit Planner', copy: 'Plan Medic, Marksman, or Necromancer unlocks.' },
-		{ href: '/guides/tactician-guide/', label: 'Tactician guide', copy: 'Barricade, turret, and spike anchor play.' },
 	],
 };
 

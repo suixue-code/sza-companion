@@ -1,52 +1,42 @@
 [
   {
-    "id": "verify-codes-20260510",
+    "id": "verify-sza-codes-20260520",
     "area": "codes",
     "status": "optional-high-confidence-upgrade",
-    "tester": "TBD",
-    "gameVersionOrUpdate": "TBD",
-    "itemsToCheck": ["sliming", "goingBananas", "gullible", "test", "AATOMORROW", "BONUSbonusBONUS", "giveMeLuckNOW", "2muchluck", "craftAway", "time2Grind", "stonks"],
-    "evidenceNeeded": "Optional screenshot or short video of the redeem result for each code.",
-    "result": "Published from public-source cross-checking; direct game test would upgrade confidence."
+    "tester": "unassigned",
+    "gameVersionOrUpdate": "May 2026 public build",
+    "itemsToCheck": ["Zombies redeem result", "GALACTIC redeem result"],
+    "evidenceNeeded": "Screenshot or short video of the Shop -> Redeem Codes result for each code.",
+    "result": "Zombies is published from public-source cross-checking. GALACTIC remains disputed until a fresh in-game receipt confirms it."
   },
   {
-    "id": "verify-goop-20260510",
-    "area": "goop",
+    "id": "verify-sza-weapons-20260520",
+    "area": "weapons",
     "status": "optional-high-confidence-upgrade",
-    "tester": "TBD",
-    "gameVersionOrUpdate": "TBD",
-    "itemsToCheck": ["Goop unlock cost", "Goop drop source", "Goop upgrade effects"],
-    "evidenceNeeded": "Optional upgrade tree screenshot and a short note on enemy drop behavior.",
-    "result": "Published from public-source cross-checking at medium confidence."
+    "tester": "unassigned",
+    "gameVersionOrUpdate": "May 8 Mini Content Update",
+    "itemsToCheck": ["Shotgun cost", "Rifle cost", "World Ender cost", "Grenade Launcher cost", "Tommy Gun cost"],
+    "evidenceNeeded": "In-run shop screenshots with Credit prices and weapon names visible.",
+    "result": "Core handgun -> shotgun -> rifle path is published from cross-source agreement. New F2P weapons remain no-stat estimates."
   },
   {
-    "id": "verify-rebirth-20260510",
-    "area": "rebirth",
+    "id": "verify-sza-nightmare-20260520",
+    "area": "modes",
     "status": "optional-high-confidence-upgrade",
-    "tester": "TBD",
-    "gameVersionOrUpdate": "TBD",
-    "itemsToCheck": ["Next Rebirth Goop cost", "Reset behavior", "Retained slimes", "Retained upgrades"],
-    "evidenceNeeded": "Optional before/after screenshots around Rebirth confirmation.",
-    "result": "Published from public-source cross-checking at medium confidence."
+    "tester": "unassigned",
+    "gameVersionOrUpdate": "May 8 Mini Content Update",
+    "itemsToCheck": ["Nightmare queue entry", "wave 1 HP feel", "Credit payout at wave 10", "elite timing"],
+    "evidenceNeeded": "Lobby screenshot plus short run notes comparing Normal and Nightmare.",
+    "result": "Nightmare is confirmed to exist; mechanics remain unverified."
   },
   {
-    "id": "verify-recipes-20260510",
-    "area": "recipes",
+    "id": "verify-sza-rooftop-20260520",
+    "area": "maps",
     "status": "optional-high-confidence-upgrade",
-    "tester": "TBD",
-    "gameVersionOrUpdate": "TBD",
-    "itemsToCheck": ["Crafty", "Thorn", "Geode", "SlimeSlimeSlime", "Puffy", "Astro", "Sunny", "Graveyard TBA recipe"],
-    "evidenceNeeded": "Optional recipe scroll screenshots plus crafting UI if unlocked.",
-    "result": "Published from public-source cross-checking at medium/low confidence."
-  },
-  {
-    "id": "verify-odds-20260510",
-    "area": "calculator",
-    "status": "optional-high-confidence-upgrade",
-    "tester": "TBD",
-    "gameVersionOrUpdate": "TBD",
-    "itemsToCheck": ["Base odds", "Luck multiplier stacking", "Roll speed behavior", "Probability cap if any"],
-    "evidenceNeeded": "Official game UI values, developer notes, public data tables, or repeatable game testing notes.",
-    "result": "Calculator remains estimate-only until a stronger public or direct source is available."
+    "tester": "unassigned",
+    "gameVersionOrUpdate": "Rooftop Map live build",
+    "itemsToCheck": ["Rooftop active map", "stairwell choke locations", "FPS poll relevance", "Atlantis not live"],
+    "evidenceNeeded": "Lobby/map screenshot and notes from one public server.",
+    "result": "Rooftop is published as current map from public-source cross-checking. Atlantis remains preview-only."
   }
 ]

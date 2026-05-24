@@ -13,13 +13,13 @@ describe('loadout-share-card', () => {
 			'Medic + Marksman',
 			'Handgun → Shotgun → Rifle',
 			80,
-			'https://szacompanion.com/tools/loadout-builder/',
+			'https://survivezombiearenaguide.com/tools/loadout-builder/',
 		);
 		const text = formatShareText(payload);
 		expect(text).toContain('[SZA Companion]');
 		expect(text).toContain('Duo Loadout');
 		expect(text).toContain('Target Wave 80');
-		expect(text).toContain('https://szacompanion.com/tools/loadout-builder/');
+		expect(text).toContain('https://survivezombiearenaguide.com/tools/loadout-builder/');
 	});
 
 	it('omits wave segment when not set', () => {

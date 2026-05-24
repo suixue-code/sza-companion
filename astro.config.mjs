@@ -4,12 +4,11 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-	site: 'https://szacompanion.com',
+	site: process.env.PUBLIC_SITE_ORIGIN || 'https://survivezombiearenaguide.com',
 	output: 'static',
 	integrations: [
 		mdx(),
 		sitemap({
-			filter: (page) => !page.includes('/IMPLEMENTATION_STATUS/'),
 			serialize(item) {
 				const url = item.url;
 				if (
