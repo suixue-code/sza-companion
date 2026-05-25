@@ -1,86 +1,142 @@
 [
-	{
-		"id": "zombies",
-		"code": "Zombies",
-		"reward": "2,500 Credits",
-		"rewardAmount": 2500,
-		"status": "active",
-		"firstSeen": "2026-02-01",
-		"lastVerified": "2026-05-20",
-		"lastCheckedAt": "2026-05-20T12:00:00+00:00",
-		"verificationMethod": "discord",
-		"inGameVerified": true,
-		"inGameVerifiedAt": "2026-05-20",
-		"inGameVerifiedNote": "Possible — widely reported active; official Discord #codes still shows only this code as of public source audit 2026-05-18. Re-confirm in-game before each session.",
-		"confidence": "high",
-		"source": "Official Discord #codes (Feb 1 post) + 9 tracked code guides agree as of 2026-05-18 public source audit.",
-		"sources": [
-			{
-				"label": "Survive Zombie Arena Discord #codes",
-				"url": "https://discord.com/invite/fPQDZ2Svtv",
-				"checkedAt": "2026-05-18"
-			},
-			{
-				"label": "survivezombiearena.com/codes",
-				"url": "https://survivezombiearena.com/codes/",
-				"checkedAt": "2026-05-20"
-			},
-			{
-				"label": "Roblox experience page",
-				"url": "https://www.roblox.com/games/114204398207377/Survive-Zombie-Arena",
-				"checkedAt": "2026-05-20"
-			}
-		],
-		"sourceRefs": [
-			{ "label": "Discord #codes", "url": "https://discord.com/invite/fPQDZ2Svtv" },
-			{ "label": "Independent codes page", "url": "https://survivezombiearena.com/codes/" }
-		],
-		"notes": "Redeem via Shop → scroll to Redeem Codes → paste exactly → Redeem. Codes are case-sensitive on most Roblox titles; try exact casing first."
-	},
-	{
-		"id": "galactic",
-		"code": "GALACTIC",
-		"reward": "2,500 Credits (reported by some guides); event boost claimed by community sites — unverified",
-		"rewardAmount": 2500,
-		"status": "disputed",
-		"firstSeen": "2026-05-19",
-		"addedDate": "2026-05-20",
-		"lastVerified": "2026-05-20",
-		"lastCheckedAt": "2026-05-20T12:00:00+00:00",
-		"verificationMethod": "media_report",
-		"inGameVerified": false,
-		"confidence": "low",
-		"source": "Destructoid and Pro Game Guides listed GALACTIC as active around 2026-05-19; official Discord #codes has no GALACTIC post; RoCodes community reports 0% success.",
-		"sources": [
-			{
-				"label": "Destructoid (codes list, May 2026)",
-				"url": "https://www.destructoid.com/",
-				"checkedAt": "2026-05-20"
-			},
-			{
-				"label": "Pro Game Guides (codes list, May 2026)",
-				"url": "https://progameguides.com/roblox/survive-zombie-arena-codes/",
-				"checkedAt": "2026-05-20"
-			},
-			{
-				"label": "RoCodes community feedback",
-				"url": "https://rocodes.gg/",
-				"checkedAt": "2026-05-20"
-			},
-			{
-				"label": "Official Discord #codes (no GALACTIC post)",
-				"url": "https://discord.com/invite/fPQDZ2Svtv",
-				"checkedAt": "2026-05-18"
-			}
-		],
-		"communityFeedback": {
-			"successVotes": 0,
-			"failVotes": 0,
-			"successRate": 0,
-			"source": "RoCodes",
-			"note": "0% community success rate reported as of 2026-05-20 capture; treat as disputed until in-game redeem succeeds."
-		},
-		"conflictNote": "Media guides mark Active; Discord #codes and high-confidence community trackers disagree. Do not assume rewards until you redeem in-game.",
-		"notes": "Added to our ledger 2026-05-20. Status intentionally marked disputed — not promoted as a working code."
-	}
+  {
+    "id": "zombies",
+    "code": "Zombies",
+    "reward": "2,500 Credits",
+    "rewardAmount": 2500,
+    "status": "active",
+    "firstSeen": "2026-02-01",
+    "lastVerified": "2026-05-20",
+    "lastCheckedAt": "2026-05-20T12:00:00+00:00",
+    "verificationMethod": "discord",
+    "inGameVerified": true,
+    "inGameVerifiedAt": "2026-05-20",
+    "inGameVerifiedNote": "Possible — widely reported active; official Discord #codes still shows only this code as of public source audit 2026-05-18. Re-confirm in-game before each session.",
+    "confidence": "high",
+    "source": "Official Discord #codes (Feb 1 post) + 9 tracked code guides agree as of 2026-05-18 public source audit.",
+    "sources": [
+      {
+        "label": "Survive Zombie Arena Discord #codes",
+        "url": "https://discord.com/invite/fPQDZ2Svtv",
+        "checkedAt": "2026-05-18"
+      },
+      {
+        "label": "survivezombiearena.com/codes",
+        "url": "https://survivezombiearena.com/codes/",
+        "checkedAt": "2026-05-20"
+      },
+      {
+        "label": "Roblox experience page",
+        "url": "https://www.roblox.com/games/114204398207377/Survive-Zombie-Arena",
+        "checkedAt": "2026-05-20"
+      }
+    ],
+    "sourceRefs": [
+      {
+        "label": "Discord #codes",
+        "url": "https://discord.com/invite/fPQDZ2Svtv"
+      },
+      {
+        "label": "Independent codes page",
+        "url": "https://survivezombiearena.com/codes/"
+      }
+    ],
+    "notes": "Redeem via Shop → scroll to Redeem Codes → paste exactly → Redeem. Codes are case-sensitive on most Roblox titles; try exact casing first."
+  },
+  {
+    "id": "galactic",
+    "code": "GALACTIC",
+    "reward": "2,500 Credits (reported by some guides); event boost claimed by community sites — unverified",
+    "rewardAmount": 2500,
+    "status": "disputed",
+    "firstSeen": "2026-05-19",
+    "addedDate": "2026-05-20",
+    "lastVerified": "2026-05-20",
+    "lastCheckedAt": "2026-05-20T12:00:00+00:00",
+    "verificationMethod": "media_report",
+    "inGameVerified": false,
+    "confidence": "low",
+    "source": "Destructoid and Pro Game Guides listed GALACTIC as active around 2026-05-19; official Discord #codes has no GALACTIC post; RoCodes community reports 0% success.",
+    "sources": [
+      {
+        "label": "Destructoid (codes list, May 2026)",
+        "url": "https://www.destructoid.com/",
+        "checkedAt": "2026-05-20"
+      },
+      {
+        "label": "Pro Game Guides (codes list, May 2026)",
+        "url": "https://progameguides.com/roblox/survive-zombie-arena-codes/",
+        "checkedAt": "2026-05-20"
+      },
+      {
+        "label": "RoCodes community feedback",
+        "url": "https://rocodes.gg/",
+        "checkedAt": "2026-05-20"
+      },
+      {
+        "label": "Official Discord #codes (no GALACTIC post)",
+        "url": "https://discord.com/invite/fPQDZ2Svtv",
+        "checkedAt": "2026-05-18"
+      }
+    ],
+    "communityFeedback": {
+      "successVotes": 0,
+      "failVotes": 0,
+      "successRate": 0,
+      "source": "RoCodes",
+      "note": "0% community success rate reported as of 2026-05-20 capture; treat as disputed until in-game redeem succeeds."
+    },
+    "conflictNote": "Media guides mark Active; Discord #codes and high-confidence community trackers disagree. Do not assume rewards until you redeem in-game.",
+    "notes": "Added to our ledger 2026-05-20. Status intentionally marked disputed — not promoted as a working code."
+  },
+  {
+    "code": "giveMeLuckNOW",
+    "reward": "Unknown (automated crawl)",
+    "status": "unverified",
+    "addedDate": "2026-05-25",
+    "lastCheckedAt": "2026-05-25T16:24:00+00:00",
+    "source": "Crawl: slimerng.org — Slime RNG codes (https://slimerng.org/codes/)",
+    "confidence": "low",
+    "notes": "Auto-candidate from crawl script. Verify in Roblox before changing status or reward text."
+  },
+  {
+    "code": "TEST",
+    "reward": "Unknown (automated crawl)",
+    "status": "unverified",
+    "addedDate": "2026-05-25",
+    "lastCheckedAt": "2026-05-25T16:24:00+00:00",
+    "source": "Crawl: slimerngguide.com — Slime RNG codes (https://slimerngguide.com/codes/)",
+    "confidence": "low",
+    "notes": "Auto-candidate from crawl script. Verify in Roblox before changing status or reward text."
+  },
+  {
+    "code": "GULLIBLE",
+    "reward": "Unknown (automated crawl)",
+    "status": "unverified",
+    "addedDate": "2026-05-25",
+    "lastCheckedAt": "2026-05-25T16:24:00+00:00",
+    "source": "Crawl: slimerngguide.com — Slime RNG codes (https://slimerngguide.com/codes/)",
+    "confidence": "low",
+    "notes": "Auto-candidate from crawl script. Verify in Roblox before changing status or reward text."
+  },
+  {
+    "code": "time2Grind",
+    "reward": "Unknown (automated crawl)",
+    "status": "unverified",
+    "addedDate": "2026-05-25",
+    "lastCheckedAt": "2026-05-25T16:24:00+00:00",
+    "source": "Crawl: slimerngguide.com — Slime RNG codes (https://slimerngguide.com/codes/)",
+    "confidence": "low",
+    "notes": "Auto-candidate from crawl script. Verify in Roblox before changing status or reward text."
+  },
+  {
+    "code": "craftAway",
+    "reward": "Unknown (automated crawl)",
+    "status": "unverified",
+    "addedDate": "2026-05-25",
+    "lastCheckedAt": "2026-05-25T16:24:00+00:00",
+    "source": "Crawl: slimerngguide.com — Slime RNG codes (https://slimerngguide.com/codes/)",
+    "confidence": "low",
+    "notes": "Auto-candidate from crawl script. Verify in Roblox before changing status or reward text."
+  }
 ]
