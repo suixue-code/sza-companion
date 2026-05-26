@@ -84,7 +84,7 @@ const es: TierListCopy = {
 		{
 			question: '¿Bastion es S tier?',
 			answer:
-				'El tier está discutido (PGG S-tier vs Destructoid A-tier). Lo listamos A-tier en solo y equipo — estado media_reported.',
+				'El tier está discutido (PGG S-tier vs Destructoid A-tier). Lo listamos A-tier en solo y equipo, con nota de fuente externa.',
 		},
 		{
 			question: '¿El Rooftop Map cambió la tier list?',
@@ -121,7 +121,7 @@ const ptBr: TierListCopy = {
 		{
 			question: 'Bastion é S tier?',
 			answer:
-				'O tier é contestado (PGG S-tier vs Destructoid A-tier). Listamos A-tier em solo e time — status media_reported.',
+				'O tier é contestado (PGG S-tier vs Destructoid A-tier). Listamos A-tier em solo e time, com nota de fonte externa.',
 		},
 		{
 			question: 'O Rooftop Map mudou a tier list?',
@@ -156,7 +156,7 @@ const zhCn: TierListCopy = {
 		},
 		{
 			question: 'Bastion 算 S 级吗？',
-			answer: '梯队有争议（PGG 标 S，Destructoid 标 A）。本站单人/组队均列 A 级——状态为 media_reported。',
+			answer: '梯队有争议（PGG 标 S，Destructoid 标 A）。本站单人/组队均列 A 级，并保留外部来源提示。',
 		},
 		{
 			question: 'Rooftop Map 改变梯队了吗？',

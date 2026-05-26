@@ -13,6 +13,7 @@ export const searchIndex: SearchEntry[] = [
 	{ title: 'Beginner Guide', href: '/beginner-guide/', keywords: 'survive zombie arena beginner guide first runs starter rooftop credits codes', category: 'Guides' },
 	{ title: 'All Guides', href: '/guides/', keywords: 'survive zombie arena guides index class weapon wave credits', category: 'Guides' },
 	{ title: 'Wiki Hub', href: '/wiki/', keywords: 'survive zombie arena wiki directory hub links', category: 'Pages' },
+	{ title: 'Sources & Verification', href: '/sources/', keywords: 'survive zombie arena sources methodology citation code status disputed galactic', category: 'Pages' },
 	{ title: 'Tier List', href: '/tier-list/', keywords: 'survive zombie arena tier list best classes rank class solo team farm', category: 'Reference' },
 	{ title: 'Best Classes', href: '/classes/', keywords: 'survive zombie arena best class classes unlock medic marksman tactician necromancer bastion cost', category: 'Reference' },
 	{ title: 'Best Weapons', href: '/weapons/', keywords: 'survive zombie arena best weapons weapon handgun shotgun rifle world ender galactic guns', category: 'Reference' },

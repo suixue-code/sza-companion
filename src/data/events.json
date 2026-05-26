@@ -3,25 +3,25 @@
 		"id": "galactic",
 		"name": "Galactic Event",
 		"slug": "galactic",
-		"status": "upcoming_or_partial",
+		"status": "media_reported_live",
 		"startDate": null,
 		"endDate": "2026-06-16",
-		"endDateNote": "End date cited by third-party event guides and Roblox event listings; confirm in-game before farming deadlines.",
-		"lastChecked": "2026-05-20",
-		"description": "Limited-time galactic-themed event with Void Shards currency, Galactic Zombies, and Galactic Crates. Dev sneak-peeks (2026-05-17) confirmed F2P galactic guns in development; public source audit notes much content is still preview-only in Discord.",
+		"endDateNote": "End date cited by third-party event guides; Roblox official page and virtual-events API did not list an event entry in the May 26 check.",
+		"lastChecked": "2026-05-26",
+		"description": "Limited-time galactic-themed event reported live by public event guides, with Void Shards currency, Galactic Zombies, Galactic Crates, and Atlantis map coverage. Roblox official page/API confirms the game updated on 2026-05-26 but does not name Galactic or Atlantis.",
 		"voidShards": {
 			"name": "Void Shards",
 			"role": "Primary event currency for Galactic Crates",
 			"dropSource": "Galactic Zombies (purple zombies with glowing orbs above their heads)",
 			"spawnRate": {
-				"minPercent": 0.5,
-				"maxPercent": 1.25,
-				"note": "Reported by third-party guides; scales with difficulty and higher waves — not confirmed in official patch notes.",
+				"minPercent": 1,
+				"maxPercent": 1,
+				"note": "IGN reports a 1% Galactic Zombie appearance chance; stronger Galactic Zombies may have better Void Shard drop chances. Not confirmed in official Roblox page text.",
 				"status": "media_reported"
 			},
 			"collection": "Manual pickup — shards do not auto-collect per community guides.",
 			"crateCost": 50,
-			"crateCostNote": "At least 50 Void Shards required to open one Galactic Crate from the lobby crate station (third-party guides).",
+			"crateCostNote": "At least 50 Void Shards required to open one Galactic Crate from the lobby crate station (IGN/media-reported).",
 			"status": "media_reported"
 		},
 		"galacticCrates": {
@@ -47,13 +47,13 @@
 		"relatedCode": {
 			"code": "GALACTIC",
 			"status": "disputed",
-			"note": "Some guides claim a GALACTIC code for Credits or boost; Discord #codes has no post; RoCodes 0% success — see codes.json."
+			"note": "Some guides claim a GALACTIC code for Credits while others claim a Void Shards boost; Discord #codes has no post from the prior audit, and Roblox page text did not mention the code — see codes.json."
 		},
 		"atlantisMap": {
 			"name": "Atlantis Map",
-			"status": "preview",
+			"status": "media_reported_live",
 			"devPreviewDate": "2026-05-17",
-			"note": "Dev footage posted in #sneak-peeks — not confirmed live; no release date or layout published."
+			"note": "IGN reports Atlantis is available to all players during the Galactic Event. Roblox official page text did not name Atlantis in the May 26 check; route and layout details still need in-game confirmation."
 		},
 		"devPreviews": [
 			{
@@ -76,6 +76,16 @@
 				"checkedAt": "2026-05-20"
 			},
 			{
+				"label": "IGN Galactic Event Update",
+				"url": "https://www.ign.com/wikis/survive-zombie-arena-roblox/Galactic_Event_Update",
+				"checkedAt": "2026-05-26"
+			},
+			{
+				"label": "Roblox official page/API snapshot",
+				"url": "https://www.roblox.com/games/114204398207377/Survive-Zombie-Arena",
+				"checkedAt": "2026-05-26"
+			},
+			{
 				"label": "Roblox Galactic Event listing",
 				"url": "https://www.roblox.com/events/5632460754587353683",
 				"checkedAt": "2026-05-20"
@@ -87,10 +97,10 @@
 			}
 		],
 		"dataGaps": [
-			"Exact live launch date not in official #patch-notes as of 2026-05-18",
-			"Final galactic gun names and stats from May 17 batch undisclosed",
-			"Crate odds and event-currency rules not shipped — poll only",
-			"Void Shard spawn rates need in-game verification"
+			"Roblox official page text and virtual-events API did not explicitly name Galactic or Atlantis in the May 26 check",
+			"Official Discord #codes and #patch-notes were not re-confirmed after May 20",
+			"Final galactic gun stats and crate odds need in-game verification",
+			"Void Shard rates and post-event shard rules need in-game verification"
 		]
 	}
 ]

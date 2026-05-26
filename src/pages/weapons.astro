@@ -7,6 +7,12 @@ import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
 
 const pageUrl = new URL('/weapons/', Astro.site).toString();
 const fmt = new Intl.NumberFormat('en-US');
+const statusLabel = (value: string) =>
+	({
+		media_reported: 'media-reported',
+		poll_only: 'poll only',
+		needs_check: 'needs check',
+	}[value] ?? value.replace(/_/g, ' '));
 
 const faq = [
 	{
@@ -23,14 +29,14 @@ const faq = [
 	},
 	{
 		question: 'What are Galactic Crate weapons?',
-		answer: 'Dev previews and third-party guides list Cosmic Pistol, Quasar, Pulsar, Interstellar, and Void Scythe — mostly media_reported, not confirmed in official patch text.',
+		answer: 'Dev previews and third-party guides list Cosmic Pistol, Quasar, Pulsar, Interstellar, and Void Scythe — mostly media-reported, not confirmed in official patch text.',
 	},
 ];
 
 const schema = [
 	articleSchema({
-		title: 'Survive Zombie Arena Best Weapons — Progression & New Guns',
-		description: 'Best Survive Zombie Arena weapons and progression path: handgun to shotgun to rifle, World Ender, May 2026 F2P guns, and honest data gaps.',
+		title: 'Survive Zombie Arena Best Weapons: Shotgun to Rifle Upgrade Path',
+		description: 'Best Survive Zombie Arena weapons for May 2026: use handgun to shotgun to rifle first, then compare World Ender, Gumdrop Blaster, and new F2P guns.',
 		url: pageUrl,
 		dateModified: siteMeta.lastPublicReview,
 	}),
@@ -43,21 +49,21 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Best Weapons — Handgun to Rifle & May 2026 Guns"
-	description="Best Survive Zombie Arena weapons and weapon path: handgun → shotgun → rifle, World Ender mythic, Galactic previews, and no invented stats."
+	title="Survive Zombie Arena Best Weapons: Shotgun to Rifle Upgrade Path"
+	description="Survive Zombie Arena best weapons: upgrade handgun to shotgun, rush rifle for mid waves, and compare World Ender, Gumdrop Blaster, and May 2026 F2P guns."
 	schema={schema}
 >
 	<section class="page-hero compact">
 		<div class="shell two-col mobile-hero-stack">
 			<div>
 				<p class="eyebrow"><span class="pulse"></span>Verified path · no invented stats · {siteMeta.lastPublicReviewDisplay}</p>
-				<h1>Best Weapons</h1>
+				<h1>Best Weapons and Upgrade Path</h1>
 				<p class="geo-snap">
-					In-run weapon upgrades spend Credits earned each wave. For most players the best weapon path is handgun → shotgun → rifle, with May 2026 F2P additions tracked separately until exact stats are verified.
+					For most runs, the safe weapon route is <strong>handgun → shotgun → rifle</strong>. Chase named guns after your lane can survive early and mid waves.
 				</p>
 			</div>
 			<aside class="quick-answer">
-				<strong>Core path</strong>
+				<strong>Buy order</strong>
 				<p>Handgun → shotgun (~150) → rifle (~750). Marksman should rush rifle for Deadeye pierce.</p>
 			</aside>
 		</div>
@@ -88,7 +94,7 @@ const schema = [
 								<td><strong>{w.name}</strong></td>
 								<td>{w.estimatedCostCredits === null ? 'Unknown' : w.estimatedCostCredits === 0 ? 'Free' : fmt.format(w.estimatedCostCredits)}</td>
 								<td>{w.description}</td>
-								<td>{w.status}</td>
+								<td>{statusLabel(w.status)}</td>
 							</tr>
 						))}
 					</tbody>
@@ -140,7 +146,7 @@ const schema = [
 							<tr>
 								<td><strong>{w.name}</strong></td>
 								<td>{w.access}</td>
-								<td>{w.status}</td>
+								<td>{statusLabel(w.status)}</td>
 							</tr>
 						))}
 					</tbody>
@@ -152,7 +158,7 @@ const schema = [
 				Community poll ({weaponsData.galacticCrates.pollDate}): event currency leads {weaponsData.galacticCrates.pollResult}. {weaponsData.galacticCrates.note}
 			</p>
 
-			<h2>Gun tier framework (media_reported)</h2>
+			<h2>Gun tier framework (media-reported)</h2>
 			<p class="notice">{weaponsData.gunTierFramework.honestyNote}</p>
 			{
 				weaponsData.gunTierFramework.tiers.map((tier) => (

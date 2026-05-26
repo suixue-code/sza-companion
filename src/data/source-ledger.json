@@ -1,7 +1,7 @@
 {
-	"captureDate": "2026-05-20",
-	"capturedAt": "2026-05-20T12:00:00+00:00",
-	"notes": "Structured migration from survivezombiearena.com public guide research (May 2026) plus cross-check signals from Discord audit, Roblox public API, and third-party code/event guides. Not a substitute for in-game verification on szacompanion.com.",
+	"captureDate": "2026-05-26",
+	"capturedAt": "2026-05-26T15:16:00+00:00",
+	"notes": "Public guide checks, the May 26 Roblox page/API refresh, prior Discord audit, and third-party code/event guides are listed here. This is not a substitute for in-game verification.",
 	"sources": [
 		{
 			"name": "survivezombiearena.com (public guide hub)",
@@ -73,12 +73,12 @@
 			"name": "Roblox public games API",
 			"url": "https://games.roblox.com/v1/games?universeIds=9348272796",
 			"type": "official",
-			"checkedAt": "2026-05-18",
+			"checkedAt": "2026-05-26",
 			"codesReported": [],
-			"topics": ["visits", "favorites", "updated-timestamps"],
+			"topics": ["visits", "favorites", "live-playing", "updated-timestamps", "virtual-events-empty"],
 			"confidence": "high",
 			"aiDecision": "use",
-			"reason": "Live stats for site-stats.json; universeId 9348272796."
+			"reason": "Official page context confirmed rootPlaceId 114204398207377, universeId 9348272796, visits 267,801,365, favorites 196,573, playing 95,091, and updated timestamp 2026-05-26T01:51:14Z. Virtual events endpoint returned no public event rows."
 		},
 		{
 			"name": "Destructoid (codes)",
@@ -128,12 +128,12 @@
 			"name": "Third-party Galactic Event guides (IGN, community wikis)",
 			"url": "https://www.ign.com/wikis/survive-zombie-arena-roblox/",
 			"type": "guide",
-			"checkedAt": "2026-05-20",
+			"checkedAt": "2026-05-26",
 			"codesReported": ["GALACTIC"],
-			"topics": ["galactic-event", "void-shards", "galactic-crate-weapons"],
+			"topics": ["galactic-event", "void-shards", "galactic-crate-weapons", "atlantis"],
 			"confidence": "low",
 			"aiDecision": "draft",
-			"reason": "Void Shard drop rates, 50-shard crate gate, and crate weapon names — needs in-game verification; event end 2026-06-16 cited."
+			"reason": "IGN and public guides report Galactic Event/Atlantis live, 1% Galactic Zombies, 50-shard crate gate, and crate weapon names. Use as media-reported only because Roblox official page text did not name the event."
 		}
 	]
 }

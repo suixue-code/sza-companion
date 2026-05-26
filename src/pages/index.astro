@@ -9,6 +9,7 @@ import { collectionSchema, faqSchema, SITE_NAME } from '@lib/seo';
 
 const activeCount = codes.filter((code) => code.status === 'active').length;
 const fmt = new Intl.NumberFormat('en-US');
+const compactFmt = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 
 const tierSummary = {
 	S: classes.filter((c) => c.tierSolo === 'S'),
@@ -62,12 +63,12 @@ const battlefieldLinks = [
 	{
 		href: '/maps/',
 		title: 'Rooftop Map',
-		desc: 'Survive Zombie Arena map guide: Rooftop chokepoints, Atlantis preview, FPS notes, and Square Arena context.',
+		desc: 'Survive Zombie Arena map guide: Rooftop chokepoints, Atlantis media reports, FPS notes, and Square Arena context.',
 	},
 	{
 		href: '/updates/',
 		title: 'Updates',
-		desc: 'May 2026 patch trail: World Ender, Nightmare Mode, Necromancer buff, and Galactic previews.',
+		desc: 'May 2026 patch trail: Roblox API refresh, World Ender, Nightmare Mode, Necromancer buff, and Galactic reports.',
 	},
 	{
 		href: '/best-loadouts/',
@@ -147,6 +148,7 @@ const schema = [
 				</div>
 				<div class="trust-row">
 					<span class="trust">{activeCount} active code{activeCount === 1 ? '' : 's'}</span>
+					<span class="trust">{compactFmt.format(siteStats.visits)} visits</span>
 					<span class="trust">{classes.length} classes tracked</span>
 					<span class="trust">Estimate-only tools</span>
 				</div>
@@ -159,15 +161,15 @@ const schema = [
 				<div class="arena-stat-grid">
 					<div><span>Visits</span><strong>{fmt.format(siteStats.visits)}</strong></div>
 					<div><span>Favorites</span><strong>{fmt.format(siteStats.favorites)}</strong></div>
+					<div><span>Playing</span><strong>{fmt.format(siteStats.livePlayersAtCheck)}</strong></div>
 					<div><span>Server</span><strong>{siteStats.maxPlayers} players</strong></div>
-					<div><span>Session</span><strong>~{siteStats.avgSessionMinutes} min</strong></div>
 				</div>
 				<div class="arena-phase-list">
 					<a href="/codes/"><span>Phase 01</span><strong>Redeem before you queue</strong></a>
 					<a href="/weapons/"><span>Phase 02</span><strong>Choose the weapon spend</strong></a>
 					<a href="/tier-list/"><span>Phase 03</span><strong>Lock the class role</strong></a>
 				</div>
-				<p class="muted">Roblox API + public audit · checked {siteStats.lastChecked}</p>
+				<p class="muted">Roblox API · updated {siteStats.gameLastUpdated.slice(0, 10)} · checked {siteStats.lastChecked}</p>
 			</aside>
 		</div>
 	</section>
@@ -248,7 +250,7 @@ const schema = [
 			<article class="signal-panel dispute-signal">
 				<p class="eyebrow">Dispute log</p>
 				<h2>GALACTIC stays flagged.</h2>
-				<p>Some media pages list it active. Discord #codes does not, and the public success signal is weak.</p>
+				<p>Some guides report Void Shards, others report Credits. The Roblox page does not name the code, so we keep it disputed.</p>
 				<a class="btn dark" href="/codes/#galactic">See dispute notes</a>
 			</article>
 		</div>

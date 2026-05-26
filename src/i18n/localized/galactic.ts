@@ -33,7 +33,7 @@ const es: GalacticCopy = {
 		'Guía del evento Galactic: Void Shards, Galactic Crates, armas cósmicas, cuenta atrás y huecos de datos honestos para Survive Zombie Arena.',
 	eyebrow: 'Próximo o parcial · revisado',
 	h1: 'Evento Galactic',
-	lead: 'Mucho contenido sigue en vista previa en Discord oficial a mayo de 2026 — marcamos hechos media_reported con claridad.',
+	lead: 'Mucho contenido sigue en vista previa en Discord oficial a mayo de 2026 — marcamos con claridad lo que viene de guías externas.',
 	endDateLabel: 'Fecha de fin reportada',
 	voidShardsTitle: 'Void Shards',
 	cratesTitle: 'Galactic Crates',
@@ -50,7 +50,7 @@ const es: GalacticCopy = {
 		{
 			question: '¿Qué son los Void Shards?',
 			answer:
-				'Moneda principal del evento según guías: salen de Galactic Zombies (zombies morados con orbes). Recogida manual; ~50 shards por Galactic Crate en guías de la comunidad — media_reported, no confirmado en parche.',
+				'Moneda principal del evento según guías: salen de Galactic Zombies (zombies morados con orbes). Recogida manual; ~50 shards por Galactic Crate en guías de la comunidad — reportado por medios, no confirmado en parche.',
 		},
 		{
 			question: '¿Funciona el código GALACTIC?',
@@ -78,7 +78,7 @@ const ptBr: GalacticCopy = {
 		'Guia do evento Galactic: Void Shards, Galactic Crates, armas cósmicas, contagem e lacunas de dados honestas para Survive Zombie Arena.',
 	eyebrow: 'Em breve ou parcial · revisado',
 	h1: 'Evento Galactic',
-	lead: 'Muito conteúdo ainda é prévia no Discord oficial em maio de 2026 — rotulamos fatos media_reported com clareza.',
+	lead: 'Muito conteúdo ainda é prévia no Discord oficial em maio de 2026 — marcamos com clareza o que vem de guias externas.',
 	endDateLabel: 'Data de fim reportada',
 	voidShardsTitle: 'Void Shards',
 	cratesTitle: 'Galactic Crates',
@@ -95,7 +95,7 @@ const ptBr: GalacticCopy = {
 		{
 			question: 'O que são Void Shards?',
 			answer:
-				'Moeda principal do evento em guias: vêm de Galactic Zombies (zumbis roxos com orbes). Coleta manual; ~50 shards por Galactic Crate em guias da comunidade — media_reported, não confirmado em patch.',
+				'Moeda principal do evento em guias: vêm de Galactic Zombies (zumbis roxos com orbes). Coleta manual; ~50 shards por Galactic Crate em guias da comunidade — reportado por mídia, não confirmado em patch.',
 		},
 		{
 			question: 'O código GALACTIC funciona?',
@@ -123,7 +123,7 @@ const zhCn: GalacticCopy = {
 		'Galactic 活动指南：Void Shards、Galactic Crates、宇宙武器、倒计时与诚实数据缺口说明。',
 	eyebrow: '即将或部分上线 · 复核于',
 	h1: 'Galactic 活动',
-	lead: '截至 2026 年 5 月，大量内容仍在官方 Discord 预览阶段——我们会明确标注 media_reported 事实。',
+	lead: '截至 2026 年 5 月，大量内容仍在官方 Discord 预览阶段；外部攻略提到的内容会单独说明。',
 	endDateLabel: '据报结束日期',
 	voidShardsTitle: 'Void Shards',
 	cratesTitle: 'Galactic Crates',
@@ -140,7 +140,7 @@ const zhCn: GalacticCopy = {
 		{
 			question: 'Void Shards 是什么？',
 			answer:
-				'攻略称的活动主货币，来自 Galactic Zombies（头顶光球的紫色僵尸）。需手动拾取；社区攻略约 50 碎片开一个 Galactic Crate——属 media_reported，补丁未证实。',
+				'攻略称的活动主货币，来自 Galactic Zombies（头顶光球的紫色僵尸）。需手动拾取；社区攻略约 50 碎片开一个 Galactic Crate——属于外部攻略报道，补丁未证实。',
 		},
 		{
 			question: 'GALACTIC 兑换码能用吗？',

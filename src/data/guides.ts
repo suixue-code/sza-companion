@@ -64,7 +64,7 @@ export const guides: GuidePage[] = [
 				'May 2026 minion buff — retest nova timing after patches.',
 				'Maintain Marksman for backup farm between updates.',
 				'Watch Discord #patch-notes — not third-party tier reposts.',
-				'Credit Planner push_necromancer after balance changes.',
+				'Credit Planner Necromancer savings after balance changes.',
 			],
 		}
 		],
@@ -92,7 +92,7 @@ export const guides: GuidePage[] = [
 			body: 'Credits per minute (Credits/min) is the honest metric for progression in Survive Zombie Arena. Your lobby wave count, kill volume, class kit, and weapon tier all feed the same bank balance that unlocks Medic (10,000), Marksman (15,000), Tactician (75,000), and eventually Necromancer (250,000). Chasing a single high wave once is less valuable than repeating stable 25–40 wave runs where rifle kills stack quickly. Start every farm session by redeeming the active code Zombies for 2,500 Credits if you have not already — see /codes/ for status. The Credit Planner at /tools/credit-planner/ converts your current balance and sessions-per-day into realistic unlock timelines. We do not link to script repositories, executors, or AFK exploit tools; those routes risk account action and teach bad habits that break when the Rooftop Map meta shifts.',
 			items: [
 				'Measure runs by Credits earned divided by active minutes, not wave number alone.',
-				'Redeem Zombies (2,500 Credits) — active by public-source cross-checking on our codes page.',
+				'Redeem Zombies (2,500 Credits) — active by public source cross-checking on our codes page.',
 				'Use Credit Planner goal farm_credits for Marksman-first recommendations.',
 				'Never use third-party scripts — legitimate Marksman pierce out-farms them long-term.',
 			],
@@ -349,7 +349,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Tactician and Necromancer for advanced solo',
-			body: 'Tactician solo works if you commit to setup-heavy gameplay: barricade stairwell, turret on elites, spikes for chip, and rifle for cleanup. Weaker when you must rotate — Rooftop rewards anchors. Tactician solo can exceed Marksman wave count with practice but lower Credits/min if sessions run long. Necromancer solo is the leaderboard pick — Soul Harvester, Raise Undead, Death Nova in funnels — but terrible before 250k investment and early waves. Do not buy Necromancer first; farm Marksman fundamentals and use Credit Planner push_necromancer goal to track savings. Bastion (200k) is B-tier solo — Bunker helps teams more than solo farming.',
+			body: 'Tactician solo works if you commit to setup-heavy gameplay: barricade stairwell, turret on elites, spikes for chip, and rifle for cleanup. Weaker when you must rotate — Rooftop rewards anchors. Tactician solo can exceed Marksman wave count with practice but lower Credits/min if sessions run long. Necromancer solo is the leaderboard pick — Soul Harvester, Raise Undead, Death Nova in funnels — but terrible before 250k investment and early waves. Do not buy Necromancer first; farm Marksman fundamentals and use Credit Planner to track Necromancer savings. Bastion (200k) is B-tier solo — Bunker helps teams more than solo farming.',
 			items: [
 				'Tactician solo: setup before DPS — Vanguard Turret key.',
 				'Necromancer solo: S-tier late, D-tier beginner.',
@@ -490,7 +490,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Core progression: handgun → shotgun → rifle',
-			body: 'The verified F2P weapon path in Survive Zombie Arena is three stages: Handgun (free starter), Shotgun (~150 Credits), and Rifle (~750 Credits). Public beginner guides and Deltia-style routes agree on these costs — always confirm in-game after patches. Handgun banks early-wave Credits without over-investing. Shotgun handles pack density before the first elite on Rooftop stairwells. Rifle provides range and sustained DPS for mid-to-late waves and pairs with Marksman Deadeye pierce. Do not skip shotgun — wave 10 wipes with handgun only waste session time. Credit Planner at /tools/credit-planner/ assumes this path for every goal. Slot-four high-tier shop weapons have unverified costs in our weapons data — treat Minigun and Arctic Striker names as needs_check until you see in-game prices.',
+			body: 'The verified F2P weapon path in Survive Zombie Arena is three stages: Handgun (free starter), Shotgun (~150 Credits), and Rifle (~750 Credits). Public beginner guides and Deltia-style routes agree on these costs — always confirm in-game after patches. Handgun banks early-wave Credits without over-investing. Shotgun handles pack density before the first elite on Rooftop stairwells. Rifle provides range and sustained DPS for mid-to-late waves and pairs with Marksman Deadeye pierce. Do not skip shotgun — wave 10 wipes with handgun only waste session time. Credit Planner at /tools/credit-planner/ assumes this path for every goal. Slot-four high-tier shop weapons have unverified costs in our weapon notes — treat Minigun and Arctic Striker names as needs-check until you see in-game prices.',
 			items: [
 				'Stage 1: Handgun — free, save Credits early waves.',
 				'Stage 2: Shotgun ~150 Credits — before first elite.',
@@ -500,7 +500,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Best weapons by class pairing',
-			body: 'Marksman (15k) plus rifle is the highest DPS F2P pairing — Deadeye pierce multiplies line kills on Rooftop. Tactician (75k) and Necromancer (250k) also pair with rifle per our weapons.json. Medic (10k) and Demolitionist (50k) often run shotgun longer for close-range sustain and Molotov setups. Survivor uses the same path until you unlock a class. Ninja (25k) is melee-heavy — rifle still recommended for elites outside Blade Fury range. Check /tier-list/ for class tier before buying named shop weapons that may not match your kit. Loadout Builder at /tools/loadout-builder/ shows weapon path per scenario.',
+			body: 'Marksman (15k) plus rifle is the highest DPS F2P pairing — Deadeye pierce multiplies line kills on Rooftop. Tactician (75k) and Necromancer (250k) also pair well with rifle. Medic (10k) and Demolitionist (50k) often run shotgun longer for close-range sustain and Molotov setups. Survivor uses the same path until you unlock a class. Ninja (25k) is melee-heavy — rifle still recommended for elites outside Blade Fury range. Check /tier-list/ for class tier before buying named shop weapons that may not match your kit. Loadout Builder at /tools/loadout-builder/ shows weapon path per scenario.',
 			items: [
 				'Marksman + rifle + Deadeye = best F2P DPS.',
 				'Demolitionist: shotgun viable late for AoE complement.',
@@ -520,7 +520,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Weapons to deprioritize early',
-			body: 'Any slot-four weapon with null cost in public data is a gamble before rifle. Galactic Crate exclusives — Quasar, Pulsar, Interstellar, Void Scythe — are media_reported and require Void Shards, not standard Credits. Do not drain 250k Necromancer savings on Bastion (200k) or cosmetic guns. Handgun upgrades beyond minimal spend are sunk cost — move to shotgun quickly. If a lobby vendor sells unknown high-tier guns, compare opportunity cost against three more Marksman farm runs toward Tactician (75k). Redeem Zombies (2,500 Credits) from /codes/ for permanent account progress, not in-run shop flips.',
+			body: 'Any slot-four weapon with null cost in public data is a gamble before rifle. Galactic Crate exclusives — Quasar, Pulsar, Interstellar, Void Scythe — are media-reported and require Void Shards, not standard Credits. Do not drain 250k Necromancer savings on Bastion (200k) or cosmetic guns. Handgun upgrades beyond minimal spend are sunk cost — move to shotgun quickly. If a lobby vendor sells unknown high-tier guns, compare opportunity cost against three more Marksman farm runs toward Tactician (75k). Redeem Zombies (2,500 Credits) from /codes/ for permanent account progress, not in-run shop flips.',
 			items: [
 				'Skip unverified slot-four costs until rifle online.',
 				'Galactic guns = event currency, not early Credits path.',
@@ -550,7 +550,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Loadout Builder weapon recommendations',
-			body: 'Open /tools/loadout-builder/ and select your owned classes — the tool recommends handgun → shotgun → rifle sequencing before exotic shop tabs. Leaderboard scenario nudges rifle before slot-four gambles; farm scenario prioritizes shotgun timing. Cross-reference /tier-list/ class pairings in weapons.json logic: Marksman and Necromancer want rifle; Demolitionist can extend shotgun phase. World Ender and May 2026 patch guns are live but do not replace verified 150 and 750 Credit nodes in planner math.',
+			body: 'Open /tools/loadout-builder/ and select your owned classes — the tool recommends handgun → shotgun → rifle sequencing before exotic shop tabs. Leaderboard scenario nudges rifle before slot-four gambles; farm scenario prioritizes shotgun timing. Cross-reference /tier-list/ class pairings: Marksman and Necromancer want rifle; Demolitionist can extend shotgun phase. World Ender and May 2026 patch guns are live but do not replace verified 150 and 750 Credit nodes in planner math.',
 			items: [
 				'Loadout Builder encodes weapon path per scenario.',
 				'Farm vs leaderboard changes shotgun/rifle urgency.',
@@ -580,7 +580,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Where to redeem codes in-game',
-			body: 'Survive Zombie Arena codes redeem through the in-game Shop menu — not a separate website or Discord bot. Launch the Roblox experience, complete the tutorial if the Codes panel is locked, open Shop on the right side of the screen, scroll to the Redeem Codes input field, paste the code exactly, and press Redeem. Read the success or error message before closing the panel. Codes are typically case-sensitive — try exact capitalization first. Our /codes/ page tracks active and disputed codes with sources; copy from there to reduce typos. The only high-confidence active code in our ledger is Zombies for 2,500 Credits, last public-source reviewed 2026-05-20. GALACTIC is listed as disputed — media guides claim rewards but official Discord #codes has no post and community trackers report 0% success.',
+			body: 'Survive Zombie Arena codes redeem through the in-game Shop menu — not a separate website or Discord bot. Launch the Roblox experience, complete the tutorial if the Codes panel is locked, open Shop on the right side of the screen, scroll to the Redeem Codes input field, paste the code exactly, and press Redeem. Read the success or error message before closing the panel. Codes are typically case-sensitive — try exact capitalization first. Our /codes/ page tracks active and disputed codes with sources; copy from there to reduce typos. The only high-confidence active code in our ledger is Zombies for 2,500 Credits, last publicly reviewed 2026-05-20. GALACTIC is listed as disputed — media guides claim rewards but official Discord #codes has no post and community trackers report 0% success.',
 			items: [
 				'Path: Shop → scroll → Redeem Codes → paste → Redeem.',
 				'Complete tutorial first if Codes is locked.',
@@ -660,7 +660,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'What leaderboard players optimize',
-			body: 'Leaderboard competition in Survive Zombie Arena centers on highest wave survived on the current arena — Rooftop Map since April 2026. Points come from lasting longer than other squads, not from stylish loadouts. Endgame players invest in Necromancer (250,000 Credits) for Soul Harvester minion scaling and Death Nova burst clears in stairwell funnels. Tactician (75,000) plus Medic (10,000) anchors provide structure for squad records. Marksman (15,000) pierce remains relevant until wave 50-plus when elite density overwhelms gun-only DPS. Use Loadout Builder leaderboard scenario at /tools/loadout-builder/ and Credit Planner push_necromancer goal to track investment. We do not recommend scripts or exploit tools for leaderboard pushes — legitimate kit play survives patches.',
+			body: 'Leaderboard competition in Survive Zombie Arena centers on highest wave survived on the current arena — Rooftop Map since April 2026. Points come from lasting longer than other squads, not from stylish loadouts. Endgame players invest in Necromancer (250,000 Credits) for Soul Harvester minion scaling and Death Nova burst clears in stairwell funnels. Tactician (75,000) plus Medic (10,000) anchors provide structure for squad records. Marksman (15,000) pierce remains relevant until wave 50-plus when elite density overwhelms gun-only DPS. Use Loadout Builder leaderboard scenario at /tools/loadout-builder/ and the Credit Planner Necromancer goal to track investment. We do not recommend scripts or exploit tools for leaderboard pushes — legitimate kit play survives patches.',
 			items: [
 				'Metric: highest wave on Rooftop Map.',
 				'Necromancer 250k — S-tier leaderboard scaler.',
@@ -750,7 +750,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Why Marksman is the recommended first unlock',
-			body: 'Marksman costs 15,000 Credits — 5,000 more than Medic (10,000) but the best first unlock for solo DPS and Credits farming per our tier list. Abilities: Frag Grenade for pack burst, Deadeye for bullet pierce scaling with rifle kill volume, and Sonar Ping for zombie detection before elites reach your lane. Rooftop Map stairwells turn pierce into multi-kills — line zombies and shoot through the stack. Unlock advice across public guides: redeem Zombies (2,500 Credits), farm with Survivor until 15k, buy Marksman, then run handgun → shotgun (~150) → rifle (~750) every session. Credit Planner goal unlock_first_class recommends Marksman for solo and farm scenarios. Loadout Builder defaults to Marksman for good reason.',
+			body: 'Marksman costs 15,000 Credits — 5,000 more than Medic (10,000) but the best first unlock for solo DPS and Credits farming per our tier list. Abilities: Frag Grenade for pack burst, Deadeye for bullet pierce scaling with rifle kill volume, and Sonar Ping for zombie detection before elites reach your lane. Rooftop Map stairwells turn pierce into multi-kills — line zombies and shoot through the stack. Unlock advice across public guides: redeem Zombies (2,500 Credits), farm with Survivor until 15k, buy Marksman, then run handgun → shotgun (~150) → rifle (~750) every session. Credit Planner recommends Marksman for solo and farm scenarios. Loadout Builder defaults to Marksman for good reason.',
 			items: [
 				'15,000 Credits — best solo and farm first unlock.',
 				'Deadeye + rifle = core power spike.',
@@ -951,11 +951,11 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'What Void Shards are',
-			body: 'Void Shards are the reported primary event currency for the Galactic Event in Survive Zombie Arena — used at the lobby Galactic Crate station to open crates with cosmic weapons. Our events.json tracks them as media_reported, not official patch-text verified. Shards drop from Galactic Zombies — purple zombies with glowing orbs above their heads per third-party guides. They are separate from standard in-run Credits used for handgun → shotgun → rifle upgrades and separate from account Credits that unlock Medic (10k), Marksman (15k), Tactician (75k), and Necromancer (250k). Community poll May 2026 favored dedicated event currency over default Credits for crates (4,411 vs 1,177 votes) — poll signals intent, not shipped rules. See /events/galactic/ and galactic-crate guide for related systems.',
+			body: 'Void Shards are the reported primary event currency for the Galactic Event in Survive Zombie Arena — used at the lobby Galactic Crate station to open crates with cosmic weapons. We treat them as media-reported, not official patch-text verified. Shards drop from Galactic Zombies — purple zombies with glowing orbs above their heads per third-party guides. They are separate from standard in-run Credits used for handgun → shotgun → rifle upgrades and separate from account Credits that unlock Medic (10k), Marksman (15k), Tactician (75k), and Necromancer (250k). Community poll May 2026 favored dedicated event currency over default Credits for crates (4,411 vs 1,177 votes) — poll signals intent, not shipped rules. See /events/galactic/ and galactic-crate guide for related systems.',
 			items: [
 				'Event currency — not standard run Credits.',
 				'Drop from Galactic Zombies (purple, glowing orb).',
-				'Status: media_reported — verify in-game.',
+				'Status: media-reported — verify in-game.',
 				'Poll favored event currency — not official economy yet.',
 			],
 		},
@@ -991,7 +991,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Efficiency tips and honesty gaps',
-			body: 'Friend squads with Tactician (75k) barricade hold lanes longer for more zombie kills per session — more rolls at Galactic spawn rate. Track shards per session manually until official rates publish. Our weapons.json lists galactic previews as F2P event weapons — Cosmic Pistol dev sneak-peek May 2026. Data gaps: exact spawn rates, auto-collect rules, and post-event shard use need verification. Cross-link /tier-list/ for best clear classes and /tools/loadout-builder/ for event farm loadouts.',
+			body: 'Friend squads with Tactician (75k) barricade hold lanes longer for more zombie kills per session — more rolls at Galactic spawn rate. Track shards per session manually until official rates publish. Public weapon notes list galactic previews as F2P event weapons — Cosmic Pistol dev sneak-peek May 2026. Data gaps: exact spawn rates, auto-collect rules, and post-event shard use need verification. Cross-link /tier-list/ for best clear classes and /tools/loadout-builder/ for event farm loadouts.',
 			items: [
 				'Tactician squads extend kills per session.',
 				'Track shards/session — no official rate published.',
@@ -1041,11 +1041,11 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'What Galactic Crates contain',
-			body: 'Galactic Crates are lobby-station loot boxes tied to the Galactic Event — reported location: Galactic Crate station in the lobby. Media guides list exclusives: Cosmic Pistol (Galactic Pistol alias), Quasar, Pulsar, Interstellar, and Void Scythe — all media_reported, not confirmed in official Discord patch text. Dev sneak-peek May 17, 2026 confirmed new galactic guns as F2P weapons — names and stats still undisclosed. Crates cost at least 50 Void Shards per open according to third-party guides. Standard weapon path handgun → shotgun → rifle remains core progression — galactic guns are side event goals, not replacements for Marksman (15k) unlock savings.',
+			body: 'Galactic Crates are lobby-station loot boxes tied to the Galactic Event — reported location: Galactic Crate station in the lobby. Media guides list exclusives: Cosmic Pistol (Galactic Pistol alias), Quasar, Pulsar, Interstellar, and Void Scythe — all media-reported, not confirmed in official Discord patch text. Dev sneak-peek May 17, 2026 confirmed new galactic guns as F2P weapons — names and stats still undisclosed. Crates cost at least 50 Void Shards per open according to third-party guides. Standard weapon path handgun → shotgun → rifle remains core progression — galactic guns are side event goals, not replacements for Marksman (15k) unlock savings.',
 			items: [
 				'Lobby Galactic Crate station — reported location.',
 				'Weapons: Cosmic Pistol, Quasar, Pulsar, Interstellar, Void Scythe.',
-				'All weapon names media_reported — verify live.',
+				'All weapon names media-reported — verify live.',
 				'50 Void Shards per crate — reported cost.',
 			],
 		},
@@ -1091,7 +1091,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Documenting your crate pulls honestly',
-			body: 'When opening Galactic Crates, record weapon name and session date — we do not publish fake odds. If pull matches media_reported list (Quasar, Pulsar, etc.), note whether stats feel stronger than rifle (~750) tier in Rooftop testing. Share findings via codes page feedback or community Discord — not unverified wiki edits. F2P dev previews promise galactic guns remain earnable without Robux; crate Robux pricing if any must be read live in shop.',
+			body: 'When opening Galactic Crates, record weapon name and session date — we do not publish fake odds. If a pull matches the media-reported list (Quasar, Pulsar, etc.), note whether stats feel stronger than rifle (~750) tier in Rooftop testing. Share findings via codes page feedback or community Discord — not unverified wiki edits. F2P dev previews promise galactic guns remain earnable without Robux; crate Robux pricing if any must be read live in shop.',
 			items: [
 				'Log each pull — weapon name + date.',
 				'Compare galactic gun feel vs rifle tier.',
@@ -1123,7 +1123,7 @@ export const guides: GuidePage[] = [
 		faq: [
 		{ question: 'Where is the Galactic Crate?', answer: 'Lobby Galactic Crate station per third-party guides — confirm in-game when event is live.' },
 		{ question: 'How much do Galactic Crates cost?', answer: 'Reported 50 Void Shards minimum per open — needs in-game verification.' },
-		{ question: 'What weapons are in Galactic Crates?', answer: 'Reported: Cosmic Pistol, Quasar, Pulsar, Interstellar, Void Scythe — media_reported, not officially confirmed.' },
+		{ question: 'What weapons are in Galactic Crates?', answer: 'Reported: Cosmic Pistol, Quasar, Pulsar, Interstellar, Void Scythe — media-reported, not officially confirmed.' },
 		{ question: 'Should I open crates before unlocking Marksman?', answer: 'No — unlock Marksman (15k) and core rifle path first. Crates are optional event side content.' },
 		],
 		toolLinks: [
@@ -1231,7 +1231,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Ninja kit and cost',
-			body: 'Ninja costs 25,000 Credits — Rare control role. Abilities: Cloak for short invisibility, Blade Fury melee burst, Shuriken ranged secondary. Tier list: C-tier solo, team, and farm — D-tier beginner. Pro Game Guides rates Ninja D-tier; close-range kit falls off mid-to-late Rooftop waves when elite density rises. Ninja sits awkwardly between Marksman (15,000) and Engineer (20,000) in price but underperforms Marksman for 10,000 fewer Credits on DPS and farm metrics. Unlock advice in our classes.json: skip as first unlock — Marksman delivers better solo and team value.',
+			body: 'Ninja costs 25,000 Credits — Rare control role. Abilities: Cloak for short invisibility, Blade Fury melee burst, Shuriken ranged secondary. Tier list: C-tier solo, team, and farm — D-tier beginner. Pro Game Guides rates Ninja D-tier; close-range kit falls off mid-to-late Rooftop waves when elite density rises. Ninja sits awkwardly between Marksman (15,000) and Engineer (20,000) in price but underperforms Marksman for 10,000 fewer Credits on DPS and farm metrics. Unlock advice: skip as first unlock — Marksman delivers better solo and team value.',
 			items: [
 				'25,000 Credits — Rare control class.',
 				'Cloak + Blade Fury + Shuriken — melee-focused.',
@@ -1251,7 +1251,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Why most players should skip Ninja',
-			body: 'Marksman (15k) costs less and earns A-tier solo, team, and farm with Deadeye rifle pierce. Engineer (20k) offers more team structure for 5k less if turrets appeal. Saving 25k toward Tactician (75k) — only 50k more — unlocks A-tier structural anchor instead of C-tier melee. Ninja cannot farm Credits efficiently — tier Farm C. Late Rooftop open-field density counters Cloak — elites surround during cooldown. Credit Planner never recommends Ninja for farm_credits or push_necromancer goals. No script melee bots — legitimate play exposes Ninja weaknesses faster.',
+			body: 'Marksman (15k) costs less and earns A-tier solo, team, and farm with Deadeye rifle pierce. Engineer (20k) offers more team structure for 5k less if turrets appeal. Saving 25k toward Tactician (75k) — only 50k more — unlocks A-tier structural anchor instead of C-tier melee. Ninja cannot farm Credits efficiently — tier Farm C. Late Rooftop open-field density counters Cloak — elites surround during cooldown. Credit Planner does not recommend Ninja for credit farming or Necromancer savings goals. No script melee bots — legitimate play exposes Ninja weaknesses faster.',
 			items: [
 				'Marksman 15k — strictly better value for 10k less.',
 				'Tactician 75k — save 50k more instead of Ninja.',
@@ -1332,7 +1332,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Bastion overview and 200,000 Credit cost',
-			body: 'Bastion costs 200,000 Credits — Legendary defense role, team A-tier, solo B-tier, farm C-tier in our tier list. Abilities: Bunker squad-wide invincibility bubble with HP regen and damage boost, Laser Turret auto-tracking red lasers at range, and Drone auto-shooting damage soakers stackable into a swarm. Media tier is contested — Pro Game Guides S-tier vs Destructoid A-tier — we label media_reported. Dev-previewed drone gear May 2026. Bastion competes with Necromancer (250,000) savings — choose Bastion for 25-player lobby survival, Necromancer for solo leaderboard scaling. Credit Planner warns against buying Bastion when goal is push_necromancer.',
+			body: 'Bastion costs 200,000 Credits — Legendary defense role, team A-tier, solo B-tier, farm C-tier in our tier list. Abilities: Bunker squad-wide invincibility bubble with HP regen and damage boost, Laser Turret auto-tracking red lasers at range, and Drone auto-shooting damage soakers stackable into a swarm. Media tier is contested — Pro Game Guides S-tier vs Destructoid A-tier — we mark it as media-reported. Dev-previewed drone gear May 2026. Bastion competes with Necromancer (250,000) savings — choose Bastion for 25-player lobby survival, Necromancer for solo leaderboard scaling. Credit Planner warns against buying Bastion when you are saving for Necromancer.',
 			items: [
 				'200,000 Credits — Legendary defense.',
 				'Bunker + Laser Turret + Drone kit.',
@@ -1372,7 +1372,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Unlock path and honesty',
-			body: 'Typical path: Marksman (15k) → Tactician (75k) co-op learn → save 200k Bastion OR push 250k Necromancer — not both mid-progression. Redeem Zombies (2,500 Credits). Disputed GALACTIC does not fund 200k. No scripts — Bunker timing requires active play. Cross-link /tier-list/ and /tools/credit-planner/ push_necromancer warnings at 150k+ balance.',
+			body: 'Typical path: Marksman (15k) → Tactician (75k) co-op learn → save 200k Bastion OR push 250k Necromancer — not both mid-progression. Redeem Zombies (2,500 Credits). Disputed GALACTIC does not fund 200k. No scripts — Bunker timing requires active play. Cross-link /tier-list/ and /tools/credit-planner/ warnings once your balance passes 150k.',
 			items: [
 				'Marksman → Tactician fundamentals first.',
 				'Choose Bastion OR Necromancer endgame.',
@@ -1392,7 +1392,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Bastion farm tier reality check',
-			body: 'Bastion farm tier C — do not buy 200k Bastion to farm Credits for Necromancer 250k. Use Marksman farm A-tier, then spend 200k on Bastion only when squad survival is the explicit goal. Bunker does not double Credits income — X2 gamepass does, disputed GALACTIC code does not. Credit Planner at 150k+ balance warns against Bastion impulse when push_necromancer is selected.',
+			body: 'Bastion farm tier C — do not buy 200k Bastion to farm Credits for Necromancer 250k. Use Marksman farm A-tier, then spend 200k on Bastion only when squad survival is the explicit goal. Bunker does not double Credits income — X2 gamepass does, disputed GALACTIC code does not. Credit Planner warns against impulse-buying Bastion when you are saving for Necromancer.',
 			items: [
 				'Farm tier C — not a farmer.',
 				'Marksman funds Bastion, not reverse.',
@@ -2042,12 +2042,12 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'What the Gumdrop Blaster is good at',
-			body: 'The Gumdrop Blaster is a high-burst explosive weapon line cited across community high-wave samples and a dedicated public wiki article (893 words public-source 2026-05-21). Strengths observed in live matches — not official patch-text stats: large splash radius, strong mid-wave crowd clear, and efficient cleanup of mixed weak and medium packs when zombies cluster. Weaknesses are equally important: elites and high-HP specials survive initial blasts in deep waves, damage drops when enemies spread across open Rooftop, and the weapon needs barricade or turret support to keep targets grouped. SZA Companion does not invent DPS numbers — treat Gumdrop as community-reported until you verify costs and stats in-game. Core F2P progression remains handgun → shotgun (~150) → rifle (~750) on /weapons/ before gambling on slot-four shop weapons.',
+			body: 'The Gumdrop Blaster is a high-burst explosive weapon line cited across community high-wave samples and a dedicated public wiki article. Strengths observed in live matches — not official patch-text stats: large splash radius, strong mid-wave crowd clear, and efficient cleanup of mixed weak and medium packs when zombies cluster. Weaknesses are equally important: elites and high-HP specials survive initial blasts in deep waves, damage drops when enemies spread across open Rooftop, and the weapon needs barricade or turret support to keep targets grouped. SZA Companion does not invent DPS numbers — treat Gumdrop as community-reported until you verify costs and stats in-game. Core F2P progression remains handgun → shotgun (~150) → rifle (~750) on /weapons/ before gambling on slot-four shop weapons.',
 			items: [
 				'Large splash — value in clustered stairwell fights.',
 				'Mid-wave crowd clear — strongest phase.',
 				'Weak vs spread elites past ~wave 80 in wiki samples.',
-				'Stats needs_check — confirm in-game before budgeting.',
+				'Stats need checking — confirm in-game before budgeting.',
 			],
 		},
 		{
@@ -2062,7 +2062,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'When to buy Gumdrop during a run',
-			body: 'Economy discipline from public-source upgrade path: stabilize early waves with handgun or shotgun, transition to Gumdrop when Credits allow without collapsing defenses. If buying Gumdrop means skipping barricade repairs or turret setup, delay one wave and stabilize first — wiki FAQ answers match our weapons honesty policy. Do not overinvest in side-grade weapons if core shotgun and rifle nodes are still missing. Keep a reserve for emergency repairs in high-density waves. Credit Planner assumes verified progression nodes — slot-four exotic weapons including Gumdrop remain needs_check in weapons.json until in-game cost receipts appear.',
+			body: 'Economy discipline from public upgrade-path research: stabilize early waves with handgun or shotgun, transition to Gumdrop when Credits allow without collapsing defenses. If buying Gumdrop means skipping barricade repairs or turret setup, delay one wave and stabilize first — wiki FAQ answers match our weapons honesty policy. Do not overinvest in side-grade weapons if core shotgun and rifle nodes are still missing. Keep a reserve for emergency repairs in high-density waves. Credit Planner assumes verified progression nodes — slot-four exotic weapons including Gumdrop remain needs-check until in-game cost receipts appear.',
 			items: [
 				'Buy after shotgun — not before first elite wave.',
 				'Delay if structure spend would collapse.',
@@ -2122,7 +2122,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Nightmare Mode is confirmed — mechanics are not',
-			body: 'Nightmare Mode shipped in the May 8, 2026 Mini Content Update per official Discord #patch-notes — public-source from survivezombiearena.com/update-log (2,553 words) and recorded in our updates.json and waves.json. Santito (Nectarforge Studios) announced it alongside World Ender, Grenade Launcher, Tommy Gun, Flamethrower buff, and Necromancer minion buff. What is not published externally: wave scaling formulas, enemy HP/damage multipliers, reward payouts vs Normal Mode, queue location UI, and win conditions. SZA Companion marks Nightmare as confirmed_exists_mechanics_unverified — we do not invent difficulty numbers. Check /updates/ after each patch and official Discord #patch-notes when mechanics are documented.',
+			body: 'Nightmare Mode shipped in the May 8, 2026 Mini Content Update per official Discord #patch-notes and the public update log. Santito (Nectarforge Studios) announced it alongside World Ender, Grenade Launcher, Tommy Gun, Flamethrower buff, and Necromancer minion buff. What is not published externally: wave scaling formulas, enemy HP/damage multipliers, reward payouts vs Normal Mode, queue location UI, and win conditions. SZA Companion treats Nightmare mechanics as confirmed but still unverified in detail — we do not invent difficulty numbers. Check /updates/ after each patch and official Discord #patch-notes when mechanics are documented.',
 			items: [
 				'Live since May 8, 2026 — official #patch-notes.',
 				'Shipped with World Ender + gun batch same patch.',
@@ -2162,7 +2162,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Research checklist for players',
-			body: 'First session: read mode description in lobby, note HP feel wave 1 vs Normal, record Credits earned wave 10, test whether elites spawn earlier. Post findings to official Discord constructively — we update /waves/ and this guide when #patch-notes confirm numbers. Roblox game page description (public-source open source) lists “500+ zombies, climb leaderboard” but does not mention Nightmare — first-party patch notes remain authoritative. Do not trust third-party wiki Nightmare pages that 404’d during our source (survivezombiearena.wiki path returned HTTP 404 on 2026-05-21).',
+			body: 'First session: read mode description in lobby, note HP feel wave 1 vs Normal, record Credits earned wave 10, test whether elites spawn earlier. Post findings to official Discord constructively — we update /waves/ and this guide when #patch-notes confirm numbers. Roblox game page description lists “500+ zombies, climb leaderboard” but does not mention Nightmare — first-party patch notes remain authoritative. Do not trust third-party wiki Nightmare pages that were unavailable during our May 21 source check.',
 			items: [
 				'Compare wave 1 HP vs Normal — record notes.',
 				'Track Credits wave 10 — economy unknown.',
@@ -2182,7 +2182,7 @@ export const guides: GuidePage[] = [
 		},
 		],
 		faq: [
-		{ question: 'When did Nightmare Mode release?', answer: 'May 8, 2026 Mini Content Update — confirmed in official Discord #patch-notes public-source on our update log.' },
+		{ question: 'When did Nightmare Mode release?', answer: 'May 8, 2026 Mini Content Update — confirmed in official Discord #patch-notes and the public update log.' },
 		{ question: 'Is Nightmare Mode harder than Normal?', answer: 'Almost certainly yes, but exact scaling is not published externally. Confirm feel in-game — we do not invent multipliers.' },
 		{ question: 'Does Nightmare give more Credits?', answer: 'Unverified. Hardcore mode changed Credits per kill — Nightmare economy is unknown until dev documentation.' },
 		{ question: 'Best class for Nightmare Mode?', answer: 'Until verified: Tactician anchor + Medic sustain + Marksman DPS — same Rooftop choke meta as Normal high waves.' },
@@ -2202,7 +2202,7 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'Two different “unlocks” — weapons vs classes',
-			body: 'Survive Zombie Arena uses one Credit currency for two separate progression layers public-source from beginner-guide and weapons pages. In-run weapon upgrades — handgun (free) → shotgun (~150 Credits) → rifle (~750 Credits) — reset each arena session and fund your immediate DPS. Account class unlocks — Medic (10k), Marksman (15k), Tactician (75k), Necromancer (250k) — are permanent lobby purchases before the run starts. The beginner mistake public guides flag most often: spending Credits on a class unlock before buying shotgun or rifle in your current session. Weapon upgrades always come first because the same Credit pool feeds both. Roblox’s official game description (open-source source) promises “unlock powerful guns” and “massive waves” — the verified path is in-run shop nodes, not Robux.',
+			body: 'Survive Zombie Arena uses one Credit currency for two separate progression layers. In-run weapon upgrades — handgun (free) → shotgun (~150 Credits) → rifle (~750 Credits) — reset each arena session and fund your immediate DPS. Account class unlocks — Medic (10k), Marksman (15k), Tactician (75k), Necromancer (250k) — are permanent lobby purchases before the run starts. The beginner mistake public guides flag most often: spending Credits on a class unlock before buying shotgun or rifle in your current session. Weapon upgrades always come first because the same Credit pool feeds both. Roblox’s official game description promises “unlock powerful guns” and “massive waves” — the verified path is in-run shop nodes, not Robux.',
 			items: [
 				'In-run weapons reset — class unlocks are permanent.',
 				'Same Credit pool — weapons before class shop.',
@@ -2212,7 +2212,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Verified three-stage weapon path',
-			body: 'Handgun is the free starter — bank early-wave Credits without over-investing. Shotgun at roughly 150 Credits handles pack density before the first elite on Rooftop stairwells; buy it around wave 5–8 when public beginner guides recommend. Rifle at roughly 750 Credits provides range and sustained DPS for mid-to-late waves — mandatory before pushing past wave 30 consistently. Marksman Deadeye pierce scales with rifle kill volume; Tactician anchors still need personal rifle for elite cleanup when Vanguard Turret is busy. These costs are verified across Deltia-style routes and our public-source public guide beginner-guide (1,655 words). Slot-four shop weapons (Minigun, Arctic Striker names) remain needs_check — do not skip shotgun/rifle chasing unverified exotics.',
+			body: 'Handgun is the free starter — bank early-wave Credits without over-investing. Shotgun at roughly 150 Credits handles pack density before the first elite on Rooftop stairwells; buy it around wave 5–8 when public beginner guides recommend. Rifle at roughly 750 Credits provides range and sustained DPS for mid-to-late waves — mandatory before pushing past wave 30 consistently. Marksman Deadeye pierce scales with rifle kill volume; Tactician anchors still need personal rifle for elite cleanup when Vanguard Turret is busy. These costs are verified across Deltia-style routes and our beginner guide. Slot-four shop weapons (Minigun, Arctic Striker names) remain needs-check — do not skip shotgun/rifle chasing unverified exotics.',
 			items: [
 				'Handgun — free, bank Credits waves 1–5.',
 				'Shotgun ~150 — before first elite contact.',
@@ -2232,7 +2232,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Class unlock order vs weapon priority',
-			body: 'Crawl-verified milestones: Run 1–2 on Survivor/Medic — learn Rooftop, bank Credits. Run 3–4 save toward Marksman (15k). After Marksman unlock, every session runs handgun → shotgun → rifle before browsing account shop mid-run. Tactician (75k) and Demolitionist (50k) recommend shotgun while anchoring chokes — rifle for elite cleanup. Necromancer (250k) uses the same rifle path until minion DPS overtakes gun DPS late. Credit Planner at /tools/credit-planner/ separates account goals from in-run weapon assumptions — use goal unlock_first_class for Marksman timing.',
+			body: 'Suggested milestones: Run 1–2 on Survivor/Medic — learn Rooftop, bank Credits. Run 3–4 save toward Marksman (15k). After Marksman unlock, every session runs handgun → shotgun → rifle before browsing account shop mid-run. Tactician (75k) and Demolitionist (50k) recommend shotgun while anchoring chokes — rifle for elite cleanup. Necromancer (250k) uses the same rifle path until minion DPS overtakes gun DPS late. Credit Planner at /tools/credit-planner/ separates account goals from in-run weapon assumptions and helps time the Marksman unlock.',
 			items: [
 				'First runs — learn map, no class rush.',
 				'Marksman 15k — first account unlock target.',
@@ -2252,7 +2252,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Common unlock mistakes',
-			body: 'Burning starting Credits on class unlock before any weapon upgrade — top beginner error from public-source FAQ. Pushing Auto Skip before the team has shotgun tier. Gambling slot-four shop weapons with unverified costs before rifle. Trusting disputed codes like GALACTIC for Credit boosts — use active Zombies (2,500 Credits) on /codes/ only. Using third-party “unlock all guns” scripts — violates Roblox Terms of Use and risks account action. Legitimate unlock path completes all content F2P via Marksman farm.',
+			body: 'Burning starting Credits on class unlock before any weapon upgrade — top beginner error from public FAQs. Pushing Auto Skip before the team has shotgun tier. Gambling slot-four shop weapons with unverified costs before rifle. Trusting disputed codes like GALACTIC for Credit boosts — use active Zombies (2,500 Credits) on /codes/ only. Using third-party “unlock all guns” scripts — violates Roblox Terms of Use and risks account action. Legitimate unlock path completes all content F2P via Marksman farm.',
 			items: [
 				'Class before shotgun — avoid.',
 				'Early Auto Skip before gear — avoid.',
@@ -2282,17 +2282,17 @@ export const guides: GuidePage[] = [
 		sections: [
 		{
 			heading: 'World Ender is live — stats are not public',
-			body: 'World Ender is the first mythic-rarity F2P gun in Survive Zombie Arena, confirmed in official Discord #patch-notes May 8, 2026 Mini Content Update — public-source from update-log (2,553 words) and weapons.json. Santito previewed gameplay in #sneak-peeks May 6–7 with caption “new upcoming world ender F2P gun” before launch. Shipped alongside Grenade Launcher, Tommy Gun, Nightmare Mode, and Necromancer buff same patch. SZA Companion does not invent damage, fire rate, magazine, or Credit cost — all marked needs_check until in-game verification. World Ender excitement should not delay Marksman (15k) account unlock or verified shotgun (~150) / rifle (~750) in-run nodes.',
+			body: 'World Ender is the first mythic-rarity F2P gun in Survive Zombie Arena, confirmed in official Discord #patch-notes May 8, 2026 Mini Content Update and the public update log. Santito previewed gameplay in #sneak-peeks May 6–7 with caption “new upcoming world ender F2P gun” before launch. Shipped alongside Grenade Launcher, Tommy Gun, Nightmare Mode, and Necromancer buff same patch. SZA Companion does not invent damage, fire rate, magazine, or Credit cost — all marked needs-check until in-game verification. World Ender excitement should not delay Marksman (15k) account unlock or verified shotgun (~150) / rifle (~750) in-run nodes.',
 			items: [
 				'Mythic F2P — first of rarity tier.',
 				'Live May 8, 2026 — official #patch-notes.',
 				'Dev sneak-peek May 6–7 before launch.',
-				'Stats/cost needs_check — verify in-game.',
+				'Stats/cost need checking — verify in-game.',
 			],
 		},
 		{
 			heading: 'How World Ender fits the progression path',
-			body: 'Verified F2P weapon backbone remains handgun → shotgun → rifle per public-source beginner and weapons pages. World Ender is a slot-four-style exotic — exciting for late-wave tests but secondary to core tiers for new players. Best-weapons guide advice: do not skip shotgun because World Ender exists; wave 10 handgun-only wipes waste sessions. Buy World Ender in-run only when rifle is stable and structure is funded if you run Tactician — same economy rule as Gumdrop Blaster. Credit Planner weapon math still assumes 150/750 nodes until World Ender cost is receipt-verified.',
+			body: 'Verified F2P weapon backbone remains handgun → shotgun → rifle per public beginner and weapons pages. World Ender is a slot-four-style exotic — exciting for late-wave tests but secondary to core tiers for new players. Best-weapons guide advice: do not skip shotgun because World Ender exists; wave 10 handgun-only wipes waste sessions. Buy World Ender in-run only when rifle is stable and structure is funded if you run Tactician — same economy rule as Gumdrop Blaster. Credit Planner weapon math still assumes 150/750 nodes until World Ender cost is receipt-verified.',
 			items: [
 				'Core path unchanged — 0/150/750 first.',
 				'World Ender = exotic slot — not starter gun.',
@@ -2332,7 +2332,7 @@ export const guides: GuidePage[] = [
 		},
 		{
 			heading: 'Honest data gaps we track',
-			body: 'Per weapons.json honesty policy: exact damage, fire rate, magazine size, reload speed, and in-run Credit cost are in-game only. We will update this guide when #patch-notes or verified community receipts publish numbers. Public wiki “best gun” pages (999 words public-source) discuss tier lists without official stat tables — treat as opinion. Do not trust third-party sites asking for Roblox passwords to “unlock World Ender.” Redeem only Zombies (2,500 Credits) on /codes/ for legitimate free Credits toward class unlocks.',
+			body: 'Exact damage, fire rate, magazine size, reload speed, and in-run Credit cost are in-game only unless an official note publishes them. We will update this guide when #patch-notes or verified community receipts publish numbers. Public wiki “best gun” pages discuss tier lists without official stat tables — treat them as opinion. Do not trust third-party sites asking for Roblox passwords to “unlock World Ender.” Redeem only Zombies (2,500 Credits) on /codes/ for legitimate free Credits toward class unlocks.',
 			items: [
 				'No published DPS/mag/reload/cost yet.',
 				'Updates when #patch-notes add numbers.',

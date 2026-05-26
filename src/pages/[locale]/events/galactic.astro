@@ -21,6 +21,16 @@ const pageUrl = new URL(localePath(locale, '/events/galactic/'), Astro.site).toS
 const homeUrl = new URL(localePath(locale, '/'), Astro.site).toString();
 const codesGalacticUrl = `${localePath(locale, '/codes/')}#galactic`;
 const endDate = galactic.endDate ?? '2026-06-16';
+const statusLabel = (value: string) =>
+	({
+		media_reported_live: 'media-reported live',
+		media_reported: 'media-reported',
+		poll_only: 'poll only',
+	}[value] ?? value.replace(/_/g, ' '));
+const spawnRateLabel =
+	galactic.voidShards.spawnRate.minPercent === galactic.voidShards.spawnRate.maxPercent
+		? `${galactic.voidShards.spawnRate.minPercent}%`
+		: `${galactic.voidShards.spawnRate.minPercent}–${galactic.voidShards.spawnRate.maxPercent}%`;
 
 const breadcrumbHome =
 	locale === 'es' ? 'Inicio' : locale === 'pt-br' ? 'Início' : '首页';
@@ -83,7 +93,7 @@ const schema = [
 				</li>
 				<li>
 					<strong>{locale === 'zh-cn' ? '刷新率：' : locale === 'pt-br' ? 'Taxa de spawn:' : 'Tasa de aparición:'}</strong>{' '}
-					{galactic.voidShards.spawnRate.minPercent}–{galactic.voidShards.spawnRate.maxPercent}% ({galactic.voidShards.spawnRate.status})
+					{spawnRateLabel} ({statusLabel(galactic.voidShards.spawnRate.status)})
 				</li>
 				<li>
 					<strong>{locale === 'zh-cn' ? '拾取：' : locale === 'pt-br' ? 'Coleta:' : 'Recogida:'}</strong>{' '}
@@ -102,7 +112,7 @@ const schema = [
 			</p>
 			<p>
 				<strong>{locale === 'zh-cn' ? '据报武器：' : locale === 'pt-br' ? 'Armas reportadas:' : 'Armas reportadas:'}</strong>{' '}
-				{galactic.galacticCrates.reportedWeapons.join(', ')} ({galactic.galacticCrates.weaponsStatus})
+				{galactic.galacticCrates.reportedWeapons.join(', ')} ({statusLabel(galactic.galacticCrates.weaponsStatus)})
 			</p>
 			<p>
 				{locale === 'zh-cn' ? '经济投票' : locale === 'pt-br' ? 'Enquete econômica' : 'Encuesta económica'} (
@@ -110,7 +120,7 @@ const schema = [
 				{locale === 'zh-cn' ? '活动货币' : locale === 'pt-br' ? 'moeda do evento' : 'moneda del evento'}{' '}
 				{galactic.galacticCrates.economyPoll.eventCurrencyVotes} vs{' '}
 				{locale === 'zh-cn' ? '信用点' : locale === 'pt-br' ? 'Créditos' : 'Créditos'}{' '}
-				{galactic.galacticCrates.economyPoll.creditsVotes} — {galactic.galacticCrates.economyPoll.status}
+				{galactic.galacticCrates.economyPoll.creditsVotes} — {statusLabel(galactic.galacticCrates.economyPoll.status)}
 			</p>
 
 			<h2>

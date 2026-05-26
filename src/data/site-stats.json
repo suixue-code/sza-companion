@@ -1,16 +1,16 @@
 {
-	"lastChecked": "2026-05-20",
-	"source": "Roblox public games API + survivezombiearena.com homepage snapshot (2026-05-18 audit)",
+	"lastChecked": "2026-05-26",
+	"source": "Roblox public games API via official Roblox page context",
 	"sourceUrl": "https://games.roblox.com/v1/games?universeIds=9348272796",
-	"visits": 170807365,
-	"favorites": 125636,
+	"visits": 267801365,
+	"favorites": 196573,
 	"avgSessionMinutes": 13.13,
 	"maxPlayers": 25,
-	"peakConcurrentUsers24h": 125040,
-	"livePlayersAtCheck": 125040,
+	"peakConcurrentUsers24h": 95091,
+	"livePlayersAtCheck": 95091,
 	"discordMembers": 24818,
 	"discordOnlineAtCheck": 6017,
 	"robloxGroupMembers": 93739,
-	"gameLastUpdated": "2026-05-17T12:13:47Z",
-	"notes": "Visits/favorites/CCU from public source 2026-05-18 Roblox API pull. maxPlayers is the per-server cap (25), not CCU. Re-fetch API before publishing stat callouts as 'live'."
+	"gameLastUpdated": "2026-05-26T01:51:14.1030286Z",
+	"notes": "Visits, favorites, live playing count, maxPlayers, and updated timestamp from Roblox public games API fetched in the official Roblox page context on 2026-05-26. Discord, group, and avg session values were not refreshed in this pass. peakConcurrentUsers24h mirrors the live playing snapshot because Roblox games API does not return a 24h peak."
 }

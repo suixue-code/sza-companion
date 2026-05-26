@@ -116,8 +116,19 @@ python ~/.cursor/skills/github-cloudflare-pages-deploy/scripts/verify_deploy.py 
 
 ## 常见问题
 
-**Actions 失败：缺少 Secret**  
-补全 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`。
+**Actions：build 成功，Deploy 步骤约 3 秒失败（`9109` / `10000`）**  
+Secret **名字**可能已有，但 **token 值无效**（占位符、过期、从别的仓库误复制 workflow 但未单独配 Secret）。GitHub Secrets **按仓库独立**，Slime 能部署不代表本仓库 token 有效。  
+修复：只对 `sza-companion` 写入有效 `CLOUDFLARE_API_TOKEN`（Pages Edit）和 `CLOUDFLARE_ACCOUNT_ID`，然后 Re-run workflow。可跑：
+
+```bash
+python ~/.cursor/skills/github-cloudflare-pages-deploy/scripts/ensure_github_actions_deploy.py \
+  --github-owner suixue-code --github-repo sza-companion \
+  --cloudflare-account-id 057efc99ed7cb4797a3f379e13600206 \
+  --cloudflare-project-name sza-companion
+```
+
+**Actions 失败：Secret 完全缺失**  
+补全 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`（同上脚本或 Settings → Secrets）。
 
 **域名冲突 code 100117**  
 Worker 与 Pages 不能同时占同一自定义域；删掉 Worker 侧域名，只保留 Pages。

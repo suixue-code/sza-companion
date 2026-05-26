@@ -35,8 +35,8 @@
 	"dataStatus": [
 		{ "item": "Wave leaderboard exists as headline scoreboard", "status": "verified" },
 		{ "item": "25-player server cap enables full-team pushes", "status": "verified" },
-		{ "item": "Specific top-wave records and player names", "status": "needs_check" },
-		{ "item": "Whether leaderboard resets seasonally or is all-time", "status": "needs_check" }
+		{ "item": "Specific top-wave records and player names", "status": "needs check" },
+		{ "item": "Whether leaderboard resets seasonally or is all-time", "status": "needs check" }
 	],
 	"faq": [
 		{
@@ -45,7 +45,7 @@
 		},
 		{
 			"question": "What is the highest wave reached?",
-			"answer": "Specific record waves are not externally published — marked needs_check. Check in-game leaderboard or Discord."
+			"answer": "Specific record waves are not externally published — marked needs check. Check in-game leaderboard or Discord."
 		},
 		{
 			"question": "Is the leaderboard solo or team?",

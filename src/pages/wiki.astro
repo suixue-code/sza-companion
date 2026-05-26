@@ -4,6 +4,19 @@ import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
 import siteMeta from '../data/site-meta.json';
 import { collectionSchema, SITE_NAME } from '@lib/seo';
 
+const needRoutes = [
+	{ need: 'Working and disputed codes', href: '/codes/' },
+	{ need: 'Best class by role', href: '/tier-list/' },
+	{ need: 'Class costs and abilities', href: '/classes/' },
+	{ need: 'Weapon upgrade route', href: '/weapons/' },
+	{ need: 'First-session walkthrough', href: '/beginner-guide/' },
+	{ need: 'Credits planning', href: '/tools/credit-planner/' },
+	{ need: 'Team and solo loadouts', href: '/best-loadouts/' },
+	{ need: 'Wave survival and Auto Skip', href: '/waves/' },
+	{ need: 'Source ledger for citations', href: '/sources/' },
+	{ need: 'Official Discord and Roblox links', href: '/discord/' },
+];
+
 const hubLinks = [
 	{ label: 'All Guides (26)', href: '/guides/', copy: 'Deep-dive class, weapon, wave, and economy articles.' },
 	{ label: 'Beginner Guide', href: '/beginner-guide/', copy: 'First 5 runs, Credit milestones, Rooftop Map tips.' },
@@ -47,6 +60,31 @@ const schema = [
 				<strong>Start here</strong>
 				<p>Codes → beginner guide → Credit Planner → tier list.</p>
 			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow" style="margin-bottom: 28px;">
+			<h2>Pick by problem</h2>
+			<p>Route to one page — do not duplicate full guides here.</p>
+			<div class="table-wrap">
+				<table class="data-table">
+					<thead>
+						<tr>
+							<th>Need</th>
+							<th>Open</th>
+						</tr>
+					</thead>
+					<tbody>
+						{needRoutes.map((row) => (
+							<tr>
+								<td>{row.need}</td>
+								<td><a href={row.href}>{row.href}</a></td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</section>
 

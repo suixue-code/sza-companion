@@ -40,27 +40,47 @@
 	{
 		"id": "galactic",
 		"code": "GALACTIC",
-		"reward": "2,500 Credits (reported by some guides); event boost claimed by community sites — unverified",
-		"rewardAmount": 2500,
+		"reward": "Conflicting reports: 2x Void Shards for 24h on several trackers; 2,500 Credits on other media guides",
+		"rewardAmount": null,
 		"status": "disputed",
 		"firstSeen": "2026-05-19",
 		"addedDate": "2026-05-20",
-		"lastVerified": "2026-05-20",
-		"lastCheckedAt": "2026-05-20T12:00:00+00:00",
+		"lastVerified": "2026-05-26",
+		"lastCheckedAt": "2026-05-26T15:16:00+00:00",
 		"verificationMethod": "media_report",
 		"inGameVerified": false,
 		"confidence": "low",
-		"source": "Destructoid and Pro Game Guides listed GALACTIC as active around 2026-05-19; official Discord #codes has no GALACTIC post; RoCodes community reports 0% success.",
+		"source": "Public code guides conflict: GamesRadar/PCGamesN-style trackers report a Void Shards boost, while Beebom/Dexerto/PGG-style pages report Credits. Roblox official page text and virtual-events API did not mention GALACTIC in the May 26 check; Discord #codes could not be re-confirmed.",
 		"sources": [
+			{
+				"label": "GamesRadar (Void Shards reward report)",
+				"url": "https://www.gamesradar.com/games/roblox/survive-zombie-arena-codes/",
+				"checkedAt": "2026-05-26"
+			},
+			{
+				"label": "PCGamesN (Void Shards reward report)",
+				"url": "https://www.pcgamesn.com/roblox/survive-zombie-arena-codes",
+				"checkedAt": "2026-05-26"
+			},
+			{
+				"label": "Beebom (Credits reward report)",
+				"url": "https://beebom.com/survive-zombie-arena-codes/",
+				"checkedAt": "2026-05-26"
+			},
+			{
+				"label": "Dexerto (Credits reward report)",
+				"url": "https://www.dexerto.com/roblox/survive-zombie-arena-codes-3256121/",
+				"checkedAt": "2026-05-26"
+			},
 			{
 				"label": "Destructoid (codes list, May 2026)",
 				"url": "https://www.destructoid.com/",
-				"checkedAt": "2026-05-20"
+				"checkedAt": "2026-05-26"
 			},
 			{
 				"label": "Pro Game Guides (codes list, May 2026)",
 				"url": "https://progameguides.com/roblox/survive-zombie-arena-codes/",
-				"checkedAt": "2026-05-20"
+				"checkedAt": "2026-05-26"
 			},
 			{
 				"label": "RoCodes community feedback",
@@ -71,6 +91,11 @@
 				"label": "Official Discord #codes (no GALACTIC post)",
 				"url": "https://discord.com/invite/fPQDZ2Svtv",
 				"checkedAt": "2026-05-18"
+			},
+			{
+				"label": "Roblox official page/API check",
+				"url": "https://www.roblox.com/games/114204398207377/Survive-Zombie-Arena",
+				"checkedAt": "2026-05-26"
 			}
 		],
 		"communityFeedback": {
@@ -80,7 +105,7 @@
 			"source": "RoCodes",
 			"note": "0% community success rate reported as of 2026-05-20 capture; treat as disputed until in-game redeem succeeds."
 		},
-		"conflictNote": "Media guides mark Active; Discord #codes and high-confidence community trackers disagree. Do not assume rewards until you redeem in-game.",
-		"notes": "Added to our ledger 2026-05-20. Status intentionally marked disputed — not promoted as a working code."
+		"conflictNote": "Two conflicts exist: whether GALACTIC works at all, and what it gives if it works. Do not assume Credits or Void Shards until your in-game redeem succeeds.",
+		"notes": "Updated 2026-05-26 after public source conflict review. Status intentionally remains disputed — not promoted as a working code."
 	}
 ]

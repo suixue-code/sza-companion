@@ -1,5 +1,15 @@
 [
 	{
+		"id": "2026-05-26-api-update",
+		"date": "2026-05-26",
+		"type": "game_update",
+		"title": "Roblox API update — public page refreshed, no event listing",
+		"summary": "Roblox public games API reports the experience updated at 2026-05-26T01:51:14Z. Browser-visible Roblox page text did not mention Galactic, Atlantis, or codes, and the Roblox virtual-events endpoint returned an empty data array.",
+		"tags": ["roblox-api", "hotfix", "galactic"],
+		"status": "verified",
+		"source": "Roblox public games API via official Roblox page context"
+	},
+	{
 		"id": "2026-05-18-discord-audit",
 		"date": "2026-05-18",
 		"type": "site_audit",

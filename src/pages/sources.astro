@@ -1,0 +1,233 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import siteStats from '../data/site-stats.json';
+import sourceLedger from '../data/source-ledger.json';
+import codes from '../data/codes.json';
+import { articleSchema, breadcrumbSchema, SITE_NAME } from '@lib/seo';
+
+const pageUrl = new URL('/sources/', Astro.site).toString();
+const activeCode = codes.find((c) => c.status === 'active');
+const disputedCodes = codes.filter((c) => c.status === 'disputed');
+const fmt = new Intl.NumberFormat('en-US');
+const sourceRoleLabel: Record<string, string> = {
+	use: 'Reference',
+	revise: 'Conflict check',
+	draft: 'Media-reported',
+};
+
+const citeSentence = `As of ${siteMeta.lastPublicReviewDisplay}, Survive Zombie Arena code Zombies (2,500 Credits) is active per prior Discord and public source audit; GALACTIC remains disputed because public guides disagree on both status and reward. Unofficial tracker: ${pageUrl.replace('/sources/', '/codes/')}`;
+
+const schema = [
+	articleSchema({
+		title: `${SITE_NAME} Sources & Verification`,
+		description: `How ${SITE_NAME} tracks Survive Zombie Arena codes, classes, and guides — active vs disputed status, last checked dates, and how to cite this site.`,
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Sources', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title={`${SITE_NAME} Sources — Code Status, Confidence Rules & How to Cite`}
+	description="Public source ledger for Survive Zombie Arena: Zombies active, GALACTIC disputed, tracked guides, Discord audit, and citation text for journalists and wiki writers."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Methodology · {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Sources & verification</h1>
+				<p class="geo-snap">
+					Other guides cite wikis by name. This page is the <strong>public receipt</strong> for how {SITE_NAME} labels codes and when we last checked public sources.
+				</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Code status now</strong>
+				<p>
+					{activeCode ? `${activeCode.code}: active (${activeCode.reward})` : 'No active code row'}
+					{disputedCodes.length > 0 ? ` · ${disputedCodes.map((c) => c.code).join(', ')}: disputed` : ''}
+				</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<section>
+				<h2>Roblox official API snapshot</h2>
+				<p>
+					The official Roblox experience page resolved to place ID <strong>{siteMeta.placeId}</strong> and universe ID <strong>{siteMeta.universeId}</strong>. The public games API was refreshed on {siteStats.lastChecked}.
+				</p>
+				<div class="table-wrap">
+					<table class="data-table">
+						<thead>
+							<tr>
+								<th>Field</th>
+								<th>Value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Visits</td>
+								<td>{fmt.format(siteStats.visits)}</td>
+							</tr>
+							<tr>
+								<td>Favorites</td>
+								<td>{fmt.format(siteStats.favorites)}</td>
+							</tr>
+							<tr>
+								<td>Live players at check</td>
+								<td>{fmt.format(siteStats.livePlayersAtCheck)}</td>
+							</tr>
+							<tr>
+								<td>Roblox updated timestamp</td>
+								<td>{siteStats.gameLastUpdated}</td>
+							</tr>
+							<tr>
+								<td>Virtual events endpoint</td>
+								<td>No public event rows returned in the May 26 check</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="notice" style="margin-top: 1rem;">
+					This official snapshot confirms the game page and update timestamp, but it does not confirm GALACTIC, Atlantis, Void Shards, or crate odds by itself.
+				</p>
+			</section>
+
+			<section>
+				<h2>Code status receipt</h2>
+				<div class="table-wrap">
+					<table class="data-table">
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Reward</th>
+								<th>Status</th>
+								<th>Basis</th>
+								<th>Checked</th>
+							</tr>
+						</thead>
+						<tbody>
+							{codes.map((code) => (
+								<tr>
+									<td><strong>{code.code}</strong></td>
+									<td>{code.reward}</td>
+									<td>{code.status}</td>
+									<td>{code.source}</td>
+									<td>{code.lastCheckedAt?.slice(0, 10) ?? code.lastVerified}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+				<p class="notice" style="margin-top: 1rem;">
+					Full redeem steps and source toggles live on <a href="/codes/">Codes</a>. Status labels do not change from on-page votes alone — we re-check Discord and trackers on a schedule.
+				</p>
+			</section>
+
+			<section>
+				<h2>How to cite this site</h2>
+				<p>Copy the sentence below for articles, wiki footnotes, or Reddit posts. Keep the unofficial disclaimer.</p>
+				<div class="rail-panel accent-panel" style="margin-top: 12px;">
+					<p id="cite-text" style="margin: 0 0 12px;">{citeSentence}</p>
+					<button type="button" class="btn secondary" data-copy={citeSentence}>Copy citation</button>
+				</div>
+				<ul class="check-list" style="margin-top: 16px;">
+					<li>Best URL for code disputes: <a href="/codes/">/codes/</a></li>
+					<li>Best URL for class economy: <a href="/tools/credit-planner/">Credit Planner</a></li>
+					<li>Best URL for tier rankings: <a href="/tier-list/">Tier List</a></li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>Confidence rules</h2>
+				<ul class="check-list">
+					<li><strong>High</strong> — multiple agreeing public sources or consistent in-game reports.</li>
+					<li><strong>Medium</strong> — one strong source or minor gaps between trackers.</li>
+					<li><strong>Low</strong> — single weak source, extrapolation, or known conflict (common for codes).</li>
+				</ul>
+				<p>When sources disagree we show <strong>active</strong>, <strong>disputed</strong>, or <strong>expired</strong> — we do not silently pick a winner.</p>
+			</section>
+
+			<section>
+				<h2>Tracked public sources</h2>
+				<p class="muted">Ledger captured {sourceLedger.captureDate}. {sourceLedger.notes}</p>
+				<div class="table-wrap">
+					<table class="data-table">
+						<thead>
+							<tr>
+								<th>Source</th>
+								<th>Type</th>
+								<th>Checked</th>
+								<th>Role</th>
+								<th>Topics</th>
+							</tr>
+						</thead>
+						<tbody>
+							{sourceLedger.sources.map((src) => (
+								<tr>
+									<td>
+										<a href={src.url} rel="noopener noreferrer" target="_blank">{src.name}</a>
+									</td>
+									<td>{src.type}</td>
+									<td>{src.checkedAt}</td>
+									<td>{sourceRoleLabel[src.aiDecision] ?? 'Reference'}</td>
+									<td>{src.topics.join(', ')}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+			</section>
+
+			<section>
+				<h2>Official game links</h2>
+				<p>
+					<a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">{siteMeta.robloxExperienceLabel}</a>
+					· <a href={siteMeta.discordInviteUrl} rel="noopener noreferrer" target="_blank">Official Discord</a>
+				</p>
+				<p>
+					<a class="btn secondary" href="/about/">About & disclaimers</a>
+					<a class="btn primary" href="/codes/" style="margin-left: 8px;">Codes page</a>
+				</p>
+			</section>
+		</div>
+	</section>
+
+	<script is:inline>
+		async function copyText(value) {
+			if (navigator.clipboard?.writeText) {
+				try {
+					await navigator.clipboard.writeText(value);
+					return;
+				} catch (_error) {}
+			}
+			const textarea = document.createElement('textarea');
+			textarea.value = value;
+			textarea.setAttribute('readonly', '');
+			textarea.style.position = 'fixed';
+			textarea.style.opacity = '0';
+			document.body.appendChild(textarea);
+			textarea.select();
+			document.execCommand('copy');
+			textarea.remove();
+		}
+
+		document.querySelectorAll('[data-copy]').forEach((button) => {
+			button.addEventListener('click', async () => {
+				const value = button.getAttribute('data-copy') || '';
+				await copyText(value);
+				button.textContent = 'Copied';
+				window.setTimeout(() => {
+					button.textContent = 'Copy citation';
+				}, 1400);
+			});
+		});
+	</script>
+</BaseLayout>

@@ -7,11 +7,16 @@ import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
 
 const pageUrl = new URL('/maps/', Astro.site).toString();
 const { activeMap, atlantisPreview, fpsPoll, squareArena, faq } = mapsData;
+const statusLabel = (value: string) =>
+	({
+		media_reported_live: 'media-reported live',
+		media_reported: 'media-reported',
+	}[value] ?? value.replace(/_/g, ' '));
 
 const schema = [
 	articleSchema({
 		title: 'Survive Zombie Arena Rooftop Map Guide',
-		description: 'Survive Zombie Arena Rooftop Map guide: chokepoints, class picks, Atlantis dev preview, FPS poll results, and retired Square Arena notes.',
+		description: 'Survive Zombie Arena Rooftop Map guide: chokepoints, class picks, Atlantis media-reported status, FPS poll results, and retired Square Arena notes.',
 		url: pageUrl,
 		dateModified: siteMeta.lastPublicReview,
 	}),
@@ -24,8 +29,8 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Rooftop Map Guide — Maps & Atlantis Preview"
-	description="Survive Zombie Arena Rooftop Map guide: chokepoint tactics, best classes, Atlantis preview, FPS poll, and Square Arena retirement."
+	title="Survive Zombie Arena Rooftop Map Guide — Maps & Atlantis"
+	description="Survive Zombie Arena Rooftop Map guide: chokepoint tactics, best classes, Atlantis media-reported status, FPS poll, and Square Arena retirement."
 	schema={schema}
 >
 	<section class="page-hero compact">
@@ -39,7 +44,7 @@ const schema = [
 			</div>
 			<aside class="quick-answer">
 				<strong>Active map</strong>
-				<p>Rooftop Map since 2026-04-18. Atlantis footage previewed — not confirmed live.</p>
+				<p>Rooftop Map since 2026-04-18. Atlantis is media-reported live for Galactic Event, but not named on the Roblox page.</p>
 			</aside>
 		</div>
 	</section>
@@ -55,9 +60,9 @@ const schema = [
 				<p>Pre-release community vote: {activeMap.communityVote}.</p>
 			</GuideSection>
 
-			<GuideSection heading={`${atlantisPreview.name} — preview only`} id="atlantis">
+			<GuideSection heading={`${atlantisPreview.name} — media-reported live`} id="atlantis">
 				<p>
-					<strong>Preview date:</strong> {atlantisPreview.previewDate} · <strong>Status:</strong> {atlantisPreview.status}
+					<strong>Preview date:</strong> {atlantisPreview.previewDate} · <strong>Status:</strong> {statusLabel(atlantisPreview.status)}
 				</p>
 				<p>{atlantisPreview.note}</p>
 				<p class="muted" style="font-size: 0.88rem;">Source: {atlantisPreview.source}</p>

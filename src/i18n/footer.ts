@@ -7,6 +7,7 @@ export const footerNav: Record<LocaleCode, { text: string; href: string }[]> = {
 		{ text: 'Codes', href: '/codes/' },
 		{ text: 'Credit Planner', href: '/tools/credit-planner/' },
 		{ text: 'Wiki', href: '/wiki/' },
+		{ text: 'Sources', href: '/sources/' },
 		{ text: 'About', href: '/about/' },
 		{ text: 'Privacy', href: '/privacy/' },
 		{ text: 'Terms', href: '/terms/' },

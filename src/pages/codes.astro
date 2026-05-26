@@ -40,6 +40,8 @@ const activeCodes = codes.filter((code) => code.status === 'active');
 const disputedCodes = codes.filter((code) => code.status === 'disputed');
 const otherCodes = codes.filter((code) => code.status !== 'active' && code.status !== 'disputed');
 
+const citeSentence = `As of ${siteMeta.lastPublicReviewDisplay}, Survive Zombie Arena code Zombies (2,500 Credits) is active per prior Discord and public source audit; GALACTIC remains disputed because public guides disagree on both status and reward. Unofficial tracker: ${codesPageUrl}`;
+
 const tableLabels = {
 	code: 'Code',
 	reward: 'Reward',
@@ -60,8 +62,8 @@ const tableLabels = {
 
 const schema = [
 	articleSchema({
-		title: 'Survive Zombie Arena Codes (May 2026)',
-		description: 'Active and disputed Survive Zombie Arena codes with redeem steps and source confidence labels.',
+		title: 'Survive Zombie Arena Codes May 2026: Zombies Active, GALACTIC Disputed',
+		description: 'Survive Zombie Arena code list for May 2026: Zombies gives 2,500 Credits, GALACTIC is disputed, and redeem steps are checked against public sources.',
 		url: codesPageUrl,
 		dateModified: siteMeta.lastPublicReview,
 	}),
@@ -81,8 +83,8 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Codes (May 2026) — Active & Disputed"
-	description="Survive Zombie Arena codes: Zombies (2,500 Credits) active; GALACTIC disputed. Redeem steps, source links, and FAQ for Roblox players."
+	title="Survive Zombie Arena Codes May 2026: Zombies Active, GALACTIC Disputed"
+	description="Survive Zombie Arena codes for May 2026: redeem Zombies for 2,500 Credits, check GALACTIC disputed status, and follow the lobby Shop redeem steps."
 	schema={schema}
 >
 	<section class="page-hero compact">
@@ -91,14 +93,14 @@ const schema = [
 				<p class="eyebrow"><span class="pulse"></span>Updated {siteMeta.lastPublicReviewDisplay}</p>
 				<h1>Survive Zombie Arena Codes</h1>
 				<p class="geo-snap">
-					<strong>Zombies</strong> gives 2,500 Credits and is our only high-confidence active code. <strong>GALACTIC</strong> is listed under disputed codes — some sites say it works, but official Discord has not posted it.
+					<strong>Zombies</strong> is active for 2,500 Credits. <strong>GALACTIC</strong> is disputed — test it once if you want, but do not plan your unlocks around it.
 				</p>
-				<p class="lead">Open Shop → Redeem Codes in the lobby. We split active and disputed codes so you do not waste time on bad lists.</p>
+				<p class="lead">Open Shop → Redeem Codes in the lobby. Copy the working code first, then use the Credit Planner to decide your next class.</p>
 			</div>
 			<aside class="quick-answer">
 				<strong>Fast answer</strong>
 				<p>
-					Try <strong>Zombies</strong> for 2,500 Credits. Do not assume <strong>GALACTIC</strong> works until your in-game redeem succeeds. Codes can expire after {siteMeta.lastPublicReviewDisplay}.
+					Use <strong>Zombies</strong> for 2,500 Credits. Treat <strong>GALACTIC</strong> as unconfirmed until your own redeem succeeds.
 				</p>
 			</aside>
 		</div>
@@ -107,6 +109,36 @@ const schema = [
 	<section class="content-section">
 		<div class="shell">
 			<CodesHonestyNotice locale="en" />
+			<div class="rail-panel accent-panel" style="margin-top: 20px;">
+				<strong>Code status receipt</strong>
+				<div class="table-wrap" style="margin-top: 10px;">
+					<table class="data-table">
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Reward</th>
+								<th>Status</th>
+								<th>Checked</th>
+							</tr>
+						</thead>
+						<tbody>
+							{codes.map((code) => (
+								<tr>
+									<td>{code.code}</td>
+									<td>{code.rewardAmount ? `${code.rewardAmount.toLocaleString()} Credits` : code.reward}</td>
+									<td>{code.status}</td>
+									<td>{code.lastCheckedAt?.slice(0, 10) ?? code.lastVerified}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</div>
+				<p style="margin: 12px 0;">{citeSentence}</p>
+				<button type="button" class="btn secondary" data-copy={citeSentence}>Copy citation</button>
+				<p class="muted" style="margin-top: 10px;">
+					<a href="/sources/">Full source ledger & how to cite</a>
+				</p>
+			</div>
 			<div class="section-title" style="margin-top: 24px;">
 				<h2>Active codes</h2>
 				<p>Multi-source agreement and official Discord #codes post (Feb 1, 2026).</p>

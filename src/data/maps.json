@@ -1,5 +1,5 @@
 {
-	"lastChecked": "2026-05-20",
+	"lastChecked": "2026-05-26",
 	"activeMap": {
 		"id": "rooftop",
 		"name": "Rooftop Map",
@@ -13,9 +13,9 @@
 	"atlantisPreview": {
 		"name": "Atlantis Map",
 		"previewDate": "2026-05-17",
-		"status": "dev_preview_not_live",
-		"note": "Dev footage posted in Discord #sneak-peeks. No release date, layout, wave pathing, or FPS details confirmed.",
-		"source": "Official Discord #sneak-peeks"
+		"status": "media_reported_live",
+		"note": "IGN reports Atlantis is available during the Galactic Event. Roblox official page text did not name Atlantis in the May 26 check, so layout, route lanes, and FPS details still need in-game confirmation.",
+		"source": "IGN Galactic Event Update + Roblox official page/API check"
 	},
 	"fpsPoll": {
 		"date": "2026-04-18",
@@ -48,8 +48,8 @@
 	},
 	"dataGaps": [
 		"Formal in-game name for Rooftop Map not published — community uses 'rooftop map'.",
-		"Whether Atlantis is next shipping map or preview-only environment.",
-		"Atlantis layout, entry lanes, wave pathing, release date.",
+		"Whether Atlantis is accessible in all live servers or only event rotations.",
+		"Atlantis layout, entry lanes, wave pathing, and FPS behavior.",
 		"FPS optimization patch timeline."
 	],
 	"faq": [
@@ -59,7 +59,7 @@
 		},
 		{
 			"question": "How many maps exist?",
-			"answer": "One active arena map as of May 2026. Atlantis dev-previewed but not confirmed live."
+			"answer": "Rooftop is the confirmed standard arena. Atlantis is media-reported live during Galactic Event, but Roblox official page text did not name it in the May 26 check."
 		},
 		{
 			"question": "Does Rooftop Map cause lag?",
@@ -71,7 +71,7 @@
 		},
 		{
 			"question": "Will there be more maps?",
-			"answer": "Atlantis footage dev-previewed May 2026 with no release date. Treat Rooftop as only confirmed active map until patch notes confirm a swap."
+			"answer": "Atlantis is media-reported live for the Galactic Event. Treat Rooftop as the standard confirmed arena until in-game checks or patch notes confirm rotation rules."
 		}
 	]
 }

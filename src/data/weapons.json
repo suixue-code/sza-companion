@@ -178,7 +178,7 @@
 	"gunTierFramework": {
 		"status": "media_reported",
 		"source": "Public tier-list articles + public guide source (May 2026); DPS numbers not verified in official patch notes.",
-		"honestyNote": "We do not publish unverified DPS stats. Use verified handgun → shotgun → rifle path first; treat named shop weapons as needs_check until in-game receipts.",
+		"honestyNote": "We do not publish unverified DPS stats. Use verified handgun → shotgun → rifle path first; treat named shop weapons as needs-check until in-game receipts.",
 		"tiers": [
 			{
 				"tier": "Verified core (always first)",
@@ -197,7 +197,7 @@
 			},
 			{
 				"tier": "Event / Galactic",
-				"weapons": ["Cosmic Pistol preview", "Galactic crate batch", "Quasar/Pulsar/Interstellar (media_reported)"],
+				"weapons": ["Cosmic Pistol preview", "Galactic crate batch", "Quasar/Pulsar/Interstellar (media-reported)"],
 				"note": "Separate Void Shard economy — see /events/galactic/ and /guides/galactic-crate/."
 			}
 		],
