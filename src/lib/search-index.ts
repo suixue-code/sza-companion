@@ -10,6 +10,7 @@ export const searchIndex: SearchEntry[] = [
 	// Core pages
 	{ title: 'Home', href: '/', keywords: 'sza companion unofficial hub', category: 'Pages' },
 	{ title: 'Codes', href: '/codes/', keywords: 'survive zombie arena codes zombies galactic redeem active disputed working code 2026', category: 'Codes' },
+	{ title: 'GALACTIC Code Status', href: '/codes/galactic/', keywords: 'survive zombie arena galactic code disputed void shards credits does galactic work', category: 'Codes' },
 	{ title: 'Beginner Guide', href: '/beginner-guide/', keywords: 'survive zombie arena beginner guide first runs starter rooftop credits codes', category: 'Guides' },
 	{ title: 'All Guides', href: '/guides/', keywords: 'survive zombie arena guides index class weapon wave credits', category: 'Guides' },
 	{ title: 'Wiki Hub', href: '/wiki/', keywords: 'survive zombie arena wiki directory hub links', category: 'Pages' },

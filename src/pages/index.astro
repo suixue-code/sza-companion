@@ -82,6 +82,77 @@ const battlefieldLinks = [
 	},
 ];
 
+const wikiHubSections = [
+	{
+		title: 'Codes and Credits',
+		body: 'Start every account with the code check. Zombies is the only high-confidence working code we publish right now, and it gives 2,500 Credits. That is a head start, not a full class unlock, so the next decision is whether to stabilize weapon spending or save toward Medic and Marksman.',
+		items: ['Copy Zombies before queueing', 'Check GALACTIC as disputed', 'Plan your next permanent unlock'],
+		links: [
+			['Codes', '/codes/'],
+			['GALACTIC status', '/codes/galactic/'],
+			['Credit Planner', '/tools/credit-planner/'],
+			['How to redeem codes', '/guides/how-to-redeem-codes/'],
+		],
+	},
+	{
+		title: 'Classes and Tier List',
+		body: 'Class choice changes how you survive Rooftop lanes. Medic is the safest co-op first buy, Marksman is the cleaner solo and farm pick, Tactician anchors stairwells, and Necromancer is the long-term high-wave goal. Bastion is powerful for teams but competes with the 250,000 Credit Necromancer grind.',
+		items: ['Medic or Marksman first', 'Tactician for chokepoints', 'Necromancer for late-wave scaling'],
+		links: [
+			['Tier List', '/tier-list/'],
+			['All Classes', '/classes/'],
+			['Best class solo', '/guides/best-class-solo/'],
+		],
+	},
+	{
+		title: 'Weapons and Loadouts',
+		body: 'Most early wipes come from skipping the basic weapon path. Handgun into shotgun and then rifle is still the reliable route before chasing named or event weapons. Use the loadout tool when you already know your class and want a compact plan for solo, team support, farming, or leaderboard attempts.',
+		items: ['Handgun to shotgun to rifle', 'Named guns after core upgrades', 'Loadout plan by scenario'],
+		links: [
+			['Weapons', '/weapons/'],
+			['Loadout Builder', '/tools/loadout-builder/'],
+			['Best Weapons Guide', '/guides/best-weapons/'],
+		],
+	},
+	{
+		title: 'Maps, Waves, and Enemies',
+		body: 'The current public meta is built around Rooftop Map chokepoints. Stairs reward barricades, piercing lines, and controlled retreats; open-field wandering gets punished once enemy density rises. Pair the map notes with wave spending rules before turning on Auto Skip.',
+		items: ['Rooftop stairwell lanes', 'Auto Skip after setup', 'Elite priority before panic spend'],
+		links: [
+			['Maps', '/maps/'],
+			['Waves', '/waves/'],
+			['Enemies', '/enemies/'],
+		],
+	},
+	{
+		title: 'Galactic Event and Updates',
+		body: 'Public event guides now report Galactic content, Void Shards, Galactic Crates, and Atlantis. The Roblox page/API confirmed a May 26 game update but did not name Galactic or Atlantis, so we separate media-reported details from official-page facts instead of blending them into one claim.',
+		items: ['Void Shards and crates', 'Atlantis status notes', 'May 2026 patch trail'],
+		links: [
+			['Galactic Event', '/events/galactic/'],
+			['Void Shards', '/guides/void-shards/'],
+			['Updates', '/updates/'],
+		],
+	},
+	{
+		title: 'Verification and Official Links',
+		body: 'This site is unofficial, so every claim needs a route back to sources. Use our source ledger for code disputes and data gaps, then jump to the official Roblox page, Discord, or Nectarforge Studios group when you want the first-party channel.',
+		items: ['Source ledger for disputes', 'Official Roblox experience', 'Discord and group links'],
+		links: [
+			['Sources', '/sources/'],
+			['Official links', '/discord/'],
+			['About', '/about/'],
+		],
+	},
+];
+
+const officialLinks = [
+	['Play on Roblox', siteMeta.robloxExperienceUrl],
+	['Official Discord', siteMeta.discordInviteUrl],
+	['Nectarforge Studios group', siteMeta.robloxGroupUrl],
+	['Roblox place ID reference', `${siteMeta.robloxExperienceUrl}?placeId=${siteMeta.placeId}`],
+];
+
 const faq = [
 	{
 		question: 'What is SZA Companion?',
@@ -120,8 +191,8 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Codes, Classes & Tools"
-	description="Unofficial Survive Zombie Arena companion: active codes, class tier list, beginner guide, weapon progression, and Credit Planner. Last reviewed from public sources."
+	title="Survive Zombie Arena Codes & Class Planner"
+	description="Find current Survive Zombie Arena codes, copy Zombies for 2,500 Credits, compare best classes, plan Credits, and follow the weapon upgrade path."
 	schema={schema}
 >
 	<link
@@ -137,12 +208,12 @@ const schema = [
 		<div class="shell arena-hero-grid">
 			<div class="arena-hero-copy">
 				<p class="eyebrow"><span class="pulse"></span>Unofficial guide · updated {siteMeta.lastPublicReviewDisplay}</p>
-				<h1>Survive Zombie Arena <em>briefing room</em></h1>
+				<h1>Survive Zombie Arena <em>codes & planner</em></h1>
 				<p class="arena-lead">
-					Codes, weapon routes, class reads, and Credit planning for Roblox <strong>Survive Zombie Arena</strong>. Prep the Rooftop run before the wave timer catches up.
+					Copy working codes, pick the next class, and plan Credits for Roblox <strong>Survive Zombie Arena</strong>. Start with Zombies, then prep the Rooftop run before the wave timer catches up.
 				</p>
 				<div class="hero-actions">
-					<a class="btn primary" href="/codes/">Check codes</a>
+					<a class="btn primary" href="/codes/">Copy codes</a>
 					<a class="btn secondary" href="/tools/credit-planner/">Open planner</a>
 					<a class="btn dark" href="/beginner-guide/">First five runs</a>
 				</div>
@@ -251,7 +322,7 @@ const schema = [
 				<p class="eyebrow">Dispute log</p>
 				<h2>GALACTIC stays flagged.</h2>
 				<p>Some guides report Void Shards, others report Credits. The Roblox page does not name the code, so we keep it disputed.</p>
-				<a class="btn dark" href="/codes/#galactic">See dispute notes</a>
+				<a class="btn dark" href="/codes/galactic/">See dispute notes</a>
 			</article>
 		</div>
 	</section>
@@ -272,6 +343,36 @@ const schema = [
 		</div>
 	</section>
 
+	<section class="content-section">
+		<div class="shell article-flow">
+			<div class="section-title">
+				<p class="eyebrow">Wiki route map</p>
+				<h2>Use this hub when you need more than a code list.</h2>
+				<p>
+					Codes are only useful when they connect to the next decision: what to spend, which class to unlock, where to hold, and which claims still need checking.
+				</p>
+			</div>
+			<div class="data-grid">
+				{wikiHubSections.map((section) => (
+					<article class="data-card">
+						<h3>{section.title}</h3>
+						<p>{section.body}</p>
+						<ul class="check-list">
+							{section.items.map((item) => <li>{item}</li>)}
+						</ul>
+						<p>
+							{section.links.map((link, index) => (
+								<>
+									{index > 0 && ' · '}
+									<a href={link[1]}>{link[0]}</a>
+								</>
+							))}
+						</p>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
 
 	<section class="content-section battlefield-section">
 		<div class="shell">
@@ -301,11 +402,27 @@ const schema = [
 					A 25-player co-op zombie arena on Roblox by {siteMeta.developerName}. Earn Credits each wave to buy in-run weapons and permanent class unlocks. The Rooftop Map (April 2026) replaced Square Arena with stairwell chokepoints that favor Tactician barricades and Necromancer funnel plays.
 				</p>
 				<p>
+					The practical loop is simple: redeem codes before a run, buy the weapon path that keeps you alive, then save for the class that matches your playstyle. Most players should not jump straight to Legendary picks. Medic and Marksman create cleaner early progress, while Tactician and Necromancer become stronger once you understand lane control.
+				</p>
+				<p>
 					Also available in <a href="/es/">Español</a>, <a href="/pt-br/">Português (BR)</a>, and <a href="/zh-cn/">简体中文</a> (core pages).
 				</p>
 				<p>
 					Play on Roblox: <a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">{siteMeta.robloxExperienceLabel}</a>.
 				</p>
+			</section>
+			<section>
+				<h2>Official and source links</h2>
+				<p>
+					Use these when you want to verify the experience, join the community, or compare our notes against first-party channels.
+				</p>
+				<ul class="check-list">
+					{officialLinks.map((link) => (
+						<li>
+							<a href={link[1]} rel="noopener noreferrer" target="_blank">{link[0]}</a>
+						</li>
+					))}
+				</ul>
 			</section>
 			<section>
 				<h2>FAQ</h2>

@@ -42,6 +42,21 @@ const otherCodes = codes.filter((code) => code.status !== 'active' && code.statu
 
 const citeSentence = `As of ${siteMeta.lastPublicReviewDisplay}, Survive Zombie Arena code Zombies (2,500 Credits) is active per prior Discord and public source audit; GALACTIC remains disputed because public guides disagree on both status and reward. Unofficial tracker: ${codesPageUrl}`;
 
+const codeUseRows = [
+	['Brand-new player', 'Redeem Zombies, then save for shotgun before chasing classes.', '/beginner-guide/'],
+	['Solo first unlock', 'Put the 2,500 Credits toward Marksman after the handgun → shotgun → rifle habit is stable.', '/tools/credit-planner/'],
+	['Co-op support', 'Use the Credits as a head start toward Medic, then learn revive and heal timing.', '/classes/medic/'],
+	['GALACTIC checker', 'Treat GALACTIC as a one-time test only; do not budget around it until redeem succeeds.', '/codes/galactic/'],
+];
+
+const relatedCodeRoutes = [
+	['How to redeem codes', '/guides/how-to-redeem-codes/', 'Step-by-step lobby Shop path and common redeem errors.'],
+	['GALACTIC status', '/codes/galactic/', 'Why public guides disagree and what to do if the code fails.'],
+	['Credit Planner', '/tools/credit-planner/', 'Turn 2,500 Credits into a concrete class unlock plan.'],
+	['Beginner guide', '/beginner-guide/', 'First runs, weapon path, and early Credit mistakes.'],
+	['Galactic Event', '/events/galactic/', 'Void Shards, Galactic Crates, Atlantis notes, and GALACTIC context.'],
+];
+
 const tableLabels = {
 	code: 'Code',
 	reward: 'Reward',
@@ -62,8 +77,8 @@ const tableLabels = {
 
 const schema = [
 	articleSchema({
-		title: 'Survive Zombie Arena Codes May 2026: Zombies Active, GALACTIC Disputed',
-		description: 'Survive Zombie Arena code list for May 2026: Zombies gives 2,500 Credits, GALACTIC is disputed, and redeem steps are checked against public sources.',
+		title: 'Survive Zombie Arena Codes May 2026: Zombies + GALACTIC Status',
+		description: 'Copy the working Survive Zombie Arena code Zombies for 2,500 Credits, check the latest GALACTIC status, and redeem codes in the Roblox Shop.',
 		url: codesPageUrl,
 		dateModified: siteMeta.lastPublicReview,
 	}),
@@ -83,8 +98,8 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Codes May 2026: Zombies Active, GALACTIC Disputed"
-	description="Survive Zombie Arena codes for May 2026: redeem Zombies for 2,500 Credits, check GALACTIC disputed status, and follow the lobby Shop redeem steps."
+	title="Survive Zombie Arena Codes May 2026: Zombies + GALACTIC Status"
+	description="Copy the working Survive Zombie Arena code Zombies for 2,500 Credits, check the latest GALACTIC status, and redeem codes in the Roblox Shop."
 	schema={schema}
 >
 	<section class="page-hero compact">
@@ -93,14 +108,14 @@ const schema = [
 				<p class="eyebrow"><span class="pulse"></span>Updated {siteMeta.lastPublicReviewDisplay}</p>
 				<h1>Survive Zombie Arena Codes</h1>
 				<p class="geo-snap">
-					<strong>Zombies</strong> is active for 2,500 Credits. <strong>GALACTIC</strong> is disputed — test it once if you want, but do not plan your unlocks around it.
+					Copy <strong>Zombies</strong> for 2,500 Credits first. <strong>GALACTIC</strong> has conflicting reward reports, so we keep it separate with source notes instead of pretending every list agrees.
 				</p>
-				<p class="lead">Open Shop → Redeem Codes in the lobby. Copy the working code first, then use the Credit Planner to decide your next class.</p>
+				<p class="lead">Open Shop → Redeem Codes in the lobby. The working-code table comes first, followed by a short GALACTIC check and next-spend planner.</p>
 			</div>
 			<aside class="quick-answer">
-				<strong>Fast answer</strong>
+				<strong>Working code now</strong>
 				<p>
-					Use <strong>Zombies</strong> for 2,500 Credits. Treat <strong>GALACTIC</strong> as unconfirmed until your own redeem succeeds.
+					<strong>Zombies</strong> gives 2,500 Credits. Check <strong>GALACTIC</strong> below before you count on it.
 				</p>
 			</aside>
 		</div>
@@ -108,6 +123,12 @@ const schema = [
 
 	<section class="content-section">
 		<div class="shell">
+			<nav class="rail-panel" aria-label="Codes page sections">
+				<strong>On this page</strong>
+				<p style="margin: 8px 0 0;">
+					<a href="#active-codes">Active codes</a> · <a href="/codes/galactic/">GALACTIC status</a> · <a href="#redeem">How to redeem</a> · <a href="#spend">Spend Credits</a> · <a href="#faq">FAQ</a>
+				</p>
+			</nav>
 			<CodesHonestyNotice locale="en" />
 			<div class="rail-panel accent-panel" style="margin-top: 20px;">
 				<strong>Code status receipt</strong>
@@ -139,7 +160,7 @@ const schema = [
 					<a href="/sources/">Full source ledger & how to cite</a>
 				</p>
 			</div>
-			<div class="section-title" style="margin-top: 24px;">
+			<div class="section-title" id="active-codes" style="margin-top: 24px;">
 				<h2>Active codes</h2>
 				<p>Multi-source agreement and official Discord #codes post (Feb 1, 2026).</p>
 			</div>
@@ -155,7 +176,7 @@ const schema = [
 			<section class="content-section">
 				<div class="shell">
 					<div class="section-title">
-						<h2>Disputed codes</h2>
+						<h2 id="galactic">Disputed codes</h2>
 						<p>Public sources conflict — we do not promote these as working until in-game redeem succeeds.</p>
 					</div>
 					<CodesOtherTable
@@ -185,7 +206,7 @@ const schema = [
 	<section class="content-section">
 		<div class="shell article-grid">
 			<article class="article-flow">
-				<section>
+				<section id="redeem">
 					<h2>How to redeem Survive Zombie Arena codes</h2>
 					<ol class="check-list">
 						<li>Launch Survive Zombie Arena on Roblox and enter the lobby.</li>
@@ -194,6 +215,32 @@ const schema = [
 						<li>Paste the code exactly as shown (case-sensitive).</li>
 						<li>Press <strong>Redeem</strong> and read the reward message before closing.</li>
 					</ol>
+				</section>
+				<section id="spend">
+					<h2>What to do with 2,500 Credits</h2>
+					<p>
+						Zombies gives a useful head start, but it is not enough for a class by itself. Use it to smooth your first weapon buys, then plan the permanent class unlock.
+					</p>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Player goal</th>
+									<th>Best next move</th>
+									<th>Open</th>
+								</tr>
+							</thead>
+							<tbody>
+								{codeUseRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td><a href={row[2]}>Guide</a></td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
 				</section>
 				<section>
 					<h2>Where codes come from</h2>
@@ -208,6 +255,17 @@ const schema = [
 					</ul>
 				</section>
 				<section>
+					<h2>Related code guides</h2>
+					<div class="shortcut-grid">
+						{relatedCodeRoutes.map((route) => (
+							<a class="shortcut" href={route[1]}>
+								<strong>{route[0]}</strong>
+								<p>{route[2]}</p>
+							</a>
+						))}
+					</div>
+				</section>
+				<section id="faq">
 					<h2>FAQ</h2>
 					<div class="faq-list">
 						{faq.map((item) => (

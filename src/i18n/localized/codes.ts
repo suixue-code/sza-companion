@@ -38,17 +38,17 @@ export type CodesCopy = {
 type LocalizedLocale = 'es' | 'pt-br' | 'zh-cn';
 
 const es: CodesCopy = {
-	title: 'Códigos de Survive Zombie Arena (mayo 2026) — Activos y disputados',
+	title: 'Códigos de Survive Zombie Arena (mayo 2026): Zombies y GALACTIC',
 	description:
-		'Códigos de Survive Zombie Arena: Zombies (2.500 créditos) activo; GALACTIC disputado. Pasos de canje, fuentes y FAQ para jugadores de Roblox.',
+		'Copia Zombies para 2.500 créditos, revisa el estado de GALACTIC y canjea códigos de Survive Zombie Arena en la tienda de Roblox.',
 	eyebrow: 'Actualizado',
 	h1: 'Códigos de Survive Zombie Arena',
 	geoSnap:
-		'Zombies da 2.500 créditos y es nuestro único código activo con alta confianza. GALACTIC está en disputados: algunos sitios dicen que funciona, pero el Discord oficial no lo publicó.',
-	lead: 'Abre Tienda → Canjear códigos en el lobby. Separamos activos y disputados para que no pierdas tiempo con listas malas.',
-	fastAnswerTitle: 'Respuesta rápida',
+		'Copia Zombies para 2.500 créditos primero. GALACTIC tiene reportes contradictorios, así que lo separamos con notas de fuentes. También cubrimos búsquedas como “sobrevivir a la arena de zombies códigos”.',
+	lead: 'Abre Tienda → Canjear códigos en el lobby. La tabla de códigos activos va primero; después tienes el estado de GALACTIC y qué gastar con esos créditos.',
+	fastAnswerTitle: 'Código que funciona',
 	fastAnswerBody:
-		'Prueba Zombies por 2.500 créditos. No asumas que GALACTIC funciona hasta que el canje en el juego te lo confirme. Los códigos pueden caducar sin aviso.',
+		'Zombies da 2.500 créditos. Revisa GALACTIC abajo antes de contar con esa recompensa.',
 	activeTitle: 'Códigos activos',
 	activeDesc: 'Acuerdo entre varias fuentes y post en Discord #codes oficial (1 feb 2026).',
 	disputedTitle: 'Códigos disputados',
@@ -103,21 +103,26 @@ const es: CodesCopy = {
 			question: '¿Qué hago después de canjear códigos?',
 			answer: 'Usa el Credit Planner para decidir Medic o Marksman, y sigue la ruta de armas de la guía principiante (pistola → escopeta → rifle).',
 		},
+		{
+			question: '¿“Sobrevivir a la arena de zombies códigos” es este juego?',
+			answer:
+				'Sí. Muchos jugadores traducen el nombre así; la página correcta en Roblox es Survive Zombie Arena, y el código confirmado aquí es Zombies.',
+		},
 	],
 };
 
 const ptBr: CodesCopy = {
-	title: 'Códigos de Survive Zombie Arena (maio 2026) — Ativos e disputados',
+	title: 'Códigos de Survive Zombie Arena (maio 2026): Zombies e GALACTIC',
 	description:
-		'Códigos de Survive Zombie Arena: Zombies (2.500 créditos) ativo; GALACTIC disputado. Passos de resgate, fontes e FAQ para jogadores de Roblox.',
+		'Copie Zombies para 2.500 créditos, confira o status de GALACTIC e resgate códigos de Survive Zombie Arena na loja do Roblox.',
 	eyebrow: 'Atualizado',
 	h1: 'Códigos de Survive Zombie Arena',
 	geoSnap:
-		'Zombies dá 2.500 créditos e é nosso único código ativo com alta confiança. GALACTIC está em disputados — alguns sites dizem que funciona, mas o Discord oficial não publicou.',
-	lead: 'Abra Loja → Resgatar códigos no lobby. Separamos ativos e disputados para você não perder tempo com listas ruins.',
-	fastAnswerTitle: 'Resposta rápida',
+		'Copie Zombies para 2.500 créditos primeiro. GALACTIC tem relatos conflitantes, então fica separado com notas de fonte em vez de misturado aos códigos ativos.',
+	lead: 'Abra Loja → Resgatar códigos no lobby. A tabela de códigos ativos vem primeiro; depois mostramos o status de GALACTIC e o que fazer com os créditos.',
+	fastAnswerTitle: 'Código funcionando',
 	fastAnswerBody:
-		'Tente Zombies por 2.500 créditos. Não assuma que GALACTIC funciona até o resgate no jogo confirmar. Códigos podem expirar sem aviso.',
+		'Zombies dá 2.500 créditos. Confira GALACTIC abaixo antes de contar com essa recompensa.',
 	activeTitle: 'Códigos ativos',
 	activeDesc: 'Acordo entre várias fontes e post no Discord #codes oficial (1 fev 2026).',
 	disputedTitle: 'Códigos disputados',
@@ -176,17 +181,17 @@ const ptBr: CodesCopy = {
 };
 
 const zhCn: CodesCopy = {
-	title: 'Survive Zombie Arena 兑换码（2026 年 5 月）— 有效与存疑',
+	title: 'Survive Zombie Arena 兑换码（2026 年 5 月）：Zombies 与 GALACTIC',
 	description:
-		'Survive Zombie Arena 兑换码：Zombies（2500 信用点）有效；GALACTIC 存疑。兑换步骤、来源说明与 Roblox 玩家 FAQ。',
+		'复制 Survive Zombie Arena 有效兑换码 Zombies 领取 2500 信用点，查看 GALACTIC 最新状态，并按 Roblox 商店步骤兑换。',
 	eyebrow: '更新于',
 	h1: 'Survive Zombie Arena 兑换码',
 	geoSnap:
-		'Zombies 奖励 2500 信用点，是我们唯一高置信度有效码。GALACTIC 列在存疑区——部分网站称可用，但官方 Discord 未发布。',
-	lead: '在大厅打开商店 → 兑换码。我们把有效与存疑分开，避免你在错误列表上浪费时间。',
-	fastAnswerTitle: '快速结论',
+		'先复制 Zombies 领取 2500 信用点。GALACTIC 的奖励说法互相冲突，所以我们把它单独列出，并保留来源说明。',
+	lead: '在大厅打开商店 → 兑换码。有效码表放在最前面，后面再看 GALACTIC 状态和信用点下一步怎么花。',
+	fastAnswerTitle: '当前可用码',
 	fastAnswerBody:
-		'先试 Zombies 领 2500 信用点。在游戏里兑换成功前，别默认 GALACTIC 能用。兑换码可能随时失效。',
+		'Zombies 给 2500 信用点。GALACTIC 请先看下方状态，再决定是否尝试。',
 	activeTitle: '有效兑换码',
 	activeDesc: '多源一致，且有官方 Discord #codes 帖子（2026 年 2 月 1 日）。',
 	disputedTitle: '存疑兑换码',

@@ -35,11 +35,11 @@ export type HomeCopy = {
 type LocalizedLocale = 'es' | 'pt-br' | 'zh-cn';
 
 const es: HomeCopy = {
-	title: 'Códigos, clases y herramientas de Survive Zombie Arena',
+	title: 'Códigos y planificador de Survive Zombie Arena',
 	description:
-		'Compañero no oficial de Survive Zombie Arena: códigos activos, tier list de clases, guía para principiantes, progresión de armas y Credit Planner. Revisado según fuentes públicas.',
+		'Copia códigos de Survive Zombie Arena, usa Zombies por 2.500 créditos, compara clases y planifica tu próximo desbloqueo.',
 	eyebrow: 'Guía no oficial · revisado',
-	h1: 'SZA Companion',
+	h1: 'Códigos y planificador de Survive Zombie Arena',
 	geoSnap:
 		'Ayuda no oficial para Roblox Survive Zombie Arena: códigos que funcionan, costes de clases, mejoras de armas y herramientas gratis en el navegador. Sin vínculo con Roblox ni Nectarforge Studios.',
 	lead: 'Revisa códigos, planifica tu próximo desbloqueo de clase y lee guías pensadas para el Rooftop Map.',
@@ -115,11 +115,11 @@ const es: HomeCopy = {
 };
 
 const ptBr: HomeCopy = {
-	title: 'Códigos, classes e ferramentas de Survive Zombie Arena',
+	title: 'Códigos e planejador de Survive Zombie Arena',
 	description:
-		'Companheiro não oficial de Survive Zombie Arena: códigos ativos, tier list de classes, guia para iniciantes, progressão de armas e Credit Planner. Revisado com fontes públicas.',
+		'Copie códigos de Survive Zombie Arena, use Zombies por 2.500 créditos, compare classes e planeje seu próximo desbloqueio.',
 	eyebrow: 'Guia não oficial · revisado',
-	h1: 'SZA Companion',
+	h1: 'Códigos e planejador de Survive Zombie Arena',
 	geoSnap:
 		'Ajuda não oficial para Roblox Survive Zombie Arena: códigos que funcionam, custos de classes, upgrades de armas e ferramentas grátis no navegador. Sem vínculo com Roblox ou Nectarforge Studios.',
 	lead: 'Confira códigos, planeje o próximo desbloqueio de classe e leia guias feitos para o Rooftop Map.',
@@ -195,11 +195,11 @@ const ptBr: HomeCopy = {
 };
 
 const zhCn: HomeCopy = {
-	title: 'Survive Zombie Arena 兑换码、职业与工具',
+	title: 'Survive Zombie Arena 兑换码与信用点规划器',
 	description:
-		'非官方 Survive Zombie Arena 伴侣站：有效兑换码、职业梯队、新手指南、武器成长路线与信用点规划器。内容依据公开资料复核。',
+		'复制 Survive Zombie Arena 兑换码 Zombies 领取 2500 信用点，比较职业强度，并规划下一次解锁。',
 	eyebrow: '非官方指南 · 复核于',
-	h1: 'SZA Companion',
+	h1: 'Survive Zombie Arena 兑换码与规划器',
 	geoSnap:
 		'Roblox《Survive Zombie Arena》非官方帮助：可用兑换码、职业花费、武器升级与免费浏览器工具。与 Roblox 及 Nectarforge Studios 无关联。',
 	lead: '查兑换码、规划下一职业解锁，并阅读针对 Rooftop Map 编写的指南。',

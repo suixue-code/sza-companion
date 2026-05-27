@@ -1,0 +1,226 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import codes from '../../data/codes.json';
+import events from '../../data/events.json';
+import siteMeta from '../../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/codes/galactic/', Astro.site).toString();
+const codesPageUrl = new URL('/codes/', Astro.site).toString();
+const galacticCode = codes.find((code) => code.id === 'galactic')!;
+const zombiesCode = codes.find((code) => code.id === 'zombies')!;
+const galacticEvent = events.find((event) => event.slug === 'galactic')!;
+
+const statusDate = galacticCode.lastCheckedAt?.slice(0, 10) ?? galacticCode.lastVerified;
+
+const sourceRows = galacticCode.sources.map((source) => {
+	let claim = 'Reference only';
+	if (source.label.includes('Void Shards')) claim = 'Reports a Void Shards reward or boost';
+	if (source.label.includes('Credits')) claim = 'Reports a Credits reward';
+	if (source.label.includes('Discord')) claim = 'No prior #codes post found in the public audit';
+	if (source.label.includes('Roblox official')) claim = 'Official page/API did not name GALACTIC in the May 26 check';
+	if (source.label.includes('RoCodes')) claim = galacticCode.communityFeedback?.note ?? 'Community feedback did not confirm success';
+	return { ...source, claim };
+});
+
+const nextSteps = [
+	{
+		situation: 'You want to test GALACTIC',
+		action: 'Try it once in Shop -> Redeem Codes, then stop retrying if it fails.',
+		link: '/guides/redeem-galactic-code/',
+	},
+	{
+		situation: 'You need a reward now',
+		action: `Use ${zombiesCode.code}; it is the high-confidence code and gives ${zombiesCode.reward}.`,
+		link: '/codes/',
+	},
+	{
+		situation: 'You are farming the event',
+		action: 'Treat Void Shards as event drops from Galactic Zombies, not as a confirmed GALACTIC code payout.',
+		link: '/events/galactic/',
+	},
+	{
+		situation: 'You are choosing a class',
+		action: 'Put confirmed Credits into Medic or Marksman planning before chasing disputed rewards.',
+		link: '/tools/credit-planner/',
+	},
+];
+
+const faq = [
+	{
+		question: 'Does the GALACTIC code work in Survive Zombie Arena?',
+		answer:
+			'Disputed. Public guides disagree, the prior Discord #codes audit did not find a GALACTIC post, and this site does not have an in-game success receipt. Try once if you want, but do not plan around it.',
+	},
+	{
+		question: 'What does GALACTIC give?',
+		answer:
+			'Reports conflict. GamesRadar and PCGamesN-style pages describe a Void Shards reward or boost, while Beebom, Dexerto, and Pro Game Guides-style pages describe Credits. We do not list a confirmed reward until an in-game redeem succeeds.',
+	},
+	{
+		question: 'Should I redeem Zombies or GALACTIC first?',
+		answer: `Redeem ${zombiesCode.code} first. It is the high-confidence code on this site and gives ${zombiesCode.reward}. GALACTIC is a one-attempt check.`,
+	},
+	{
+		question: 'Is GALACTIC the same as Void Shards?',
+		answer:
+			'No. GALACTIC is a text code claim. Void Shards are the reported event currency from Galactic Zombies and Galactic Crates. A future update could connect them, but that is not confirmed here.',
+	},
+	{
+		question: 'Why keep a disputed code page live?',
+		answer:
+			'Players search the code after seeing conflicting lists. A clear dispute page is more useful than hiding the term or copying a claim we cannot defend.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'GALACTIC Code Status for Survive Zombie Arena',
+		description: 'Check whether the GALACTIC code works in Survive Zombie Arena, why public guides disagree, and what to redeem instead.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Codes', url: codesPageUrl },
+		{ name: 'GALACTIC Code Status', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="GALACTIC Code Status for Survive Zombie Arena"
+	description="Check whether the GALACTIC code works in Survive Zombie Arena, why public guides disagree, and what to redeem instead."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Checked {statusDate}</p>
+				<h1>GALACTIC code status</h1>
+				<p class="geo-snap">
+					GALACTIC is <strong>disputed</strong>, not promoted here as a working Survive Zombie Arena code. Public guides disagree on both the reward and whether it works.
+				</p>
+				<p class="lead">Try it once if you want a fresh account check. Budget zero Credits or Void Shards from it until your own redeem succeeds.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Use this first</strong>
+				<p>
+					<strong>{zombiesCode.code}</strong> is the high-confidence code on this site and gives <strong>{zombiesCode.reward}</strong>.
+				</p>
+				<a href="/codes/">Open active code list</a>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-grid">
+			<article class="article-flow">
+				<section>
+					<h2>Quick verdict</h2>
+					<p>
+						Do not treat GALACTIC as a guaranteed reward. The safest reading is: <strong>one optional redeem attempt, then move on</strong>. The conflict is useful because it tells you which public guides are copying different reward claims, but it is not enough to update your class plan.
+					</p>
+					<ul class="check-list">
+						<li><strong>Status:</strong> {galacticCode.status}</li>
+						<li><strong>Confidence:</strong> {galacticCode.confidence}</li>
+						<li><strong>In-game verified here:</strong> {galacticCode.inGameVerified ? 'yes' : 'no'}</li>
+						<li><strong>Current safe assumption:</strong> no confirmed Credits and no confirmed Void Shards from GALACTIC.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Why public guides disagree</h2>
+					<p>{galacticCode.conflictNote}</p>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Source</th>
+									<th>What it supports</th>
+									<th>Checked</th>
+								</tr>
+							</thead>
+							<tbody>
+								{sourceRows.map((source) => (
+									<tr>
+										<td>
+											<a href={source.url} rel="noopener noreferrer" target="_blank">{source.label}</a>
+										</td>
+										<td>{source.claim}</td>
+										<td>{source.checkedAt}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>What to do next</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Situation</th>
+									<th>Best move</th>
+									<th>Open</th>
+								</tr>
+							</thead>
+							<tbody>
+								{nextSteps.map((step) => (
+									<tr>
+										<td><strong>{step.situation}</strong></td>
+										<td>{step.action}</td>
+										<td><a href={step.link}>Guide</a></td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>GALACTIC vs the event</h2>
+					<p>
+						The event page tracks media-reported Void Shards, Galactic Crates, and Atlantis details separately from the code. That split matters: event farming can be real even when a text code is disputed.
+					</p>
+					<ul class="check-list">
+						<li><strong>Event status:</strong> {galacticEvent.status.replace(/_/g, ' ')}</li>
+						<li><strong>Reported event currency:</strong> {galacticEvent.voidShards.name}</li>
+						<li><strong>Reported crate cost:</strong> {galacticEvent.voidShards.crateCost} shards</li>
+					</ul>
+					<p><a href="/events/galactic/">Open Galactic Event guide</a></p>
+				</section>
+
+				<section>
+					<h2>FAQ</h2>
+					<div class="faq-list">
+						{faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</section>
+			</article>
+
+			<aside class="side-rail">
+				<div class="rail-panel accent-panel">
+					<strong>Recommended path</strong>
+					<a href="/codes/">Redeem Zombies</a>
+					<a href="/tools/credit-planner/">Plan Credits</a>
+					<a href="/events/galactic/">Farm event notes</a>
+				</div>
+				<div class="rail-panel">
+					<strong>Official checks</strong>
+					<a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">Roblox experience</a>
+					<a href={siteMeta.discordInviteUrl} rel="noopener noreferrer" target="_blank">Official Discord</a>
+					<a href="/sources/">Source ledger</a>
+				</div>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>
