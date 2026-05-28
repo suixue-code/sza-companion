@@ -27,6 +27,7 @@ Quick code check for Survive Zombie Arena (unofficial, from public sources):
 Redeem: lobby → Shop → Redeem Codes (case-sensitive).
 
 Tracker with active vs disputed split: https://survivezombiearenaguide.com/codes/
+GALACTIC conflict notes: https://survivezombiearenaguide.com/codes/galactic/
 ```
 
 ---
@@ -80,7 +81,14 @@ Auto Skip in Survive Zombie Arena only works when the team is already safe on th
 Early: buy shotgun before packs stack. Mid: rifle + elite focus. Late: lane tools (Tactician / Bastion / Necromancer) matter more than flexing a mythic gun.
 
 Wave notes + skip rules: https://survivezombiearenaguide.com/waves/
+Planner for a specific wave push: https://survivezombiearenaguide.com/tools/wave-planner/
 ```
+
+---
+
+## Generated tool drafts
+
+Credit Planner and Wave Planner now generate copyable Reddit drafts directly from the current inputs. Prefer the generated draft when sharing an actual plan because it includes the current balance, wave range, verdict, link, and unofficial disclaimer.
 
 ---
 

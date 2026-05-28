@@ -186,7 +186,7 @@ const creditsLabel = locale === 'en' ? 'Credits' : locale === 'zh-cn' ? 'Credits
 
 <script define:vars={{ readyLabel: ui.readyLabel, noneTargetLabel: ui.noneTargetLabel, shareMessagesJson: JSON.stringify(shareLabels) }}>
 	import { planCredits, type PlannerGoal, type PlannerInput, type PlannerResult } from '../../lib/credit-planner.ts';
-	import { buildPlannerSocialMeta, formatPlannerShareText } from '../../lib/credit-planner-share.ts';
+	import { buildPlannerSocialMeta, formatPlannerRedditText, formatPlannerShareText } from '../../lib/credit-planner-share.ts';
 	import { hasPlannerUrlState, parsePlannerUrlState, syncPlannerUrlState } from '../../lib/credit-planner-url-state.ts';
 	import { mountToolLinkShare } from '../../lib/tool-link-share-ui.ts';
 	import { messagesFromToolShareCopy } from '../../lib/tool-share-labels.ts';
@@ -203,6 +203,7 @@ const creditsLabel = locale === 'en' ? 'Credits' : locale === 'zh-cn' ? 'Credits
 			previewText: 'planner-share-text',
 			copyText: 'planner-copy-text',
 			copyLink: 'planner-copy-link',
+			redditText: 'planner-copy-reddit',
 			discord: 'planner-share-discord',
 			native: 'planner-share-native',
 			status: 'planner-share-status',
@@ -213,6 +214,10 @@ const creditsLabel = locale === 'en' ? 'Credits' : locale === 'zh-cn' ? 'Credits
 		getShareText: () =>
 			latestInput && latestResult && latestShareUrl
 				? formatPlannerShareText(latestInput, latestResult, latestShareUrl)
+				: '',
+		getRedditText: () =>
+			latestInput && latestResult && latestShareUrl
+				? formatPlannerRedditText(latestInput, latestResult, latestShareUrl)
 				: '',
 		getShareUrl: () => latestShareUrl,
 		getSocialMeta: () =>

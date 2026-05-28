@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { planCredits } from './credit-planner';
-import { formatPlannerShareText } from './credit-planner-share';
+import { formatPlannerRedditText, formatPlannerShareText } from './credit-planner-share';
 import { hasPlannerUrlState, parsePlannerUrlState, serializePlannerUrlState } from './credit-planner-url-state';
 
 describe('credit-planner share url', () => {
@@ -33,5 +33,20 @@ describe('credit-planner share url', () => {
 		expect(text).toContain('[SZA Companion] Credit Planner');
 		expect(text).toContain('2,500 Credits');
 		expect(text).toContain('https://survivezombiearenaguide.com/tools/credit-planner/?credits=2500');
+	});
+
+	it('formats a Reddit-ready planner draft', () => {
+		const input = {
+			credits: 2500,
+			goal: 'unlock_first_class' as const,
+			ownedClassIds: ['survivor'],
+			sessionsPerDay: 3,
+		};
+		const result = planCredits(input);
+		const text = formatPlannerRedditText(input, result, 'https://survivezombiearenaguide.com/tools/credit-planner/?credits=2500');
+		expect(text).toContain('Credit plan for Survive Zombie Arena');
+		expect(text).toContain('Checklist:');
+		expect(text).toContain('Planner link: https://survivezombiearenaguide.com/tools/credit-planner/?credits=2500');
+		expect(text).toContain('Unofficial estimate');
 	});
 });

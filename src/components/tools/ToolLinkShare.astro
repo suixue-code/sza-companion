@@ -29,6 +29,7 @@ const { idPrefix, labels, showCopyLink = true, showDiscord = true, pngCopyId, pn
 		<div class="share-primary">
 			<button type="button" class="btn secondary" id={`${idPrefix}-copy-text`}>{labels.copyText}</button>
 			{showCopyLink && <button type="button" class="btn secondary" id={`${idPrefix}-copy-link`}>{labels.copyLink}</button>}
+			<button type="button" class="btn secondary" id={`${idPrefix}-copy-reddit`}>{labels.copyReddit}</button>
 			{pngCopyId && <button type="button" class="btn secondary" id={pngCopyId}>{labels.copyPng}</button>}
 			{pngDownloadId && <button type="button" class="btn secondary" id={pngDownloadId}>{labels.downloadPng}</button>}
 			<button type="button" class="btn secondary" id={`${idPrefix}-share-native`}>{labels.moreApps}</button>

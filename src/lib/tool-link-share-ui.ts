@@ -15,6 +15,7 @@ export interface ToolLinkShareIds {
 	previewText?: string;
 	copyText: string;
 	copyLink?: string;
+	redditText?: string;
 	discord?: string;
 	native?: string;
 	status: string;
@@ -28,6 +29,7 @@ export interface ToolLinkShareConfig {
 	trackEventName: ToolShareTrackEvent;
 	messages?: ToolShareMessages;
 	getShareText: () => string;
+	getRedditText?: () => string;
 	getShareUrl: () => string;
 	getSocialMeta: () => SocialShareMeta;
 }
@@ -64,6 +66,7 @@ export function mountToolLinkShare(config: ToolLinkShareConfig) {
 	const statusEl = document.getElementById(ids.status) as HTMLElement | null;
 	const copyTextButton = document.getElementById(ids.copyText) as HTMLButtonElement | null;
 	const copyLinkButton = ids.copyLink ? (document.getElementById(ids.copyLink) as HTMLButtonElement | null) : null;
+	const redditTextButton = ids.redditText ? (document.getElementById(ids.redditText) as HTMLButtonElement | null) : null;
 	const discordButton = ids.discord ? (document.getElementById(ids.discord) as HTMLButtonElement | null) : null;
 	const nativeButton = ids.native ? (document.getElementById(ids.native) as HTMLButtonElement | null) : null;
 
@@ -88,6 +91,17 @@ export function mountToolLinkShare(config: ToolLinkShareConfig) {
 		flashButton(copyLinkButton!, messages.flashLinkCopied, defaultLabel);
 		announceStatus(statusEl, messages.copiedLink);
 		track(config.trackEventName, { format: 'url', channel: 'clipboard' });
+	});
+
+	redditTextButton?.addEventListener('click', async () => {
+		const text = config.getRedditText ? config.getRedditText() : config.getShareText();
+		if (!text) return;
+		const defaultLabel = redditTextButton!.textContent || messages.flashCopied;
+		redditTextButton!.disabled = true;
+		await copyTextToClipboard(text);
+		flashButton(redditTextButton!, messages.flashCopied, defaultLabel);
+		announceStatus(statusEl, messages.reddit);
+		track(config.trackEventName, { format: 'text', channel: 'reddit' });
 	});
 
 	discordButton?.addEventListener('click', async () => {

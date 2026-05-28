@@ -127,6 +127,10 @@ python ~/.cursor/skills/github-cloudflare-pages-deploy/scripts/ensure_github_act
   --cloudflare-project-name sza-companion
 ```
 
+**Actions 隔几天又失败（Run #6 成功、Run #7 又 9109）**
+上次若用 **wrangler OAuth token** 写入 Secret，本机 `wrangler login` 会刷新 OAuth，但 GitHub 里仍是旧静态值，过期后 Deploy 约 3 秒失败。**长期方案**：在 [API Tokens](https://dash.cloudflare.com/profile/api-tokens) 创建 **Account API Token**（`Cloudflare Pages` → Edit，可设 1 年或不过期），把 `cfat_...` 写入 Secret，不要用 OAuth。
+**临时修复**：本机 `wrangler login` 仍有效时，再跑上面的 `ensure_github_actions_deploy.py`（会读取本机 OAuth 并重写 Secret）。
+
 **Actions 失败：Secret 完全缺失**  
 补全 `CLOUDFLARE_API_TOKEN` 与 `CLOUDFLARE_ACCOUNT_ID`（同上脚本或 Settings → Secrets）。
 

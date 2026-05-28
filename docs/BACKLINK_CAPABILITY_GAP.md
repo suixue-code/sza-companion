@@ -176,6 +176,16 @@ Weak or missing:
 
 This order turns existing trust and tool work into assets that people can link to.
 
+## Implementation Status - 2026-05-28
+
+- Done: `/sources/` public ledger and citation route.
+- Done: `/codes/` code status receipt and copyable citation.
+- Done: `docs/REDDIT_SNIPPETS.md` and `docs/OUTREACH_MEDIA_KIT.md`.
+- Done: `/codes/galactic/` conflict explainer for GALACTIC long-tail searches.
+- Done: Credit Planner and Wave Planner now expose copyable Discord summaries, share links, and Reddit-ready drafts.
+
+Next backlog should start from actual GSC/query evidence, not from duplicating the same resource-pack work.
+
 ## Acquisition Log
 
 - Built-in web/search was used first.

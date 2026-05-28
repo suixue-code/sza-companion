@@ -26,6 +26,30 @@ export function formatWavePlannerShareText(
 	return `[SZA Companion] Wave Push · ${input.currentWave} → ${input.targetWave} · ${TIER_LABELS[input.classTier]} · ${gearLabel(input)} · ${verdict} · ~${estimatedBuyPhases} buy phases · ${summary} · ${shareUrl}`;
 }
 
+export function formatWavePlannerRedditText(
+	input: WavePlannerInput,
+	summary: string,
+	estimatedBuyPhases: number,
+	feasible: boolean,
+	shareUrl: string,
+): string {
+	const verdict = feasible ? 'feasible' : 'a stretch';
+	return [
+		`Wave push check: ${input.currentWave} -> ${input.targetWave}`,
+		'',
+		`Class tier: ${TIER_LABELS[input.classTier]}`,
+		`Core gear: ${gearLabel(input)}`,
+		`Auto Skip pressure: ${input.autoSkipVotes ? 'yes' : 'no'}`,
+		`Verdict: ${verdict}`,
+		`Estimated buy phases: ~${estimatedBuyPhases}`,
+		'',
+		summary,
+		'',
+		`Planner link: ${shareUrl}`,
+		'Unofficial estimate for Survive Zombie Arena; real lobby coordination still matters.',
+	].join('\n');
+}
+
 export function buildWavePlannerSocialMeta(
 	input: WavePlannerInput,
 	summary: string,

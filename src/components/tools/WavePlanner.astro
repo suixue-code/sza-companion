@@ -91,6 +91,7 @@ const shareLabels = mergeToolShareLabels(getToolShareCopy('en'), getWaveSharePre
 	import { planWavePush, type WavePlannerInput } from '../../lib/wave-planner.ts';
 	import {
 		buildWavePlannerSocialMeta,
+		formatWavePlannerRedditText,
 		formatWavePlannerShareText,
 	} from '../../lib/wave-planner-share.ts';
 	import {
@@ -112,6 +113,7 @@ const shareLabels = mergeToolShareLabels(getToolShareCopy('en'), getWaveSharePre
 			previewText: 'wave-share-text',
 			copyText: 'wave-copy-text',
 			copyLink: 'wave-copy-link',
+			redditText: 'wave-copy-reddit',
 			discord: 'wave-share-discord',
 			native: 'wave-share-native',
 			status: 'wave-share-status',
@@ -122,6 +124,16 @@ const shareLabels = mergeToolShareLabels(getToolShareCopy('en'), getWaveSharePre
 		getShareText: () =>
 			latestInput && latestResult && latestShareUrl
 				? formatWavePlannerShareText(
+						latestInput,
+						latestResult.summary,
+						latestResult.estimatedBuyPhases,
+						latestResult.feasible,
+						latestShareUrl,
+					)
+				: '',
+		getRedditText: () =>
+			latestInput && latestResult && latestShareUrl
+				? formatWavePlannerRedditText(
 						latestInput,
 						latestResult.summary,
 						latestResult.estimatedBuyPhases,

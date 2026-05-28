@@ -7,6 +7,7 @@ export type ToolShareCopy = {
 	quickActionsLabel: string;
 	copyText: string;
 	copyLink: string;
+	copyReddit: string;
 	copyPng: string;
 	downloadPng: string;
 	moreApps: string;
@@ -24,6 +25,7 @@ export type ToolShareCopy = {
 	flashCopiedText: string;
 	statusCopiedSummary: string;
 	statusCopiedLink: string;
+	statusReddit: string;
 	statusDiscord: string;
 	statusNativeShared: string;
 	statusNativeFallback: string;
@@ -41,6 +43,7 @@ const en: ToolShareCopy = {
 	quickActionsLabel: 'Quick actions',
 	copyText: 'Copy text',
 	copyLink: 'Copy link',
+	copyReddit: 'Copy Reddit draft',
 	copyPng: 'Copy PNG',
 	downloadPng: 'Download PNG',
 	moreApps: 'More apps',
@@ -58,6 +61,7 @@ const en: ToolShareCopy = {
 	flashCopiedText: 'Copied text',
 	statusCopiedSummary: 'Summary copied — paste into Discord or any chat.',
 	statusCopiedLink: 'Shareable link copied — opening it restores these inputs.',
+	statusReddit: 'Reddit draft copied — review subreddit rules before posting.',
 	statusDiscord: 'Discord: summary copied. Share the link too so teammates see the same inputs.',
 	statusNativeShared: 'Opened system share sheet.',
 	statusNativeFallback: 'System share unavailable — summary copied instead.',
@@ -76,6 +80,7 @@ const es: ToolShareCopy = {
 	quickActionsLabel: 'Acciones rápidas',
 	copyText: 'Copiar texto',
 	copyLink: 'Copiar enlace',
+	copyReddit: 'Copiar borrador Reddit',
 	copyPng: 'Copiar PNG',
 	downloadPng: 'Descargar PNG',
 	moreApps: 'Más apps',
@@ -93,6 +98,7 @@ const es: ToolShareCopy = {
 	flashCopiedText: 'Texto copiado',
 	statusCopiedSummary: 'Resumen copiado — pégalo en Discord o cualquier chat.',
 	statusCopiedLink: 'Enlace copiado — al abrirlo se restauran estos datos.',
+	statusReddit: 'Borrador para Reddit copiado — revisa las reglas del subreddit antes de publicar.',
 	statusDiscord: 'Discord: resumen copiado. Comparte también el enlace para el mismo plan.',
 	statusNativeShared: 'Panel de compartir del sistema abierto.',
 	statusNativeFallback: 'Compartir del sistema no disponible — se copió el resumen.',
@@ -106,6 +112,7 @@ const ptBr: ToolShareCopy = {
 	quickActionsLabel: 'Ações rápidas',
 	copyText: 'Copiar texto',
 	copyLink: 'Copiar link',
+	copyReddit: 'Copiar rascunho Reddit',
 	copyPng: 'Copiar PNG',
 	downloadPng: 'Baixar PNG',
 	moreApps: 'Mais apps',
@@ -123,6 +130,7 @@ const ptBr: ToolShareCopy = {
 	flashCopiedText: 'Texto copiado',
 	statusCopiedSummary: 'Resumo copiado — cole no Discord ou em qualquer chat.',
 	statusCopiedLink: 'Link copiado — abrir restaura estes dados.',
+	statusReddit: 'Rascunho para Reddit copiado — confira as regras do subreddit antes de postar.',
 	statusDiscord: 'Discord: resumo copiado. Compartilhe o link para o time ver o mesmo plano.',
 	statusNativeShared: 'Painel de compartilhamento do sistema aberto.',
 	statusNativeFallback: 'Compartilhamento do sistema indisponível — resumo copiado.',
@@ -136,6 +144,7 @@ const zhCn: ToolShareCopy = {
 	quickActionsLabel: '快捷操作',
 	copyText: '复制文本',
 	copyLink: '复制链接',
+	copyReddit: '复制 Reddit 草稿',
 	copyPng: '复制 PNG',
 	downloadPng: '下载 PNG',
 	moreApps: '更多应用',
@@ -153,6 +162,7 @@ const zhCn: ToolShareCopy = {
 	flashCopiedText: '文本已复制',
 	statusCopiedSummary: '摘要已复制 — 可粘贴到 Discord 或任意聊天。',
 	statusCopiedLink: '可分享链接已复制 — 打开后会还原这些输入。',
+	statusReddit: 'Reddit 草稿已复制 — 发布前请确认社区规则。',
 	statusDiscord: 'Discord：摘要已复制。请一并分享链接，队友可看到相同规划。',
 	statusNativeShared: '已打开系统分享面板。',
 	statusNativeFallback: '系统分享不可用 — 已改为复制摘要。',

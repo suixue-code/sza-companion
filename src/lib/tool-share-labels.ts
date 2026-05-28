@@ -17,6 +17,7 @@ export interface ToolLinkShareLabels extends ToolShareCopy {
 export type ToolShareMessages = ToolShareCopy & {
 	copiedSummary: string;
 	copiedLink: string;
+	reddit: string;
 	discord: string;
 	nativeShared: string;
 	nativeFallback: string;
@@ -27,6 +28,7 @@ export function messagesFromToolShareCopy(copy: ToolShareCopy): ToolShareMessage
 		...copy,
 		copiedSummary: copy.statusCopiedSummary,
 		copiedLink: copy.statusCopiedLink,
+		reddit: copy.statusReddit,
 		discord: copy.statusDiscord,
 		nativeShared: copy.statusNativeShared,
 		nativeFallback: copy.statusNativeFallback,
