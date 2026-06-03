@@ -134,6 +134,17 @@
 			"confidence": "low",
 			"aiDecision": "draft",
 			"reason": "IGN and public guides report Galactic Event/Atlantis live, 1% Galactic Zombies, 50-shard crate gate, and crate weapon names. Use as media-reported only because Roblox official page text did not name the event."
+		},
+		{
+			"name": "Medal Quest - Survive Zombie Arena x Medal",
+			"url": "https://medal.tv/quests/5o2ixPiwW4/survive_zombie_arena_x_medal",
+			"type": "official",
+			"checkedAt": "2026-06-01",
+			"codesReported": [],
+			"topics": ["medal-quest", "clip-quest", "galactic-crates", "redline-skin", "medalist-title"],
+			"confidence": "medium",
+			"aiDecision": "draft",
+			"reason": "GSC showed Medal Quest demand and public search snippets identify the Survive Zombie Arena x Medal reward bundle. The official Medal URL returned HTTP 200, but full live page body extraction was not completed here, so published copy stays cautious and asks players to confirm the live Medal quest before starting."
 		}
 	]
 }

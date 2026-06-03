@@ -1,0 +1,175 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/events/medal-quest/', Astro.site).toString();
+
+const steps = [
+	['Install Medal on PC', 'Use Medal desktop, not a random code site or browser extension.'],
+	['Sign in to Medal', 'Follow the Medal client prompts and keep the quest page open enough to confirm the task requirements.'],
+	['Open Survive Zombie Arena', 'Keep Medal running while you play the Roblox experience.'],
+	['Record a short clip', 'Use Medal clipping while you are in-game; check the Medal client for your current clip shortcut or button.'],
+	['Post the clip to Medal', 'Upload the clip to your Medal profile and wait for the quest task to register.'],
+	['Return to the game', 'Rejoin if needed, open the Medal Quest reward panel, and claim the reward in-game.'],
+];
+
+const rewardRows = [
+	['Medalist title', 'Reported as part of the Survive Zombie Arena x Medal reward bundle.'],
+	['Galactic Crates x3', 'Reported reward; useful for event-item attempts, but crate odds are not published here.'],
+	['Redline Skin', 'Reported by public Medal Quest snippets and third-party guides.'],
+];
+
+const faq = [
+	{
+		question: 'How do I complete the Survive Zombie Arena Medal Quest?',
+		answer:
+			'Install Medal on PC, follow the live Medal quest prompts, record a Survive Zombie Arena gameplay clip, post it to Medal, then return to the game and claim the reward after the quest registers.',
+	},
+	{
+		question: 'What does Survive Zombie Arena x Medal give?',
+		answer:
+			'Public Medal Quest snippets and third-party guides list Medalist title, Galactic Crates x3, and Redline Skin. Confirm in the live Medal quest page before starting because event rewards can change.',
+	},
+	{
+		question: 'Is Medal Quest a code?',
+		answer:
+			'No. It is not a Roblox redeem code. It is a Medal clip quest, so it belongs with event tasks rather than the Survive Zombie Arena codes list.',
+	},
+	{
+		question: 'Does this work on mobile?',
+		answer:
+			'The public Medal quest flow emphasizes installing and opening Medal on PC. If you only play Roblox on mobile, check Medal first before spending time on the quest.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Medal Quest Guide',
+		description: 'How to complete Survive Zombie Arena x Medal, record a Medal clip, and claim Medalist title, Galactic Crates x3, and Redline Skin.',
+		url: pageUrl,
+		dateModified: '2026-06-01',
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Medal Quest', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Medal Quest Guide"
+	description="How to complete Survive Zombie Arena x Medal, record a Medal clip, and claim Medalist title, Galactic Crates x3, and Redline Skin."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Medal Quest · checked June 1, 2026</p>
+				<h1>Survive Zombie Arena Medal Quest</h1>
+				<p class="geo-snap">
+					<strong>Survive Zombie Arena x Medal</strong> is a clip quest, not a code. Install Medal, connect Roblox, post a gameplay clip, then claim the reward in-game after the quest registers.
+				</p>
+				<p class="lead">Use this when you search for “x medal,” “medal quest,” or “how to do the medal quest” and do not want to confuse it with GALACTIC or Zombies codes.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Reported reward</strong>
+				<p>Medalist title, Galactic Crates x3, and Redline Skin. Check the live Medal quest before starting.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-grid">
+			<article class="article-flow">
+				<section>
+					<h2>Fast answer</h2>
+					<p>
+						Complete the quest through Medal: connect Roblox, clip Survive Zombie Arena gameplay, upload the clip, then return to Roblox to claim. If you are looking for a text code, go to the <a href="/codes/">codes page</a> instead.
+					</p>
+				</section>
+
+				<section>
+					<h2>Steps</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Step</th>
+									<th>What to do</th>
+								</tr>
+							</thead>
+							<tbody>
+								{steps.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Rewards</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Reward</th>
+									<th>Note</th>
+								</tr>
+							</thead>
+							<tbody>
+								{rewardRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Troubleshooting</h2>
+					<ul class="warning-list">
+						<li>If the task does not update, wait for the clip upload to finish, then rejoin Survive Zombie Arena.</li>
+						<li>Do not paste Roblox credentials into third-party pages. Connect accounts only through Medal or Roblox-owned authorization screens.</li>
+						<li>Medal Quest is separate from the GALACTIC code dispute and does not prove any text code works.</li>
+						<li>Crate odds, post-event availability, and Redline item details still need in-game confirmation.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>FAQ</h2>
+					<div class="faq-list">
+						{faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</section>
+			</article>
+
+			<aside class="side-rail">
+				<div class="rail-panel accent-panel">
+					<strong>Related pages</strong>
+					<a href="/events/galactic/">Galactic Event</a>
+					<a href="/guides/galactic-crate/">Galactic Crate guide</a>
+					<a href="/codes/">Codes</a>
+				</div>
+				<div class="rail-panel">
+					<strong>Official checks</strong>
+					<a href="https://medal.tv/quests/5o2ixPiwW4/survive_zombie_arena_x_medal" rel="noopener noreferrer" target="_blank">Medal quest page</a>
+					<a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">Roblox experience</a>
+				</div>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>

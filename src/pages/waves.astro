@@ -10,8 +10,8 @@ const { faq } = wavesData;
 
 const schema = [
 	articleSchema({
-		title: 'Survive Zombie Arena Wave Guide',
-		description: 'Early, mid, and late wave strategy, Auto Skip rules, Credit spending phases, and Nightmare Mode notes.',
+		title: 'Survive Zombie Arena Waves Guide — How Many Waves & Auto Skip',
+		description: 'How many waves are in Survive Zombie Arena, plus Auto Skip rules, Credit spending phases, enemy density, and Nightmare Mode notes.',
 		url: pageUrl,
 		dateModified: siteMeta.lastPublicReview,
 	}),
@@ -24,8 +24,8 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Waves Guide — Auto Skip, Credits & Nightmare"
-	description="Survive Zombie Arena waves guide: core loop, early/mid/late Credit spending, Auto Skip rules, enemy density, class progression, and Nightmare Mode status."
+	title="Survive Zombie Arena Waves Guide — How Many Waves & Auto Skip"
+	description="Survive Zombie Arena waves guide: how many waves there are, Auto Skip rules, Credit spending, enemy density, classes, and Nightmare Mode."
 	schema={schema}
 >
 	<section class="page-hero compact">
@@ -101,6 +101,16 @@ const schema = [
 			<GuideSection heading="Data gaps" items={wavesData.dataGaps} />
 
 			<section>
+				<h2>How many waves are in Survive Zombie Arena?</h2>
+				<p>
+					There is no official public hard cap in the sources we track. Treat Survive Zombie Arena as a scaling wave-survival game: your practical target is the next stable milestone, not a fixed final wave. New players should stabilize waves 10-20, organized teams can push much further, and leaderboard runs depend on class setup, Auto Skip discipline, and lobby coordination.
+				</p>
+				<p>
+					If you are planning a specific push, use the <a href="/tools/wave-planner/">Wave Push Planner</a> before voting Auto Skip.
+				</p>
+			</section>
+
+			<section>
 				<h2>FAQ</h2>
 				<div class="faq-list">
 					{faq.map((item) => (
@@ -114,7 +124,7 @@ const schema = [
 
 			<p class="notice">{siteMeta.gameContentVersionLabel}</p>
 			<p>
-				See also: <a href="/guides/waves/">Wave guide (deep)</a> · <a href="/guides/nightmare-mode-guide/">Nightmare Mode</a> · <a href="/enemies/">Enemies</a> · <a href="/best-loadouts/">Best loadouts</a>
+				See also: <a href="/tools/wave-planner/">Wave Push Planner</a> · <a href="/guides/waves/">Wave guide (deep)</a> · <a href="/guides/nightmare-mode-guide/">Nightmare Mode</a> · <a href="/enemies/">Enemies</a> · <a href="/best-loadouts/">Best loadouts</a>
 			</p>
 		</div>
 	</section>

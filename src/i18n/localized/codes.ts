@@ -38,9 +38,9 @@ export type CodesCopy = {
 type LocalizedLocale = 'es' | 'pt-br' | 'zh-cn';
 
 const es: CodesCopy = {
-	title: 'Códigos de Survive Zombie Arena (mayo 2026): Zombies y GALACTIC',
+	title: 'Códigos Survive Zombie Arena: Arena de Zombies',
 	description:
-		'Copia Zombies para 2.500 créditos, revisa el estado de GALACTIC y canjea códigos de Survive Zombie Arena en la tienda de Roblox.',
+		'Copia Zombies para 2.500 créditos, revisa GALACTIC y canjea códigos de Sobrevivir a la Arena de Zombies en Roblox.',
 	eyebrow: 'Actualizado',
 	h1: 'Códigos de Survive Zombie Arena',
 	geoSnap:

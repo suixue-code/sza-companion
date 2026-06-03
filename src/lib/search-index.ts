@@ -26,6 +26,7 @@ export const searchIndex: SearchEntry[] = [
 	{ title: 'Updates', href: '/updates/', keywords: 'survive zombie arena updates patch notes update log may 2026', category: 'Reference' },
 	{ title: 'Discord & Links', href: '/discord/', keywords: 'survive zombie arena discord roblox nectarforge official', category: 'Reference' },
 	{ title: 'Galactic Event', href: '/events/galactic/', keywords: 'survive zombie arena galactic event void shards crate code', category: 'Events' },
+	{ title: 'Medal Quest', href: '/events/medal-quest/', keywords: 'survive zombie arena medal quest x medal medalist redline skin galactic crates clip', category: 'Events' },
 	// Tools
 	{ title: 'Credit Planner', href: '/tools/credit-planner/', keywords: 'survive zombie arena credit planner credits farm medic marksman necromancer plan', category: 'Tools' },
 	{ title: 'Loadout Builder', href: '/tools/loadout-builder/', keywords: 'survive zombie arena loadout builder loadout team solo weapons class', category: 'Tools' },

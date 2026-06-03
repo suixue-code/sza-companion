@@ -35,13 +35,13 @@ export type HomeCopy = {
 type LocalizedLocale = 'es' | 'pt-br' | 'zh-cn';
 
 const es: HomeCopy = {
-	title: 'Códigos y planificador de Survive Zombie Arena',
+	title: 'Survive Zombie Arena: códigos y guía en español',
 	description:
-		'Copia códigos de Survive Zombie Arena, usa Zombies por 2.500 créditos, compara clases y planifica tu próximo desbloqueo.',
+		'Guía en español de Survive Zombie Arena: códigos, Sobrevivir a la Arena de Zombies, clases, créditos y planner para Roblox.',
 	eyebrow: 'Guía no oficial · revisado',
 	h1: 'Códigos y planificador de Survive Zombie Arena',
 	geoSnap:
-		'Ayuda no oficial para Roblox Survive Zombie Arena: códigos que funcionan, costes de clases, mejoras de armas y herramientas gratis en el navegador. Sin vínculo con Roblox ni Nectarforge Studios.',
+		'Ayuda no oficial para Roblox Survive Zombie Arena, también buscado como Sobrevivir a la Arena de Zombies: códigos que funcionan, costes de clases, mejoras de armas y herramientas gratis en el navegador. Sin vínculo con Roblox ni Nectarforge Studios.',
 	lead: 'Revisa códigos, planifica tu próximo desbloqueo de clase y lee guías pensadas para el Rooftop Map.',
 	ctaCodes: 'Ver códigos',
 	ctaPlanner: 'Credit Planner',
