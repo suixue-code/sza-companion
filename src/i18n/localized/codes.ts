@@ -112,7 +112,7 @@ const es: CodesCopy = {
 };
 
 const ptBr: CodesCopy = {
-	title: 'Códigos de Survive Zombie Arena (maio 2026): Zombies e GALACTIC',
+	title: 'Códigos de Survive Zombie Arena: Zombies e GALACTIC',
 	description:
 		'Copie Zombies para 2.500 créditos, confira o status de GALACTIC e resgate códigos de Survive Zombie Arena na loja do Roblox.',
 	eyebrow: 'Atualizado',
@@ -181,7 +181,7 @@ const ptBr: CodesCopy = {
 };
 
 const zhCn: CodesCopy = {
-	title: 'Survive Zombie Arena 兑换码（2026 年 5 月）：Zombies 与 GALACTIC',
+	title: 'Survive Zombie Arena 兑换码：Zombies 与 GALACTIC',
 	description:
 		'复制 Survive Zombie Arena 有效兑换码 Zombies 领取 2500 信用点，查看 GALACTIC 最新状态，并按 Roblox 商店步骤兑换。',
 	eyebrow: '更新于',

@@ -9,7 +9,7 @@ interface Props {
 const { locale = 'en' } = Astro.props;
 
 const alert = siteMeta.codeAlert ?? { enabled: false, provider: 'buttondown', buttondownUsername: '', tag: 'sza-codes' };
-const privacyUrl = locale === 'en' ? '/privacy/' : `/${locale}/privacy/`;
+const privacyUrl = '/privacy/';
 
 const copy = {
 	en: {

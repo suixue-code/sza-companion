@@ -58,7 +58,7 @@ const zhCnPlaystyleRows: PlaystyleRow[] = [
 ];
 
 const es: TierListCopy = {
-	title: 'Tier list de Survive Zombie Arena (mayo 2026) — Clases S/A/B/C',
+	title: 'Tier list de Survive Zombie Arena — Clases S/A/B/C',
 	description:
 		'Tier list de Survive Zombie Arena: Necromancer S-tier, Medic/Marksman/Tactician/Bastion A-tier y picks por estilo para meta Rooftop Map.',
 	eyebrow: 'Baseline tier solo · Rooftop Map · revisado',
@@ -96,7 +96,7 @@ const es: TierListCopy = {
 };
 
 const ptBr: TierListCopy = {
-	title: 'Tier list de Survive Zombie Arena (maio 2026) — Classes S/A/B/C',
+	title: 'Tier list de Survive Zombie Arena — Classes S/A/B/C',
 	description:
 		'Tier list de Survive Zombie Arena: Necromancer S-tier, Medic/Marksman/Tactician/Bastion A-tier e picks por estilo para meta Rooftop Map.',
 	eyebrow: 'Baseline tier solo · Rooftop Map · revisado',
@@ -132,7 +132,7 @@ const ptBr: TierListCopy = {
 };
 
 const zhCn: TierListCopy = {
-	title: 'Survive Zombie Arena 梯队榜（2026 年 5 月）— S/A/B/C 职业',
+	title: 'Survive Zombie Arena 梯队榜 — S/A/B/C 职业',
 	description:
 		'Survive Zombie Arena 梯队：Necromancer S 级，Medic/Marksman/Tactician/Bastion A 级，及 Rooftop Map 环境玩法推荐。',
 	eyebrow: '单人梯队基准 · Rooftop Map · 复核于',
