@@ -1,0 +1,143 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import siteStats from '../data/site-stats.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/roblox/', Astro.site).toString();
+const fmt = new Intl.NumberFormat('en-US');
+
+const officialRows = [
+	['Roblox game', siteMeta.robloxExperienceLabel, siteMeta.robloxExperienceUrl],
+	['Developer group', siteMeta.robloxGroupLabel, siteMeta.robloxGroupUrl],
+	['Official Discord', 'Survive Zombie Arena community invite', siteMeta.discordInviteUrl],
+];
+
+const faq = [
+	{
+		question: 'Where do I play Survive Zombie Arena on Roblox?',
+		answer: `Use the official Roblox experience page at ${siteMeta.robloxExperienceUrl}. The place ID tracked by this site is ${siteMeta.placeId}.`,
+	},
+	{
+		question: 'Is this an official Survive Zombie Arena Roblox site?',
+		answer: 'No. This is an unofficial guide site. Use the Roblox game page, Nectarforge Studios group, and official Discord for first-party information.',
+	},
+	{
+		question: 'Where do I redeem Survive Zombie Arena codes?',
+		answer: 'Launch the Roblox experience, open Shop in the lobby, scroll to Redeem Codes, paste the code, and press Redeem.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Roblox Links',
+		description: 'Official Survive Zombie Arena Roblox game link, place ID, Nectarforge Studios group, Discord invite, and safe launch checklist.',
+		url: pageUrl,
+		dateModified: siteMeta.lastPublicReview,
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Roblox Links', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Roblox: Official Game Link & Place ID"
+	description="Survive Zombie Arena Roblox links: official game page, place ID, Nectarforge Studios group, Discord invite, codes route, and safe launch checklist."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Roblox links · checked {siteMeta.lastPublicReviewDisplay}</p>
+				<h1>Survive Zombie Arena Roblox</h1>
+				<p class="geo-snap">
+					Use this page when you search for <strong>Survive Zombie Arena Roblox</strong> and want the official game, developer group, Discord, codes route, and place ID without fake launch buttons.
+				</p>
+				<p class="lead">This guide site is unofficial. First-party actions should happen on Roblox, Medal, or the official Discord only.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Place ID</strong>
+				<p>{siteMeta.placeId} · {fmt.format(siteStats.maxPlayers)} players per server · {fmt.format(siteStats.visits)} visits at last API check</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-grid">
+			<article class="article-flow">
+				<section>
+					<h2>Official links</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Need</th>
+									<th>Destination</th>
+									<th>Open</th>
+								</tr>
+							</thead>
+							<tbody>
+								{officialRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td><a href={row[2]} rel="noopener noreferrer" target="_blank">Open</a></td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Safe launch checklist</h2>
+					<ul class="check-list">
+						<li>Start from Roblox, not a copied executable or random download page.</li>
+						<li>Redeem text codes only inside the in-game Shop. Current code notes live on <a href="/codes/">Codes 2026</a>.</li>
+						<li>For the Medal quest, use Medal's quest flow instead of a code box. See <a href="/events/medal-quest/">x Medal guide</a>.</li>
+						<li>For Discord, use the invite listed here or on the Roblox page before trusting code screenshots.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Quick routes</h2>
+					<div class="shortcut-grid">
+						<a class="shortcut" href="/codes/"><strong>Codes 2026</strong><p>Zombies, GALACTIC status, and redeem steps.</p></a>
+						<a class="shortcut" href="/wiki/"><strong>Wiki</strong><p>All guide routes from one page.</p></a>
+						<a class="shortcut" href="/discord/"><strong>Discord</strong><p>Official invite and public channel audit.</p></a>
+						<a class="shortcut" href="/glitches/"><strong>Glitches</strong><p>Safe read for glitch and broken quest searches.</p></a>
+					</div>
+				</section>
+
+				<section>
+					<h2>FAQ</h2>
+					<div class="faq-list">
+						{faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</section>
+			</article>
+
+			<aside class="side-rail">
+				<div class="rail-panel accent-panel">
+					<strong>Roblox snapshot</strong>
+					<p>{fmt.format(siteStats.visits)} visits · {fmt.format(siteStats.favorites)} favorites · updated {siteStats.gameLastUpdated.slice(0, 10)}</p>
+				</div>
+				<div class="rail-panel">
+					<strong>Related</strong>
+					<a href="/codes/">Codes</a>
+					<a href="/tier-list/">Tier list</a>
+					<a href="/waves/">Waves</a>
+					<a href="/maps/">Maps</a>
+				</div>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>

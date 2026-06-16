@@ -11,8 +11,9 @@ const classGuides = guides.filter((g) => g.eyebrow?.includes('Class guide'));
 const economyGuides = guides.filter((g) => g.eyebrow?.includes('Economy') || g.slug.includes('credit') || g.slug.includes('farm') || g.slug.includes('gamepass') || g.slug.includes('x2'));
 const weaponGuides = guides.filter((g) => g.eyebrow?.includes('Weapon') || g.slug.includes('weapon') || g.slug.includes('gumdrop') || g.slug.includes('world-ender') || g.slug.includes('unlock'));
 const waveGuides = guides.filter((g) => g.eyebrow?.includes('Wave') || g.slug.includes('wave') || g.slug.includes('nightmare') || g.slug.includes('leaderboard'));
+const mapUpdateGuides = guides.filter((g) => g.slug.includes('abandoned-farm') || g.eyebrow?.includes('Map guide'));
 const otherGuides = guides.filter(
-	(g) => !classGuides.includes(g) && !economyGuides.includes(g) && !weaponGuides.includes(g) && !waveGuides.includes(g),
+	(g) => !classGuides.includes(g) && !economyGuides.includes(g) && !weaponGuides.includes(g) && !waveGuides.includes(g) && !mapUpdateGuides.includes(g),
 );
 
 const schema = [
@@ -105,6 +106,28 @@ const schema = [
 						</a>
 					</li>
 				))}
+			</ul>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell">
+			<div class="section-title"><h2>Maps & update watch</h2></div>
+			<ul class="shortcut-grid">
+				{mapUpdateGuides.map((g) => (
+					<li class="shortcut">
+						<a href={`/guides/${g.slug}/`}>
+							<strong>{g.title.split(' — ')[0]}</strong>
+							<p>{g.description}</p>
+						</a>
+					</li>
+				))}
+				<li class="shortcut">
+					<a href="/updates/abandoned-farm/">
+						<strong>June Update Tracker</strong>
+						<p>Abandoned Farm, Overclocker, Arctic Striker, and source-confidence routing.</p>
+					</a>
+				</li>
 			</ul>
 		</div>
 	</section>

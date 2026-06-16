@@ -12,6 +12,13 @@ SZA Companion is an unofficial Survive Zombie Arena guide site with active/dispu
 
 | Angle | URL |
 | --- | --- |
+| Wiki hub / broad source | https://survivezombiearenaguide.com/wiki/ |
+| June update tracker | https://survivezombiearenaguide.com/updates/abandoned-farm/ |
+| Abandoned Farm source-watch guide | https://survivezombiearenaguide.com/guides/abandoned-farm/ |
+| Overclocker source-watch guide | https://survivezombiearenaguide.com/guides/overclocker-class/ |
+| Arctic Striker source-watch guide | https://survivezombiearenaguide.com/guides/arctic-striker/ |
+| Best weapons 2026 | https://survivezombiearenaguide.com/weapons/ |
+| AFK / safe spot / glitch safety | https://survivezombiearenaguide.com/glitches/ |
 | Code status with dispute handling | https://survivezombiearenaguide.com/codes/ |
 | GALACTIC conflict explainer | https://survivezombiearenaguide.com/codes/galactic/ |
 | Citation / methodology for journalists | https://survivezombiearenaguide.com/sources/ |
@@ -23,13 +30,21 @@ SZA Companion is an unofficial Survive Zombie Arena guide site with active/dispu
 
 ## Guest-post angles (from competitor batch)
 
-1. **Why GALACTIC is disputed across Survive Zombie Arena code sites** — Discord #codes vs media lists; link `/codes/galactic/`, `/codes/`, and `/sources/`.
-2. **Best first class: Medic vs Marksman with Credit Planner math** — solo vs co-op; link `/tier-list/` and `/tools/credit-planner/`.
-3. **When Auto Skip hurts credits per minute** — wave timing; link `/tools/wave-planner/`, `/waves/`, and `/guides/credits-farm/`.
+1. **Abandoned Farm, Overclocker, and Arctic Striker: what is verified vs creator-reported** — source-confidence angle; link `/updates/abandoned-farm/`.
+2. **Best weapons without fake DPS: Arctic Striker, Gumdrop, Flamethrower, and rifle path** — link `/weapons/`.
+3. **Why GALACTIC is disputed across Survive Zombie Arena code sites** — Discord #codes vs media lists; link `/codes/galactic/`, `/codes/`, and `/sources/`.
+4. **Best first class: Medic vs Marksman with Credit Planner math** — solo vs co-op; link `/tier-list/` and `/tools/credit-planner/`.
+5. **When Auto Skip hurts credits per minute** — wave timing; link `/tools/wave-planner/`, `/waves/`, and `/guides/credits-farm/`.
 
 ## Screenshots to capture (before outreach)
 
 - `/codes/` — active Zombies row + disputed GALACTIC row with source toggles open
+- `/updates/abandoned-farm/` — source-confidence table for Abandoned Farm, Overclocker, Arctic Striker
+- `/guides/abandoned-farm/` — map and safe-spot proof checklist
+- `/guides/overclocker-class/` — class proof checklist and cost/role gaps
+- `/guides/arctic-striker/` — freeze weapon source-watch guide without fake DPS
+- `/weapons/` — hot weapon searches table
+- `/wiki/` — wiki snapshot table above the fold
 - `/codes/galactic/` — conflict table showing Void Shards vs Credits reports
 - `/tools/credit-planner/` — sample output showing runs to Marksman
 - `/tools/wave-planner/` — sample output showing feasible vs stretch push
@@ -39,7 +54,7 @@ SZA Companion is an unofficial Survive Zombie Arena guide site with active/dispu
 ## Citation block (copy-paste)
 
 ```
-As of May 2026, Survive Zombie Arena code Zombies (2,500 Credits) is active per public Discord #codes; GALACTIC is disputed across trackers. Unofficial source page: https://survivezombiearenaguide.com/sources/
+As of June 15, 2026, Survive Zombie Arena code Zombies (2,500 Credits) is active per prior Discord/public-source audit; GALACTIC remains disputed because public guides disagree and the Roblox API check did not name it. Unofficial source page: https://survivezombiearenaguide.com/sources/
 ```
 
 ## Tool share prompts

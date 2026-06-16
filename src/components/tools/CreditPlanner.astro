@@ -61,6 +61,8 @@ const enUi: CreditPlannerUiCopy = {
 };
 
 const ui = locale === 'en' ? enUi : getCreditPlannerUiCopy(locale);
+const classesPageHref = '/classes/';
+const tierListHref = locale === 'en' ? '/tier-list/' : `/${locale}/tier-list/`;
 const shareLabels = mergeToolShareLabels(getToolShareCopy(locale), getPlannerSharePreset(locale));
 const reviewed =
 	locale === 'en' ? siteMeta.lastPublicReviewDisplay : lastReviewedDisplay(locale, siteMeta);
@@ -171,9 +173,9 @@ const creditsLabel = locale === 'en' ? 'Credits' : locale === 'zh-cn' ? 'Credits
 					{i === 2 ? (
 						<>
 							{locale === 'zh-cn' ? '完整解锁建议见' : locale === 'es' ? 'Consejos completos en' : locale === 'pt-br' ? 'Veja' : 'See the'}{' '}
-							<a href={ui.classesPageLink}>{locale === 'zh-cn' ? '职业页' : locale === 'pt-br' ? 'página de classes' : 'classes page'}</a>
+							<a href={classesPageHref}>{locale === 'zh-cn' ? '职业页' : locale === 'pt-br' ? 'página de classes' : 'classes page'}</a>
 							{' '}{locale === 'en' ? 'and' : locale === 'zh-cn' ? '与' : locale === 'es' ? 'y' : 'e'}{' '}
-							<a href={ui.tierListLink}>{locale === 'zh-cn' ? '强度榜' : 'tier list'}</a>.
+							<a href={tierListHref}>{locale === 'zh-cn' ? '强度榜' : 'tier list'}</a>.
 						</>
 					) : (
 						item

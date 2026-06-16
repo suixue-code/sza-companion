@@ -1,0 +1,191 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/updates/abandoned-farm/', Astro.site).toString();
+
+const signalRows = [
+	['Abandoned Farm', 'New map/update term in June creator videos and SERP results.', 'Creator / SERP reported', 'Needs official patch-note or in-game confirmation.'],
+	['Overclocker class', 'Creator videos mention a new Overclocker class and class showcase.', 'Creator reported', 'Do not add to class tier list until verified.'],
+	['Arctic Striker', 'Appears in best-weapons and June update searches.', 'Community / creator reported', 'Track on weapons page; exact stats unknown.'],
+	['New guns', 'June videos frame the update around fresh weapons.', 'Creator reported', 'Separate from May 8 confirmed World Ender, Grenade Launcher, Tommy Gun, Flamethrower.'],
+	['Abandoned Farm glitches', 'Recent videos target safe spots and AFK claims.', 'Creator reported', 'Route to glitches page; no scripts or exploit steps.'],
+];
+
+const actionRows = [
+	['Need the safest progression route', 'Use Codes, Credit Planner, and Best Weapons before chasing new update claims.', '/codes/'],
+	['Need weapon decisions', 'Compare Arctic Striker/Gumdrop/Flamethrower without fake DPS numbers.', '/guides/arctic-striker/'],
+	['Need AFK or best spot context', 'Use the safety tracker instead of exploit downloads or macro pages.', '/glitches/'],
+	['Need Overclocker context', 'Read the source-watch guide before treating it as a ranked class.', '/guides/overclocker-class/'],
+	['Need official links', 'Open Roblox or Discord from first-party routes only.', '/roblox/'],
+];
+
+const sourceRows = [
+	['YouTube SERP', 'Multiple June 2026 videos mention Abandoned Farm glitches, Overclocker, Arctic Striker, and new guns.', 'Fresh demand signal only.'],
+	['Similarweb/GSC', 'GSC already shows impressions on weapons, maps, AFK farm, and guide pages; Similarweb shows wiki queries are winnable by topical domains.', 'Prioritize page refresh and hub routing.'],
+	['Official data gap', 'Roblox official games API was refreshed June 15, but Discord patch notes and in-game receipts are still missing.', 'Do not mark entity facts verified yet.'],
+];
+
+const faq = [
+	{
+		question: 'Is Abandoned Farm verified as the current Survive Zombie Arena map?',
+		answer: 'Not on this site yet. June creator videos and search results mention Abandoned Farm, but this page keeps it as creator-reported until official patch notes, Roblox page text, or an in-game receipt confirms rotation rules.',
+	},
+	{
+		question: 'Is Overclocker in the tier list?',
+		answer: 'Not yet. We need a verified kit, cost, role, and live availability before adding Overclocker to the class tier list.',
+	},
+	{
+		question: 'Should I follow Abandoned Farm glitch videos?',
+		answer: 'Treat them as temporary and risky. Map geometry and pathing can be hotfixed silently. Use legal Credit routes and class planning for stable progress.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena June Update: Abandoned Farm & Overclocker',
+		description: 'June 2026 Survive Zombie Arena update tracker for Abandoned Farm, Overclocker class, Arctic Striker, new guns, and glitch-search safety notes.',
+		url: pageUrl,
+		dateModified: '2026-06-15',
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Updates', url: new URL('/updates/', Astro.site).toString() },
+		{ name: 'Abandoned Farm Update', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena June Update: Abandoned Farm & Overclocker"
+	description="Survive Zombie Arena June 2026 update tracker: Abandoned Farm, Overclocker class, Arctic Striker, new guns, glitch claims, and source-confidence notes."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>June 2026 update watch · source confidence first</p>
+				<h1>Abandoned Farm Update Tracker</h1>
+				<p class="geo-snap">
+					Search demand has shifted toward <strong>Abandoned Farm</strong>, <strong>Overclocker</strong>, <strong>Arctic Striker</strong>, new guns, and glitch spots. This page tracks the demand without pretending every creator claim is official patch text.
+				</p>
+				<p class="lead">Use this as the hub until we have a fresh Discord or in-game receipt. Verified pages stay linked below.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Status</strong>
+				<p>Hot in June SERP. Official confirmation still needs a fresh check.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-grid">
+			<article class="article-flow">
+				<section>
+					<h2>What players are searching now</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Topic</th>
+									<th>Why it matters</th>
+									<th>Status</th>
+									<th>Next verification</th>
+								</tr>
+							</thead>
+							<tbody>
+								{signalRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td>{row[2]}</td>
+										<td>{row[3]}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Where to go next</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Need</th>
+									<th>Best route</th>
+									<th>Open</th>
+								</tr>
+							</thead>
+							<tbody>
+								{actionRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td><a href={row[2]}>Guide</a></td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Source confidence</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Source layer</th>
+									<th>What it says</th>
+									<th>How we use it</th>
+								</tr>
+							</thead>
+							<tbody>
+								{sourceRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td>{row[2]}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>FAQ</h2>
+					<div class="faq-list">
+						{faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</section>
+			</article>
+
+			<aside class="side-rail">
+				<div class="rail-panel accent-panel">
+					<strong>High-priority checks</strong>
+					<p>Confirm official Discord patch notes, in-game map rotation, Overclocker kit/cost, and Arctic Striker availability.</p>
+				</div>
+				<div class="rail-panel">
+					<strong>Related</strong>
+					<a href="/guides/abandoned-farm/">Abandoned Farm guide</a>
+					<a href="/guides/overclocker-class/">Overclocker guide</a>
+					<a href="/guides/arctic-striker/">Arctic Striker guide</a>
+					<a href="/weapons/">Best weapons</a>
+					<a href="/glitches/">Glitches and AFK</a>
+					<a href="/wiki/">Wiki hub</a>
+					<a href="/updates/">Patch timeline</a>
+				</div>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>

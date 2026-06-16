@@ -1,7 +1,7 @@
 {
-	"captureDate": "2026-05-26",
-	"capturedAt": "2026-05-26T15:16:00+00:00",
-	"notes": "Public guide checks, the May 26 Roblox page/API refresh, prior Discord audit, and third-party code/event guides are listed here. This is not a substitute for in-game verification.",
+	"captureDate": "2026-06-15",
+	"capturedAt": "2026-06-15T08:26:53+00:00",
+	"notes": "Public guide checks, the June 15 Roblox games API refresh, prior Discord audit, GSC/Similarweb demand exports, and third-party code/event guides are listed here. This is not a substitute for in-game verification.",
 	"sources": [
 		{
 			"name": "survivezombiearena.com (public guide hub)",
@@ -73,12 +73,12 @@
 			"name": "Roblox public games API",
 			"url": "https://games.roblox.com/v1/games?universeIds=9348272796",
 			"type": "official",
-			"checkedAt": "2026-05-26",
+			"checkedAt": "2026-06-15",
 			"codesReported": [],
-			"topics": ["visits", "favorites", "live-playing", "updated-timestamps", "virtual-events-empty"],
+			"topics": ["visits", "favorites", "live-playing", "updated-timestamps", "official-description"],
 			"confidence": "high",
 			"aiDecision": "use",
-			"reason": "Official page context confirmed rootPlaceId 114204398207377, universeId 9348272796, visits 267,801,365, favorites 196,573, playing 95,091, and updated timestamp 2026-05-26T01:51:14Z. Virtual events endpoint returned no public event rows."
+			"reason": "Official API confirmed rootPlaceId 114204398207377, universeId 9348272796, visits 474,209,362, favorites 440,099, playing 49,755, and updated timestamp 2026-06-15T08:26:53Z. Official description did not name Abandoned Farm, Overclocker, Arctic Striker, or GALACTIC."
 		},
 		{
 			"name": "Destructoid (codes)",

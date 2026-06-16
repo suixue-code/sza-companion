@@ -1,16 +1,16 @@
 {
-	"lastChecked": "2026-05-26",
+	"lastChecked": "2026-06-15",
 	"source": "Roblox public games API via official Roblox page context",
 	"sourceUrl": "https://games.roblox.com/v1/games?universeIds=9348272796",
-	"visits": 267801365,
-	"favorites": 196573,
+	"visits": 474209362,
+	"favorites": 440099,
 	"avgSessionMinutes": 13.13,
 	"maxPlayers": 25,
-	"peakConcurrentUsers24h": 95091,
-	"livePlayersAtCheck": 95091,
+	"peakConcurrentUsers24h": 49755,
+	"livePlayersAtCheck": 49755,
 	"discordMembers": 24818,
 	"discordOnlineAtCheck": 6017,
 	"robloxGroupMembers": 93739,
-	"gameLastUpdated": "2026-05-26T01:51:14.1030286Z",
-	"notes": "Visits, favorites, live playing count, maxPlayers, and updated timestamp from Roblox public games API fetched in the official Roblox page context on 2026-05-26. Discord, group, and avg session values were not refreshed in this pass. peakConcurrentUsers24h mirrors the live playing snapshot because Roblox games API does not return a 24h peak."
+	"gameLastUpdated": "2026-06-15T08:26:53.6685981Z",
+	"notes": "Visits, favorites, live playing count, maxPlayers, and updated timestamp from Roblox public games API fetched on 2026-06-15. The official API description did not name Abandoned Farm, Overclocker, Arctic Striker, or GALACTIC. Discord, group, and avg session values were not refreshed in this pass. peakConcurrentUsers24h mirrors the live playing snapshot because Roblox games API does not return a 24h peak."
 }

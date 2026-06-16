@@ -27,6 +27,12 @@
 4. **Long-tail guides** — 1 new `/guides/` slug per week if backlog exists  
 5. **English only** — keep core `/` pages in sync with JSON data; see [LANGUAGE_STRATEGY.md](./LANGUAGE_STRATEGY.md)
 
+## Current proof gaps from 2026-06-15
+
+- Re-check `GALACTIC` in-game before promoting it from disputed.
+- Capture Discord `#codes` and patch/announcement notes for June update terms: Abandoned Farm, Overclocker, Arctic Striker.
+- Keep `/updates/abandoned-farm/` wording as source-confidence / creator-reported until first-party evidence exists.
+
 ---
 
 ## Definition of done (weekly)

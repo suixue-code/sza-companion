@@ -33,10 +33,19 @@ const faq = [
 	},
 ];
 
+const hotWeaponRows = [
+	['Arctic Striker', 'Top weapon in competitor tier lists; appears in June update videos.', 'community-reported', '/guides/arctic-striker/'],
+	['Gumdrop Blaster', 'High-DPS splash/slow pick in competitor pages and our GSC queries.', 'community-reported', '/guides/gumdrop-blaster-guide/'],
+	['Flamethrower', 'Confirmed buff in May 8 patch; exact numbers undisclosed.', 'patch-confirmed', '/guides/best-weapons/'],
+	['World Ender', 'First mythic F2P gun from the May 8 patch.', 'patch-confirmed', '/guides/world-ender-guide/'],
+	['Lava Gatling', 'Competitor/wiki entity; needs in-game receipt before we publish stats.', 'needs check', '/sources/'],
+	['Redline', 'Medal Quest reward claim; treat as event reward, not normal shop path.', 'event-reported', '/events/medal-quest/'],
+];
+
 const schema = [
 	articleSchema({
-		title: 'Survive Zombie Arena Best Weapons: Shotgun to Rifle Upgrade Path',
-		description: 'Best Survive Zombie Arena weapons for May 2026: use handgun to shotgun to rifle first, then compare World Ender, Gumdrop Blaster, and new F2P guns.',
+		title: 'Survive Zombie Arena Best Weapons 2026: Arctic Striker & Gumdrop',
+		description: 'Best Survive Zombie Arena weapons for June 2026: Arctic Striker, Gumdrop Blaster, Flamethrower, World Ender, and the verified handgun to shotgun to rifle path.',
 		url: pageUrl,
 		dateModified: siteMeta.lastPublicReview,
 	}),
@@ -49,17 +58,17 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Best Weapons: Shotgun to Rifle Upgrade Path"
-	description="Survive Zombie Arena best weapons: upgrade handgun to shotgun, rush rifle for mid waves, and compare World Ender, Gumdrop Blaster, and May 2026 F2P guns."
+	title="Survive Zombie Arena Best Weapons 2026: Arctic Striker & Gumdrop"
+	description="Survive Zombie Arena best weapons: Arctic Striker, Gumdrop Blaster, Flamethrower, World Ender, and the verified handgun to shotgun to rifle upgrade path."
 	schema={schema}
 >
 	<section class="page-hero compact">
 		<div class="shell two-col mobile-hero-stack">
 			<div>
-				<p class="eyebrow"><span class="pulse"></span>Verified path · no invented stats · {siteMeta.lastPublicReviewDisplay}</p>
-				<h1>Best Weapons and Upgrade Path</h1>
+				<p class="eyebrow"><span class="pulse"></span>June 2026 weapon tracker · no invented stats</p>
+				<h1>Best Weapons 2026</h1>
 				<p class="geo-snap">
-					For most runs, the safe weapon route is <strong>handgun → shotgun → rifle</strong>. Chase named guns after your lane can survive early and mid waves.
+					Competitors are chasing <strong>Arctic Striker</strong>, <strong>Gumdrop Blaster</strong>, <strong>Flamethrower</strong>, and <strong>World Ender</strong>. For most runs, the safe route still starts <strong>handgun → shotgun → rifle</strong>; chase named guns after your lane survives early and mid waves.
 				</p>
 			</div>
 			<aside class="quick-answer">
@@ -72,6 +81,32 @@ const schema = [
 	<section class="content-section">
 		<div class="shell">
 			<p class="notice">{weaponsData.honestyNote}</p>
+			<div class="section-title" style="margin-top: 20px;">
+				<h2>Hot weapon searches</h2>
+				<p>These are the entities competitors and YouTube are surfacing. Status labels prevent unverified DPS claims from becoming fake facts.</p>
+			</div>
+			<div class="table-wrap">
+				<table class="data-table">
+					<thead>
+						<tr>
+							<th>Weapon</th>
+							<th>Why it matters</th>
+							<th>Status</th>
+							<th>Open</th>
+						</tr>
+					</thead>
+					<tbody>
+						{hotWeaponRows.map((row) => (
+							<tr>
+								<td><strong>{row[0]}</strong></td>
+								<td>{row[1]}</td>
+								<td>{row[2]}</td>
+								<td><a href={row[3]}>Guide</a></td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 			<div class="section-title" style="margin-top: 20px;">
 				<h2>Verified in-run progression</h2>
 				<p>Last checked {weaponsData.lastChecked}</p>
@@ -200,7 +235,7 @@ const schema = [
 			</section>
 
 			<p>
-				Related: <a href="/guides/best-weapons/">Best weapons guide</a> · <a href="/guides/gumdrop-blaster-guide/">Gumdrop Blaster</a> · <a href="/guides/world-ender-guide/">World Ender</a> · <a href="/events/galactic/">Galactic Event</a> · <a href="/classes/">Classes</a>
+				Related: <a href="/guides/best-weapons/">Best weapons guide</a> · <a href="/guides/arctic-striker/">Arctic Striker</a> · <a href="/guides/gumdrop-blaster-guide/">Gumdrop Blaster</a> · <a href="/guides/world-ender-guide/">World Ender</a> · <a href="/events/galactic/">Galactic Event</a> · <a href="/classes/">Classes</a>
 			</p>
 		</div>
 	</section>

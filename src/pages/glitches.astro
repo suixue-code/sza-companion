@@ -1,0 +1,181 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import siteMeta from '../data/site-meta.json';
+import { articleSchema, breadcrumbSchema, faqSchema } from '@lib/seo';
+
+const pageUrl = new URL('/glitches/', Astro.site).toString();
+
+const safeRows = [
+	['Abandoned Farm glitch video', 'June creator videos report new spots, but no official patch text confirms a stable method. Treat as temporary.', '/guides/abandoned-farm/'],
+	['AFK or safe spot video', 'Treat as temporary. Map geometry and enemy pathing can change after updates.', '/maps/'],
+	['Atlantis staircase / best spot', 'Competitor wikis promote it as a farm route; use active-map confirmation before planning around it.', '/events/galactic/'],
+	['Rooftop pathing spot', 'Use chokepoint strategy, not stuck enemy behavior, because pathing can be hotfixed silently.', '/maps/'],
+	['Medal quest not tracking', 'Wait for clip upload, rejoin Roblox, then re-check the live Medal quest task.', '/events/medal-quest/'],
+	['Code says invalid', 'Check exact casing, server freshness, and whether the code is active or disputed.', '/codes/'],
+	['Wave or enemy pathing feels broken', 'Use Rooftop chokepoints and avoid relying on stuck enemy behavior.', '/waves/'],
+];
+
+const patchRiskRows = [
+	['Abandoned Farm', 'Hot June 2026 YouTube topic', 'Unverified here', 'Use the update tracker first.'],
+	['Atlantis', 'Event/wiki best-spot topic', 'Media-reported', 'Confirm map access and rotation before farming.'],
+	['Rooftop', 'Confirmed standard map in our prior audit', 'Higher confidence', 'Use barricade and lane strategy instead of clipping.'],
+];
+
+const faq = [
+	{
+		question: 'Are Survive Zombie Arena glitches reliable?',
+		answer: 'Usually no. Glitch videos can work for one build and fail after a map, pathing, or server update. Use them as temporary reports, not a stable farm route.',
+	},
+	{
+		question: 'Do you list exploit scripts?',
+		answer: 'No. This page avoids exploit downloads, scripts, executors, and account-risk instructions. It only routes glitch searches toward safer troubleshooting and official links.',
+	},
+	{
+		question: 'What should I use instead of glitch farming?',
+		answer: 'Use the credit planner, legal farm guide, weapon path, and tier list. They are slower than a viral exploit claim but do not depend on broken behavior.',
+	},
+];
+
+const schema = [
+	articleSchema({
+		title: 'Survive Zombie Arena Glitches and Safe Spots',
+		description: 'Safe guide for Survive Zombie Arena glitch searches: AFK spot claims, broken Medal Quest checks, invalid codes, and account-risk warnings.',
+		url: pageUrl,
+		dateModified: '2026-06-15',
+	}),
+	faqSchema(faq),
+	breadcrumbSchema([
+		{ name: 'Home', url: new URL('/', Astro.site).toString() },
+		{ name: 'Glitches', url: pageUrl },
+	]),
+];
+---
+
+<BaseLayout
+	title="Survive Zombie Arena Glitches: Safe Spots, AFK Claims & Fixes"
+	description="Survive Zombie Arena glitches guide for safe spot searches, AFK claims, broken Medal Quest checks, invalid codes, and safer routes that avoid exploit downloads."
+	schema={schema}
+>
+	<section class="page-hero compact">
+		<div class="shell two-col mobile-hero-stack">
+			<div>
+				<p class="eyebrow"><span class="pulse"></span>Glitch searches · updated June 15, 2026</p>
+				<h1>Survive Zombie Arena Glitches</h1>
+				<p class="geo-snap">
+					Searching for a <strong>Survive Zombie Arena glitch</strong> usually means one of four things: safe spots, AFK farm claims, Medal Quest tracking problems, or invalid-code confusion.
+				</p>
+				<p class="lead">We do not publish exploit scripts or risky downloads. This page gives safe routes, troubleshooting checks, and the guides that still work after a patch.</p>
+			</div>
+			<aside class="quick-answer">
+				<strong>Short answer</strong>
+				<p>Do not build your farm around a glitch. Use codes, legal Credit routes, and stable class picks first.</p>
+			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-grid">
+			<article class="article-flow">
+				<section>
+					<h2>What glitch searches usually mean</h2>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Search intent</th>
+									<th>Safer read</th>
+									<th>Guide</th>
+								</tr>
+							</thead>
+							<tbody>
+								{safeRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td><a href={row[2]}>Open</a></td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Patch-risk tracker</h2>
+					<p>
+						A "working glitch" can disappear after a silent Roblox API update. This tracker keeps the search intent visible without publishing exploit steps.
+					</p>
+					<div class="table-wrap">
+						<table class="data-table">
+							<thead>
+								<tr>
+									<th>Map/topic</th>
+									<th>Why it is searched</th>
+									<th>Status</th>
+									<th>Safer move</th>
+								</tr>
+							</thead>
+							<tbody>
+								{patchRiskRows.map((row) => (
+									<tr>
+										<td><strong>{row[0]}</strong></td>
+										<td>{row[1]}</td>
+										<td>{row[2]}</td>
+										<td>{row[3]}</td>
+									</tr>
+								))}
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<section>
+					<h2>Stable alternatives</h2>
+					<ul class="check-list">
+						<li>Redeem <a href="/codes/">Zombies on the codes page</a> before farming Credits.</li>
+						<li>Use <a href="/guides/credits-farm/">Credits Farm</a> for repeatable routes instead of temporary AFK spots.</li>
+						<li>Use <a href="/tier-list/">Tier List</a> before saving for expensive classes.</li>
+						<li>Use <a href="/tools/wave-planner/">Wave Planner</a> for push risk instead of relying on stuck enemies.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Red flags</h2>
+					<ul class="warning-list">
+						<li>Executors, scripts, file downloads, or browser extensions that ask for Roblox access.</li>
+						<li>Videos that hide the server date, map version, or whether the spot survived a rejoin.</li>
+						<li>Pages that mix Medal Quest rewards with text codes as if they are the same thing.</li>
+						<li>Any site asking for your Roblox password to "unlock" Credits, crates, or skins.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>FAQ</h2>
+					<div class="faq-list">
+						{faq.map((item) => (
+							<details>
+								<summary>{item.question}</summary>
+								<p>{item.answer}</p>
+							</details>
+						))}
+					</div>
+				</section>
+			</article>
+
+			<aside class="side-rail">
+				<div class="rail-panel accent-panel">
+					<strong>Best next click</strong>
+					<a href="/codes/">Codes 2026</a>
+					<a href="/guides/credits-farm/">Credit farm</a>
+					<a href="/maps/">Rooftop Map</a>
+					<a href="/events/medal-quest/">Medal Quest</a>
+				</div>
+				<div class="rail-panel">
+					<strong>Official safety</strong>
+					<a href={siteMeta.robloxExperienceUrl} rel="noopener noreferrer" target="_blank">Roblox game</a>
+					<a href={siteMeta.discordInviteUrl} rel="noopener noreferrer" target="_blank">Official Discord</a>
+				</div>
+			</aside>
+		</div>
+	</section>
+</BaseLayout>

@@ -2115,6 +2115,216 @@ export const guides: GuidePage[] = [
 		],
 	},
 {
+		slug: 'overclocker-class',
+		title: 'Overclocker Class Guide — June Update Source Check and Team Role',
+		description: 'Survive Zombie Arena Overclocker class guide: June creator reports, proof gaps, likely team role, unlock cautions, and safe loadout planning.',
+		eyebrow: 'Class guide · Source watch',
+		sections: [
+		{
+			heading: 'Current status: hot June class, not first-party verified here',
+			body: 'Overclocker is one of the loudest June 2026 Survive Zombie Arena search terms. YouTube videos and Reddit/Roonby-style coverage describe a new Overclocker class, often paired with Abandoned Farm and Arctic Striker. The Roblox official games API refreshed on June 15, 2026 and confirms the experience was updated, but its public description does not name Overclocker. SZA Companion therefore treats Overclocker as creator-reported until an official Discord announcement, patch note screenshot, or in-game class-shop receipt is captured. This page is built so players can understand the demand signal without mistaking it for confirmed class data.',
+			items: [
+				'Status here: creator-reported / source-watch.',
+				'Roblox API confirms a fresh game update, not the class name.',
+				'Do not spend around a rumored cost until the class shop confirms it.',
+				'Use /updates/abandoned-farm/ for the full June update tracker.',
+			],
+		},
+		{
+			heading: 'Likely role based on public coverage',
+			body: 'Creator titles frame Overclocker as a support or combo class rather than a pure solo starter. That likely means the class interacts with weapon uptime, team tempo, cooldown pressure, or burst windows — but exact abilities are not verified here. Until the kit is documented, compare it against the known support anchors: Medic for sustain, Tactician for barricades and turret pressure, and Bastion for bunker-style team protection. If Overclocker turns out to amplify guns like Arctic Striker, it may compete with Tactician in coordinated high-wave squads; if it only boosts personal fire rate, Marksman may still be the safer farm unlock.',
+			items: [
+				'Assume support/combo role until abilities are verified.',
+				'Compare against Medic, Tactician, and Bastion rather than Survivor.',
+				'Do not replace Marksman farm route on rumor alone.',
+				'Arctic Striker pairing is a public-video signal, not confirmed balance math.',
+			],
+		},
+		{
+			heading: 'Unlock decision before proof',
+			body: 'If you see Overclocker in your live class shop, record the price, rarity, ability names, and whether it uses Credits or Robux. Then compare that price to existing milestones: Medic 10,000 Credits, Marksman 15,000, Demolitionist 50,000, Tactician 75,000, Bastion 200,000, and Necromancer 250,000. If Overclocker costs more than Tactician, do not buy it before your account can survive Rooftop with rifle timing. If it costs near Medic or Marksman, test it in Normal runs before taking it into Nightmare or Abandoned Farm glitch spots. Credit Planner cannot recommend Overclocker yet because cost and role are not verified.',
+			items: [
+				'Capture price and ability names before buying.',
+				'Compare value against Medic/Marksman/Tactician milestones.',
+				'Test in Normal before leaderboard or Nightmare attempts.',
+				'Planner support waits for verified cost data.',
+			],
+		},
+		{
+			heading: 'Best temporary loadout logic',
+			body: 'Until Overclocker numbers are confirmed, use conservative loadout logic: handgun to shotgun to rifle first, then test named guns only after the lane is stable. If the class boosts gun uptime, pair it with Arctic Striker or Gumdrop Blaster only after confirming those weapons are actually available to your account. If it boosts structures or cooldowns, pair it with Tactician-style lanes on Rooftop or Abandoned Farm chokepoints. Keep a Medic in co-op tests so failed experiments do not end the run before you see what the kit does.',
+			items: [
+				'Weapon path remains handgun → shotgun → rifle.',
+				'Test gun synergy after survival spend is funded.',
+				'Use Medic backup for first co-op tests.',
+				'Record wave reached and Credits/min, not just damage clips.',
+			],
+		},
+		{
+			heading: 'What proof would change this page',
+			body: 'This guide should be upgraded from source-watch to verified when one of three things exists: an official Discord patch note naming Overclocker, a clear in-game class-shop screenshot showing price and abilities, or a reproducible player test with ability text and wave results. At that point, update classes.json and the tier list before rewriting this guide. Until then, the honest SEO angle is not “Overclocker is S tier”; it is “here is what is reported, what is missing, and how not to waste Credits chasing hype.”',
+			items: [
+				'Official Discord patch note.',
+				'In-game class-shop screenshot.',
+				'Ability text plus repeatable wave test.',
+				'Then update classes.json and /tier-list/ first.',
+			],
+		},
+		],
+		faq: [
+		{ question: 'Is Overclocker confirmed in Survive Zombie Arena?', answer: 'Creator and community coverage strongly report it, but this site has not captured first-party Discord or in-game proof yet. We keep it source-watch until that evidence exists.' },
+		{ question: 'Is Overclocker better than Tactician?', answer: 'Unknown. Tactician has verified role data and cost. Overclocker needs ability text, price, and wave testing before we rank it.' },
+		{ question: 'What should I buy before Overclocker?', answer: 'For most players, Medic or Marksman first, then Tactician if your squad needs structure. Do not delay verified unlocks for an unverified class cost.' },
+		{ question: 'Does Overclocker pair with Arctic Striker?', answer: 'Public videos frame the combo as interesting, but we do not have first-party mechanic proof or DPS math yet.' },
+		],
+		toolLinks: [
+			{ href: '/updates/abandoned-farm/', label: 'June Update Tracker' },
+			{ href: '/tier-list/', label: 'Tier List' },
+			{ href: '/tools/loadout-builder/', label: 'Loadout Builder' },
+			{ href: '/guides/arctic-striker/', label: 'Arctic Striker' },
+		],
+	},
+{
+		slug: 'arctic-striker',
+		title: 'Arctic Striker Guide — Freeze Weapon & Buy Timing',
+		description: 'Survive Zombie Arena Arctic Striker guide: freeze-control role, cost conflicts, class pairings, and when not to rush it.',
+		eyebrow: 'Weapon guide · Source watch',
+		sections: [
+		{
+			heading: 'What Arctic Striker is reported to be',
+			body: 'Arctic Striker is now one of the clearest Survive Zombie Arena weapon-demand terms. Search results and competitor pages describe it as a top-slot or S-tier weapon with freeze, stun, or control utility. TechWiser-style weapon lists report Arctic Striker with very high damage and a 1,000,000 Credit price, while other wiki-style pages leave cost unverified and focus on freeze mechanics. Because exact stats are not first-party verified here, SZA Companion treats Arctic Striker as a high-priority source-watch weapon: important enough to cover, not safe enough to fake DPS.',
+			items: [
+				'Public role signal: freeze/control weapon.',
+				'Reported as late or final-slot by competitor pages.',
+				'Cost/stat claims conflict across sources.',
+				'Exact DPS, reload, magazine, and price need in-game receipt.',
+			],
+		},
+		{
+			heading: 'Why freeze control matters',
+			body: 'Freeze is valuable because Survive Zombie Arena pressure is not only raw health bars; it is lane collapse. A weapon that slows, stuns, or freezes elites gives Tactician barricades, Medic sustain, and Marksman pierce more time to work. If Arctic Striker really applies reliable freeze, it is strongest against elite leaks, stairwell pileups, and team burst windows. The danger is overbuying too early: a partial exotic purchase or unupgraded weapon does not save a lane if you skipped shotgun, rifle, or structure spend.',
+			items: [
+				'Control buys time for barricades and team focus.',
+				'Best theoretical use: elites and dense choke collapses.',
+				'Pairs with Marksman pierce or Tactician structure.',
+				'Still weaker than fundamentals if bought too early.',
+			],
+		},
+		{
+			heading: 'When to buy or chase Arctic Striker',
+			body: 'Do not chase Arctic Striker before your account has a stable economy. The safe progression remains handgun to shotgun to rifle, then permanent class milestones like Marksman and Tactician. If the 1,000,000 Credit claim is accurate, Arctic Striker is an endgame target, not a beginner upgrade. If the live shop shows a different price, trust the in-game shop over third-party tables and record the receipt. For now, use Arctic Striker as a late-wave comparison target after you can already farm reliably.',
+			items: [
+				'Beginner route still starts with 150/750 Credit weapon nodes.',
+				'Class milestones usually beat exotic weapon chasing.',
+				'If price is 1,000,000 Credits, treat it as endgame.',
+				'Always trust the in-game shop over scraped lists.',
+			],
+		},
+		{
+			heading: 'Best class pairings to test',
+			body: 'Marksman is the cleanest test partner because rifle fundamentals and pierce make it easy to compare whether Arctic Striker actually improves lane control. Tactician is the likely best team partner if freeze keeps enemies inside turret and barricade zones. Medic is useful for early tests because failed freeze timings can still be healed through. Overclocker appears in public combo videos with Arctic Striker, but both sides of that combo still need mechanic verification before we rank it above known class pairings.',
+			items: [
+				'Marksman: compare control value against rifle pierce.',
+				'Tactician: freeze inside barricade/turret kill zone.',
+				'Medic: safer first test runs.',
+				'Overclocker combo remains source-watch.',
+			],
+		},
+		{
+			heading: 'Test checklist for players',
+			body: 'A useful Arctic Striker receipt should include shop price, slot, upgrade path, freeze duration or visible effect, elite interaction, and wave performance. Test on the same map and similar wave range as your rifle or Gumdrop runs so the comparison is meaningful. Track Credits/min if you are farming; track highest stable wave if you are pushing. Do not post only a one-shot clip — control weapons need repeatable lane results.',
+			items: [
+				'Capture price, slot, and upgrade path.',
+				'Record whether elites freeze or resist.',
+				'Compare same wave range vs rifle/Gumdrop.',
+				'Measure Credits/min or stable wave, not clip hype.',
+			],
+		},
+		],
+		faq: [
+		{ question: 'Is Arctic Striker the best weapon in Survive Zombie Arena?', answer: 'It is repeatedly reported as a top control weapon, but exact stats and price are not first-party verified here. Treat it as a late-game target, not a guaranteed first buy.' },
+		{ question: 'How much does Arctic Striker cost?', answer: 'Some public weapon lists report 1,000,000 Credits. This site keeps the cost source-watch until an in-game shop receipt confirms it.' },
+		{ question: 'What class works best with Arctic Striker?', answer: 'Likely Tactician for freeze inside barricade zones or Marksman for comparison against rifle pierce. Overclocker combo claims need verification.' },
+		{ question: 'Should beginners rush Arctic Striker?', answer: 'No. Stabilize handgun → shotgun → rifle and class unlocks first. Expensive weapons do not fix weak fundamentals.' },
+		],
+		toolLinks: [
+			{ href: '/weapons/', label: 'Weapons Hub' },
+			{ href: '/guides/overclocker-class/', label: 'Overclocker' },
+			{ href: '/guides/gumdrop-blaster-guide/', label: 'Gumdrop Blaster' },
+			{ href: '/updates/abandoned-farm/', label: 'June Update Tracker' },
+		],
+	},
+{
+		slug: 'abandoned-farm',
+		title: 'Abandoned Farm Guide — Safe Spots & Proof Checklist',
+		description: 'Survive Zombie Arena Abandoned Farm guide: June map demand, safe-spot caution, Overclocker/Arctic Striker links, and proof checklist.',
+		eyebrow: 'Map guide · Source watch',
+		sections: [
+		{
+			heading: 'Why Abandoned Farm needs its own page',
+			body: 'Abandoned Farm is no longer just a throwaway update phrase. Search results show multiple June 2026 videos around the new map, glitches, AFK spots, Overclocker, and Arctic Striker. The current first-party Roblox API confirms the game updated on June 15, 2026, but does not name Abandoned Farm in the public description. This guide exists to catch the player intent while keeping the facts honest: map name and tactics are creator-reported here until Discord patch notes or in-game screenshots confirm the map details.',
+			items: [
+				'Status here: creator-reported / source-watch.',
+				'High demand from YouTube and community SERPs.',
+				'Official API confirms update timing, not map name.',
+				'Use /glitches/ for safety-first glitch handling.',
+			],
+		},
+		{
+			heading: 'Safe route thinking before glitch hunting',
+			body: 'Abandoned Farm searches are heavily mixed with glitch and AFK intent. That does not mean the best page should teach scripts or exploit paths. A useful map guide should help players identify chokepoints, fallback routes, elevation, elite lanes, and where teammates can regroup when a spot fails. If a creator shows a “god mode” or unreachable position, treat it as temporary and patch-prone. Build a legitimate lane plan first, then treat any safe spot as optional evidence to verify, not your whole strategy.',
+			items: [
+				'Map fundamentals first: chokepoints, exits, fallback lanes.',
+				'No scripts, executors, or exploit downloads.',
+				'Patch-prone spots should never be the main farm plan.',
+				'Record whether the spot still works after server restart.',
+			],
+		},
+		{
+			heading: 'Class and weapon logic on a new map',
+			body: 'Until Abandoned Farm geometry is verified, bring conservative roles: Medic for sustain, Tactician for temporary structure, Marksman for reliable lane DPS, and one experimental slot if your squad wants to test Overclocker. For weapons, rifle remains the baseline comparison. Arctic Striker and Gumdrop Blaster may shine if the map creates packed lanes or elite chokepoints, but you need repeatable tests. Do not evaluate a weapon from one lucky safe-spot video.',
+			items: [
+				'Medic + Tactician stabilize unknown layouts.',
+				'Marksman rifle gives baseline DPS comparison.',
+				'Arctic Striker: test elite control if lanes are tight.',
+				'Gumdrop: test splash only where packs actually clump.',
+			],
+		},
+		{
+			heading: 'Verification checklist',
+			body: 'Useful Abandoned Farm proof should include the mode selector or map vote UI, spawn location, two or more lane screenshots, the exact patch or Discord announcement if available, and whether any shown glitch works in a fresh public server. If you are testing for content updates, capture whether Overclocker appears in the same patch window and whether Arctic Striker is in the armory. These receipts let the site upgrade from source-watch to verified map coverage without copying video claims blindly.',
+			items: [
+				'Map vote or lobby UI showing Abandoned Farm.',
+				'Fresh-server screenshot, not only edited video.',
+				'Lane screenshots: choke, fallback, elite path.',
+				'Patch note or Discord announcement if visible.',
+			],
+		},
+		{
+			heading: 'What to avoid',
+			body: 'Avoid pages or videos that promise free Robux, unlock all guns, or executor-based AFK farms. Avoid treating every “safe spot” as permanent; Roblox map collision fixes can remove them quickly. Avoid spending all Credits on an expensive weapon just because a creator used it in a curated clip. For a new map, the reliable path is still evidence-first: stabilize with known classes, test one variable at a time, and write down what changed after patches.',
+			items: [
+				'No executor or unlock-all-guns content.',
+				'No permanent claim for unverified safe spots.',
+				'Do not overspend based on curated clips.',
+				'Retest after every server update.',
+			],
+		},
+		],
+		faq: [
+		{ question: 'Is Abandoned Farm officially confirmed here?', answer: 'Not yet. It is heavily reported by June creator/community coverage, while the Roblox API only confirms the game updated. We need Discord or in-game proof for verified status.' },
+		{ question: 'Are Abandoned Farm glitches safe to use?', answer: 'Glitches are patch-prone and can violate fair-play expectations. This site covers safety-first route thinking and does not provide scripts or exploit downloads.' },
+		{ question: 'What class should I use on Abandoned Farm?', answer: 'Until geometry is verified, Medic, Tactician, and Marksman are the safest test roles. Overclocker needs proof before ranking.' },
+		{ question: 'Does Arctic Striker work well on Abandoned Farm?', answer: 'Possibly if the map has tight elite lanes, but that combo needs repeatable in-game testing.' },
+		],
+		toolLinks: [
+			{ href: '/updates/abandoned-farm/', label: 'June Update Tracker' },
+			{ href: '/glitches/', label: 'Glitches & Safe Spots' },
+			{ href: '/guides/overclocker-class/', label: 'Overclocker' },
+			{ href: '/guides/arctic-striker/', label: 'Arctic Striker' },
+		],
+	},
+{
 		slug: 'nightmare-mode-guide',
 		title: 'Nightmare Mode Guide — What We Know from Official Patch Notes',
 		description: 'Nightmare Mode in Survive Zombie Arena: confirmed May 8, 2026 launch, unverified mechanics, how it differs from Normal/Hardcore, and prep checklist from source-checked sources.',

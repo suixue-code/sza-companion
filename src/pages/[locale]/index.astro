@@ -95,6 +95,7 @@ const reviewNote =
 const pageUrl = new URL(localePath(locale, '/'), Astro.site).toString();
 const snapshot = snapshotCopy[locale];
 const trust = trustCopy[locale];
+const localizedShortcutHref = (href: string) => (href === '/classes/' ? href : localePath(locale, href));
 
 const schema = [
 	collectionSchema(`${SITE_NAME} — ${homeCopy.title}`, homeCopy.description, pageUrl),
@@ -147,7 +148,7 @@ const schema = [
 				{
 					homeCopy.shortcuts.map((shortcut) => (
 						<li class="shortcut">
-							<a href={localePath(locale, shortcut.href)}>
+							<a href={localizedShortcutHref(shortcut.href)}>
 								<strong>{shortcut.title}</strong>
 								<p>{shortcut.desc}</p>
 							</a>

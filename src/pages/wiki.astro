@@ -4,8 +4,21 @@ import ToolsGuidesStrip from '@components/ToolsGuidesStrip.astro';
 import siteMeta from '../data/site-meta.json';
 import { collectionSchema, SITE_NAME } from '@lib/seo';
 
+const wikiSnapshot = [
+	['Codes', 'Zombies active here; GALACTIC still needs a fresh redeem receipt.', '/codes/'],
+	['June update watch', 'Abandoned Farm, Overclocker, Arctic Striker, and new-gun searches are rising.', '/updates/abandoned-farm/'],
+	['Best weapons', 'Arctic Striker, Gumdrop Blaster, Flamethrower, World Ender, and core rifle route.', '/weapons/'],
+	['Arctic Striker', 'Freeze/control weapon source-watch guide and buy timing.', '/guides/arctic-striker/'],
+	['AFK / best spot', 'Safe tracker for glitch claims, patch risk, and legitimate alternatives.', '/glitches/'],
+	['Class tier list', 'Necromancer, Medic, Marksman, Tactician, Bastion, and first-buy advice.', '/tier-list/'],
+	['Official links', 'Roblox game, Discord invite, Nectarforge group, and place ID.', '/roblox/'],
+];
+
 const needRoutes = [
 	{ need: 'Working and disputed codes', href: '/codes/' },
+	{ need: 'June update tracker', href: '/updates/abandoned-farm/' },
+	{ need: 'Abandoned Farm map', href: '/guides/abandoned-farm/' },
+	{ need: 'Overclocker class', href: '/guides/overclocker-class/' },
 	{ need: 'Best class by role', href: '/tier-list/' },
 	{ need: 'Class costs and abilities', href: '/classes/' },
 	{ need: 'Weapon upgrade route', href: '/weapons/' },
@@ -15,10 +28,15 @@ const needRoutes = [
 	{ need: 'Wave survival and Auto Skip', href: '/waves/' },
 	{ need: 'Source ledger for citations', href: '/sources/' },
 	{ need: 'Official Discord and Roblox links', href: '/discord/' },
+	{ need: 'Roblox game page and place ID', href: '/roblox/' },
+	{ need: 'Glitch searches and safe troubleshooting', href: '/glitches/' },
 ];
 
 const hubLinks = [
 	{ label: 'All Guides (26)', href: '/guides/', copy: 'Deep-dive class, weapon, wave, and economy articles.' },
+	{ label: 'June Update', href: '/updates/abandoned-farm/', copy: 'Abandoned Farm, Overclocker, Arctic Striker, and source confidence.' },
+	{ label: 'Overclocker', href: '/guides/overclocker-class/', copy: 'Class source-watch, likely role, and proof checklist.' },
+	{ label: 'Abandoned Farm', href: '/guides/abandoned-farm/', copy: 'Map demand, safe-spot caution, and verification checklist.' },
 	{ label: 'Beginner Guide', href: '/beginner-guide/', copy: 'First 5 runs, Credit milestones, Rooftop Map tips.' },
 	{ label: 'Best Loadouts', href: '/best-loadouts/', copy: 'Solo, team, farm, high-wave, and leaderboard frameworks.' },
 	{ label: 'Waves Guide', href: '/waves/', copy: 'Core loop, Auto Skip rules, Nightmare Mode note.' },
@@ -30,6 +48,8 @@ const hubLinks = [
 	{ label: 'Tier List', href: '/tier-list/', copy: 'S/A/B/C rankings for Rooftop meta.' },
 	{ label: 'Credit Planner', href: '/tools/credit-planner/', copy: 'Browser-only unlock planning.' },
 	{ label: 'Codes', href: '/codes/', copy: 'Active Zombies code plus disputed GALACTIC.' },
+	{ label: 'Roblox', href: '/roblox/', copy: 'Official game, group, Discord, and place ID links.' },
+	{ label: 'Glitches', href: '/glitches/', copy: 'Safe read for glitch searches, scams, and broken quest checks.' },
 	{ label: 'Updates', href: '/updates/', copy: 'Patch timeline from Classes Update through Galactic previews.' },
 ];
 
@@ -43,30 +63,59 @@ const schema = [
 ---
 
 <BaseLayout
-	title={`${SITE_NAME} Wiki Hub — Guides & Tools Directory`}
-	description="Survive Zombie Arena wiki hub: codes, best classes, tier list, best weapons, waves, enemies, maps, loadouts, leaderboard, and Credit Planner with confidence labels."
+	title="Survive Zombie Arena Wiki: Codes, Roblox Links & Tier List"
+	description="Survive Zombie Arena wiki hub: codes 2026, Roblox links, glitches, Discord, best classes, tier list, weapons, waves, maps, loadouts, and Credit Planner."
 	schema={schema}
 >
 	<section class="page-hero compact">
 		<div class="shell two-col">
 			<div>
 				<p class="eyebrow"><span class="pulse"></span>Directory · {siteMeta.lastPublicReviewDisplay}</p>
-				<h1>Wiki Hub</h1>
+				<h1>Survive Zombie Arena Wiki</h1>
 				<p class="geo-snap">
-					A lightweight directory — not a full wiki database. Every link routes to a page we actually ship with source labels and honest data gaps.
+					This is the unofficial <strong>Survive Zombie Arena Wiki</strong> route map for codes, Roblox links, Discord, glitches, tier list, weapons, waves, and June 2026 update searches. Every link routes to a page we actually ship with source labels and honest data gaps.
 				</p>
 			</div>
 			<aside class="quick-answer">
-				<strong>Start here</strong>
-				<p>Codes → beginner guide → Credit Planner → tier list.</p>
+				<strong>Fast route</strong>
+				<p>Codes → June update → weapons → tier list → planner.</p>
 			</aside>
+		</div>
+	</section>
+
+	<section class="content-section">
+		<div class="shell article-flow">
+			<h2>Wiki snapshot</h2>
+			<p>
+				Use this page when search results mix Roblox, Fandom, YouTube, and code farms. We keep gameplay guides, code status, and official links separated so a disputed code or viral glitch claim does not rewrite the whole wiki.
+			</p>
+			<div class="table-wrap">
+				<table class="data-table">
+					<thead>
+						<tr>
+							<th>Topic</th>
+							<th>Current answer</th>
+							<th>Open</th>
+						</tr>
+					</thead>
+					<tbody>
+						{wikiSnapshot.map((row) => (
+							<tr>
+								<td><strong>{row[0]}</strong></td>
+								<td>{row[1]}</td>
+								<td><a href={row[2]}>Guide</a></td>
+							</tr>
+						))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</section>
 
 	<section class="content-section">
 		<div class="shell article-flow" style="margin-bottom: 28px;">
 			<h2>Pick by problem</h2>
-			<p>Route to one page — do not duplicate full guides here.</p>
+			<p>Route to one page. The goal is a clean wiki hub, not duplicated thin pages.</p>
 			<div class="table-wrap">
 				<table class="data-table">
 					<thead>

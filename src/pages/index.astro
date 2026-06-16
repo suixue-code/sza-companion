@@ -22,22 +22,22 @@ const playerRoutes = [
 	{
 		href: '/codes/',
 		kicker: 'Redeem',
-		title: 'Codes',
-		desc: 'Working codes, dispute notes, and confidence labels before your next run.',
+		title: 'Codes 2026',
+		desc: 'Working code, GALACTIC status, and confidence labels before your next run.',
 		stat: `${activeCount} active now`,
 	},
 	{
 		href: '/weapons/',
 		kicker: 'Loadout',
 		title: 'Best Weapons',
-		desc: 'Walk the best weapon path from handgun to shotgun, rifle, and new F2P guns.',
-		stat: 'Upgrade path',
+		desc: 'Arctic Striker, Gumdrop Blaster, Flamethrower, World Ender, and the rifle path.',
+		stat: 'June tracker',
 	},
 	{
 		href: '/classes/',
 		kicker: 'Build',
-		title: 'Best Classes',
-		desc: 'Compare class costs, roles, and which picks pay off for solo or team play.',
+		title: 'Tier List',
+		desc: 'Compare best classes, costs, roles, and which picks pay off for solo or team play.',
 		stat: `${classes.length} tracked`,
 	},
 	{
@@ -71,6 +71,11 @@ const battlefieldLinks = [
 		desc: 'May 2026 patch trail: Medal Quest, Roblox API refresh, World Ender, Nightmare Mode, Necromancer buff, and Galactic reports.',
 	},
 	{
+		href: '/updates/abandoned-farm/',
+		title: 'June Update',
+		desc: 'Source-confidence tracker plus Abandoned Farm, Overclocker, and Arctic Striker guide routes.',
+	},
+	{
 		href: '/best-loadouts/',
 		title: 'Best Loadouts',
 		desc: 'Best Survive Zombie Arena loadouts for solo, team support, Credits farming, high waves, and leaderboard pushes.',
@@ -92,6 +97,7 @@ const wikiHubSections = [
 			['GALACTIC status', '/codes/galactic/'],
 			['Credit Planner', '/tools/credit-planner/'],
 			['How to redeem codes', '/guides/how-to-redeem-codes/'],
+			['Roblox link', '/roblox/'],
 		],
 	},
 	{
@@ -126,9 +132,13 @@ const wikiHubSections = [
 	},
 	{
 		title: 'Galactic Event and Updates',
-		body: 'Public event guides now report Galactic content, Void Shards, Galactic Crates, and Atlantis. The Roblox page/API confirmed a May 26 game update but did not name Galactic or Atlantis, so we separate media-reported details from official-page facts instead of blending them into one claim.',
-		items: ['Void Shards and crates', 'Atlantis status notes', 'May 2026 patch trail'],
+		body: 'Public event guides report Galactic content, Void Shards, Galactic Crates, and Atlantis. June search results now also surface Abandoned Farm, Overclocker, Arctic Striker, and new-gun videos. We separate media-reported details from official-page facts instead of blending them into one claim.',
+		items: ['June update watch', 'Void Shards and crates', 'Atlantis status notes'],
 		links: [
+			['June Update', '/updates/abandoned-farm/'],
+			['Abandoned Farm', '/guides/abandoned-farm/'],
+			['Overclocker', '/guides/overclocker-class/'],
+			['Arctic Striker', '/guides/arctic-striker/'],
 			['Galactic Event', '/events/galactic/'],
 			['Medal Quest', '/events/medal-quest/'],
 			['Void Shards', '/guides/void-shards/'],
@@ -142,6 +152,8 @@ const wikiHubSections = [
 		links: [
 			['Sources', '/sources/'],
 			['Official links', '/discord/'],
+			['Roblox page', '/roblox/'],
+			['Glitches & safe spots', '/glitches/'],
 			['About', '/about/'],
 		],
 	},
@@ -192,8 +204,8 @@ const schema = [
 ---
 
 <BaseLayout
-	title="Survive Zombie Arena Guide: Codes & Class Planner"
-	description="Survive Zombie Arena guide for current codes, Medal Quest, waves, best classes, Credit planning, and the weapon upgrade path."
+	title="Survive Zombie Arena Guide: Codes, Wiki, Roblox Links & Planner"
+	description="Survive Zombie Arena guide for 2026 codes, wiki routes, Roblox links, glitches, June update notes, waves, tier list, weapons, and Credit planning."
 	schema={schema}
 >
 	<link
@@ -209,14 +221,14 @@ const schema = [
 		<div class="shell arena-hero-grid">
 			<div class="arena-hero-copy">
 				<p class="eyebrow"><span class="pulse"></span>Unofficial guide · updated {siteMeta.lastPublicReviewDisplay}</p>
-				<h1>Survive Zombie Arena <em>codes & planner</em></h1>
+				<h1>Survive Zombie Arena <em>codes, wiki & planner</em></h1>
 				<p class="arena-lead">
-					Copy working codes, pick the next class, and plan Credits for Roblox <strong>Survive Zombie Arena</strong>. Start with Zombies, then prep the Rooftop run before the wave timer catches up.
+					Copy working codes, open the Roblox links, pick from the tier list, and plan Credits for <strong>Survive Zombie Arena</strong>. Start with Zombies, then prep the Rooftop run before the wave timer catches up.
 				</p>
 				<div class="hero-actions">
 					<a class="btn primary" href="/codes/">Copy codes</a>
 					<a class="btn secondary" href="/tools/credit-planner/">Open planner</a>
-					<a class="btn dark" href="/beginner-guide/">First five runs</a>
+					<a class="btn dark" href="/wiki/">Open wiki</a>
 				</div>
 				<div class="trust-row">
 					<span class="trust">{activeCount} active code{activeCount === 1 ? '' : 's'}</span>
@@ -240,6 +252,7 @@ const schema = [
 					<a href="/codes/"><span>Phase 01</span><strong>Redeem before you queue</strong></a>
 					<a href="/weapons/"><span>Phase 02</span><strong>Choose the weapon spend</strong></a>
 					<a href="/tier-list/"><span>Phase 03</span><strong>Lock the class role</strong></a>
+					<a href="/roblox/"><span>Phase 04</span><strong>Use official links only</strong></a>
 				</div>
 				<p class="muted">Roblox API · updated {siteStats.gameLastUpdated.slice(0, 10)} · checked {siteStats.lastChecked}</p>
 			</aside>
